@@ -33,7 +33,6 @@ class Users extends Component
     public $search;
     public $select     = [];
     public $showpassword = false;
-    public $getRoles = false;
 
     public function render()
     {
@@ -54,11 +53,6 @@ class Users extends Component
     private function resetInputFields()
     {
         $this->select         = [];
-    }
-
-    public function getRoles()
-    {
-        $this->getRoles = !$this->getRoles;
     }
 
     public function confirmdelete($id)
@@ -130,7 +124,6 @@ class Users extends Component
         $user->phone     = $this->phone;
         $user->email     = $this->email;
         $user->password  = Hash::make($this->password);
-        $user->created_by  = Auth::id();
 
         $user->save();
 
@@ -171,7 +164,7 @@ class Users extends Component
         $user->save();
 
         $user->syncRoles(array_values($this->select));
-        $this->ShowupdateUser = true;
+        $this->ShowupdateUser = false;
         $this->dispatchBrowserEvent('swal:modal', [
             'type'    => 'success',
             'message' => 'User Updated Successfully!',

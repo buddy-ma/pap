@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\LandingController;
@@ -23,20 +24,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
     Route::get('/role', [UserController::class, 'Role'])->name('role-list');
     Route::get('/permission', [UserController::class, 'Permission'])->name('permission-list');
 
-    Route::get('/products', [LandingController::class, 'Products'])->name('products');
-    Route::get('/orders', [LandingController::class, 'Orders'])->name('orders');
-    Route::get('/status', [LandingController::class, 'Status'])->name('status');
-    Route::get('/emails', [LandingController::class, 'Emails'])->name('emails');
-
-    Route::get('/profile', [LandingController::class, 'Profile'])->name('profile');
-    Route::get('/headers', [LandingController::class, 'Header'])->name('headers');
-    Route::get('/services', [LandingController::class, 'Services'])->name('services');
-    Route::get('/numbers', [LandingController::class, 'Numbers'])->name('numbers');
-    Route::get('/plans', [LandingController::class, 'Plans'])->name('plans');
-    Route::get('/designs', [LandingController::class, 'Designs'])->name('designs');
-
-    Route::get('/translations', [LandingController::class, 'Translations'])->name('translations');
-    Route::get('/settings', [LandingController::class, 'Settings'])->name('settings');
+    //Blogs
+    Route::prefix('blogs')->group(function () {
+        Route::get('/', [BlogController::class, 'list'])->name('blog-list');
+        Route::get('/add', [BlogController::class, 'add'])->name('show-blog-add');
+        Route::post('/add', [BlogController::class, 'store'])->name('blog-add');
+        Route::get('/update/{id?}', [BlogController::class, 'update'])->name('show-blog-update');
+        Route::post('/{id?}', [BlogController::class, 'edit'])->name('blog-update');
+        Route::delete('/delete/{id?}', [BlogController::class, 'delete'])->name('blog-delete');
+        Route::delete('/restore/{id?}', [BlogController::class, 'restore'])->name('blog-restore');
+        Route::get('/changeStatus', [BlogController::class, 'changeStatus']);
+        Route::post('/ckeditor/upload', [BlogController::class, 'upload'])->name('ckeditor.upload');
+        Route::get('/show/{id?}', [BlogController::class, 'show'])->name('show-blog-show');
+        Route::get('/getCountries', [BlogController::class, 'getCountries']);
+        Route::get('/getStates', [BlogController::class, 'getStates']);
+        Route::post('/adddate/{id?}', [BlogController::class, 'add_date'])->name('date-add');
+    });
 });
 
 Route::group(['prefix' => 'admin'], function () {

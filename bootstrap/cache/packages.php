@@ -1,4 +1,15 @@
 <?php return array (
+  'awssat/laravel-visits' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Awssat\\Visits\\VisitsServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Visits' => 'Awssat\\Visits\\Visits',
+    ),
+  ),
   'barryvdh/laravel-debugbar' => 
   array (
     'providers' => 
@@ -81,11 +92,36 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'rtconner/laravel-likeable' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Conner\\Likeable\\LikeableServiceProvider',
+    ),
+  ),
   'spatie/laravel-permission' => 
   array (
     'providers' => 
     array (
       0 => 'Spatie\\Permission\\PermissionServiceProvider',
+    ),
+  ),
+  'spatie/laravel-referer' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Referer\\RefererServiceProvider',
+    ),
+  ),
+  'torann/geoip' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Torann\\GeoIP\\GeoIPServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'GeoIP' => 'Torann\\GeoIP\\Facades\\GeoIP',
     ),
   ),
 );
