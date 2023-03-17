@@ -1,21 +1,35 @@
 @extends('admin.layouts.master')
 @section('css')
     <!-- INTERNAL File Uploads css -->
-    <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('admin_assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
 
     <!-- INTERNAL File Uploads css-->
-    <link href="{{ URL::asset('assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('admin_assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
     <!--INTERNAL Select2 css -->
-    <link href="{{ URL::asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('admin_assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 
     <!-- INTERNAL Sumoselect css-->
-    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('admin_assets/plugins/sumoselect/sumoselect.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
 
     <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <style>
+        .bootstrap-tagsinput {
+            width: 100% !important;
+        }
 
+        .dark-mode .bootstrap-tagsinput {
 
+            color: rgba(255, 255, 255, 1) !important;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .bootstrap-tagsinput input {
+            color: rgba(255, 255, 255, 1) !important;
+        }
+    </style>
 @endsection
 @section('page-header')
     <!--Page header-->
@@ -56,79 +70,66 @@
                         </div>
                     @endif
                     @can('user-edit')
-                    <form action="{{ route('blog-update', [$blog->id]) }}" method='POST' role="form"
-                        enctype="multipart/form-data">
-                        @csrf
-                        <input id="user_id" type="hidden" value="{{ $blog->id }}">
-                    @endcan
-                <div class="row">
-                    <div class="col-lg">
-                        <label>Title</label>
-                        <input type="text" name="title" class="form-control" value='{{ old('title') ?? $blog->title }}'/>
-                    </div> 
-                    
-                    <div class="col-lg">
-                        <label>Subtitle</label>
-                        <input type="text" name="subtitle" class="form-control" value='{{ old('subtitle') ?? $blog->subtitle }}'/>
-                    </div>
+                        <form action="{{ route('blog-update', [$blog->id]) }}" method='POST' role="form"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input id="user_id" type="hidden" value="{{ $blog->id }}">
+                        @endcan
+                        <div class="row">
+                            <div class="col-lg">
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control"
+                                    value='{{ old('title') ?? $blog->title }}' />
+                            </div>
 
-                    <div class="col-lg">
-                        <label>Authors</label>
-                        <select 
-                        onchange="console.log($(this).children(':selected').length)"
-                        class="search-box" name="authors">
-                        @foreach ($authors as $author)
-                            <option value="{{ $author->id }}"
-                                {{ $autrs->contains('name', $author->name) ? 'selected' : '' }}>
-                                {{ $author->name }}</option>
-                        @endforeach
-                    </select>
-                    </div>
-                    
-                    <div class="col-lg">
-                        <label>Languages</label>
-                        <select 
-                        onchange="console.log($(this).children(':selected').length)"
-                        class="search-box" name="languages">
-                        @foreach ($languages as $language)
-                            <option value="{{ $language->id }}"
-                                {{ $langs->contains('name', $language->name) ? 'selected' : '' }}>
-                                {{ $language->name }}</option>
-                        @endforeach
-                    </select>
-                    </div>
-                </div>
-                <div class="col-lg">
-                    <div class="form-group">
-                        <label>Categories</label>
-                        <select multiple="multiple" name="categories[]" class="search-box">
-                            @isset($categories)
-                            <?php $dash=''; ?>
-                                @foreach($categories as $category)
-                                    <option value="{{$category->id}}" {{ $catgs->contains('id', $category->id) ? 'selected' : '' }} >{{$category->title}}</option>
-                                    @if(count($category->children)>0)
-                                        @include('admin.mains-admin.blogs.subcateg-edit',['subcategories' => $category->children ])
-                                    @endif
-                                @endforeach 
-                            @endisset
-                        </select>
-                    </div>
-                </div> 
+                            <div class="col-lg">
+                                <label>Subtitle</label>
+                                <input type="text" name="subtitle" class="form-control"
+                                    value='{{ old('subtitle') ?? $blog->subtitle }}' />
+                            </div>
+                            <div class="col-lg">
+                                <div class="form-group">
+                                    <label>Categories</label>
+                                    <select multiple="multiple" onchange="console.log($(this).children(':selected').length)"
+                                        id="categories" name="categories[]" class="search-box">
+                                        @if ($categories)
+                                            <?php $dash = ''; ?>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->title }}
+                                                </option>
+                                                @if (count($category->children) > 0)
+                                                    @include('admin.mains-admin.blogs.subcateg-list', [
+                                                        'subcategories' => $category->children,
+                                                    ])
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg">
+                                <label class="d-block">Tags </label>
+                                <input value="{{ $tags }}" name="tags" type="text" class="form-control"
+                                    data-role="tagsinput" data-cls-tag-title="text-bold fg-white" />
+                            </div>
 
-                    <div class="col-lg">
-                        <label>Image</label>
-                        <input type="file" class="dropify" data-height="180" name="image" data-default-file="{{URL::asset('images/'.$blog->image)}}" />
-                    </div> 
-                    
-                    <div class="form-group">
-                        <label><strong>Description :</strong></label>
-                        <textarea name="editor1" rows="1000" style="min-height: 900px;" >{!!$blog->text!!}</textarea>
-                    </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg">
+                                <label>Image</label>
+                                <input type="file" class="dropify" data-height="180" name="image"
+                                    @isset($blog->image)
+                                    data-default-file="{{ URL::asset('images/' . $blog->image) }}"
+                                    @endisset />
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Enter Your Tags here :</label>
-                        <input value="{{$tags}}" name="tags" type="text" class="form-control" data-role="tagsinput" data-cls-tag-title="text-bold fg-white"/>
-                    </div>
+                        <div class="form-group">
+                            <label><strong>Description :</strong></label>
+                            <textarea name="editor1" rows="1000" style="min-height: 900px;">{!! $blog->text !!}</textarea>
+                        </div>
 
                         @can('user-edit')
                             <div class="btn-list text-right">
@@ -143,44 +144,44 @@
 @endsection
 @section('js')
     <!-- INTERNAL Select2 js -->
-    <script src="{{ URL::asset('assets/plugins/select2/select2.full.min.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/select2.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/select2/select2.full.min.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/select2.js') }}"></script>
 
     <!-- INTERNAL Datepicker js -->
-    <script src="{{ URL::asset('assets/plugins/date-picker/date-picker.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/date-picker/jquery-ui.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/date-picker/date-picker.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/date-picker/jquery-ui.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
 
     <!-- INTERNAL File-Uploads Js-->
-    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
 
     <!-- INTERNAL File uploads js -->
-    <script src="{{ URL::asset('assets/plugins/fileupload/js/dropify.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/filupload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fileupload/js/dropify.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/filupload.js') }}"></script>
 
     <!--INTERNAL Sumoselect js-->
-    <script src="{{ URL::asset('assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
 
     <!--INTERNAL Form Advanced Element -->
-    <script src="{{ URL::asset('assets/js/formelementadvnced.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/file-upload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/formelementadvnced.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/form-elements.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/file-upload.js') }}"></script>
 
     <script type="text/javascript">
         CKEDITOR.config.height = 1000;
         CKEDITOR.replace('editor1', {
-            filebrowserUploadUrl: "{{route('blog-add', ['_token' => csrf_token() ])}}",
+            filebrowserUploadUrl: "{{ route('blog-add', ['_token' => csrf_token()]) }}",
             filebrowserUploadMethod: 'form'
         });
     </script>
-<script type="text/javascript">
-    $(document).ready(function() {
-       $('.ckeditor').ckeditor();
-    });
-</script>
-<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
+    <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 @endsection

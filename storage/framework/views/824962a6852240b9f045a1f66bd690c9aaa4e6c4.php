@@ -32,7 +32,7 @@
 
                                     <div class="col-lg">
                                         <label class="col-md-12 form-label">Permissions</label>
-                                        <div class="col-md-12" style="max-height: 500px ; overflow:auto">
+                                        <div class="col-md-12" style="max-height: 500px;overflow:auto">
                                             <div class="e-table">
                                                 <div class="table-responsive table-lg mt-3">
                                                     <table

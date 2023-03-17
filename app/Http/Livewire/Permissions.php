@@ -122,12 +122,6 @@ class Permissions extends Component
         }
         $permission->save();
 
-
-        $lib = new UserLog();
-
-        $lib->save_user_log('Permission', $permission, 'create', 'New permission created by ' . Auth::user()->firstname .Auth::user()->lastname);
-
-
         $this->dispatchBrowserEvent('swal:modal', [
             'type'    => 'success',
             'message' => 'Permission has been added successfully',
@@ -158,34 +152,24 @@ class Permissions extends Component
         $permission->p_group = $this->groupe;
         $permission->save();
 
-   
-
-        $lib = new UserLog();
-
-        $lib->save_user_log('Permission', $permission, 'update', ' permission updated by ' . Auth::user()->firstname .Auth::user()->lastname);
-
-        
         $this->dispatchBrowserEvent('swal:modal', [
             'type'    => 'success',
             'message' => 'Permission has been updated successfully',
         ]);
-        
     }
+
     public function deletePermission($id)
     {
         $permission = Permission::find($id);
         $permission->delete();
-
-        $lib = new UserLog();
-
-        $lib->save_user_log('Permission', $permission, 'delete', 'permission deleted by ' . Auth::user()->firstname .Auth::user()->lastname);
-
     }
+
     public function Close()
     {
         $this->ShowAddPermission    = false;
         $this->ShowupdatePermission = false;
     }
+
     public function get_title_and_group()
     {
         $removetiri = str_replace('-', ' ', $this->name);

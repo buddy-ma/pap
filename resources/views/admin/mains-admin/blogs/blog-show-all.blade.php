@@ -1,9 +1,25 @@
 @extends('admin.layouts.master')
 @section('css')
     <!-- INTERNAL File Uploads css -->
-    <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('admin_assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
     <!-- INTERNAL File Uploads css-->
-    <link href="{{ URL::asset('assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('admin_assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
+    <style>
+        .bootstrap-tagsinput {
+            width: 100% !important;
+        }
+
+        .dark-mode .bootstrap-tagsinput {
+
+            color: rgba(255, 255, 255, 1) !important;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .bootstrap-tagsinput input {
+            color: rgba(255, 255, 255, 1) !important;
+        }
+    </style>
 @endsection
 @section('page-header')
     <!--Page header-->
@@ -58,16 +74,16 @@
 @endsection
 @section('js')
     <!-- INTERNAL File uploads js -->
-    <script src="{{ URL::asset('assets/plugins/fileupload/js/dropify.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/filupload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fileupload/js/dropify.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/filupload.js') }}"></script>
 
     <!--INTERNAL Form Advanced Element -->
-    <script src="{{ URL::asset('assets/js/formelementadvnced.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
-    <script src="{{ URL::asset('assets/js/file-upload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/formelementadvnced.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/form-elements.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/file-upload.js') }}"></script>
 
     <!-- INTERNAL Datepicker js -->
-    <script src="{{ URL::asset('assets/plugins/date-picker/date-picker.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/date-picker/jquery-ui.js') }}"></script>
-    <script src="{{ URL::asset('assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/date-picker/date-picker.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/date-picker/jquery-ui.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
 @endsection

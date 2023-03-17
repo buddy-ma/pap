@@ -11,9 +11,26 @@
     <!-- INTERNAL Sumoselect css-->
     <link rel="stylesheet" href="{{ URL::asset('admin_assets/plugins/sumoselect/sumoselect.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+
     <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+    <style>
+        .bootstrap-tagsinput {
+            width: 100% !important;
+        }
+
+        .dark-mode .bootstrap-tagsinput {
+
+            color: rgba(255, 255, 255, 1) !important;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .bootstrap-tagsinput input {
+            color: rgba(255, 255, 255, 1) !important;
+        }
+    </style>
     <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
 @endsection
 @section('page-header')
     <!--Page header-->
@@ -53,48 +70,62 @@
                             </ul>
                         </div>
                     @endif
-                    @csrf
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form method="post" action="{{ route('blog-add') }}" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="row">
-                                            <div class="col-lg">
-                                                <label>Title</label>
-                                                <input type="text" name="title" class="form-control" />
-                                            </div>
 
-                                            <div class="col-lg">
-                                                <label>Subtitle</label>
-                                                <input type="text" name="subtitle" class="form-control" />
-                                            </div>
-                                            <div class="col-lg">
-                                                <label class="d-block">Tags </label>
-                                                <input name="tags" type="text" class="form-control" id="tags"
-                                                    data-role="tagsinput" data-cls-tag-title="text-bold fg-blue" />
-                                            </div>
-                                        </div>
-                                        <div class="row mt-4">
-                                            <div class="col-lg">
-                                                <input type="file" class="dropify" data-height="180" name="image" />
-                                            </div>
-                                        </div>
+                    <form method="post" action="{{ route('blog-add') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg">
+                                <label>Title</label>
+                                <input type="text" name="title" class="form-control" />
+                            </div>
 
-                                        <div class="form-group mt-4">
-                                            <label>Description :</label>
-                                            <textarea name="editor1" rows="500" style="min-height: 500px;"></textarea>
-                                        </div>
-
-                                        <div class="btn-list text-right">
-                                            <button name="action" type="submit" class="btn btn-success">Save</button>
-                                        </div>
-                                    </form>
+                            <div class="col-lg">
+                                <label>Subtitle</label>
+                                <input type="text" name="subtitle" class="form-control" />
+                            </div>
+                            <div class="col-lg">
+                                <div class="form-group">
+                                    <label>Categories</label>
+                                    <select multiple="multiple" onchange="console.log($(this).children(':selected').length)"
+                                        id="categories" name="categories[]" class="search-box">
+                                        @if ($categories)
+                                            <?php $dash = ''; ?>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->title }}
+                                                </option>
+                                                @if (count($category->children) > 0)
+                                                    @include('admin.mains-admin.blogs.subcateg-list', [
+                                                        'subcategories' => $category->children,
+                                                    ])
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-lg">
+                                <label class="d-block">Tags </label>
+                                <input name="tags" type="text" class="form-control" id="tags"
+                                    data-role="tagsinput" data-cls-tag-title="text-bold fg-blue" />
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg">
+                                <input type="file" class="dropify" data-height="180" name="image" />
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <label>Description :</label>
+                            <textarea name="editor1" rows="500" style="min-height: 500px;"></textarea>
+                        </div>
+
+                        <div class="btn-list text-right">
+                            <button name="action" type="submit" class="btn btn-success">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

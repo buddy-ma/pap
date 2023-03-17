@@ -47,10 +47,11 @@ class BlogController extends Controller
         $blog->tags = $request->tags;
         $blog->text = $request->editor1;
 
-        $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path('images'), $filename);
-        $blog->image = $filename;
-
+        if ($request->hasFile('image')) {
+            $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images'), $filename);
+            $blog->image = $filename;
+        }
         $blog->save();
         session()->flash('success', 'Blog has been created successfully');
         return redirect('admin/blogs');
@@ -65,7 +66,7 @@ class BlogController extends Controller
         $categories = Categorie::with('children')->whereNull('parent_id')->get();
         $autrs = Blog::join("users", "users.id", "=", "blogs.user_id")
             ->where("blogs.id", $id)
-            ->get('name');
+            ->get('firstname', 'lastname');
         $users = User::all();
 
         $tags = $blog->tags;
@@ -85,7 +86,6 @@ class BlogController extends Controller
             $request->file('image')->move(public_path('images'), $filename);
             $blog->image = $filename;
         }
-        $blog->user()->associate($request->users);
         $blog->categories()->sync($request->categories);
         $blog->save();
         session()->flash('success', 'Blog has been updated sucssefuly');

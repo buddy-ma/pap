@@ -41,37 +41,12 @@
                                     </div>
 
                                     <div class="col-lg">
-                                        <label class="col-md-12 form-label">Permissions</label>
-
-                                        <div class="col-12"> <input class="form-control mb-4" placeholder="Search"
-                                                type="text" wire:model='search'>
-                                            <div class="dataTables_filter float-left text-left ml-3"
-                                                style="width: 300px; display: inline-block">
-                                                <span>Filter by :</span>
-                                                <select wire:model='selected_group' name="example1_length"
-                                                    aria-controls="example1"
-                                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                                    <option>Permission Group</option>
-                                                    @foreach ($groups as $grp)
-                                                        <option value="{{ $grp->p_group }}">
-                                                            {{ $grp->p_group }}</option>
-                                                    @endforeach
-                                                </select>
-
-                                            </div>
-
-                                        </div>
-
                                         <div class="col-md-12" style="max-height: 500px ; overflow:auto">
-
                                             <div class="e-table">
                                                 <div class="table-responsive table-lg mt-3">
-
                                                     <table
                                                         class="table table-bordered mp-0 table-striped table-vcenter border-top text-nowrap">
-
                                                         <tbody>
-
                                                             <tr
                                                                 @isset($select[0]) style="background-color:#f4eefd"
                                                                 @endisset>
@@ -99,7 +74,7 @@
                                                                             <span class="custom-control-label"></span>
                                                                         </label></td>
                                                                     <td>{{ $loop->index + 1 }}</td>
-                                                                    <td>{{ $permission->title }}</td>
+                                                                    <td>{{ $permission->name }}</td>
                                                                 </tr>
                                                             @endforeach
 

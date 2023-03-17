@@ -2,17 +2,15 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Admin\LandingController;
+use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\StatisticsController;
 
 Auth::routes(['register' => false]);
 
-// Route::redirect('/', '/art');
 Route::redirect('/admin', '/admin/dashboard');
 
 //Admin Pages
@@ -36,10 +34,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::get('/changeStatus', [BlogController::class, 'changeStatus']);
         Route::post('/ckeditor/upload', [BlogController::class, 'upload'])->name('ckeditor.upload');
         Route::get('/show/{id?}', [BlogController::class, 'show'])->name('show-blog-show');
-        Route::get('/getCountries', [BlogController::class, 'getCountries']);
-        Route::get('/getStates', [BlogController::class, 'getStates']);
-        Route::post('/adddate/{id?}', [BlogController::class, 'add_date'])->name('date-add');
     });
+
+    //Categorie
+    Route::get('/categories', [CategorieController::class, 'list'])->name('categorie-list');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -49,6 +47,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('king-logout');
 });
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+// Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+// Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
