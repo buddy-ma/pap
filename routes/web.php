@@ -47,6 +47,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('king-logout');
 });
 
-// Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/test', [HomeController::class, 'home'])->name('home');
 
 // Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

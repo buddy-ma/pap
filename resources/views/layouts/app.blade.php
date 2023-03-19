@@ -1,262 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Unice" name="description">
-    <meta content="Unice" name="keywords">
-    <meta content="Unice" name="author">
-    <title>PAP - @yield('title')</title>
-
-    <!-- Fav icon -->
-    <link href="{{ asset('assets/images/logo/favicon.png') }}" rel="shortcut icon">
-
-    <!-- Font Family-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900" rel="stylesheet">
-
-    <!--bootstrap css-->
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
-
-    <!--keyframe css-->
-    <link href="{{ asset('assets/css/keyframes.css') }}" rel="stylesheet">
-
-    <!--owl carousel css-->
-    <link href="{{ asset('assets/css/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/owl.theme.default.min.css') }}" rel="stylesheet">
-
-    <!-- AOS CSS -->
-    <link href="{{ asset('assets/css/aos.css') }}" rel="stylesheet">
-
-    <!-- Icons -->
-    <link href="{{ asset('assets/css/fontawesome.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/themify.css') }}" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/5a7f4b52ce.js" crossorigin="anonymous"></script>
-
-    <!-- flat Icons -->
-    <link href="{{ asset('assets/css/flaticon.css') }}" rel="stylesheet" type="text/css">
-    @livewireStyles
-    <!--magnific popup css-->
-    <link href="{{ asset('assets/css/magnific-popup.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-
-    <style>
-        @font-face {
-            font-family: "JosefinSans";
-            src: url("assets/fonts/JosefinSans.ttf");
-        }
-
-        @font-face {
-            font-family: "kiona";
-            src: url("assets/fonts/Kiona-Regular.ttf");
-            src: url('assets/fonts/kiona-regular-webfont.woff') format("woff");
-        }
-
-        .nav-container .checkbox {
-            position: absolute;
-            display: block;
-            height: 32px;
-            width: 32px;
-            top: 0px;
-            right: 17px;
-            z-index: 5;
-            opacity: 0;
-            cursor: pointer;
-        }
-
-        .nav-container .hamburger-lines {
-            display: block;
-            height: 20px;
-            width: 25px;
-            position: absolute;
-            top: 5px;
-            right: 20px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .nav-container .hamburger-lines .line {
-            display: block;
-            height: 1px;
-            width: 100%;
-            border-radius: 10px;
-            background: #fff;
-        }
-
-        .app2.fixed .hamburger-lines .line {
-            background: #000;
-        }
-
-        .nav-container .hamburger-lines .line1 {
-            transform-origin: 0% 0%;
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .nav-container .hamburger-lines .line2 {
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .nav-container .hamburger-lines .line3 {
-            transform-origin: 0% 100%;
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .nav-container input[type="checkbox"]:checked~.hamburger-lines .line1 {
-            transform: rotate(45deg);
-        }
-
-        .nav-container input[type="checkbox"]:checked~.hamburger-lines .line2 {
-            transform: scaleY(0);
-        }
-
-        .nav-container input[type="checkbox"]:checked~.hamburger-lines .line3 {
-            transform: rotate(-45deg);
-        }
-
-        .nav-container input[type="checkbox"]:checked+.navbar {
-            left: 0px !important;
-        }
-    </style>
-    <!-- color css -->
-    @yield('css')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="html 5 template">
+    <meta name="author" content="">
+    <title>FindHouses - HTML5 Template</title>
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CMontserrat:600,800" rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="{{ asset('assets/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-5-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+    <!-- ARCHIVES CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/search-form.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/search.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/aos2.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/lightcase.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/menu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="stylesheet" id="color" href="{{ asset('assets/css/default.css') }}">
 </head>
 
-<body data-offset="50" data-spy="scroll" data-bs-target=".navbar" class="@yield('bodyClass') ">
-    <!--loader start>
-        <div class="loader-wrapper">
-            <div class="loader">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>-->
-    {{-- @include('partials.svg') --}}
+<body class="homepage-3 the-search">
+    <div id="wrapper">
+        @include('partials.header')
 
-    @include('partials.header')
+        @yield('content')
 
-    @yield('content')
+        @include('partials.footer')
+    </div>
 
-    <!-- all js here -->
-    <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
+    <!-- START PRELOADER -->
+    <div id="preloader">
+        <div id="status">
+            <div class="status-mes"></div>
+        </div>
+    </div>
+    <!-- END PRELOADER -->
 
-    <!-- popper js-->
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-
-    <!-- Bootstrap js-->
-    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-    <!--  costamizer option -->
-    <script src="{{ asset('assets/js/custamizer-option.js') }}"></script>
-
-    <!--magnific popup js-->
-    <script src="{{ asset('assets/js/magnific-popup.js') }}"></script>
-
-    <script src="{{ asset('assets/js/isotope.min.js') }}"></script>
-
-    <!--owl js-->
-    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-
-    <script src="{{ asset('assets/js/typed.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
-    <!-- AOS JS -->
+    <!-- ARCHIVES JS -->
+    <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/rangeSlider.js') }}"></script>
+    <script src="{{ asset('assets/js/tether.min.js') }}"></script>
+    <script src="{{ asset('assets/js/moment.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/mmenu.min.js') }}"></script>
+    <script src="{{ asset('assets/js/mmenu.js') }}"></script>
     <script src="{{ asset('assets/js/aos.js') }}"></script>
-
-    <!-- tilt JS -->
-    <script src="{{ asset('assets/js/vanilla-tilt.min.js') }}"></script>
-
-    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
-    <!-- script js-->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/js/aos-init.js') }}"></script>
-
-    <script src="{{ asset('assets/js/layout-fix.js') }}"></script>
-
-    @livewireScripts
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @yield('js')
-    @if (Session::has('message'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Good Job...',
-                text: '{{ session('message') }}',
-            })
-        </script>
-    @elseif(Session::has('thankyou'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Thank you',
-                text: '{{ session('thankyou') }}',
-            })
-        </script>
-    @elseif(Session::has('error'))
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '{{ session('error') }}',
-            })
-        </script>
-    @elseif(Session::has('success'))
-        <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success...',
-                text: '{{ session('success') }}',
-            })
-        </script>
-    @endif
+    <script src="{{ asset('assets/js/aos2.js') }}"></script>
+    <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/fitvids.js') }}"></script>
+    <script src="{{ asset('assets/js/fitvids.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/smooth-scroll.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lightcase.js') }}"></script>
+    <script src="{{ asset('assets/js/search.js') }}"></script>
+    <script src="{{ asset('assets/js/owl.carousel.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/ajaxchimp.min.js') }}"></script>
+    <script src="{{ asset('assets/js/newsletter.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.form.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/searched.js') }}"></script>
+    <script src="{{ asset('assets/js/forms-2.js') }}"></script>
+    <script src="{{ asset('assets/js/range.js') }}"></script>
+    <script src="{{ asset('assets/js/color-switcher.js') }}"></script>
     <script>
-        window.addEventListener('swal:modal', event => {
-            new swal({
-                title: event.detail.message,
-                text: event.detail.text,
-                icon: event.detail.type,
-            })
+        $(window).on('scroll load', function() {
+            $("#header.cloned #logo img").attr("src", $('#header #logo img').attr('data-sticky-logo'));
         });
     </script>
-    <script>
-        var initialSrc = "../../assets/images/logo.svg";
-        var scrollSrc = "../../assets/images/logo_wh.svg";
 
-        $(window).scroll(function() {
-            if ($(window).scrollTop()) {
-                $('header').removeClass('nav-down').addClass('nav-up');
-                $("#logo").attr("src", initialSrc);
-            } else {
-                $('header').removeClass('nav-up').addClass('nav-down');
-                $("#logo").attr("src", scrollSrc);
-            }
+    <script>
+        $(".dropdown-filter").on('click', function() {
+            $(".explore__form-checkbox-list").toggleClass("filter-block");
         });
     </script>
-    <script type="text/javascript">
-        function hamburger() {
-            console.log('here');
-            // Get the checkbox
-            var checkBox = document.getElementById("btn-ham");
-            // If the checkbox is checked, display the output text
-            if (checkBox.checked == true) {
-                $(".navbar").css("left", "0px");
-            } else {
-                $(".navbar").css("left", "-350px");
-            }
-        }
-    </script>
+
+    <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
 </html>
