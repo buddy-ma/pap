@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="html 5 template">
+    <meta name="description" content="pap website">
     <meta name="author" content="">
-    <title>FindHouses - HTML5 Template</title>
+    <title>PAP - @yield('title')</title>
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="{{ asset('assets/css/jquery-ui.css') }}">
@@ -41,6 +41,8 @@
         @yield('content')
 
         @include('partials.footer')
+
+        <a data-scroll href="#wrapper" class="go-up"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
     </div>
 
     <!-- START PRELOADER -->
@@ -86,13 +88,106 @@
             $("#header.cloned #logo img").attr("src", $('#header #logo img').attr('data-sticky-logo'));
         });
     </script>
+    <script src="{{ asset('revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{ asset('revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+
+    <script>
+        $('.slick-lancers').slick({
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: true,
+            arrows: true,
+            adaptiveHeight: true,
+            responsive: [{
+                breakpoint: 1292,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 993,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false
+                }
+            }, ]
+        });
+    </script>
+    <script>
+        $('.slick-lancers2').slick({
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: true,
+            arrows: false,
+            adaptiveHeight: true,
+            responsive: [{
+                breakpoint: 1292,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 993,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false
+                }
+            }, ]
+        });
+    </script>
+    <script>
+        $('.job_clientSlide').owlCarousel({
+            items: 2,
+            loop: true,
+            margin: 30,
+            autoplay: false,
+            nav: true,
+            smartSpeed: 1000,
+            slideSpeed: 1000,
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                991: {
+                    items: 2
+                }
+            }
+        });
+    </script>
 
     <script>
         $(".dropdown-filter").on('click', function() {
             $(".explore__form-checkbox-list").toggleClass("filter-block");
         });
     </script>
-
     <script src="{{ asset('assets/js/script.js') }}"></script>
 </body>
 
