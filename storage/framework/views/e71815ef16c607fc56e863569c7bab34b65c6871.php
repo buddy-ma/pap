@@ -11,11 +11,7 @@
     <?php echo $__env->make('admin.layouts.custom-head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </head>
 
-<body class="h-100vh"
-    style="background-color: rgb(44, 135, 138); background-image: linear-gradient(
-        rgba(40, 68, 154, 0.2), 
-        rgba(163, 186, 255, 0.2)
-      ), url('<?php echo e(URL::asset('assets/images/bg.jpg')); ?>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+<body class="h-100vh">
     <div class="box">
         <div></div>
         <div></div>
