@@ -24,7 +24,7 @@
                     <li><a href="/">Immo neuf</a></li>
                     <li><a href="/">Conseils</a></li>
                     <li><a href="/decouvrezMaroc">Decouvrez le maroc</a></li>
-                    <li><a href="/">Commercialiser Votre bien</a></li>
+                    <li><a href="/commercialiser">Commercialiser Votre bien</a></li>
                 </ul>
             </nav>
         </div>

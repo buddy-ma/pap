@@ -35,6 +35,12 @@
                                     <?php echo $blog->text; ?>
 
                                 </p>
+                                <?php if(isset($blog->pdf_link)): ?>
+                                    <a class="btn btn-block btn-primary mt-5 border-0 font-weight-bold" target="_blank"
+                                        href="<?php echo e(asset('files/' . $blog->pdf_link)); ?>" style="height: 60px; line-height: 50px">
+                                        <i class="fas fa-download mr-2"></i>Telecharger la brochure PDF
+                                    </a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

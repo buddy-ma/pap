@@ -50,6 +50,9 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/test', [HomeController::class, 'home'])->name('home');
 Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
+Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
 Route::get('/blog/{id?}', [HomeController::class, 'blogDetails'])->name('blogDetails');
+
+Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
 
 // Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

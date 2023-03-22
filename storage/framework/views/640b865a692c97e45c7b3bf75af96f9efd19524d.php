@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/slick.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/styles.css')); ?>">
     <link rel="stylesheet" id="color" href="<?php echo e(asset('assets/css/default.css')); ?>">
+    <?php echo $__env->yieldContent('css'); ?>
 </head>
 
 <body class="<?php echo $__env->yieldContent('bodyClasses'); ?>">
@@ -188,7 +189,36 @@
             $(".explore__form-checkbox-list").toggleClass("filter-block");
         });
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if(Session::has('message')): ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Good Job...',
+                text: '<?php echo e(session('message')); ?>',
+            })
+        </script>
+    <?php elseif(Session::has('error')): ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '<?php echo e(session('error')); ?>',
+            })
+        </script>
+    <?php elseif(Session::has('success')): ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success...',
+                text: '<?php echo e(session('success')); ?>',
+            })
+        </script>
+    <?php endif; ?>
     <script src="<?php echo e(asset('assets/js/script.js')); ?>"></script>
+    <?php echo $__env->yieldContent('js'); ?>
+
 </body>
 
 </html>

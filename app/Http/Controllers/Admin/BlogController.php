@@ -119,7 +119,7 @@ class BlogController extends Controller
         }
         $blog->categories()->sync($request->categories);
         $blog->save();
-        session()->flash('success', 'Blog has been updated sucssefuly');
+        session()->flash('success', 'Merci de nous contacter, on vous rappelle le plus proche possible');
         return redirect('admin/blogs');
     }
 
