@@ -29,7 +29,7 @@
         }
     </style>
     <script src="https://unpkg.com/vue@3"></script>
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-header'); ?>
     <!--Page header-->
@@ -74,7 +74,7 @@
                         <?php echo csrf_field(); ?>
                         <div class="row">
                             <div class="col-lg">
-                                <label>Title</label>
+                                <label>Title*</label>
                                 <input type="text" name="title" class="form-control" />
                             </div>
 
@@ -84,7 +84,7 @@
                             </div>
                             <div class="col-lg">
                                 <div class="form-group">
-                                    <label>Categories</label>
+                                    <label>Categories*</label>
                                     <select multiple="multiple" onchange="console.log($(this).children(':selected').length)"
                                         id="categories" name="categories[]" class="search-box">
                                         <?php if($categories): ?>
@@ -110,15 +110,29 @@
                                 <input name="tags" type="text" class="form-control" id="tags"
                                     data-role="tagsinput" data-cls-tag-title="text-bold fg-blue" />
                             </div>
+                            <div class="col-lg">
+                                <label class="d-block">Video </label>
+                                <input name="video_link" type="text" class="form-control" />
+                            </div>
+                            <div class="col-lg">
+                                <label class="d-block">Visite Virtuelle </label>
+                                <input name="vr_link" type="text" class="form-control" />
+                            </div>
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg">
+                                <label>Main Image*</label>
                                 <input type="file" class="dropify" data-height="180" name="image" />
+                            </div>
+
+                            <div class="col-lg">
+                                <label>PDF</label>
+                                <input type="file" class="dropify" data-height="180" name="pdf" />
                             </div>
                         </div>
 
                         <div class="form-group mt-4">
-                            <label>Description :</label>
+                            <label>Article :</label>
                             <textarea name="editor1" rows="500" style="min-height: 500px;"></textarea>
                         </div>
 

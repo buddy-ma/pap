@@ -48,5 +48,8 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/test', [HomeController::class, 'home'])->name('home');
+Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');
+Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
+Route::get('/blog/{id?}', [HomeController::class, 'blogDetails'])->name('blogDetails');
 
 // Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

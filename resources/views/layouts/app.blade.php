@@ -34,7 +34,7 @@
     <link rel="stylesheet" id="color" href="{{ asset('assets/css/default.css') }}">
 </head>
 
-<body class="homepage-3 the-search">
+<body class="@yield('bodyClasses')">
     <div id="wrapper">
         @include('partials.header')
 

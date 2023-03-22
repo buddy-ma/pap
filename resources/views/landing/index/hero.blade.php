@@ -3,14 +3,7 @@
     <div class="hero-main">
         <div class="container">
             <div class="row">
-                <div class="col-12">
-                    <div class="banner-inner" data-aos="zoom-in">
-                        <h1 class="title text-center">Particulier à particulier</h1>
-                        <h5 class="sub-title text-center">Nous avons different de solutions pour vous</h5>
-                    </div>
-                </div>
-                <!-- Search Form -->
-                <div class="col-12">
+                <div class="col-12" style="max-width: 700px">
                     <div class="banner-search-wrap" data-aos="zoom-in">
                         <ul class="nav nav-tabs rld-banner-tab">
                             <li class="nav-item">
@@ -27,25 +20,15 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tabs_1">
+                            <div class="tab-pane fade show active">
                                 <div class="rld-main-search">
                                     <div class="row px-3 mb-2">
-                                        <div class="col-xl-4 col-lg-4 col-md-4 col-12 pl-0">
+                                        <div class="col-12 mb-4">
                                             <div class="rld-single-input">
-                                                <input type="text" placeholder="Réference...">
+                                                <input type="text" placeholder="Ville">
                                             </div>
                                         </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-6 pl-0">
-                                            <div class="rld-single-select ml-22">
-                                                <select class="select single-select">
-                                                    <option>Villes</option>
-                                                    <option value="1">Agadir</option>
-                                                    <option value="2">Casablanca</option>
-                                                    <option value="3">Marrakech</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4 col-lg-4 col-md-6 col-6 pl-0">
+                                        <div class="col-6 mb-2">
                                             <div class="rld-single-select">
                                                 <select class="select single-select mr-0">
                                                     <option>Type</option>
@@ -56,11 +39,8 @@
                                                 </select>
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <div class="row px-3">
-                                        <div class="col-xl-3 col-lg-3 col-md-3 col-6 pl-0">
-                                            <div class="form-group beds">
+                                        <div class="col-6 mb-2">
+                                            <div class="form-group beds mb-0">
                                                 <div class="nice-select form-control wide" tabindex="0">
                                                     <span class="current"><i class="fa fa-bed" aria-hidden="true"></i>
                                                         Nbr. pieces</span>
@@ -79,18 +59,23 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xl-3 col-lg-3 col-md-3 col-6 pl-0">
+                                        <div class="col-6 mb-4">
                                             <div class="rld-single-input">
                                                 <input type="number" placeholder="Prix Max">
                                             </div>
                                         </div>
-                                        <div class="col-xl-3 col-lg-3 col-md-3 col-6 pl-0">
+                                        <div class="col-6 mb-4">
                                             <div class="rld-single-input">
                                                 <input type="number" placeholder="Surface Max">
                                             </div>
                                         </div>
-                                        <div class="col-xl-3 col-lg-3 col-md-3 col-6 pl-0">
-                                            <a class="btn btn-yellow w-100" href="#">Search Now</a>
+                                        <div class="col-12 mb-4">
+                                            <div class="rld-single-input">
+                                                <input type="text" placeholder="Réference...">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <a class="btn btn-yellow w-100" href="#">Recherchez</a>
                                         </div>
                                     </div>
                                 </div>

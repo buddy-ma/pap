@@ -8,13 +8,7 @@
         <div class='dot-spin' style="top:50%;margin:auto"></div>
     </div>
 
-
     <div>
-        @can('user-create')
-            <button type="button" class="btn btn-primary mb-1" wire:click="ShowAddUser()"><i class="fe fe-plus mr-2"></i>Add
-                User</button>
-        @endcan
-
         {{-- Do your work, then step back. --}}
         @if ($ShowAddUser == true)
             @include('livewire.admin.users.user-add')
@@ -25,7 +19,15 @@
         <div class="row flex-lg-nowrap">
             <div class="col-12 mb-3">
                 <div class="e-panel card">
-
+                    <div class="card-header">
+                        <h3 class="card-title">All Users</h3>
+                        @can('user-create')
+                            <button type="button" class="btn btn-primary mb-1 ml-auto float-right"
+                                wire:click="ShowAddUser()">
+                                <i class="fe fe-plus mr-2"></i>Add User
+                            </button>
+                        @endcan
+                    </div>
                     <div class="card-body">
                         <div class="col-sm-12 col-md-12">
                             <div id="example1_filter" class="dataTables_filter">

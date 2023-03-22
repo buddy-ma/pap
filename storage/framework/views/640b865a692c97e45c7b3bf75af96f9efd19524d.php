@@ -34,7 +34,7 @@
     <link rel="stylesheet" id="color" href="<?php echo e(asset('assets/css/default.css')); ?>">
 </head>
 
-<body class="homepage-3 the-search">
+<body class="<?php echo $__env->yieldContent('bodyClasses'); ?>">
     <div id="wrapper">
         <?php echo $__env->make('partials.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

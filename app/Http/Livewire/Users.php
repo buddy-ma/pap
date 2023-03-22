@@ -2,19 +2,17 @@
 
 namespace App\Http\Livewire;
 
-use Carbon\Carbon;
 use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Auth;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Users extends Component
 {
-    use WithPagination;
-    use AuthorizesRequests;
+    use WithPagination, AuthorizesRequests;
 
     public $roles;
     public $user_id;
@@ -23,6 +21,7 @@ class Users extends Component
     public $email;
     public $display_name;
     public $phone;
+    public $avatar;
     public $role;
     public $search_user;
     public $password;
@@ -34,6 +33,7 @@ class Users extends Component
     public $select     = [];
     public $showpassword = false;
 
+    use WithFileUploads;
     public function render()
     {
         $users = User::search(trim($this->search_user))->orderBy('id', 'DESC')->paginate(5);
@@ -112,6 +112,7 @@ class Users extends Component
                 'email'         => 'required|email|unique:users,email|max:50',
                 'password'      => 'required',
                 'select'        => 'required',
+                'avatar'        => 'nullable|image|max:2048',
             ],
             [
                 'select.required'  => 'please check a role first',
@@ -124,7 +125,11 @@ class Users extends Component
         $user->phone     = $this->phone;
         $user->email     = $this->email;
         $user->password  = Hash::make($this->password);
-
+        if (!empty($this->avatar)) {
+            $avatar = md5(microtime()) . '.' . $this->avatar->extension();
+            $this->avatar->storeAs('public/users', $avatar);
+            $user->avatar = $avatar;
+        }
         $user->save();
 
         $user->assignRole(array_values($this->select));

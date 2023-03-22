@@ -10,8 +10,7 @@
     <!-- INTERNAL Sumoselect css-->
     <link rel="stylesheet" href="<?php echo e(URL::asset('admin_assets/plugins/sumoselect/sumoselect.css')); ?>">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
-
+    <script src="https://cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
     <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
     <style>
         .bootstrap-tagsinput {
@@ -114,15 +113,27 @@
                                 <input value="<?php echo e($tags); ?>" name="tags" type="text" class="form-control"
                                     data-role="tagsinput" data-cls-tag-title="text-bold fg-white" />
                             </div>
+                            <div class="col-lg">
+                                <label class="d-block">Video </label>
+                                <input value="<?php echo e($video_link); ?>" name="video_link" type="text" class="form-control" />
+                            </div>
+                            <div class="col-lg">
+                                <label class="d-block">Visite Virtuelle </label>
+                                <input value="<?php echo e($vr_link); ?>" name="vr_link" type="text" class="form-control" />
+                            </div>
 
                         </div>
                         <div class="row mt-4">
                             <div class="col-lg">
-                                <label>Image</label>
+                                <label>Main Image*</label>
                                 <input type="file" class="dropify" data-height="180" name="image"
                                     <?php if(isset($blog->image)): ?>
                                     data-default-file="<?php echo e(URL::asset('images/' . $blog->image)); ?>"
                                     <?php endif; ?> />
+                            </div>
+                            <div class="col-lg">
+                                <label>PDF</label>
+                                <input type="file" class="dropify" data-height="180" name="pdf" />
                             </div>
                         </div>
 

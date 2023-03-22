@@ -103,7 +103,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::yyAl5NXqD5GDufFH',
+            '_route' => 'generated::kQfcfuXlqyMFoJ2D',
           ),
           1 => NULL,
           2 => 
@@ -123,7 +123,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::JasvZcb8iqkhLC6K',
+            '_route' => 'generated::vX9oAR68LvnLrS2n',
           ),
           1 => NULL,
           2 => 
@@ -160,7 +160,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::QrGNtX7Paq7yrP56',
+            '_route' => 'generated::Jhoh0uHzEfmSiAgs',
           ),
           1 => NULL,
           2 => 
@@ -270,7 +270,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::IBtyZzSRMJTreQuB',
+            '_route' => 'generated::cxut1kNTijIMa3T3',
           ),
           1 => NULL,
           2 => 
@@ -289,7 +289,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::itbXWvx9UypvuLav',
+            '_route' => 'generated::Ph09rKs5hI1IUC8M',
           ),
           1 => NULL,
           2 => 
@@ -558,13 +558,53 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/decouvrezMaroc' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'decouvrezMaroc',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/conseils' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'conseils',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/api/user' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::ePd3i5SV4rKDCJcW',
+            '_route' => 'generated::G73uAlKQ0RrLpvOw',
           ),
           1 => NULL,
           2 => 
@@ -581,7 +621,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/livewire/(?|message/([^/]++)(*:110)|preview\\-file/([^/]++)(*:140))|/password/reset/([^/]++)(*:173)|/admin/blogs(?|/update(?:/([^/]++))?(*:217)|(?:/([^/]++))?(*:239)|/(?|delete(?:/([^/]++))?(*:271)|restore(?:/([^/]++))?(*:300)|changeStatus(*:320)|show(?:/([^/]++))?(*:346))))/?$}sDu',
+      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/livewire/(?|message/([^/]++)(*:110)|preview\\-file/([^/]++)(*:140))|/password/reset/([^/]++)(*:173)|/admin/blogs(?|/update(?:/([^/]++))?(*:217)|(?:/([^/]++))?(*:239)|/(?|delete(?:/([^/]++))?(*:271)|restore(?:/([^/]++))?(*:300)|changeStatus(*:320)|show(?:/([^/]++))?(*:346)))|/decouvrezMaroc/([^/]++)(*:380)|/conseils/([^/]++)(*:406)|/blog(?:/([^/]++))?(*:433))/?$}sDu',
     ),
     3 => 
     array (
@@ -799,7 +839,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::bcKHTBvfzpPMCajH',
+            '_route' => 'generated::O5Axd5prdque7eVz',
           ),
           1 => 
           array (
@@ -822,6 +862,76 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'show-blog-show',
+            'id' => NULL,
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      380 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'decouvrezMaroc_post',
+          ),
+          1 => 
+          array (
+            0 => 'search',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      406 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'conseils_post',
+          ),
+          1 => 
+          array (
+            0 => 'search',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      433 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'blogDetails',
             'id' => NULL,
           ),
           1 => 
@@ -1137,7 +1247,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::yyAl5NXqD5GDufFH' => 
+    'generated::kQfcfuXlqyMFoJ2D' => 
     array (
       'methods' => 
       array (
@@ -1149,7 +1259,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
-        'as' => 'generated::yyAl5NXqD5GDufFH',
+        'as' => 'generated::kQfcfuXlqyMFoJ2D',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1165,7 +1275,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::JasvZcb8iqkhLC6K' => 
+    'generated::vX9oAR68LvnLrS2n' => 
     array (
       'methods' => 
       array (
@@ -1177,7 +1287,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
-        'as' => 'generated::JasvZcb8iqkhLC6K',
+        'as' => 'generated::vX9oAR68LvnLrS2n',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1230,7 +1340,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::QrGNtX7Paq7yrP56' => 
+    'generated::Jhoh0uHzEfmSiAgs' => 
     array (
       'methods' => 
       array (
@@ -1250,7 +1360,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::QrGNtX7Paq7yrP56',
+        'as' => 'generated::Jhoh0uHzEfmSiAgs',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1485,7 +1595,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::IBtyZzSRMJTreQuB' => 
+    'generated::cxut1kNTijIMa3T3' => 
     array (
       'methods' => 
       array (
@@ -1505,7 +1615,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::IBtyZzSRMJTreQuB',
+        'as' => 'generated::cxut1kNTijIMa3T3',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1521,7 +1631,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::itbXWvx9UypvuLav' => 
+    'generated::Ph09rKs5hI1IUC8M' => 
     array (
       'methods' => 
       array (
@@ -1547,7 +1657,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::itbXWvx9UypvuLav',
+        'as' => 'generated::Ph09rKs5hI1IUC8M',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1979,7 +2089,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::bcKHTBvfzpPMCajH' => 
+    'generated::O5Axd5prdque7eVz' => 
     array (
       'methods' => 
       array (
@@ -2001,7 +2111,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::bcKHTBvfzpPMCajH',
+        'as' => 'generated::O5Axd5prdque7eVz',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2276,7 +2386,192 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ePd3i5SV4rKDCJcW' => 
+    'decouvrezMaroc' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'decouvrezMaroc',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\HomeController@decouvrezMaroc',
+        'controller' => 'App\\Http\\Controllers\\HomeController@decouvrezMaroc',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'decouvrezMaroc',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'decouvrezMaroc_post' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'decouvrezMaroc/{search}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\HomeController@decouvrezMaroc_post',
+        'controller' => 'App\\Http\\Controllers\\HomeController@decouvrezMaroc_post',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'decouvrezMaroc_post',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'conseils' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'conseils',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\HomeController@conseils',
+        'controller' => 'App\\Http\\Controllers\\HomeController@conseils',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'conseils',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'conseils_post' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'conseils/{search}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\HomeController@conseils_post',
+        'controller' => 'App\\Http\\Controllers\\HomeController@conseils_post',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'conseils_post',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'blogDetails' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'blog/{id?}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\HomeController@blogDetails',
+        'controller' => 'App\\Http\\Controllers\\HomeController@blogDetails',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'blogDetails',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::G73uAlKQ0RrLpvOw' => 
     array (
       'methods' => 
       array (
@@ -2293,13 +2588,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:295:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007a90000000000000000";}";s:4:"hash";s:44:"onUXVZEvNUQFf/Z5i3F5q06YOwTdGkhZpLYMFok5Src=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007ae0000000000000000";}";s:4:"hash";s:44:"ag5IH6x61x/wBqt2Zks1S9V7QF0YI9R5yMfOdzSXbqE=";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::ePd3i5SV4rKDCJcW',
+        'as' => 'generated::G73uAlKQ0RrLpvOw',
       ),
       'fallback' => false,
       'defaults' => 
