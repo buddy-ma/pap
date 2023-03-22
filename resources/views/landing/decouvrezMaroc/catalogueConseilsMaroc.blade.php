@@ -12,7 +12,7 @@
                 @foreach ($articlesMaroc as $art)
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
-                            <a href="blog-details.html" class="news-img-link">
+                            <a href="/blog/{{ $art->id }}" class="news-img-link">
                                 <div class="news-item-img">
                                     @isset($art->image)
                                         <img class="img-responsive" src="{{ asset('images/' . $art->image) }}"
@@ -29,7 +29,7 @@
                                         {{ $art->updated_at->translatedFormat('F j, Y') }}
                                     </span>
                                 </div>
-                                <a href="blog-details.html">
+                                <a href="/blog/{{ $art->id }}">
                                     <h3>{{ $art->title }}</h3>
                                 </a>
 
