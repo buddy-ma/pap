@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\Models\CommercialiserPage;
 use App\Models\CommercialiserContact;
 
 class HomeController extends Controller
@@ -86,7 +87,13 @@ class HomeController extends Controller
 
     public function commercialiser()
     {
-        return view('commercialiser');
+        $page = CommercialiserPage::first();
+        if (!isset($page)) {
+            $page = '';
+        }
+        return view('commercialiser', [
+            'page' => $page
+        ]);
     }
 
     public function commercialiserContact(Request $request)

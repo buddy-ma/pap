@@ -8,7 +8,7 @@
                 <?php $__currentLoopData = $conseils; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cns): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
-                            <a href="blog-details.html" class="news-img-link">
+                            <a href="/blog/<?php echo e($cns->id); ?>" class="news-img-link">
                                 <div class="news-item-img">
                                     <?php if(isset($cns->image)): ?>
                                         <img class="img-responsive" src="<?php echo e(asset('images/' . $cns->image)); ?>"
@@ -27,7 +27,7 @@
                                     </span>
                                     
                                 </div>
-                                <a href="blog-details.html">
+                                <a href="/blog/<?php echo e($cns->id); ?>">
                                     <h3><?php echo e($cns->title); ?></h3>
                                 </a>
 

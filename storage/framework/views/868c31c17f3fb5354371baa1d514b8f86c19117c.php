@@ -38,7 +38,11 @@
 
     <?php echo $__env->make('landing.commercialiser.hero', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <?php echo $__env->make('static.apropos', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php if(isset($page)): ?>
+        <?php echo $__env->make('landing.commercialiser.apropos', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php else: ?>
+        <?php echo $__env->make('static.apropos', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php endif; ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>

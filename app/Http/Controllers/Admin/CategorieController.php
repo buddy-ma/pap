@@ -13,4 +13,9 @@ class CategorieController extends Controller
     {
         return view('admin.mains-admin.categorie.categorie-list');
     }
+
+    public function commercialiserContacts()
+    {
+        return view('admin.mains-admin.commercialiser.commercialiser-contacts');
+    }
 }

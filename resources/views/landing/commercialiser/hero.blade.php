@@ -11,27 +11,25 @@
                                 <li>
                                     <div class="info">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                        <p class="text-icon d-inline ml-2">95 South Park Ave, USA</p>
+                                        <p class="text-icon d-inline ml-2">
+                                            {{ $page->address ?? '95 South Park Ave, USA' }}</p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="info">
                                         <i class="fa fa-phone" aria-hidden="true"></i>
-                                        <p class="text-icon d-inline ml-2">+456 875 369 208</p>
+                                        <p class="text-icon d-inline ml-2"> {{ $page->phone ?? '+456 875 369 208' }}
+                                        </p>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="info">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
-                                        <p class="text-icon d-inline ml-2 ti">support@findhouses.com</p>
+                                        <p class="text-icon d-inline ml-2 ti">
+                                            {{ $page->email ?? 'support@findhouses.com' }}</p>
                                     </div>
                                 </li>
-                                <li>
-                                    <div class="info cll">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                        <p class="text-icon d-inline ml-2 ti">8:00 a.m - 9:00 p.m</p>
-                                    </div>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="col-6">

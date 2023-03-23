@@ -39,7 +39,11 @@
 
     @include('landing.commercialiser.hero')
 
-    @include('static.apropos')
+    @isset($page)
+        @include('landing.commercialiser.apropos')
+    @else
+        @include('static.apropos')
+    @endisset
 
 @endsection
 @section('js')
