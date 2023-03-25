@@ -107,10 +107,10 @@
             <ul class="slide-menu">
                 <li>
                     @can('blog-list')
-                        <a class="slide-item" href="{{ url('/admin/products') }}">Tous les articles</a>
+                        <a class="slide-item" href="{{ url('/admin/products') }}">Tous les produit</a>
                     @endcan
                     @can('blog-create')
-                        <a class="slide-item" href="{{ url('/admin/products/add') }}">Ajouter un article</a>
+                        <a class="slide-item" href="{{ url('/admin/products/add') }}">Ajouter un produit</a>
                     @endcan
                 </li>
             </ul>

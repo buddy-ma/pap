@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Blog;
 use App\Models\User;
-use App\Models\Categorie;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class BlogController extends Controller
+class ProductController extends Controller
 {
     public function list()
     {
-        $blogs = Blog::get();
+        $products = Product::get();
 
-        return view('admin.mains-admin.blogs.blog-list', ['blogs' => $blogs]);
+        return view('admin.mains-admin.products.product-list', ['products' => $products]);
     }
 
     public function add()
     {
-        $categories = Categorie::with('children')->whereNull('parent_id')->get();
-        return view('admin.mains-admin.blogs.blog-add', ['categories' => $categories]);
+        return view('admin.mains-admin.products.product-add');
     }
 
     public function store(Request $request)
