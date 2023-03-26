@@ -15,7 +15,7 @@
     style="background-color: rgb(44, 135, 138); background-image: linear-gradient(
         rgba(40, 68, 154, 0.2), 
         rgba(163, 186, 255, 0.2)
-      ), url('<?php echo e(URL::asset('assets/images/bg.jpg')); ?>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
+      ), url('<?php echo e(URL::asset('admin_assets/images/bg.jpg')); ?>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
     <div class="box">
         <div></div>
         <div></div>
