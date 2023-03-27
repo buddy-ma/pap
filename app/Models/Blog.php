@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use Conner\Likeable\Likeable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blog extends Model
 {
@@ -15,11 +15,13 @@ class Blog extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope('adminScope', function (Builder $builder) {
-            if (!Auth::guard('web')->user()->hasRole('Administrator')) {
-                $builder->where('user_id', Auth::id());
-            }
-        });
+        if (Request::is('admin') || Request::is('admin/*') || Auth::guard() == 'web') {
+            static::addGlobalScope('adminScope', function (Builder $builder) {
+                if (!Auth::guard('web')->user()->hasRole('Administrator')) {
+                    $builder->where('user_id', Auth::id());
+                }
+            });
+        }
     }
 
     public function user()
@@ -36,4 +38,14 @@ class Blog extends Model
     {
         return $this->belongsToMany(Categorie::class, 'blog_has_categories');
     }
+
+    // public function scopeSimilaires($query, $count = 3)
+    // {
+    //     dd($query->category_id);
+    //     $category = Categorie::find($query->category_id);
+    //     $query = $query->where('category_id', $this->category_id)
+    //         ->where('slug', '!=', $this->slug);
+
+    //     return $query->take($count);
+    // }
 }

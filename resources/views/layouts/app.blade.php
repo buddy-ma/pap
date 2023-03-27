@@ -32,9 +32,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" id="color" href="{{ asset('assets/css/default.css') }}">
+    @yield('css')
 </head>
 
-<body class="homepage-3 the-search">
+<body class="@yield('bodyClasses')">
     <div id="wrapper">
         @include('partials.header')
 
@@ -188,7 +189,36 @@
             $(".explore__form-checkbox-list").toggleClass("filter-block");
         });
     </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (Session::has('message'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Good Job...',
+                text: '{{ session('message') }}',
+            })
+        </script>
+    @elseif(Session::has('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}',
+            })
+        </script>
+    @elseif(Session::has('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success...',
+                text: '{{ session('success') }}',
+            })
+        </script>
+    @endif
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    @yield('js')
+
 </body>
 
 </html>

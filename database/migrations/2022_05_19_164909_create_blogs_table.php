@@ -20,6 +20,9 @@ class CreateBlogsTable extends Migration
             $table->text('image')->nullable();
             $table->text('text');
             $table->text('tags')->nullable();
+            $table->text('video_link')->nullable();
+            $table->text('vr_link')->nullable();
+            $table->text('pdf_link')->nullable();
             $table->boolean('status')->default(0);
             $table->foreignId('user_id')->constrained();
             $table->softDeletes();

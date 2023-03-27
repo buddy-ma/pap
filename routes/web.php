@@ -6,8 +6,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\StatisticsController;
+use App\Http\Controllers\Admin\CommercialiserController;
 
 Auth::routes(['register' => false]);
 
@@ -36,8 +38,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::get('/show/{id?}', [BlogController::class, 'show'])->name('show-blog-show');
     });
 
+    //Products
+    Route::prefix('products')->group(function () {
+        Route::get('/', [ProductController::class, 'list'])->name('product-list');
+        Route::get('/add', [ProductController::class, 'add'])->name('show-product-add');
+        Route::post('/add', [ProductController::class, 'store'])->name('product-add');
+        Route::get('/update/{id?}', [ProductController::class, 'update'])->name('show-product-update');
+        Route::post('/{id?}', [ProductController::class, 'edit'])->name('product-update');
+    });
+
     //Categorie
     Route::get('/categories', [CategorieController::class, 'list'])->name('categorie-list');
+
+    //commer
+    Route::get('/commercialiser-contacts', [CategorieController::class, 'commercialiserContacts'])->name('commercialiser-contacts');
+    Route::get('/commercialiser-page', [CommercialiserController::class, 'index'])->name('commercialiser-page');
+    Route::post('/commercialiser-page', [CommercialiserController::class, 'store'])->name('commercialiser-page-store');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -48,5 +64,11 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/test', [HomeController::class, 'home'])->name('home');
+Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');
+Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
+Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
+Route::get('/blog/{id?}', [HomeController::class, 'blogDetails'])->name('blogDetails');
+
+Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
 
 // Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

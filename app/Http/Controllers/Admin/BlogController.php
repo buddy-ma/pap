@@ -41,9 +41,12 @@ class BlogController extends Controller
             @header('Content-type: text/html; charset=utf-8');
             echo $response;
         }
+
         $blog->user_id = Auth::id();
         $blog->title = $request->title;
         $blog->subtitle = $request->subtitle;
+        $blog->vr_link = $request->vr_link;
+        $blog->video_link = $request->video_link;
         $blog->tags = $request->tags;
         $blog->text = $request->editor1;
 
@@ -52,7 +55,15 @@ class BlogController extends Controller
             $request->file('image')->move(public_path('images'), $filename);
             $blog->image = $filename;
         }
+
+        if ($request->hasFile('pdf')) {
+            $filenamepdf = date('YmdHi') . $request->file('pdf')->getClientOriginalName();
+            $request->file('pdf')->move(public_path('files'), $filenamepdf);
+            $blog->pdf_link = $filenamepdf;
+        }
+
         $blog->save();
+        $blog->categories()->sync($request->categories);
         session()->flash('success', 'Blog has been created successfully');
         return redirect('admin/blogs');
     }
@@ -70,8 +81,19 @@ class BlogController extends Controller
         $users = User::all();
 
         $tags = $blog->tags;
+        $vr_link = $blog->vr_link;
+        $video_link = $blog->video_link;
 
-        return view('admin.mains-admin.blogs.blog-show', ['blog' => $blog, 'catgs' => $catgs, 'categories' => $categories, 'users' => $users, 'autrs' => $autrs, 'tags' => $tags]);
+        return view('admin.mains-admin.blogs.blog-show', [
+            'blog' => $blog,
+            'catgs' => $catgs,
+            'categories' => $categories,
+            'users' => $users,
+            'autrs' => $autrs,
+            'tags' => $tags,
+            'vr_link' => $vr_link,
+            'video_link' => $video_link,
+        ]);
     }
 
     public function edit(Request $request, $id)
@@ -80,15 +102,24 @@ class BlogController extends Controller
         $blog->title = $request->title;
         $blog->subtitle = $request->subtitle;
         $blog->tags = $request->tags;
+        $blog->vr_link = $request->vr_link;
+        $blog->video_link = $request->video_link;
+
         $blog->text = $request->editor1;
         if ($request->hasFile('image')) {
             $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path('images'), $filename);
             $blog->image = $filename;
         }
+
+        if ($request->hasFile('pdf')) {
+            $filenamepdf = date('YmdHi') . $request->file('pdf')->getClientOriginalName();
+            $request->file('pdf')->move(public_path('files'), $filenamepdf);
+            $blog->pdf_link = $filenamepdf;
+        }
         $blog->categories()->sync($request->categories);
         $blog->save();
-        session()->flash('success', 'Blog has been updated sucssefuly');
+        session()->flash('success', 'Merci de nous contacter, on vous rappelle le plus proche possible');
         return redirect('admin/blogs');
     }
 

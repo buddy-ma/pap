@@ -3,6 +3,22 @@
     <link href="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/fancy_fileupload.css')); ?>" rel="stylesheet" />
     <!-- INTERNAL File Uploads css-->
     <link href="<?php echo e(URL::asset('admin_assets/plugins/fileupload/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
+    <style>
+        .bootstrap-tagsinput {
+            width: 100% !important;
+        }
+
+        .dark-mode .bootstrap-tagsinput {
+
+            color: rgba(255, 255, 255, 1) !important;
+            background-color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-mode .bootstrap-tagsinput input {
+            color: rgba(255, 255, 255, 1) !important;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-header'); ?>
     <!--Page header-->
