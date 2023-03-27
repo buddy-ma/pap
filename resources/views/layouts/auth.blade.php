@@ -15,7 +15,7 @@
         <!-- meta character set -->
         <meta charset="UTF-8">
         <!-- Site Title -->
-        <title>Portfolio - Login</title>
+        <title>PAP - Login</title>
 
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">

@@ -4,22 +4,27 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\ProductType;
 use App\Models\Proprietaire;
 use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 use App\Rules\PhoneValidation;
+use App\Models\ProductCategory;
 
 class AddProduct extends Component
 {
     use WithFileUploads;
 
+    public $producttypes, $productcategories;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false;
-    public $type, $title, $description, $ville, $quartier, $address, $prix, $date, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_pieces, $nbr_chambres;
+    public $category, $type, $title, $description, $ville, $quartier, $address, $prix, $date, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_pieces, $nbr_chambres;
     public $has_balcon_terrace = false, $has_garage_parking = false, $has_piscine = false, $has_cave = false, $has_access_handicape = false;
     public $images = [], $i = 0;
 
     public function mount()
     {
+        $this->producttypes = ProductType::get();
+        $this->productcategories = ProductCategory::get();
         array_push($this->images, $this->i);
     }
 
@@ -38,7 +43,7 @@ class AddProduct extends Component
 
             'type' => 'required',
             'title' => 'required|string|max:255|min:1',
-            'description' => 'required|string|max:255|min:1',
+            'description' => 'required|min:1',
             'position' => 'required|string|max:255|min:1',
             'ville' => 'required|string|max:255|min:1',
             'quartier' => 'required|string|max:255|min:1',
@@ -60,7 +65,7 @@ class AddProduct extends Component
         if ($this->is_promoteur) {
             $this->validate([
                 'logo'  => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
-                'pdf'  => 'required|image|mimes:pdf',
+                'pdf'  => 'required|mimes:pdf',
             ]);
         }
 
@@ -85,7 +90,8 @@ class AddProduct extends Component
 
         $product = new Product();
         $product->proprietaire_id = $proprietaire->id;
-        $product->type_id = $this->type;
+        $product->product_type_id = $this->type;
+        $product->product_category_id = $this->category;
         $product->title = $this->title;
         $product->description = $this->description;
         $e = explode(",", $this->position);
@@ -106,9 +112,10 @@ class AddProduct extends Component
         $product->nbr_chambres = $this->nbr_chambres;
         $product->save();
         if (isset($this->images)) {
+            $j = 0;
             foreach ($this->images as $img) {
                 $img_title = md5(microtime()) . '.' . $img->extension();
-                $img->storeAs('public/product/images', $img);
+                $img->storeAs('public/product/images/', $img_title);
                 ProductImages::create([
                     'product_id' => $product->id,
                     'image' => $img_title
@@ -119,6 +126,8 @@ class AddProduct extends Component
             'type' => 'success',
             'text' => 'Saved successfully !'
         ]);
+
+        return redirect('/admin/products');
     }
 
     public function is_promoteur()

@@ -12,9 +12,7 @@ class ProductController extends Controller
 {
     public function list()
     {
-        $products = Product::get();
-
-        return view('admin.mains-admin.products.product-list', ['products' => $products]);
+        return view('admin.mains-admin.products.product-list');
     }
 
     public function add()

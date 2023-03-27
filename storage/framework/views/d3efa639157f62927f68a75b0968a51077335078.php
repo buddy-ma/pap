@@ -67,14 +67,21 @@
                                         </div>
                                         <div class="expanel-body">
                                             <div class="form-group">
-                                                <label class="form-label">Type</label>
-                                                <select wire:model="type" class="form-control" tabindex="-1"
-                                                    aria-hidden="true">
+                                                <label class="form-label">Category*</label>
+                                                <select wire:model="category" class="form-control">
                                                     <option>Select option</option>
-                                                    <option value="1">Terre</option>
-                                                    <option value="2">Villa</option>
-                                                    <option value="3">Maison</option>
-                                                    <option value="4">Appartement</option>
+                                                    <?php $__currentLoopData = $productcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($pc->id); ?>"><?php echo e($pc->title); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Type*</label>
+                                                <select wire:model="type" class="form-control">
+                                                    <option>Select option</option>
+                                                    <?php $__currentLoopData = $producttypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($pt->id); ?>"><?php echo e($pt->title); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">

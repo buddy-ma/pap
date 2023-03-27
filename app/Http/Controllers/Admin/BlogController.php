@@ -13,9 +13,7 @@ class BlogController extends Controller
 {
     public function list()
     {
-        $blogs = Blog::get();
-
-        return view('admin.mains-admin.blogs.blog-list', ['blogs' => $blogs]);
+        return view('admin.mains-admin.blogs.blog-list');
     }
 
     public function add()

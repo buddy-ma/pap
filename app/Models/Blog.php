@@ -39,6 +39,17 @@ class Blog extends Model
         return $this->belongsToMany(Categorie::class, 'blog_has_categories');
     }
 
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('blogs.title', 'like', $term)
+                ->orWhere('blogs.subtitle', 'like', $term)
+                ->orWhere('blogs.text', 'like', $term)
+                ->orWhere('blogs.tags', 'like', $term);
+        });
+    }
+
     // public function scopeSimilaires($query, $count = 3)
     // {
     //     dd($query->category_id);

@@ -5,10 +5,10 @@
     <!-- Meta data -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-    <meta content="Soukaina - Portfolio" name="description">
+    <meta content="PAP - Admin" name="description">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta content="Buddy" name="author">
-    <meta name="keywords" content="admin panel buddy" />
+    <meta content="PAP" name="author">
+    <meta name="keywords" content="admin panel PAP" />
     @include('admin.layouts.head')
     @livewireStyles
 </head>

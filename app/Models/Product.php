@@ -23,4 +23,13 @@ class Product extends Model
     {
         return $this->images()->first();
     }
+
+    public function scopeSearch($query, $term)
+    {
+        $term = "%$term%";
+        $query->where(function ($query) use ($term) {
+            $query->where('products.title', 'like', $term)
+                ->orWhere('products.description', 'like', $term);
+        });
+    }
 }
