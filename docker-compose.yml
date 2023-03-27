@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  portfolio:
+  laravel.pap:
     build:
       context: ./vendor/laravel/sail/runtimes/8.1
       dockerfile: Dockerfile
@@ -15,8 +15,8 @@ services:
     volumes:
       - ".:/var/www/html"
     networks:
-      - sail_portfolio
+      - sail_pap
 networks:
-  sail_portfolio:
+  sail_pap:
     name: sail
     external: true

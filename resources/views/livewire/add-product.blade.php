@@ -67,14 +67,21 @@
                                         </div>
                                         <div class="expanel-body">
                                             <div class="form-group">
-                                                <label class="form-label">Type</label>
-                                                <select wire:model="type" class="form-control" tabindex="-1"
-                                                    aria-hidden="true">
+                                                <label class="form-label">Category*</label>
+                                                <select wire:model="category" class="form-control">
                                                     <option>Select option</option>
-                                                    <option value="1">Terre</option>
-                                                    <option value="2">Villa</option>
-                                                    <option value="3">Maison</option>
-                                                    <option value="4">Appartement</option>
+                                                    @foreach ($productcategories as $pc)
+                                                        <option value="{{ $pc->id }}">{{ $pc->title }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Type*</label>
+                                                <select wire:model="type" class="form-control">
+                                                    <option>Select option</option>
+                                                    @foreach ($producttypes as $pt)
+                                                        <option value="{{ $pt->id }}">{{ $pt->title }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="form-group">

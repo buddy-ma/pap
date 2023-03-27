@@ -4,9 +4,8 @@
 	"dockerComposeFile": [
 		"../docker-compose.yml"
 	],
-	"service": "portfolio",
+	"service": "laravel.pap",
 	"workspaceFolder": "/var/www/html",
-	"settings": {},
 	"extensions": [
 		"esbenp.prettier-vscode",
 		"MehediDracula.php-namespace-resolver",
@@ -29,7 +28,16 @@
 		"Zignd.html-css-class-completion",
 		"adpyke.codesnap",
 		"Tyriar.lorem-ipsum",
-		"redhat.vscode-xml"
+		"redhat.vscode-xml",
+		"gencay.vscode-chatgpt",
+		"ctf0.laravel-goto-view",
+		"ctf0.laravel-goto-controller",
+		"lennardv.livewire-goto-updated",
+		"MrChetan.laravel-goto-config",
+		"rifi2k.format-html-in-php",
+		"DEVSENSE.phptools-vscode",
+		"mhutchie.git-graph",
+		"donjayamanne.githistory"
 	],
 	"remoteUser": "sail",
 	// "forwardPorts": [],
