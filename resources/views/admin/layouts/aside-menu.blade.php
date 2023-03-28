@@ -136,6 +136,10 @@
                         <a class="slide-item" href="{{ url('/admin/commercialiser-contacts') }}">Depuis
                             commercialiser</a>
                     </li>
+                    <li>
+                        <a class="slide-item" href="{{ url('/admin/products/contacts') }}">Depuis
+                            produits</a>
+                    </li>
                 </ul>
             </li>
         @endif

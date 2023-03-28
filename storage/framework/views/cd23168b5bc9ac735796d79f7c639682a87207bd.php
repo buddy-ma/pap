@@ -1,50 +1,51 @@
 <div>
     <div class="row flex-lg-nowrap mt-5">
         <div class="col-12">
-            @if (Session::get('success'))
+            <?php if(Session::get('success')): ?>
                 <div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert"
                         aria-hidden="true">×</button>
-                    <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>{{ Session::get('success') }}
+                    <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i><?php echo e(Session::get('success')); ?>
+
                 </div>
-            @endif
+            <?php endif; ?>
             <div class="row flex-lg-nowrap">
                 <div class="col-lg-9">
                     <div class="row">
-                        @forelse ($products as $product)
+                        <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <div class="col-xl-4 col-6">
                                 <div class="card item-card">
                                     <div class="card-header">
-                                        <div class="card-title"> {{ $product->title }}</div>
-                                        @if ($status == 1)
-                                            <button wire:click="turnOff({{ $product->id }})" type="button"
+                                        <div class="card-title"> <?php echo e($product->title); ?></div>
+                                        <?php if($status == 1): ?>
+                                            <button wire:click="turnOff(<?php echo e($product->id); ?>)" type="button"
                                                 class="btn btn-icon btn-danger ml-auto"><i
                                                     class="fe fe-trash"></i></button>
-                                        @else
-                                            <button wire:click="turnOn({{ $product->id }})" type="button"
+                                        <?php else: ?>
+                                            <button wire:click="turnOn(<?php echo e($product->id); ?>)" type="button"
                                                 class="btn btn-icon btn-danger ml-auto"><i
                                                     class="fe fe-trash"></i></button>
-                                        @endif
+                                        <?php endif; ?>
 
                                     </div>
                                     <div class="card-body">
                                         <div class="text-center">
-                                            @if ($product->first_image() !== null)
-                                                <img src="{{ URL::asset('storage/product/images/' . $product->first_image()->image) }}"
+                                            <?php if($product->first_image() !== null): ?>
+                                                <img src="<?php echo e(URL::asset('storage/product/images/' . $product->first_image()->image)); ?>"
                                                     alt="img" class="img-fluid w-100" style="max-height: 300px">
-                                            @else
-                                                <img src="{{ URL::asset('admin_assets/images/products/1.jpg') }}"
+                                            <?php else: ?>
+                                                <img src="<?php echo e(URL::asset('admin_assets/images/products/1.jpg')); ?>"
                                                     alt="img" class="img-fluid w-100">
-                                            @endif
+                                            <?php endif; ?>
                                         </div>
                                         <div class="card-body px-0 row pb-0">
                                             <div class="col-12 mb-3">
-                                                <i class="fe fe-eye"></i> {{ $product->vues }} vues
+                                                <i class="fe fe-eye"></i> <?php echo e($product->vues); ?> vues
                                             </div>
                                             <div class="col-12 mb-3">
-                                                <i class="fe fe-phone"></i> {{ $product->vues_phone }} vues telephone
+                                                <i class="fe fe-phone"></i> <?php echo e($product->vues_phone); ?> vues telephone
                                             </div>
                                             <div class="col-12">
-                                                <i class="fe fe-send"></i> {{ count($product->contacts) }} rempli le
+                                                <i class="fe fe-send"></i> <?php echo e(count($product->contacts)); ?> rempli le
                                                 formulaire
                                             </div>
                                         </div>
@@ -57,11 +58,11 @@
                                     </div>
                                 </div>
                             </div>
-                        @empty
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <div class="alert alert-warning d-block w-100" role="alert">
                                 <i class="fa fa-exclamation mr-2" aria-hidden="true"></i> No products!
                             </div>
-                        @endforelse
+                        <?php endif; ?>
 
                     </div>
                 </div>
@@ -77,34 +78,34 @@
                                         <label class="form-label">Category</label>
                                         <select class="form-control" wire:model="selected_category">
                                             <option value="0">--Select--</option>
-                                            @foreach ($categories as $ctg)
-                                                <option value="{{ $ctg->id }}">{{ $ctg->title }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ctg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($ctg->id); ?>"><?php echo e($ctg->title); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Type</label>
                                         <select class="form-control" wire:model="selected_type">
                                             <option value="0">--Select--</option>
-                                            @foreach ($types as $type)
-                                                <option value="{{ $type->id }}">{{ $type->title }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($type->id); ?>"><?php echo e($type->title); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="form-group">
                                         <label class="custom-switch"
-                                            @if ($status == 1) wire:click="off" @else wire:click="on" @endif>
+                                            <?php if($status == 1): ?> wire:click="off" <?php else: ?> wire:click="on" <?php endif; ?>>
                                             <input type="checkbox" name="custom-switch-checkbox"
                                                 class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
                                             <span class="custom-switch-description">
-                                                @if ($status == 1)
+                                                <?php if($status == 1): ?>
                                                     Juste Désactivés
-                                                @else
+                                                <?php else: ?>
                                                     Juste activés
-                                                @endif
+                                                <?php endif; ?>
                                             </span>
                                         </label>
                                     </div>
@@ -117,3 +118,4 @@
         </div>
     </div>
 </div>
+<?php /**PATH /var/www/html/resources/views/livewire/product-listing.blade.php ENDPATH**/ ?>

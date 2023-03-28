@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('product_type_id')->constrained();
             $table->tinyInteger('is_dispo')->default(1);
             $table->tinyInteger('is_new')->default(1);
-            
+
             $table->string('title');
             $table->text('description');
             $table->date('date');
@@ -40,6 +40,8 @@ class CreateProductsTable extends Migration
             $table->tinyInteger('has_cave')->default(0);
             $table->tinyInteger('has_access_handicape')->default(0);
             $table->double('prix');
+            $table->integer('vues_phone')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

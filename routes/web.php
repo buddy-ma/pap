@@ -45,6 +45,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::post('/add', [ProductController::class, 'store'])->name('product-add');
         Route::get('/update/{id?}', [ProductController::class, 'update'])->name('show-product-update');
         Route::post('/{id?}', [ProductController::class, 'edit'])->name('product-update');
+        Route::get('/contacts', [ProductController::class, 'contacts'])->name('product-contacts');
     });
 
     //Categorie
