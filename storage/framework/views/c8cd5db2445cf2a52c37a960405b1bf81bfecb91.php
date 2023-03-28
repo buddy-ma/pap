@@ -1,5 +1,5 @@
   <!-- Title -->
-  <title>Portfolio - Login</title>
+  <title>PAP - Login</title>
 
   <!--Favicon -->
   <link rel="icon" href="<?php echo e(URL::asset('admin_assets/images/brand/favicon.png')); ?>" type="image/x-icon" />
