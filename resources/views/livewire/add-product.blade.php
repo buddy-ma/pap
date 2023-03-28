@@ -1,6 +1,4 @@
 <div>
-
-
     <div class="row">
         <div class="col-lg-12 col-md-12">
             <form enctype="multipart/form-data">
@@ -27,7 +25,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Telephone*</label>
-                                                <input type="text" wire:model="phone" class="form-control" />
+                                                <input type="text" wire:model="phone" maxlength="10"
+                                                    class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Email</label>

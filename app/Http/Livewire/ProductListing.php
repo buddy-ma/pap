@@ -4,31 +4,32 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use Livewire\Component;
+use App\Models\ProductCategory;
+use App\Models\ProductType;
 
 class ProductListing extends Component
 {
-    public $categories, $selected_category;
-    public $search, $paginate, $order_by, $sort_by, $perPage;
+    public $categories, $selected_category, $types, $selected_type;
+    public $search, $paginate, $perPage;
 
     public function mount()
     {
         $this->selected_category = 0;
+        $this->selected_type = 0;
         $this->search = '';
-        $this->sort_by = 'DESC';
-        $this->order_by = 'title';
         $this->perPage = 10;
-        $this->categories = Categorie::get();
+        $this->categories = ProductCategory::get();
+        $this->types = ProductType::get();
     }
     public function render()
     {
-        $products = Product::leftJoin('blog_has_categories as bc', 'bc.blog_id', 'blogs.id')
-            ->when($this->selected_category != 0, function ($query) {
-                $query->where('bc.categorie_id', $this->selected_category);
-            })
-            ->groupBy('bc.blog_id')
-            ->search(trim($this->search))
-            ->orderby($this->order_by, $this->sort_by)
+        $products = Product::when($this->selected_category != 0, function ($query) {
+            $query->where('product_category_id', $this->selected_category);
+        })->when($this->selected_type != 0, function ($query) {
+            $query->where('product_type_id', $this->selected_type);
+        })->search(trim($this->search))
             ->paginate($this->perPage);
+
         return view('livewire.product-listing', [
             'products' => $products
         ]);

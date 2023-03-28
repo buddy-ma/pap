@@ -90,7 +90,8 @@ class AddProduct extends Component
 
         $product = new Product();
         $product->proprietaire_id = $proprietaire->id;
-        $product->type_id = $this->type;
+        $product->product_type_id = $this->type;
+        $product->product_category_id = $this->category;
         $product->title = $this->title;
         $product->description = $this->description;
         $e = explode(",", $this->position);

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="html 5 template">
+    <meta name="description" content="pap website">
     <meta name="author" content="">
-    <title>FindHouses - HTML5 Template</title>
+    <title>PAP - <?php echo $__env->yieldContent('title'); ?></title>
     <!-- FAVICON -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/jquery-ui.css')); ?>">
@@ -32,15 +32,18 @@
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/slick.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/styles.css')); ?>">
     <link rel="stylesheet" id="color" href="<?php echo e(asset('assets/css/default.css')); ?>">
+    <?php echo $__env->yieldContent('css'); ?>
 </head>
 
-<body class="homepage-3 the-search">
+<body class="<?php echo $__env->yieldContent('bodyClasses'); ?>">
     <div id="wrapper">
         <?php echo $__env->make('partials.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <?php echo $__env->yieldContent('content'); ?>
 
         <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+        <a data-scroll href="#wrapper" class="go-up"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
     </div>
 
     <!-- START PRELOADER -->
@@ -86,14 +89,136 @@
             $("#header.cloned #logo img").attr("src", $('#header #logo img').attr('data-sticky-logo'));
         });
     </script>
+    <script src="<?php echo e(asset('revolution/js/jquery.themepunch.tools.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('revolution/js/jquery.themepunch.revolution.min.js')); ?>"></script>
+
+    <script>
+        $('.slick-lancers').slick({
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: true,
+            arrows: true,
+            adaptiveHeight: true,
+            responsive: [{
+                breakpoint: 1292,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 993,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false
+                }
+            }, ]
+        });
+    </script>
+    <script>
+        $('.slick-lancers2').slick({
+            infinite: false,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: true,
+            arrows: false,
+            adaptiveHeight: true,
+            responsive: [{
+                breakpoint: 1292,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 993,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false
+                }
+            }, ]
+        });
+    </script>
+    <script>
+        $('.job_clientSlide').owlCarousel({
+            items: 2,
+            loop: true,
+            margin: 30,
+            autoplay: false,
+            nav: true,
+            smartSpeed: 1000,
+            slideSpeed: 1000,
+            navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                991: {
+                    items: 2
+                }
+            }
+        });
+    </script>
 
     <script>
         $(".dropdown-filter").on('click', function() {
             $(".explore__form-checkbox-list").toggleClass("filter-block");
         });
     </script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if(Session::has('message')): ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Good Job...',
+                text: '<?php echo e(session('message')); ?>',
+            })
+        </script>
+    <?php elseif(Session::has('error')): ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '<?php echo e(session('error')); ?>',
+            })
+        </script>
+    <?php elseif(Session::has('success')): ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success...',
+                text: '<?php echo e(session('success')); ?>',
+            })
+        </script>
+    <?php endif; ?>
     <script src="<?php echo e(asset('assets/js/script.js')); ?>"></script>
+    <?php echo $__env->yieldContent('js'); ?>
+
 </body>
 
 </html>
