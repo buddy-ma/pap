@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Correction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Redirect;
@@ -31,6 +30,6 @@ class BlogsListing extends Component
 
     public function render()
     {
-        return view('livewire.blogs-listing');
+        return view('livewire.blog-listing');
     }
 }

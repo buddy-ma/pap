@@ -69,8 +69,6 @@
             </div>
         </div>
     </div>
-
-    @livewireScripts
 @endsection
 @section('js')
     <!-- INTERNAL File uploads js -->
