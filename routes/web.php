@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::get('/update/{id?}', [ProductController::class, 'update'])->name('show-product-update');
         Route::post('/{id?}', [ProductController::class, 'edit'])->name('product-update');
         Route::get('/contacts', [ProductController::class, 'contacts'])->name('product-contacts');
+        Route::get('/types', [ProductController::class, 'types'])->name('product-types');
     });
 
     //Categorie

@@ -6,6 +6,7 @@ use App\Models\Product;
 use Livewire\Component;
 use App\Models\ProductType;
 use App\Models\Proprietaire;
+use App\Models\ProductExtras;
 use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 use App\Rules\PhoneValidation;
@@ -15,32 +16,35 @@ class AddProduct extends Component
 {
     use WithFileUploads;
 
-    public $producttypes, $productcategories;
-    public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false;
-    public $category, $type, $title, $description, $ville, $quartier, $address, $prix, $date, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_pieces, $nbr_chambres;
-    public $has_balcon_terrace = false, $has_garage_parking = false, $has_piscine = false, $has_cave = false, $has_access_handicape = false;
+    public $productcategories, $producttypes, $productextras;
+    public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
+    public $category, $type, $title, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $hasextras = [];
     public $images = [], $i = 0;
 
     public function mount()
     {
-        $this->producttypes = ProductType::get();
         $this->productcategories = ProductCategory::get();
         array_push($this->images, $this->i);
     }
 
     public function render()
     {
+        $this->producttypes = ProductType::when($this->category != 0, function ($query) {
+            $query->where('product_category_id', $this->category);
+        })->get();
+
+        $this->productextras = ProductExtras::when($this->category != 0, function ($query) {
+            $query->where('product_category_id', $this->category);
+        })->get();
+
         return view('livewire.add-product');
     }
 
     public function save()
     {
+        //product validation
         $this->validate([
-            'firstname' => 'required|string|max:50|min:1',
-            'lastname' => 'required|string|max:50|min:1',
-            'phone' => ['required', 'digits:10', new PhoneValidation()],
-            'email' => 'nullable|email|max:255|min:1',
-
             'type' => 'required',
             'title' => 'required|string|max:255|min:1',
             'description' => 'required|min:1',
@@ -49,24 +53,32 @@ class AddProduct extends Component
             'quartier' => 'required|string|max:255|min:1',
             'address' => 'required|string|max:255|min:1',
             'prix' => 'required',
-            'date' => 'nullable',
             'video' => 'nullable|string|max:255|min:1',
             'vr' => 'nullable|string|max:255|min:1',
             'unite_surface' => 'required',
             'surface' => 'required',
             'surface_habitable' => 'nullable',
             'surface_terrain' => 'nullable',
-            'nbr_pieces' => 'required',
+            'nbr_salons' => 'required',
             'nbr_chambres' => 'nullable',
             'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
             'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
         ]);
 
-        if ($this->is_promoteur) {
+        if (!$this->is_commercial) {
             $this->validate([
-                'logo'  => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
-                'pdf'  => 'required|mimes:pdf',
+                'firstname' => 'required|string|max:50|min:1',
+                'lastname' => 'required|string|max:50|min:1',
+                'phone' => ['required', 'digits:10', new PhoneValidation()],
+                'email' => 'nullable|email|max:255|min:1',
             ]);
+
+            if ($this->is_promoteur) {
+                $this->validate([
+                    'logo'  => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                    'pdf'  => 'required|mimes:pdf',
+                ]);
+            }
         }
 
         $proprietaire = new Proprietaire();
@@ -101,14 +113,13 @@ class AddProduct extends Component
         $product->quartier = $this->quartier;
         $product->address = $this->address;
         $product->prix = $this->prix;
-        $product->date = $this->date ?? now();
         $product->video_link = $this->video ?? '';
         $product->vr_link = $this->vr ?? '';
         $product->unite_surface = $this->unite_surface;
         $product->surface = $this->surface;
         $product->surface_habitable = $this->surface_habitable;
         $product->surface_terrain = $this->surface_terrain;
-        $product->nbr_pieces = $this->nbr_pieces;
+        $product->nbr_salons = $this->nbr_salons;
         $product->nbr_chambres = $this->nbr_chambres;
         $product->save();
         if (isset($this->images)) {
@@ -145,5 +156,14 @@ class AddProduct extends Component
     public function removeimg($key)
     {
         unset($this->images[$key]);
+    }
+
+    //tocomplete
+    public function hasextras($title)
+    {
+        if (in_array($title, $this->hasextras)) {
+            unset($this->hasextras[$key]);
+        }
+        array_push($title);
     }
 }
