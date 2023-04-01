@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,5 +22,10 @@ class ProductController extends Controller
     public function contacts()
     {
         return view('admin.mains-admin.products.product-contacts');
+    }
+
+    public function types()
+    {
+        return view('admin.mains-admin.products.product-types');
     }
 }

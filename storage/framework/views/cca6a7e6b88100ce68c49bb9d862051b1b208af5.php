@@ -46,7 +46,6 @@
                 <span class="side-menu__label">Dashboard</span></a>
         </li>
 
-        
         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-list')): ?>
             <li class="slide mt-3">
                 <a class="side-menu__item" href="<?php echo e(url('/admin/user')); ?>">
@@ -62,6 +61,32 @@
                     </svg>
                     <span class="side-menu__label">Users</span>
                 </a>
+            </li>
+        <?php endif; ?>
+
+        <?php if(Auth::user()->hasAnyPermission(['blog-list', 'blog-create', 'blog-edit', 'blog-delete'])): ?>
+            <li class="slide mt-3">
+                <a class="side-menu__item" data-toggle="slide">
+                    <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
+                        width="24">
+                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                        <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z">
+                        </path>
+                        <circle cx="12" cy="9" r="2.5"></circle>
+                    </svg>
+                    <span class="side-menu__label">Villes</span><i class="angle fa fa-angle-right"></i>
+                </a>
+                <ul class="slide-menu">
+                    <li>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/villes')); ?>">Tous les villes</a>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-create')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/villes/add')); ?>">Ajouter une ville</a>
+                        <?php endif; ?>
+                    </li>
+                </ul>
             </li>
         <?php endif; ?>
 
@@ -93,30 +118,33 @@
             </li>
         <?php endif; ?>
 
-        
-        <li class="slide mt-3">
-            <a class="side-menu__item" data-toggle="slide">
-                <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24"
-                    width="24">
-                    <path d="M0 0h24v24H0V0z" fill="none"></path>
-                    <path
-                        d="M16.66 4.52l2.83 2.83-2.83 2.83-2.83-2.83 2.83-2.83M9 5v4H5V5h4m10 10v4h-4v-4h4M9 15v4H5v-4h4m7.66-13.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65zM11 3H3v8h8V3zm10 10h-8v8h8v-8zm-10 0H3v8h8v-8z">
-                    </path>
-                </svg>
-                <span class="side-menu__label">Produits</span><i class="angle fa fa-angle-right"></i>
-            </a>
-            <ul class="slide-menu">
-                <li>
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
-                        <a class="slide-item" href="<?php echo e(url('/admin/products')); ?>">Tous les produit</a>
-                    <?php endif; ?>
-                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-create')): ?>
-                        <a class="slide-item" href="<?php echo e(url('/admin/products/add')); ?>">Ajouter un produit</a>
-                    <?php endif; ?>
-                </li>
-            </ul>
-        </li>
-        
+        <?php if(Auth::user()->hasAnyPermission(['product-list', 'product-create', 'product-edit', 'product-delete'])): ?>
+            <li class="slide mt-3">
+                <a class="side-menu__item" data-toggle="slide">
+                    <svg class="side-menu__icon" xmlns="http://www.w3.org/2000/svg" height="24"
+                        viewBox="0 0 24 24" width="24">
+                        <path d="M0 0h24v24H0V0z" fill="none"></path>
+                        <path
+                            d="M16.66 4.52l2.83 2.83-2.83 2.83-2.83-2.83 2.83-2.83M9 5v4H5V5h4m10 10v4h-4v-4h4M9 15v4H5v-4h4m7.66-13.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65zM11 3H3v8h8V3zm10 10h-8v8h8v-8zm-10 0H3v8h8v-8z">
+                        </path>
+                    </svg>
+                    <span class="side-menu__label">Produits</span><i class="angle fa fa-angle-right"></i>
+                </a>
+                <ul class="slide-menu">
+                    <li>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-list')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/products')); ?>">Tous les produit</a>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-create')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/products/add')); ?>">Ajouter un produit</a>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-types')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/products/types')); ?>">Categories & Types</a>
+                        <?php endif; ?>
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
 
         <?php if(Auth::user()->hasAnyPermission([
                 'commercialiser-contact-list',
@@ -125,8 +153,8 @@
             ])): ?>
             <li class="slide mt-3">
                 <a class="side-menu__item" data-toggle="slide">
-                    <svg class="side-menu__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="24"
-                        width="24">
+                    <svg class="side-menu__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                        height="24" width="24">
                         <path
                             d="M4 6V4h16v2Zm0 14v-6H3v-2l1-5h16l1 5v2h-1v6h-2v-6h-4v6Zm2-2h6v-4H6Zm-.95-6h13.9Zm0 0h13.9l-.6-3H5.65Z" />
                     </svg>

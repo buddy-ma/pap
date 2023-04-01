@@ -20,10 +20,8 @@ class CreateProductsTable extends Migration
             $table->foreignId('product_type_id')->constrained();
             $table->tinyInteger('is_dispo')->default(1);
             $table->tinyInteger('is_new')->default(1);
-
             $table->string('title');
             $table->text('description');
-            $table->date('date');
             $table->string('video_link')->nullable();
             $table->string('vr_link')->nullable();
             $table->string('longitude')->nullable();
@@ -32,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->string('unite_surface');
             $table->integer('surface_habitable')->nullable();
             $table->integer('surface_terrain')->nullable();
-            $table->integer('nbr_pieces');
+            $table->integer('nbr_salons');
             $table->integer('nbr_chambres')->nullable();
             $table->tinyInteger('has_balcon_terrace')->default(0);
             $table->tinyInteger('has_garage_parking')->default(0);

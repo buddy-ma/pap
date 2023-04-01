@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Admin\VilleController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\StatisticsController;
@@ -46,6 +47,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::get('/update/{id?}', [ProductController::class, 'update'])->name('show-product-update');
         Route::post('/{id?}', [ProductController::class, 'edit'])->name('product-update');
         Route::get('/contacts', [ProductController::class, 'contacts'])->name('product-contacts');
+        Route::get('/types', [ProductController::class, 'types'])->name('product-types');
+    });
+
+    Route::prefix('villes')->group(function () {
+        Route::get('/', [VilleController::class, 'list'])->name('ville-list');
+        Route::get('/add', [VilleController::class, 'add'])->name('show-ville-add');
+        Route::post('/add', [VilleController::class, 'store'])->name('ville-add');
+        Route::get('/edit/{id?}', [VilleController::class, 'edit'])->name('show-ville-edit');
+        Route::post('/{id?}', [VilleController::class, 'update'])->name('ville-update');
+        Route::get('/delete/{id?}', [VilleController::class, 'delete'])->name('ville-delete');
     });
 
     //Categorie
