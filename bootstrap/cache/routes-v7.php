@@ -103,7 +103,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::iJ6c0kGUID4NR6YK',
+            '_route' => 'generated::XyUxor0ny6Br6pI2',
           ),
           1 => NULL,
           2 => 
@@ -123,7 +123,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::u3W2lRILfvEbSXYt',
+            '_route' => 'generated::CppydLRJPb8dO9bE',
           ),
           1 => NULL,
           2 => 
@@ -160,7 +160,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::b4Uh5u8PCPCWWXNA',
+            '_route' => 'generated::6pBigVNVy1hcLKIE',
           ),
           1 => NULL,
           2 => 
@@ -270,7 +270,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::yUOA7pzlDvJLQ2hj',
+            '_route' => 'generated::7Bp8wXa2o3GJZVKc',
           ),
           1 => NULL,
           2 => 
@@ -289,7 +289,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::6zCjS7XZbnhZYvdQ',
+            '_route' => 'generated::N68HPTdIQDHFszp5',
           ),
           1 => NULL,
           2 => 
@@ -507,6 +507,62 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'product-add',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/villes' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'ville-list',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/villes/add' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'show-ville-add',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'ville-add',
           ),
           1 => NULL,
           2 => 
@@ -755,7 +811,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::p8xResvrbZcH50s3',
+            '_route' => 'generated::TLKlhECTPfM4uKlU',
           ),
           1 => NULL,
           2 => 
@@ -772,7 +828,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/livewire/(?|message/([^/]++)(*:110)|preview\\-file/([^/]++)(*:140))|/password/reset/([^/]++)(*:173)|/admin/(?|blogs(?|/update(?:/([^/]++))?(*:220)|(?:/([^/]++))?(*:242)|/(?|delete(?:/([^/]++))?(*:274)|restore(?:/([^/]++))?(*:303)|changeStatus(*:323)|show(?:/([^/]++))?(*:349)))|products(?|/update(?:/([^/]++))?(*:391)|(?:/([^/]++))?(*:413)|/(?|contacts(*:433)|types(*:446))))|/blog(?:/([^/]++))?(*:476))/?$}sDu',
+      0 => '{^(?|/_debugbar/c(?|lockwork/([^/]++)(*:39)|ache/([^/]++)(?:/([^/]++))?(*:73))|/livewire/(?|message/([^/]++)(*:110)|preview\\-file/([^/]++)(*:140))|/password/reset/([^/]++)(*:173)|/admin/(?|blogs(?|/update(?:/([^/]++))?(*:220)|(?:/([^/]++))?(*:242)|/(?|delete(?:/([^/]++))?(*:274)|restore(?:/([^/]++))?(*:303)|changeStatus(*:323)|show(?:/([^/]++))?(*:349)))|products(?|/update(?:/([^/]++))?(*:391)|(?:/([^/]++))?(*:413)|/(?|contacts(*:433)|types(*:446)))|villes(?|/edit(?:/([^/]++))?(*:484)|(?:/([^/]++))?(*:506)|/delete(?:/([^/]++))?(*:535)))|/blog(?:/([^/]++))?(*:564))/?$}sDu',
     ),
     3 => 
     array (
@@ -990,7 +1046,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::1z6wGjGtm5ljaWW7',
+            '_route' => 'generated::bK3Rn14Sgr4bSU4N',
           ),
           1 => 
           array (
@@ -1121,7 +1177,78 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      476 => 
+      484 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'show-ville-edit',
+            'id' => NULL,
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      506 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'ville-update',
+            'id' => NULL,
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      535 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'ville-delete',
+            'id' => NULL,
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      564 => 
       array (
         0 => 
         array (
@@ -1443,7 +1570,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::iJ6c0kGUID4NR6YK' => 
+    'generated::XyUxor0ny6Br6pI2' => 
     array (
       'methods' => 
       array (
@@ -1455,7 +1582,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
-        'as' => 'generated::iJ6c0kGUID4NR6YK',
+        'as' => 'generated::XyUxor0ny6Br6pI2',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1471,7 +1598,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::u3W2lRILfvEbSXYt' => 
+    'generated::CppydLRJPb8dO9bE' => 
     array (
       'methods' => 
       array (
@@ -1483,7 +1610,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
-        'as' => 'generated::u3W2lRILfvEbSXYt',
+        'as' => 'generated::CppydLRJPb8dO9bE',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1536,7 +1663,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::b4Uh5u8PCPCWWXNA' => 
+    'generated::6pBigVNVy1hcLKIE' => 
     array (
       'methods' => 
       array (
@@ -1556,7 +1683,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::b4Uh5u8PCPCWWXNA',
+        'as' => 'generated::6pBigVNVy1hcLKIE',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1791,7 +1918,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::yUOA7pzlDvJLQ2hj' => 
+    'generated::7Bp8wXa2o3GJZVKc' => 
     array (
       'methods' => 
       array (
@@ -1811,7 +1938,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::yUOA7pzlDvJLQ2hj',
+        'as' => 'generated::7Bp8wXa2o3GJZVKc',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1827,7 +1954,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::6zCjS7XZbnhZYvdQ' => 
+    'generated::N68HPTdIQDHFszp5' => 
     array (
       'methods' => 
       array (
@@ -1853,7 +1980,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::6zCjS7XZbnhZYvdQ',
+        'as' => 'generated::N68HPTdIQDHFszp5',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2285,7 +2412,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::1z6wGjGtm5ljaWW7' => 
+    'generated::bK3Rn14Sgr4bSU4N' => 
     array (
       'methods' => 
       array (
@@ -2307,7 +2434,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::1z6wGjGtm5ljaWW7',
+        'as' => 'generated::bK3Rn14Sgr4bSU4N',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2647,6 +2774,232 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'product-types',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'ville-list' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/villes',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\VilleController@list',
+        'controller' => 'App\\Http\\Controllers\\Admin\\VilleController@list',
+        'namespace' => NULL,
+        'prefix' => 'admin/villes',
+        'where' => 
+        array (
+        ),
+        'as' => 'ville-list',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'show-ville-add' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/villes/add',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\VilleController@add',
+        'controller' => 'App\\Http\\Controllers\\Admin\\VilleController@add',
+        'namespace' => NULL,
+        'prefix' => 'admin/villes',
+        'where' => 
+        array (
+        ),
+        'as' => 'show-ville-add',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'ville-add' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/villes/add',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\VilleController@store',
+        'controller' => 'App\\Http\\Controllers\\Admin\\VilleController@store',
+        'namespace' => NULL,
+        'prefix' => 'admin/villes',
+        'where' => 
+        array (
+        ),
+        'as' => 'ville-add',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'show-ville-edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/villes/edit/{id?}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\VilleController@edit',
+        'controller' => 'App\\Http\\Controllers\\Admin\\VilleController@edit',
+        'namespace' => NULL,
+        'prefix' => 'admin/villes',
+        'where' => 
+        array (
+        ),
+        'as' => 'show-ville-edit',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'ville-update' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/villes/{id?}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\VilleController@update',
+        'controller' => 'App\\Http\\Controllers\\Admin\\VilleController@update',
+        'namespace' => NULL,
+        'prefix' => 'admin/villes',
+        'where' => 
+        array (
+        ),
+        'as' => 'ville-update',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'ville-delete' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/villes/delete/{id?}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\VilleController@delete',
+        'controller' => 'App\\Http\\Controllers\\Admin\\VilleController@delete',
+        'namespace' => NULL,
+        'prefix' => 'admin/villes',
+        'where' => 
+        array (
+        ),
+        'as' => 'ville-delete',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3143,7 +3496,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::p8xResvrbZcH50s3' => 
+    'generated::TLKlhECTPfM4uKlU' => 
     array (
       'methods' => 
       array (
@@ -3160,13 +3513,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:295:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007b80000000000000000";}";s:4:"hash";s:44:"qANb+gpRlVXOP8OwMUH9piNYdtPiIrJHZlpmBhJwEJ8=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007be0000000000000000";}";s:4:"hash";s:44:"kHWeO9isbqvHSP1Fuxsno6ZDlsMaauFYeC7VQhuct5U=";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::p8xResvrbZcH50s3',
+        'as' => 'generated::TLKlhECTPfM4uKlU',
       ),
       'fallback' => false,
       'defaults' => 
