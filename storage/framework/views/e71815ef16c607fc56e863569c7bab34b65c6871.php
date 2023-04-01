@@ -5,9 +5,9 @@
     <!-- Meta data -->
     <meta charset="UTF-8">
     <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
-    <meta content="Soukaina - Portfolio" name="description">
-    <meta content="Soukaina - Portfolio" name="author">
-    <meta name="keywords" content="Soukaina - Portfolio" />
+    <meta content="PAP - Admin" name="description">
+    <meta content="PAP - Admin" name="author">
+    <meta name="keywords" content="PAP - Admin" />
     <?php echo $__env->make('admin.layouts.custom-head', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </head>
 

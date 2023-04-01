@@ -137,6 +137,10 @@
                         <a class="slide-item" href="<?php echo e(url('/admin/commercialiser-contacts')); ?>">Depuis
                             commercialiser</a>
                     </li>
+                    <li>
+                        <a class="slide-item" href="<?php echo e(url('/admin/products/contacts')); ?>">Depuis
+                            produits</a>
+                    </li>
                 </ul>
             </li>
         <?php endif; ?>

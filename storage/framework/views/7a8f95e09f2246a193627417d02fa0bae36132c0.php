@@ -34,27 +34,43 @@
                                     </div>
                                     <div class="expanel-body">
                                         <div class="row">
-                                            <div class="col-12">
-                                                <label class="col-md-12 form-label">First Name</label>
+                                            <div class="col-6">
+                                                <label class="form-label">First Name</label>
                                                 <input class="form-control mb-4" placeholder="First Name" type="text"
                                                     wire:model.defer='firstname' value='<?php echo e(old('firstname')); ?>'>
                                             </div>
-                                            <div class="col-12">
-                                                <label class="col-md-12 form-label">Last Name</label>
+                                            <div class="col-6">
+                                                <label class="form-label">Last Name</label>
                                                 <input class="form-control mb-4" placeholder="Last Name" type="text"
                                                     wire:model.defer='lastname' value='<?php echo e(old('lastname')); ?>'>
                                             </div>
-                                            <div class="col-12">
-                                                <label class="col-md-12 form-label">Email</label>
+                                            <div class="col-6">
+                                                <label class="form-label">Email</label>
                                                 <input class="form-control mb-4" placeholder="Email" type="text"
                                                     wire:model.defer='email' value='<?php echo e(old('email')); ?>'>
                                             </div>
-                                            <div class="col-12">
-                                                <label class="col-md-12 form-label">Phone </label>
+                                            <div class="col-6">
+                                                <label class="form-label">Phone </label>
                                                 <input class="form-control mb-4" placeholder="Phone" maxlength="10"
                                                     type="text" wire:model.defer='phone'
                                                     value='<?php echo e(old('phone')); ?>'>
                                             </div>
+
+                                            <div class="col-12 mt-3">
+                                                <div class="input-group file-browser mb-3">
+                                                    <label class="form-label d-block w-100">Image </label>
+                                                    <input type="text"
+                                                        <?php if(!$avatar): ?> placeholder="choose" <?php else: ?> placeholder="selected &#x2713;" <?php endif; ?>
+                                                        readonly="" class="form-control border-right-0 browse-file">
+                                                    <label class="input-group-btn">
+                                                        <span class="btn btn-primary">Browse
+                                                            <input type="file" style="display: none;"
+                                                                wire:model='avatar'>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+
                                             <div class="col-12">
                                                 <div class="input-group ">
                                                     <label class="col-md-12 form-label">Password </label>
@@ -101,6 +117,7 @@ unset($__errorArgs, $__bag); ?>"
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -159,6 +176,8 @@ unset($__errorArgs, $__bag); ?>"
     </div>
 </div>
 <?php $__env->startPush('scripts'); ?>
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/fileupload/js/dropify.js')); ?>"></script>
+
     <script>
         $(function() {
             $('#select2-dropdown').select2();

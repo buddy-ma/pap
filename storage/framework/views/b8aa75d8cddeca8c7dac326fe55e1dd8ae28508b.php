@@ -84,9 +84,6 @@ echo $html;
             </div>
         </div>
     </div>
-
-    <?php echo \Livewire\Livewire::scripts(); ?>
-
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
     <!-- INTERNAL File uploads js -->

@@ -14,23 +14,47 @@
                         <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <div class="col-xl-4 col-6">
                                 <div class="card item-card">
-                                    <div class="card-body pb-0">
+                                    <div class="card-header">
+                                        <div class="card-title"> <?php echo e($product->title); ?></div>
+                                        <?php if($status == 1): ?>
+                                            <button wire:click="turnOff(<?php echo e($product->id); ?>)" type="button"
+                                                class="btn btn-icon btn-danger ml-auto"><i
+                                                    class="fe fe-trash"></i></button>
+                                        <?php else: ?>
+                                            <button wire:click="turnOn(<?php echo e($product->id); ?>)" type="button"
+                                                class="btn btn-icon btn-danger ml-auto"><i
+                                                    class="fe fe-trash"></i></button>
+                                        <?php endif; ?>
+
+                                    </div>
+                                    <div class="card-body">
                                         <div class="text-center">
-                                            <img src="<?php echo e(URL::asset('storage/product/images/' . $product->first_image()->image ?? 'admin_assets/images/products/1.jpg')); ?>"
-                                                alt="img" class="img-fluid w-100">
+                                            <?php if($product->first_image() !== null): ?>
+                                                <img src="<?php echo e(URL::asset('storage/product/images/' . $product->first_image()->image)); ?>"
+                                                    alt="img" class="img-fluid w-100" style="max-height: 300px">
+                                            <?php else: ?>
+                                                <img src="<?php echo e(URL::asset('admin_assets/images/products/1.jpg')); ?>"
+                                                    alt="img" class="img-fluid w-100">
+                                            <?php endif; ?>
                                         </div>
-                                        <div class="card-body px-0 ">
-                                            <div class="cardtitle">
-                                                <a class="shop-title"><?php echo e($product->title); ?></a>
+                                        <div class="card-body px-0 row pb-0">
+                                            <div class="col-12 mb-3">
+                                                <i class="fe fe-eye"></i> <?php echo e($product->vues); ?> vues
                                             </div>
-                                            <div class="cardprice">
-                                                <span class="number-font"><?php echo e($product->prix); ?></span>
+                                            <div class="col-12 mb-3">
+                                                <i class="fe fe-phone"></i> <?php echo e($product->vues_phone); ?> vues telephone
+                                            </div>
+                                            <div class="col-12">
+                                                <i class="fe fe-send"></i> <?php echo e(count($product->contacts)); ?> rempli le
+                                                formulaire
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="text-center pb-4 pl-4 pr-4">
+                                    <div class="card-footer text-center pb-4 pl-4 pr-4">
                                         <a href="#" class="btn btn-primary btn-block mb-2">
-                                            <i class="fe fe-eye mr-1"></i>View More</a>
+                                            <i class="fe fe-edit mr-1"></i>Modifier</a>
+                                        <a href="#" class="btn btn-success btn-block mb-2">
+                                            <i class="fe fe-eye mr-1"></i>Voir</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,78 +74,40 @@
                                     <div class="card-title"> Categories &amp; Fliters</div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                            id="checkbox-1" checked="">
-                                        <label for="checkbox-1" class="custom-control-label">Mens</label>
-                                    </div>
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                            id="checkbox-2">
-                                        <label for="checkbox-2" class="custom-control-label">Womens</label>
-                                    </div>
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                            id="checkbox-3">
-                                        <label for="checkbox-3" class="custom-control-label">Kids</label>
-                                    </div>
-                                    <div class="custom-checkbox custom-control">
-                                        <input type="checkbox" data-checkboxes="mygroup" class="custom-control-input"
-                                            id="checkbox-4">
-                                        <label for="checkbox-4" class="custom-control-label">Others</label>
-                                    </div>
                                     <div class="form-group mt-3">
                                         <label class="form-label">Category</label>
-                                        <select name="beast" id="select-beast"
-                                            class="form-control custom-select select2-show-search">
+                                        <select class="form-control" wire:model="selected_category">
                                             <option value="0">--Select--</option>
-                                            <option value="1">Dress</option>
-                                            <option value="2">Bags &amp; Purses</option>
-                                            <option value="3">Coat &amp; Jacket</option>
-                                            <option value="4">Beauty</option>
-                                            <option value="5">Jeans</option>
-                                            <option value="5">Jewellery</option>
-                                            <option value="5">Electronics</option>
-                                            <option value="5">Sports</option>
-                                            <option value="5">Technology</option>
-                                            <option value="5">Watches</option>
-                                            <option value="5">Accessories</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label">Brand</label>
-                                        <select name="beast" class="form-control custom-select select2-show-search">
-                                            <option value="0">--Select--</option>
-                                            <option value="1">White</option>
-                                            <option value="2">Black</option>
-                                            <option value="3">Red</option>
-                                            <option value="4">Green</option>
-                                            <option value="5">Blue</option>
-                                            <option value="6">Yellow</option>
+                                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ctg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($ctg->id); ?>"><?php echo e($ctg->title); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">Type</label>
-                                        <select name="beast" class="form-control custom-select select2-show-search">
+                                        <select class="form-control" wire:model="selected_type">
                                             <option value="0">--Select--</option>
-                                            <option value="1">Extra Small</option>
-                                            <option value="2">Small</option>
-                                            <option value="3">Medium</option>
-                                            <option value="4">Large</option>
-                                            <option value="5">Extra Large</option>
+                                            <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($type->id); ?>"><?php echo e($type->title); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
+                                </div>
+                                <div class="card-footer">
                                     <div class="form-group">
-                                        <label class="form-label">Color</label>
-                                        <select name="beast" class="form-control custom-select select2">
-                                            <option value="0">--Select--</option>
-                                            <option value="1">White</option>
-                                            <option value="2">Black</option>
-                                            <option value="3">Red</option>
-                                            <option value="4">Green</option>
-                                            <option value="5">Blue</option>
-                                            <option value="6">Yellow</option>
-                                        </select>
+                                        <label class="custom-switch"
+                                            <?php if($status == 1): ?> wire:click="off" <?php else: ?> wire:click="on" <?php endif; ?>>
+                                            <input type="checkbox" name="custom-switch-checkbox"
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                            <span class="custom-switch-description">
+                                                <?php if($status == 1): ?>
+                                                    Juste Désactivés
+                                                <?php else: ?>
+                                                    Juste activés
+                                                <?php endif; ?>
+                                            </span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
