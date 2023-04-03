@@ -16,15 +16,16 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('ville_id')->constrained();
-            $table->text('title');
-            $table->text('subtitle')->nullable();
-            $table->text('image')->nullable();
+            $table->foreignId('ville_id')->constrained()->nullable();
+            $table->string('quartier')->nullable();
+            $table->string('title');
+            $table->string('subtitle')->nullable();
+            $table->string('image')->nullable();
             $table->text('text');
             $table->text('tags')->nullable();
-            $table->text('video_link')->nullable();
-            $table->text('vr_link')->nullable();
-            $table->text('pdf_link')->nullable();
+            $table->string('video_link')->nullable();
+            $table->string('vr_link')->nullable();
+            $table->string('pdf_link')->nullable();
             $table->boolean('status')->default(0);
             $table->softDeletes();
             $table->timestamps();

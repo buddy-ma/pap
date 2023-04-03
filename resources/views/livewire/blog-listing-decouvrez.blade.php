@@ -13,7 +13,8 @@
                         <div class="card-header">
                             <h3 class="card-title">Blog List</h3>
                             @can('blog-create')
-                                <a href="{{ route('show-blog-add') }}" class="btn btn-primary float-right ml-auto">
+                                <a href="{{ route('show-blog-add-decouvrez') }}"
+                                    class="btn btn-primary float-right ml-auto">
                                     <i class="fe fe-plus mr-2"></i> Add Blog
                                 </a>
                             @endcan
@@ -43,13 +44,13 @@
                                             <option value="100">100</option>
                                         </select>
                                     </div>
-                                    <div id="sender_city" class="dataTables_filter float-left text-center ml-3"
+                                    <div class="dataTables_filter float-left text-center ml-3"
                                         style="width: 150px; display: inline-block">
-                                        <select wire:model='selected_category' aria-controls="example1"
+                                        <select wire:model='selected_ville' aria-controls="example1"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="0"> Filter by category </option>
-                                            @foreach ($categories as $cat)
-                                                <option value="{{ $cat->id }}">{{ $cat->title }}
+                                            <option value="0"> Filter by ville </option>
+                                            @foreach ($villes as $ville)
+                                                <option value="{{ $ville->id }}">{{ $ville->title }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -59,10 +60,11 @@
                                         <thead>
                                             <tr>
                                                 <th class="wd-15p border-bottom-0">Blog Title</th>
-                                                <th class="wd-15p border-bottom-0">Categorie</th>
+                                                <th class="wd-15p border-bottom-0">Ville</th>
                                                 <th class="wd-15p border-bottom-0">Blogger</th>
                                                 {{-- <th class="wd-15p border-bottom-0">Visits</th> --}}
-                                                <th class="wd-15p border-bottom-0">Date Creation</th>
+                                                <th class="wd-15p border-bottom-0">Status</th>
+                                                <th class="wd-15p border-bottom-0">Date</th>
                                                 <th class="wd-15p border-bottom-0">Actions</th>
                                             </tr>
                                         </thead>
@@ -71,12 +73,7 @@
                                                 <tr>
                                                     <td>{{ $blog->title }}</td>
                                                     <td>
-                                                        @if (!empty($blog->categories()))
-                                                            @foreach ($blog->categories()->get() as $categ)
-                                                                <label
-                                                                    class="badge badge-success">{{ $categ->title }}</label>
-                                                            @endforeach
-                                                        @endif
+                                                        {{ $blog->ville->title }}
                                                     </td>
                                                     <td>{{ $blog->user->firstname }} {{ $blog->user->lastname }}</td>
                                                     {{-- <td>{{ visits($blog)->count() }}</td> --}}

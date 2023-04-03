@@ -28,8 +28,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
     //Blogs
     Route::prefix('blogs')->group(function () {
         Route::get('/', [BlogController::class, 'list'])->name('blog-list');
+        Route::get('/decouvrez', [BlogController::class, 'decouvrez'])->name('blog-decouvrez');
         Route::get('/add', [BlogController::class, 'add'])->name('show-blog-add');
         Route::post('/add', [BlogController::class, 'store'])->name('blog-add');
+        Route::get('/add-decouvrez', [BlogController::class, 'addDecouvrez'])->name('show-blog-add-decouvrez');
+        Route::post('/add-decouvrez', [BlogController::class, 'storeDecouvrez'])->name('blog-add-decouvrez');
         Route::get('/update/{id?}', [BlogController::class, 'update'])->name('show-blog-update');
         Route::post('/{id?}', [BlogController::class, 'edit'])->name('blog-update');
         Route::delete('/delete/{id?}', [BlogController::class, 'delete'])->name('blog-delete');

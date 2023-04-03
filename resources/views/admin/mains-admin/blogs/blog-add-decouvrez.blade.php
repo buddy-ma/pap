@@ -1,14 +1,15 @@
-<?php $__env->startSection('css'); ?>
+@extends('admin.layouts.master')
+@section('css')
     <!-- INTERNAL File Uploads css -->
-    <link href="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/fancy_fileupload.css')); ?>" rel="stylesheet" />
+    <link href="{{ URL::asset('admin_assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
 
     <!-- INTERNAL File Uploads css-->
-    <link href="<?php echo e(URL::asset('admin_assets/plugins/fileupload/css/fileupload.css')); ?>" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('admin_assets/plugins/fileupload/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
     <!--INTERNAL Select2 css -->
-    <link href="<?php echo e(URL::asset('admin_assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
+    <link href="{{ URL::asset('admin_assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
 
     <!-- INTERNAL Sumoselect css-->
-    <link rel="stylesheet" href="<?php echo e(URL::asset('admin_assets/plugins/sumoselect/sumoselect.css')); ?>">
+    <link rel="stylesheet" href="{{ URL::asset('admin_assets/plugins/sumoselect/sumoselect.css') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
@@ -30,8 +31,8 @@
     </style>
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('page-header'); ?>
+@endsection
+@section('page-header')
     <!--Page header-->
     <div class="page-header">
         <div class="page-leftheader">
@@ -43,8 +44,8 @@
         </div>
     </div>
     <!--End Page header-->
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?>
+@endsection
+@section('content')
     <!-- Row -->
     <div class="row">
         <div class="col-lg-12 col-md-12">
@@ -53,25 +54,25 @@
                     <h3 class="card-title">Add Blog </h3>
                 </div>
                 <div class="card-body pb-2">
-                    <?php if($message = Session::get('success')): ?>
+                    @if ($message = Session::get('success'))
                         <div class="alert alert-success" role="alert"><button type="button" class="close"
                                 data-dismiss="alert" aria-hidden="true">×</button>
-                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i><?php echo e($message); ?>.
+                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>{{ $message }}.
                         </div>
-                    <?php endif; ?>
-                    <?php if(count($errors) > 0): ?>
+                    @endif
+                    @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             <strong>Whoops!</strong> There were some problems with your input.
                             <ul>
-                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><?php echo e($error); ?></li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
                             </ul>
                         </div>
-                    <?php endif; ?>
+                    @endif
 
-                    <form method="post" action="<?php echo e(route('blog-add')); ?>" enctype="multipart/form-data">
-                        <?php echo csrf_field(); ?>
+                    <form method="post" action="{{ route('blog-add-decouvrez') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-lg">
                                 <label>Title*</label>
@@ -84,24 +85,18 @@
                             </div>
                             <div class="col-lg">
                                 <div class="form-group">
-                                    <label>Categories*</label>
-                                    <select multiple="multiple" onchange="console.log($(this).children(':selected').length)"
-                                        id="categories" name="categories[]" class="search-box">
-                                        <?php if($categories): ?>
-                                            <?php $dash = ''; ?>
-                                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->title); ?>
-
-                                                </option>
-                                                <?php if(count($category->children) > 0): ?>
-                                                    <?php echo $__env->make('admin.mains-admin.blogs.subcateg-list', [
-                                                        'subcategories' => $category->children,
-                                                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        <?php endif; ?>
+                                    <label>Ville*</label>
+                                    <select name="ville" class="search-box">
+                                        @foreach ($villes as $ville)
+                                            <option value="{{ $ville->id }}">{{ $ville->title }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-lg">
+                                <label>Quartier</label>
+                                <input type="text" name="quartier" class="form-control" />
                             </div>
                         </div>
                         <div class="row">
@@ -143,40 +138,40 @@
                 </div>
             </div>
         </div>
-    <?php $__env->stopSection(); ?>
-    <?php $__env->startSection('js'); ?>
+    @endsection
+    @section('js')
         <!-- INTERNAL Select2 js -->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/select2/select2.full.min.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/select2.js')); ?>"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/select2/select2.full.min.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/js/select2.js') }}"></script>
 
         <!-- INTERNAL Datepicker js -->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/date-picker/date-picker.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/date-picker/jquery-ui.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js')); ?>"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/date-picker/date-picker.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/date-picker/jquery-ui.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
 
         <!-- INTERNAL File-Uploads Js-->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.ui.widget.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.fileupload.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.iframe-transport.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.fancy-fileupload.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/fancy-uploader.js')); ?>"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
 
         <!-- INTERNAL File uploads js -->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fileupload/js/dropify.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/filupload.js')); ?>"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/fileupload/js/dropify.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/js/filupload.js') }}"></script>
 
         <!--INTERNAL Sumoselect js-->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/sumoselect/jquery.sumoselect.js')); ?>"></script>
+        <script src="{{ URL::asset('admin_assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
 
         <!--INTERNAL Form Advanced Element -->
-        <script src="<?php echo e(URL::asset('admin_assets/js/formelementadvnced.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/form-elements.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/file-upload.js')); ?>"></script>
+        <script src="{{ URL::asset('admin_assets/js/formelementadvnced.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/js/form-elements.js') }}"></script>
+        <script src="{{ URL::asset('admin_assets/js/file-upload.js') }}"></script>
 
         <script type="text/javascript">
             CKEDITOR.config.height = 1000;
             CKEDITOR.replace('editor1', {
-                filebrowserUploadUrl: "<?php echo e(route('blog-add', ['_token' => csrf_token()])); ?>",
+                filebrowserUploadUrl: "{{ route('blog-add', ['_token' => csrf_token()]) }}",
                 filebrowserUploadMethod: 'form'
             });
         </script>
@@ -202,8 +197,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-        <script src="<?php echo e(asset('js/app.js')); ?>"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
         <script src="/js/app.js"></script>
-    <?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/blogs/blog-add.blade.php ENDPATH**/ ?>
+    @endsection

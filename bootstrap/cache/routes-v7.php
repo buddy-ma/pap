@@ -103,7 +103,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::XyUxor0ny6Br6pI2',
+            '_route' => 'generated::mQRKqJuLYbKqtS5L',
           ),
           1 => NULL,
           2 => 
@@ -123,7 +123,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::CppydLRJPb8dO9bE',
+            '_route' => 'generated::xqMNauzNs4vGWscL',
           ),
           1 => NULL,
           2 => 
@@ -160,7 +160,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::6pBigVNVy1hcLKIE',
+            '_route' => 'generated::8bhQXgyqp2k4N0l3',
           ),
           1 => NULL,
           2 => 
@@ -270,7 +270,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::7Bp8wXa2o3GJZVKc',
+            '_route' => 'generated::eFsPNM7R0XhCdqtf',
           ),
           1 => NULL,
           2 => 
@@ -289,7 +289,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::N68HPTdIQDHFszp5',
+            '_route' => 'generated::YeFBourGGhVkI2h6',
           ),
           1 => NULL,
           2 => 
@@ -408,6 +408,26 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/admin/blogs/decouvrez' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'blog-decouvrez',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/admin/blogs/add' => 
       array (
         0 => 
@@ -432,6 +452,42 @@ app('router')->setCompiledRoutes(
           0 => 
           array (
             '_route' => 'blog-add',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/admin/blogs/add-decouvrez' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'show-blog-add-decouvrez',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+        1 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'blog-add-decouvrez',
           ),
           1 => NULL,
           2 => 
@@ -811,7 +867,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::TLKlhECTPfM4uKlU',
+            '_route' => 'generated::LIEpb1kWicFDArCd',
           ),
           1 => NULL,
           2 => 
@@ -1046,7 +1102,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::bK3Rn14Sgr4bSU4N',
+            '_route' => 'generated::D4ILe8W2w13m3caU',
           ),
           1 => 
           array (
@@ -1570,7 +1626,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::XyUxor0ny6Br6pI2' => 
+    'generated::mQRKqJuLYbKqtS5L' => 
     array (
       'methods' => 
       array (
@@ -1582,7 +1638,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
-        'as' => 'generated::XyUxor0ny6Br6pI2',
+        'as' => 'generated::mQRKqJuLYbKqtS5L',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1598,7 +1654,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::CppydLRJPb8dO9bE' => 
+    'generated::xqMNauzNs4vGWscL' => 
     array (
       'methods' => 
       array (
@@ -1610,7 +1666,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
-        'as' => 'generated::CppydLRJPb8dO9bE',
+        'as' => 'generated::xqMNauzNs4vGWscL',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1663,7 +1719,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::6pBigVNVy1hcLKIE' => 
+    'generated::8bhQXgyqp2k4N0l3' => 
     array (
       'methods' => 
       array (
@@ -1683,7 +1739,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::6pBigVNVy1hcLKIE',
+        'as' => 'generated::8bhQXgyqp2k4N0l3',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1918,7 +1974,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::7Bp8wXa2o3GJZVKc' => 
+    'generated::eFsPNM7R0XhCdqtf' => 
     array (
       'methods' => 
       array (
@@ -1938,7 +1994,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::7Bp8wXa2o3GJZVKc',
+        'as' => 'generated::eFsPNM7R0XhCdqtf',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1954,7 +2010,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::N68HPTdIQDHFszp5' => 
+    'generated::YeFBourGGhVkI2h6' => 
     array (
       'methods' => 
       array (
@@ -1980,7 +2036,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::N68HPTdIQDHFszp5',
+        'as' => 'generated::YeFBourGGhVkI2h6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2188,6 +2244,44 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'blog-decouvrez' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/blogs/decouvrez',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\BlogController@decouvrez',
+        'controller' => 'App\\Http\\Controllers\\Admin\\BlogController@decouvrez',
+        'namespace' => NULL,
+        'prefix' => 'admin/blogs',
+        'where' => 
+        array (
+        ),
+        'as' => 'blog-decouvrez',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'show-blog-add' => 
     array (
       'methods' => 
@@ -2248,6 +2342,81 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'blog-add',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'show-blog-add-decouvrez' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin/blogs/add-decouvrez',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\BlogController@addDecouvrez',
+        'controller' => 'App\\Http\\Controllers\\Admin\\BlogController@addDecouvrez',
+        'namespace' => NULL,
+        'prefix' => 'admin/blogs',
+        'where' => 
+        array (
+        ),
+        'as' => 'show-blog-add-decouvrez',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'blog-add-decouvrez' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'admin/blogs/add-decouvrez',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'auth:web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\BlogController@storeDecouvrez',
+        'controller' => 'App\\Http\\Controllers\\Admin\\BlogController@storeDecouvrez',
+        'namespace' => NULL,
+        'prefix' => 'admin/blogs',
+        'where' => 
+        array (
+        ),
+        'as' => 'blog-add-decouvrez',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2412,7 +2581,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::bK3Rn14Sgr4bSU4N' => 
+    'generated::D4ILe8W2w13m3caU' => 
     array (
       'methods' => 
       array (
@@ -2434,7 +2603,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::bK3Rn14Sgr4bSU4N',
+        'as' => 'generated::D4ILe8W2w13m3caU',
       ),
       'fallback' => false,
       'defaults' => 
@@ -3496,7 +3665,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::TLKlhECTPfM4uKlU' => 
+    'generated::LIEpb1kWicFDArCd' => 
     array (
       'methods' => 
       array (
@@ -3513,13 +3682,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:295:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007be0000000000000000";}";s:4:"hash";s:44:"kHWeO9isbqvHSP1Fuxsno6ZDlsMaauFYeC7VQhuct5U=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"00000000000007c10000000000000000";}";s:4:"hash";s:44:"xHhMHD+w8dY72dzSyTvn3Nw+jq4voxvdyM8hqjMHxg4=";}}',
         'namespace' => NULL,
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::TLKlhECTPfM4uKlU',
+        'as' => 'generated::LIEpb1kWicFDArCd',
       ),
       'fallback' => false,
       'defaults' => 
