@@ -12,19 +12,49 @@ use Livewire\WithFileUploads;
 use App\Rules\PhoneValidation;
 use App\Models\ProductCategory;
 
-class AddProduct extends Component
+class EditProduct extends Component
 {
     use WithFileUploads;
 
+    public $product;
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
     public $category, $type, $title, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $i = 0;
 
-    public function mount()
+    public function mount($id)
     {
+        $this->product = Product::find($id);
+        $this->firstname = $this->product->proprietaire->firstname;
+        $this->lastname = $this->product->proprietaire->lastname;
+        $this->phone = $this->product->proprietaire->phone;
+        $this->email = $this->product->proprietaire->email;
+
+        $this->type = $this->product->product_type_id;
+        $this->category = $this->product->product_category_id;
+        $this->title = $this->product->title;
+        $this->description = $this->product->description;
+        $this->position = $this->product->latitude . ',' . $this->product->longitude;
+        $this->ville = $this->product->ville;
+        $this->quartier = $this->product->quartier;
+        $this->address = $this->product->address;
+        $this->prix = $this->product->prix;
+        $this->video = $this->product->video_link;
+        $this->vr = $this->product->vr_link;
+        $this->unite_surface = $this->product->unite_surface;
+        $this->surface = $this->product->surface;
+        $this->surface_habitable = $this->product->surface_habitable;
+        $this->surface_terrain = $this->product->surface_terrain;
+        $this->nbr_salons = $this->product->nbr_salons;
+        $this->nbr_chambres = $this->product->nbr_chambres;
+        foreach (json_decode($this->product->extras) as $key => $value) {
+            $this->hasextras[$key] = $value;
+        }
         $this->productcategories = ProductCategory::get();
+        foreach (json_decode($this->product->images) as $key => $value) {
+            $this->images[$key] = $value->image;
+        }
         array_push($this->images, $this->i);
     }
 
@@ -33,11 +63,11 @@ class AddProduct extends Component
         $this->producttypes = ProductType::when($this->category != 0, function ($query) {
             $query->where('product_category_id', $this->category);
         })->get();
-
         $this->productextras = ProductExtras::when($this->category != 0, function ($query) {
             $query->where('product_category_id', $this->category);
         })->get();
-        return view('livewire.add-product');
+
+        return view('livewire.edit-product');
     }
 
     public function save()
@@ -60,8 +90,8 @@ class AddProduct extends Component
             'surface_terrain' => 'nullable',
             'nbr_salons' => 'required',
             'nbr_chambres' => 'nullable',
-            'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
-            'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
+            // 'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+            // 'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
         ]);
 
         if (!$this->is_commercial) {
@@ -80,57 +110,56 @@ class AddProduct extends Component
             }
         }
 
-        $proprietaire = new Proprietaire();
-        $proprietaire->firstname = $this->firstname;
-        $proprietaire->lastname = $this->lastname;
-        $proprietaire->phone = $this->phone;
-        $proprietaire->email = $this->email;
+        $this->product->proprietaire->firstname = $this->firstname;
+        $this->product->proprietaire->lastname = $this->lastname;
+        $this->product->proprietaire->phone = $this->phone;
+        $this->product->proprietaire->email = $this->email;
         if ($this->is_promoteur) {
             if (!empty($this->logo)) {
                 $logo = md5(microtime()) . '.' . $this->logo->extension();
                 $this->logo->storeAs('public/product/logo', $logo);
-                $proprietaire->logo = $logo;
+                $this->product->proprietaire->logo = $logo;
             }
             if (!empty($this->pdf)) {
                 $pdf = md5(microtime()) . '.' . $this->pdf->extension();
                 $this->pdf->storeAs('public/product/pdf', $pdf);
-                $proprietaire->pdf = $pdf;
+                $this->product->proprietaire->pdf = $pdf;
             }
         }
-        $proprietaire->save();
+        $this->product->proprietaire->save();
 
-        $product = new Product();
-        $product->proprietaire_id = $proprietaire->id;
-        $product->product_type_id = $this->type;
-        $product->product_category_id = $this->category;
-        $product->title = $this->title;
-        $product->description = $this->description;
+        $this->product->product_type_id = $this->type;
+        $this->product->product_category_id = $this->category;
+        $this->product->title = $this->title;
+        $this->product->description = $this->description;
         $e = explode(",", $this->position);
-        $product->latitude = $e[0];
-        $product->longitude = $e[1];
-        $product->ville = $this->ville;
-        $product->quartier = $this->quartier;
-        $product->address = $this->address;
-        $product->prix = $this->prix;
-        $product->video_link = $this->video ?? '';
-        $product->vr_link = $this->vr ?? '';
-        $product->unite_surface = $this->unite_surface;
-        $product->surface = $this->surface;
-        $product->surface_habitable = $this->surface_habitable;
-        $product->surface_terrain = $this->surface_terrain;
-        $product->nbr_salons = $this->nbr_salons;
-        $product->nbr_chambres = $this->nbr_chambres;
+        $this->product->latitude = $e[0];
+        $this->product->longitude = $e[1];
+        $this->product->ville = $this->ville;
+        $this->product->quartier = $this->quartier;
+        $this->product->address = $this->address;
+        $this->product->prix = $this->prix;
+        $this->product->video_link = $this->video ?? '';
+        $this->product->vr_link = $this->vr ?? '';
+        $this->product->unite_surface = $this->unite_surface;
+        $this->product->surface = $this->surface;
+        $this->product->surface_habitable = $this->surface_habitable;
+        $this->product->surface_terrain = $this->surface_terrain;
+        $this->product->nbr_salons = $this->nbr_salons;
+        $this->product->nbr_chambres = $this->nbr_chambres;
         $extra = json_encode($this->hasextras);
-        $product->extras = $extra;
-        $product->save();
+        $this->product->extras = $extra;
+        $this->product->save();
         if (isset($this->images)) {
             foreach ($this->images as $img) {
-                $img_title = md5(microtime()) . '.' . $img->extension();
-                $img->storeAs('public/product/images/', $img_title);
-                ProductImages::create([
-                    'product_id' => $product->id,
-                    'image' => $img_title
-                ]);
+                if (is_file($img)) {
+                    $img_title = md5(microtime()) . '.' . $img->extension();
+                    $img->storeAs('public/product/images/', $img_title);
+                    ProductImages::create([
+                        'product_id' => $this->product->id,
+                        'image' => $img_title
+                    ]);
+                }
             }
         }
         $this->dispatchBrowserEvent('swal:modal', [

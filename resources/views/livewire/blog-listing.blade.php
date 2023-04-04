@@ -91,7 +91,6 @@
                                                     </td>
                                                     <td>{{ $blog->created_at }}</td>
                                                     <td>
-
                                                         <form action="{{ route('blog-delete', [$blog->id]) }}"
                                                             method="post">
                                                             @method('delete')

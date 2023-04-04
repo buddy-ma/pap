@@ -43,7 +43,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        @if ($is_promoteur)
+                                        <?php if($is_promoteur): ?>
                                             <div class="expanel-body">
                                                 <label class="form-label">Logo*</label>
                                                 <input type="file" class="dropify" data-height="180"
@@ -54,7 +54,7 @@
                                                 <input type="file" class="dropify" data-height="180"
                                                     wire:model="pdf" />
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -69,18 +69,18 @@
                                                 <label class="form-label">Category*</label>
                                                 <select wire:model="category" class="form-control">
                                                     <option>Select option</option>
-                                                    @foreach ($productcategories as $pc)
-                                                        <option value="{{ $pc->id }}">{{ $pc->title }}</option>
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $productcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($pc->id); ?>"><?php echo e($pc->title); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Type*</label>
                                                 <select wire:model="type" class="form-control">
                                                     <option>Select option</option>
-                                                    @foreach ($producttypes as $pt)
-                                                        <option value="{{ $pt->id }}">{{ $pt->title }}</option>
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $producttypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($pt->id); ?>"><?php echo e($pt->title); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -133,7 +133,7 @@
                                                 <label class="form-label">Surface*</label>
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
-                                            @if ($category == 1 || $category == 3)
+                                            <?php if($category == 1 || $category == 3): ?>
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Habitable</label>
                                                     <input type="text" wire:model="surface_habitable"
@@ -145,7 +145,7 @@
                                                     <input type="text" wire:model="surface_terrain"
                                                         class="form-control" />
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
                                             <div class="form-group">
                                                 <label class="form-label">Nbr Salons*</label>
                                                 <input type="number" wire:model="nbr_salons" class="form-control" />
@@ -159,14 +159,14 @@
                                         <div class="expanel-body">
                                             <ul class="list-group">
                                                 <label class="form-label">Extras</label>
-                                                @foreach ($productextras as $extra)
+                                                <?php $__currentLoopData = $productextras; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extra): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <label class="custom-control custom-checkbox">
-                                                        <input wire:model="hasextras.{{ $extra->id }}"
+                                                        <input wire:model="hasextras.<?php echo e($extra->id); ?>"
                                                             type="checkbox" class="custom-control-input"
-                                                            name="example-checkbox1" value="{{ $extra->title }}">
-                                                        <span class="custom-control-label">{{ $extra->title }}</span>
+                                                            name="example-checkbox1" value="<?php echo e($extra->title); ?>">
+                                                        <span class="custom-control-label"><?php echo e($extra->title); ?></span>
                                                     </label>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>
                                         </div>
                                     </div>
@@ -180,23 +180,38 @@
                                         </div>
                                         <div class="expanel-body">
                                             <div class="row">
-                                                @foreach ($images as $img)
+                                                <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke => $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="col-12 mb-3">
-                                                        <label class="form-label">Image {{ $loop->iteration }}*</label>
+                                                        <label class="form-label">Image <?php echo e($loop->iteration); ?>*</label>
                                                         <input type="file" data-height="100"
-                                                            wire:model="images.{{ $loop->index }}" />
+                                                            wire:model="images.<?php echo e($ke); ?>"
+                                                            value="<?php echo e($img); ?>" />
                                                         <button class="btn btn-danger ml-auto float-right"
                                                             type="button"
-                                                            wire:click="removeimg({{ $loop->index }})">
+                                                            wire:click="removeimg(<?php echo e($ke); ?>)">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </div>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>
                                             <button class="btn btn-primary btn-block" type="button"
                                                 wire:click="addImage">
                                                 Ajouter Image
                                             </button>
+                                        </div>
+                                        <div class="expanel-body row">
+                                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if(!empty($val)): ?>
+                                                    <div class="col-6">
+                                                        <div class="card mb-3">
+                                                            <div class="card-body p-1">
+                                                                <img
+                                                                    src="<?php echo e(URL::asset('storage/product/images/' . $val)); ?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -204,16 +219,16 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        @if (count($errors) > 0)
+                        <?php if(count($errors) > 0): ?>
                             <div class="alert alert-danger">
                                 <strong>Whoops!</strong> There were some problems with your input.
                                 <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                             </div>
-                        @endif
+                        <?php endif; ?>
                         <div class="btn-list text-right">
                             <button type="button" wire:click="save" class="btn btn-success">Save</button>
                         </div>
@@ -223,3 +238,4 @@
         </div>
     </div>
 </div>
+<?php /**PATH /var/www/html/resources/views/livewire/edit-product.blade.php ENDPATH**/ ?>
