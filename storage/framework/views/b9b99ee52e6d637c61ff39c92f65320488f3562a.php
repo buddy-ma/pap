@@ -46,7 +46,7 @@
                                     </div>
                                     <div id="sender_city" class="dataTables_filter float-left text-center ml-3"
                                         style="width: 150px; display: inline-block">
-                                        <select wire:model='selected_category'  aria-controls="example1"
+                                        <select wire:model='selected_category' aria-controls="example1"
                                             class="custom-select custom-select-sm form-control form-control-sm">
                                             <option value="0"> Filter by category </option>
                                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -82,9 +82,18 @@
                                                     </td>
                                                     <td><?php echo e($blog->user->firstname); ?> <?php echo e($blog->user->lastname); ?></td>
                                                     
+                                                    <td>
+                                                        <?php if($blog->status == 0): ?>
+                                                            <button class="btn-sm btn-danger mt-2"
+                                                                wire:click="enable(<?php echo e($blog->id); ?>)">Désactivé</button>
+                                                        <?php else: ?>
+                                                            <button class="btn-sm btn-success mt-2"
+                                                                wire:click="disable(<?php echo e($blog->id); ?>)">Activé</button>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td><?php echo e($blog->created_at); ?></td>
                                                     <td>
-                                                   
+
                                                         <form action="<?php echo e(route('blog-delete', [$blog->id])); ?>"
                                                             method="post">
                                                             <?php echo method_field('delete'); ?>

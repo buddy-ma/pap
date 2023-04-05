@@ -133,16 +133,19 @@
                                                 <label class="form-label">Surface*</label>
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Surface Habitable</label>
-                                                <input type="text" wire:model="surface_habitable"
-                                                    class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Surface Terrain</label>
-                                                <input type="text" wire:model="surface_terrain"
-                                                    class="form-control" />
-                                            </div>
+                                            <?php if($category == 1 || $category == 3): ?>
+                                                <div class="form-group">
+                                                    <label class="form-label">Surface Habitable</label>
+                                                    <input type="text" wire:model="surface_habitable"
+                                                        class="form-control" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Surface Terrain</label>
+                                                    <input type="text" wire:model="surface_terrain"
+                                                        class="form-control" />
+                                                </div>
+                                            <?php endif; ?>
                                             <div class="form-group">
                                                 <label class="form-label">Nbr Salons*</label>
                                                 <input type="number" wire:model="nbr_salons" class="form-control" />
@@ -155,16 +158,14 @@
                                         </div>
                                         <div class="expanel-body">
                                             <ul class="list-group">
+                                                <label class="form-label">Extras</label>
                                                 <?php $__currentLoopData = $productextras; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extra): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li class="list-group-item">
-                                                        <?php echo e($extra->title); ?>
-
-                                                        <div class="material-switch pull-right">
-                                                            <input wire:click="hasextras(<?php echo e($extra->title); ?>)"
-                                                                type="checkbox" />
-                                                            <label class="label-danger"></label>
-                                                        </div>
-                                                    </li>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input wire:model="hasextras.<?php echo e($extra->id); ?>"
+                                                            type="checkbox" class="custom-control-input"
+                                                            name="example-checkbox1" value="<?php echo e($extra->title); ?>">
+                                                        <span class="custom-control-label"><?php echo e($extra->title); ?></span>
+                                                    </label>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>
                                         </div>
@@ -196,6 +197,22 @@
                                                 wire:click="addImage">
                                                 Ajouter Image
                                             </button>
+                                        </div>
+                                        <div class="expanel-body">
+                                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <div class="col-6 col-md-3 input-group">
+                                                    <button type="button"
+                                                        class="btn btn-icon btn-outline-danger btn-delete mt-2 ml-2"
+                                                        wire:click="removeimg(<?php echo e($ke); ?>)">
+                                                        <i class="fas fa-trash m-0"></i>
+                                                    </button>
+
+                                                    <div class="dropify-wrapper" style="height: 160px;">
+                                                        <img src="storage/product/images/<?php echo e($val); ?>"
+                                                            style="height: 100%;width:100%">
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                     </div>
                                 </div>

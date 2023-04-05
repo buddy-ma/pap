@@ -3,41 +3,39 @@
 namespace App\Http\Livewire;
 
 use App\Models\Blog;
-use App\Models\Categorie;
+use App\Models\Ville;
 use Livewire\Component;
 
-class BlogListing extends Component
+class BlogListingDecouvrez extends Component
 {
-    public $categories, $selected_category;
+    public $selected_category, $selected_ville, $villes;
     public $search, $paginate, $order_by, $sort_by, $perPage;
 
-    public function mount($decouvrez = 0)
+    public function mount()
     {
-        if ($decouvrez == 1) {
-            $this->selected_category = 9;
-        } else {
-            $this->selected_category = 0;
-        }
+        $this->villes = Ville::get();
+        $this->selected_category = 9;
+        $this->selected_ville = 0;
         $this->search = '';
         $this->sort_by = 'DESC';
         $this->order_by = 'title';
         $this->perPage = 10;
-        $this->categories = Categorie::get();
     }
 
     public function render()
     {
         $blogs = Blog::leftJoin('blog_has_categories as bc', 'bc.blog_id', 'blogs.id')
-            ->when($this->selected_category != 0, function ($query) {
-                $query->where('bc.categorie_id', $this->selected_category);
+            ->when($this->selected_ville != 0, function ($query) {
+                $query->where('blogs.ville_id', $this->selected_ville);
             })
+            ->where('bc.categorie_id', $this->selected_category)
             ->groupBy('bc.blog_id')
             ->select('blogs.*')
             ->search(trim($this->search))
             ->orderby($this->order_by, $this->sort_by)
             ->paginate($this->perPage);
 
-        return view('livewire.blog-listing', [
+        return view('livewire.blog-listing-decouvrez', [
             'blogs' => $blogs
         ]);
     }

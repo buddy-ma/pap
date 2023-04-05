@@ -180,14 +180,15 @@
                                         </div>
                                         <div class="expanel-body">
                                             <div class="row">
-                                                @foreach ($images as $img)
+                                                @foreach ($images as $ke => $img)
                                                     <div class="col-12 mb-3">
                                                         <label class="form-label">Image {{ $loop->iteration }}*</label>
                                                         <input type="file" data-height="100"
-                                                            wire:model="images.{{ $loop->index }}" />
+                                                            wire:model="images.{{ $ke }}"
+                                                            value="{{ $img }}" />
                                                         <button class="btn btn-danger ml-auto float-right"
                                                             type="button"
-                                                            wire:click="removeimg({{ $loop->index }})">
+                                                            wire:click="removeimg({{ $ke }})">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </div>
@@ -197,6 +198,20 @@
                                                 wire:click="addImage">
                                                 Ajouter Image
                                             </button>
+                                        </div>
+                                        <div class="expanel-body row">
+                                            @foreach ($images as $ke => $val)
+                                                @if (!empty($val))
+                                                    <div class="col-6">
+                                                        <div class="card mb-3">
+                                                            <div class="card-body p-1">
+                                                                <img
+                                                                    src="{{ URL::asset('storage/product/images/' . $val) }}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

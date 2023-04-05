@@ -1,22 +1,24 @@
 <div>
     <div class="row flex-lg-nowrap mt-5">
         <div class="col-12">
-            @if (Session::get('success'))
+            <?php if(Session::get('success')): ?>
                 <div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert"
                         aria-hidden="true">×</button>
-                    <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>{{ Session::get('success') }}
+                    <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i><?php echo e(Session::get('success')); ?>
+
                 </div>
-            @endif
+            <?php endif; ?>
             <div class="row flex-lg-nowrap">
                 <div class="col-12 mb-3">
                     <div class="e-panel card">
                         <div class="card-header">
                             <h3 class="card-title">Blog List</h3>
-                            @can('blog-create')
-                                <a href="{{ route('show-blog-add') }}" class="btn btn-primary float-right ml-auto">
+                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-create')): ?>
+                                <a href="<?php echo e(route('show-blog-add-decouvrez')); ?>"
+                                    class="btn btn-primary float-right ml-auto">
                                     <i class="fe fe-plus mr-2"></i> Add Blog
                                 </a>
-                            @endcan
+                            <?php endif; ?>
                         </div>
                         <div class="card-body">
 
@@ -43,15 +45,16 @@
                                             <option value="100">100</option>
                                         </select>
                                     </div>
-                                    <div id="sender_city" class="dataTables_filter float-left text-center ml-3"
+                                    <div class="dataTables_filter float-left text-center ml-3"
                                         style="width: 150px; display: inline-block">
-                                        <select wire:model='selected_category' aria-controls="example1"
+                                        <select wire:model='selected_ville' aria-controls="example1"
                                             class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="0"> Filter by category </option>
-                                            @foreach ($categories as $cat)
-                                                <option value="{{ $cat->id }}">{{ $cat->title }}
+                                            <option value="0"> Filter by ville </option>
+                                            <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($ville->id); ?>"><?php echo e($ville->title); ?>
+
                                                 </option>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <table
@@ -59,61 +62,59 @@
                                         <thead>
                                             <tr>
                                                 <th class="wd-15p border-bottom-0">Blog Title</th>
-                                                <th class="wd-15p border-bottom-0">Categorie</th>
+                                                <th class="wd-15p border-bottom-0">Ville</th>
                                                 <th class="wd-15p border-bottom-0">Blogger</th>
-                                                {{-- <th class="wd-15p border-bottom-0">Visits</th> --}}
-                                                <th class="wd-15p border-bottom-0">Date Creation</th>
+                                                
+                                                <th class="wd-15p border-bottom-0">Status</th>
+                                                <th class="wd-15p border-bottom-0">Date</th>
                                                 <th class="wd-15p border-bottom-0">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody id="change-user">
-                                            @foreach ($blogs as $blog)
+                                            <?php $__currentLoopData = $blogs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <tr>
-                                                    <td>{{ $blog->title }}</td>
+                                                    <td><?php echo e($blog->title); ?></td>
                                                     <td>
-                                                        @if (!empty($blog->categories()))
-                                                            @foreach ($blog->categories()->get() as $categ)
-                                                                <label
-                                                                    class="badge badge-success">{{ $categ->title }}</label>
-                                                            @endforeach
-                                                        @endif
+                                                        <?php echo e($blog->ville->title); ?>
+
                                                     </td>
-                                                    <td>{{ $blog->user->firstname }} {{ $blog->user->lastname }}</td>
-                                                    {{-- <td>{{ visits($blog)->count() }}</td> --}}
+                                                    <td><?php echo e($blog->user->firstname); ?> <?php echo e($blog->user->lastname); ?></td>
+                                                    
                                                     <td>
-                                                        @if ($blog->status == 0)
+                                                        <?php if($blog->status == 0): ?>
                                                             <button class="btn-sm btn-danger mt-2"
-                                                                wire:click="enable({{ $blog->id }})">Désactivé</button>
-                                                        @else
+                                                                wire:click="enable(<?php echo e($blog->id); ?>)">Désactivé</button>
+                                                        <?php else: ?>
                                                             <button class="btn-sm btn-success mt-2"
-                                                                wire:click="disable({{ $blog->id }})">Activé</button>
-                                                        @endif
+                                                                wire:click="disable(<?php echo e($blog->id); ?>)">Activé</button>
+                                                        <?php endif; ?>
                                                     </td>
-                                                    <td>{{ $blog->created_at }}</td>
+                                                    <td><?php echo e($blog->created_at); ?></td>
                                                     <td>
-                                                        <form action="{{ route('blog-delete', [$blog->id]) }}"
+
+                                                        <form action="<?php echo e(route('blog-delete', [$blog->id])); ?>"
                                                             method="post">
-                                                            @method('delete')
-                                                            @csrf
-                                                            @can('blog-edit')
-                                                                <a href="{{ route('show-blog-update', [$blog->id]) }}"
+                                                            <?php echo method_field('delete'); ?>
+                                                            <?php echo csrf_field(); ?>
+                                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-edit')): ?>
+                                                                <a href="<?php echo e(route('show-blog-update', [$blog->id])); ?>"
                                                                     class="btn btn-primary">
                                                                     <i class="fe fe-edit"></i>
                                                                 </a>
-                                                                <a href="{{ route('show-blog-show', [$blog->id]) }}"
-                                                                    class="btn btn-success {{ $blog->ismodified && $blog->status == 0 ? 'flash' : '' }}">
+                                                                <a href="<?php echo e(route('show-blog-show', [$blog->id])); ?>"
+                                                                    class="btn btn-success <?php echo e($blog->ismodified && $blog->status == 0 ? 'flash' : ''); ?>">
                                                                     <i class="fe fe-eye"></i>
                                                                 </a>
-                                                            @endcan
-                                                            @can('blog-delete')
+                                                            <?php endif; ?>
+                                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-delete')): ?>
                                                                 <button type="submit" class="btn btn-danger">
                                                                     <i class="fe fe-trash"></i>
                                                                 </button>
-                                                            @endcan
+                                                            <?php endif; ?>
                                                         </form>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -125,3 +126,4 @@
         </div>
     </div>
 </div>
+<?php /**PATH /var/www/html/resources/views/livewire/blog-listing-decouvrez.blade.php ENDPATH**/ ?>

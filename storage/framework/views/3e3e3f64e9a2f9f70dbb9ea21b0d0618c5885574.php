@@ -70,7 +70,7 @@
                         </div>
                     <?php endif; ?>
 
-                    <form method="post" action="<?php echo e(route('blog-add')); ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?php echo e(route('blog-add-decouvrez')); ?>" enctype="multipart/form-data">
                         <?php echo csrf_field(); ?>
                         <div class="row">
                             <div class="col-lg">
@@ -84,24 +84,19 @@
                             </div>
                             <div class="col-lg">
                                 <div class="form-group">
-                                    <label>Categories*</label>
-                                    <select multiple="multiple" onchange="console.log($(this).children(':selected').length)"
-                                        id="categories" name="categories[]" class="search-box">
-                                        <?php if($categories): ?>
-                                            <?php $dash = ''; ?>
-                                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->title); ?>
+                                    <label>Ville*</label>
+                                    <select name="ville" class="search-box">
+                                        <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($ville->id); ?>"><?php echo e($ville->title); ?>
 
-                                                </option>
-                                                <?php if(count($category->children) > 0): ?>
-                                                    <?php echo $__env->make('admin.mains-admin.blogs.subcateg-list', [
-                                                        'subcategories' => $category->children,
-                                                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                                <?php endif; ?>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        <?php endif; ?>
+                                            </option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-lg">
+                                <label>Quartier</label>
+                                <input type="text" name="quartier" class="form-control" />
                             </div>
                         </div>
                         <div class="row">
@@ -206,4 +201,4 @@
         <script src="/js/app.js"></script>
     <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/blogs/blog-add.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/blogs/blog-add-decouvrez.blade.php ENDPATH**/ ?>

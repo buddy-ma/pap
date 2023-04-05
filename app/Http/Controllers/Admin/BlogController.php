@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
 use App\Models\User;
+use App\Models\Ville;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,10 +17,21 @@ class BlogController extends Controller
         return view('admin.mains-admin.blogs.blog-list');
     }
 
+    public function decouvrez()
+    {
+        return view('admin.mains-admin.blogs.blog-decouvrez');
+    }
+
     public function add()
     {
-        $categories = Categorie::with('children')->whereNull('parent_id')->get();
+        $categories = Categorie::with('children')->where('id', '!=', 9)->get();
         return view('admin.mains-admin.blogs.blog-add', ['categories' => $categories]);
+    }
+
+    public function addDecouvrez()
+    {
+        $villes = Ville::get();
+        return view('admin.mains-admin.blogs.blog-add-decouvrez', ['villes' => $villes]);
     }
 
     public function store(Request $request)
@@ -64,6 +76,52 @@ class BlogController extends Controller
         $blog->categories()->sync($request->categories);
         session()->flash('success', 'Blog has been created successfully');
         return redirect('admin/blogs');
+    }
+
+    public function storeDecouvrez(Request $request)
+    {
+        $blog = new Blog();
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+            $request->file('upload')->move(public_path('images'), $fileName);
+            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+            $url = asset('images/' . $fileName);
+            $msg = 'Image uploaded successfully';
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+            $blog->image = $url;
+            @header('Content-type: text/html; charset=utf-8');
+            echo $response;
+        }
+
+        $blog->user_id = Auth::id();
+        $blog->title = $request->title;
+        $blog->subtitle = $request->subtitle;
+        $blog->vr_link = $request->vr_link;
+        $blog->video_link = $request->video_link;
+        $blog->tags = $request->tags;
+        $blog->ville_id = $request->ville;
+        $blog->quartier = $request->quartier ?? '';
+        $blog->text = $request->editor1;
+
+        if ($request->hasFile('image')) {
+            $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images'), $filename);
+            $blog->image = $filename;
+        }
+
+        if ($request->hasFile('pdf')) {
+            $filenamepdf = date('YmdHi') . $request->file('pdf')->getClientOriginalName();
+            $request->file('pdf')->move(public_path('files'), $filenamepdf);
+            $blog->pdf_link = $filenamepdf;
+        }
+
+        $blog->save();
+        $blog->categories()->sync([9]);
+        session()->flash('success', 'Blog has been created successfully');
+        return redirect('admin/blogs/decouvrez');
     }
 
     public function update($id)

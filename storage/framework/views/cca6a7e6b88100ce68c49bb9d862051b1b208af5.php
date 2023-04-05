@@ -75,15 +75,15 @@
                         </path>
                         <circle cx="12" cy="9" r="2.5"></circle>
                     </svg>
-                    <span class="side-menu__label">Villes</span><i class="angle fa fa-angle-right"></i>
+                    <span class="side-menu__label">Decouvrez le maroc</span><i class="angle fa fa-angle-right"></i>
                 </a>
                 <ul class="slide-menu">
                     <li>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/villes')); ?>">Tous les villes</a>
                         <?php endif; ?>
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-create')): ?>
-                            <a class="slide-item" href="<?php echo e(url('/admin/villes/add')); ?>">Ajouter une ville</a>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/blogs/decouvrez')); ?>">Tous les articles</a>
                         <?php endif; ?>
                     </li>
                 </ul>
@@ -100,7 +100,7 @@
                             d="M16.66 4.52l2.83 2.83-2.83 2.83-2.83-2.83 2.83-2.83M9 5v4H5V5h4m10 10v4h-4v-4h4M9 15v4H5v-4h4m7.66-13.31L11 7.34 16.66 13l5.66-5.66-5.66-5.65zM11 3H3v8h8V3zm10 10h-8v8h8v-8zm-10 0H3v8h8v-8z">
                         </path>
                     </svg>
-                    <span class="side-menu__label">Articles</span><i class="angle fa fa-angle-right"></i>
+                    <span class="side-menu__label">Articles & Conseils</span><i class="angle fa fa-angle-right"></i>
                 </a>
                 <ul class="slide-menu">
                     <li>

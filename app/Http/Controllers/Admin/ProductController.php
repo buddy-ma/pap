@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +15,11 @@ class ProductController extends Controller
     public function add()
     {
         return view('admin.mains-admin.products.product-add');
+    }
+
+    public function edit($id)
+    {
+        return view('admin.mains-admin.products.product-edit', ['id' => $id]);
     }
 
     public function contacts()

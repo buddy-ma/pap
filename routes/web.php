@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UserController;
@@ -28,8 +29,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
     //Blogs
     Route::prefix('blogs')->group(function () {
         Route::get('/', [BlogController::class, 'list'])->name('blog-list');
+        Route::get('/decouvrez', [BlogController::class, 'decouvrez'])->name('blog-decouvrez');
         Route::get('/add', [BlogController::class, 'add'])->name('show-blog-add');
         Route::post('/add', [BlogController::class, 'store'])->name('blog-add');
+        Route::get('/add-decouvrez', [BlogController::class, 'addDecouvrez'])->name('show-blog-add-decouvrez');
+        Route::post('/add-decouvrez', [BlogController::class, 'storeDecouvrez'])->name('blog-add-decouvrez');
         Route::get('/update/{id?}', [BlogController::class, 'update'])->name('show-blog-update');
         Route::post('/{id?}', [BlogController::class, 'edit'])->name('blog-update');
         Route::delete('/delete/{id?}', [BlogController::class, 'delete'])->name('blog-delete');
@@ -43,9 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
     Route::prefix('products')->group(function () {
         Route::get('/', [ProductController::class, 'list'])->name('product-list');
         Route::get('/add', [ProductController::class, 'add'])->name('show-product-add');
-        Route::post('/add', [ProductController::class, 'store'])->name('product-add');
-        Route::get('/update/{id?}', [ProductController::class, 'update'])->name('show-product-update');
-        Route::post('/{id?}', [ProductController::class, 'edit'])->name('product-update');
+        Route::get('/edit/{id?}', [ProductController::class, 'edit'])->name('show-product-edit');
         Route::get('/contacts', [ProductController::class, 'contacts'])->name('product-contacts');
         Route::get('/types', [ProductController::class, 'types'])->name('product-types');
     });
@@ -83,4 +85,16 @@ Route::get('/blog/{id?}', [HomeController::class, 'blogDetails'])->name('blogDet
 
 Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
 
-// Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/storageLink', function () {
+    symlink('/home/agenhdbt/test.pap.ma/myapp/storage/app/public', '/home/agenhdbt/test.pap.ma/storage');
+
+    return redirect('/');
+});
+
+Route::get('/optimize', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    return redirect('/mgmt/dashboard');
+})->name('optimize');
