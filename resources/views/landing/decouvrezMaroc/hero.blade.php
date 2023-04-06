@@ -9,13 +9,14 @@
                         <div class="tab-content">
                             <div class="tab-pane fade show active">
                                 <div class="rld-main-search" style="max-height: 120px">
-                                    <form action="{{ route('decouvrezMaroc') }}" method="GET">
+                                    <form action="{{ route('decouvrezMaroc') }}" method="GET" id="decouvrezMaroc">
                                         @csrf
                                         <div class="row px-3 mb-2">
                                             <div class="col-9 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input name='search' type="text" value="{{ $term ?? '' }}"
-                                                        placeholder="Recherchez" required min="3">
+                                                    <input id="search" name='search' type="text"
+                                                        value="{{ $term ?? '' }}" placeholder="Recherchez" required
+                                                        min="3">
                                                 </div>
                                             </div>
 

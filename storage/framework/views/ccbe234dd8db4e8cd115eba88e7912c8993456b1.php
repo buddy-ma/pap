@@ -14,7 +14,7 @@
     <link href="<?php echo e(asset('assets/images/logo/favicon.png')); ?>" rel="shortcut icon">
 
     <!-- Font Family-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900" rel="stylesheet">
 
     <!--bootstrap css-->
     <link href="<?php echo e(asset('assets/css/bootstrap.css')); ?>" rel="stylesheet" type="text/css">
@@ -141,7 +141,7 @@
                 <div></div>
             </div>
         </div>-->
-    
+
 
     <?php echo $__env->make('partials.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
@@ -190,7 +190,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php echo $__env->yieldContent('js'); ?>
-    <?php if(Session::has('message')): ?>
+    <?php if (Session::has('message')) : ?>
         <script>
             Swal.fire({
                 icon: 'success',
@@ -198,7 +198,7 @@
                 text: '<?php echo e(session('message')); ?>',
             })
         </script>
-    <?php elseif(Session::has('thankyou')): ?>
+    <?php elseif (Session::has('thankyou')) : ?>
         <script>
             Swal.fire({
                 icon: 'success',
@@ -206,7 +206,7 @@
                 text: '<?php echo e(session('thankyou')); ?>',
             })
         </script>
-    <?php elseif(Session::has('error')): ?>
+    <?php elseif (Session::has('error')) : ?>
         <script>
             Swal.fire({
                 icon: 'error',
@@ -214,7 +214,7 @@
                 text: '<?php echo e(session('error')); ?>',
             })
         </script>
-    <?php elseif(Session::has('success')): ?>
+    <?php elseif (Session::has('success')) : ?>
         <script>
             Swal.fire({
                 icon: 'success',

@@ -29,11 +29,6 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function ville()
-    {
-        return $this->belongsTo(Ville::class);
-    }
-
     public function comments()
     {
         return $this->hasMany(Comment::class);
@@ -42,6 +37,11 @@ class Blog extends Model
     public function categories()
     {
         return $this->belongsToMany(Categorie::class, 'blog_has_categories');
+    }
+
+    public function ville()
+    {
+        return $this->belongsTo(Proprietaire::class, 'ville_id');
     }
 
     public function scopeSearch($query, $term)
@@ -55,13 +55,13 @@ class Blog extends Model
         });
     }
 
-    // public function scopeSimilaires($query, $count = 3)
-    // {
-    //     dd($query->category_id);
-    //     $category = Categorie::find($query->category_id);
-    //     $query = $query->where('category_id', $this->category_id)
-    //         ->where('slug', '!=', $this->slug);
 
-    //     return $query->take($count);
-    // }
+    public function scopeTags($query, $count = 10)
+    {
+        $tags = $query->pluck('tags')->toArray();
+        $tags = implode(',', $tags);
+        $tags = explode(',', $tags);
+        $tags = array_filter($tags);
+        return array_slice($tags, 0, $count);
+    }
 }

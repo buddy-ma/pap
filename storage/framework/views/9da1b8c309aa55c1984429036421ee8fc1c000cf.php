@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/jquery-ui.css')); ?>">
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CMontserrat:600,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CPoppins:600,800" rel="stylesheet">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="<?php echo e(asset('assets/font/flaticon.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/fontawesome-all.min.css')); ?>">
@@ -47,11 +47,7 @@
     </div>
 
     <!-- START PRELOADER -->
-    <div id="preloader">
-        <div id="status">
-            <div class="status-mes"></div>
-        </div>
-    </div>
+    
     <!-- END PRELOADER -->
 
     <!-- ARCHIVES JS -->
@@ -155,6 +151,41 @@
                 breakpoint: 769,
                 settings: {
                     slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false
+                }
+            }, ]
+        });
+    </script>
+    <script>
+        $('.slick-villes').slick({
+            infinite: true,
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            dots: false,
+            arrows: false,
+            adaptiveHeight: true,
+            responsive: [{
+                breakpoint: 1292,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 993,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                     dots: true,
                     arrows: false

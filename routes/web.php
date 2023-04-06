@@ -82,6 +82,7 @@ Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
 Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
 Route::get('/blog/{id?}', [HomeController::class, 'blogDetails'])->name('blogDetails');
+Route::get('/ville/{id?}', [HomeController::class, 'villeDetails'])->name('villeDetails');
 
 Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
 

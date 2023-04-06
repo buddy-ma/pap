@@ -4,11 +4,20 @@
 <?php $__env->startSection('bodyClasses', 'conseils homepage-3 the-search'); ?>
 
 <?php $__env->startSection('css'); ?>
-
+    <style>
+        .tags {
+            background: #555 !important;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
     <?php echo $__env->make('landing.conseils.hero', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('landing.decouvrezMaroc.tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <?php echo $__env->make('landing.conseils.catalogueConseilsMaroc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

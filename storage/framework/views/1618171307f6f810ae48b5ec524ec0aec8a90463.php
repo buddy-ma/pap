@@ -12,6 +12,47 @@
             max-height: 200px !important;
             height: auto;
         }
+
+        .details .title {
+            color: #3B84C5 !important;
+            font-weight: 600 !important;
+            text-transform: capitalize !important;
+        }
+
+        .admin p {
+            font-weight: 500;
+            color: #888;
+        }
+
+        .admin p b {
+            font-weight: 800;
+            color: #333;
+        }
+
+        .admin img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .news-item-descr p {
+            line-height: 30px !important;
+        }
+
+        .news-item-descr h2 {
+            line-height: 30px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .news-item-descr h3 {
+            line-height: 30px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
     </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
@@ -27,10 +68,20 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="news-item details no-mb2">
                         <div class="news-item-text details pb-0">
-                            <h2><?php echo e($blog->title); ?></h2>
-                            <div class="dates">
-                                <span class="date"><?php echo e($blog->updated_at->translatedFormat('F j, Y')); ?></span>
+                            <h2 class="title mb-4"><?php echo e($blog->title); ?></h2>
+                            <div class="admin">
+                                <?php if(isset($blog->user->avatar)): ?>
+                                    <img src="<?php echo e(asset('storage/users/' . $blog->user->avatar)); ?>" alt="">
+                                <?php else: ?>
+                                    <img src="<?php echo e(asset('assets/images/default.jpg')); ?>" alt="">
+                                <?php endif; ?>
+
+                                <p>Mis a jour par <b> <?php echo e($blog->user->firstname); ?> <?php echo e($blog->user->lastname); ?></b> le
+                                    <?php echo e($blog->updated_at->translatedFormat('F j, Y')); ?>
+
+                                </p>
                             </div>
+
                             <div class="news-item-descr big-news details visib mb-0">
                                 <p>
                                     <?php echo $blog->text; ?>

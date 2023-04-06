@@ -22,7 +22,7 @@
                     <li><a href="/">Location</a></li>
                     <li><a href="/">Vacances</a></li>
                     <li><a href="/">Immo neuf</a></li>
-                    <li><a href="/">Conseils</a></li>
+                    <li><a href="/conseils">Conseils</a></li>
                     <li><a href="/decouvrezMaroc">Decouvrez le maroc</a></li>
                     <li><a href="/commercialiser">Commercialiser Votre bien</a></li>
                 </ul>

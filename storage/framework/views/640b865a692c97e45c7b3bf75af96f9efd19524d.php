@@ -12,7 +12,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/jquery-ui.css')); ?>">
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CMontserrat:600,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i%7CPoppins:600,800" rel="stylesheet">
     <!-- FONT AWESOME -->
     <link rel="stylesheet" href="<?php echo e(asset('assets/font/flaticon.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/fontawesome-all.min.css')); ?>">
@@ -191,7 +191,7 @@
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <?php if(Session::has('message')): ?>
+    <?php if (Session::has('message')) : ?>
         <script>
             Swal.fire({
                 icon: 'success',
@@ -199,7 +199,7 @@
                 text: '<?php echo e(session('message')); ?>',
             })
         </script>
-    <?php elseif(Session::has('error')): ?>
+    <?php elseif (Session::has('error')) : ?>
         <script>
             Swal.fire({
                 icon: 'error',
@@ -207,7 +207,7 @@
                 text: '<?php echo e(session('error')); ?>',
             })
         </script>
-    <?php elseif(Session::has('success')): ?>
+    <?php elseif (Session::has('success')) : ?>
         <script>
             Swal.fire({
                 icon: 'success',
