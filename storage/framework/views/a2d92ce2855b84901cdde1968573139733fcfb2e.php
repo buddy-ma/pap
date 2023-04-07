@@ -25,7 +25,7 @@
 
     <?php echo $__env->make('landing.index.catalogueConseils', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <?php echo $__env->make('landing.index.villes', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
 
     <?php echo $__env->make('landing.index.catalogueConseilsMaroc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

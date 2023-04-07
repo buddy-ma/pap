@@ -96,10 +96,6 @@
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Date</label>
-                                                <input type="date" wire:model="date" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="form-label">Video</label>
                                                 <input type="text" wire:model="video" class="form-control" />
                                             </div>
@@ -130,26 +126,29 @@
                                                     tabindex="-1" aria-hidden="true">
                                                     <option>Select option</option>
                                                     <option value="m²">m²</option>
-                                                    <option value="cm²">cm²</option>
+                                                    <option value="hec">hec</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Surface*</label>
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
+                                            <?php if($category == 1 || $category == 3): ?>
+                                                <div class="form-group">
+                                                    <label class="form-label">Surface Habitable</label>
+                                                    <input type="text" wire:model="surface_habitable"
+                                                        class="form-control" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Surface Terrain</label>
+                                                    <input type="text" wire:model="surface_terrain"
+                                                        class="form-control" />
+                                                </div>
+                                            <?php endif; ?>
                                             <div class="form-group">
-                                                <label class="form-label">Surface Habitable</label>
-                                                <input type="text" wire:model="surface_habitable"
-                                                    class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Surface Terrain</label>
-                                                <input type="text" wire:model="surface_terrain"
-                                                    class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Nbr Pieces*</label>
-                                                <input type="number" wire:model="nbr_pieces" class="form-control" />
+                                                <label class="form-label">Nbr Salons*</label>
+                                                <input type="number" wire:model="nbr_salons" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Nbr Chambres</label>
@@ -159,41 +158,15 @@
                                         </div>
                                         <div class="expanel-body">
                                             <ul class="list-group">
-                                                <li class="list-group-item">
-                                                    Balcon terrace
-                                                    <div class="material-switch pull-right">
-                                                        <input wire:model="has_balcon_terrace" type="checkbox" />
-                                                        <label class="label-danger"></label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Garage parking
-                                                    <div class="material-switch pull-right">
-                                                        <input wire:model="has_garage_parking" type="checkbox" />
-                                                        <label class="label-danger"></label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Piscine
-                                                    <div class="material-switch pull-right">
-                                                        <input wire:model="has_piscine" type="checkbox" />
-                                                        <label class="label-danger"></label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Cave
-                                                    <div class="material-switch pull-right">
-                                                        <input wire:model="has_cave" type="checkbox" />
-                                                        <label class="label-danger"></label>
-                                                    </div>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Access Handicape
-                                                    <div class="material-switch pull-right">
-                                                        <input wire:model="has_access_handicape" type="checkbox" />
-                                                        <label class="label-danger"></label>
-                                                    </div>
-                                                </li>
+                                                <label class="form-label">Extras</label>
+                                                <?php $__currentLoopData = $productextras; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extra): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <label class="custom-control custom-checkbox">
+                                                        <input wire:model="hasextras.<?php echo e($extra->id); ?>"
+                                                            type="checkbox" class="custom-control-input"
+                                                            name="example-checkbox1" value="<?php echo e($extra->title); ?>">
+                                                        <span class="custom-control-label"><?php echo e($extra->title); ?></span>
+                                                    </label>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>
                                         </div>
                                     </div>
@@ -212,6 +185,11 @@
                                                         <label class="form-label">Image <?php echo e($loop->iteration); ?>*</label>
                                                         <input type="file" data-height="100"
                                                             wire:model="images.<?php echo e($loop->index); ?>" />
+                                                        <button class="btn btn-danger ml-auto float-right"
+                                                            type="button"
+                                                            wire:click="removeimg(<?php echo e($loop->index); ?>)">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
                                                     </div>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>

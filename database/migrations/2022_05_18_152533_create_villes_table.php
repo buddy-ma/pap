@@ -17,7 +17,7 @@ class CreateVillesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('image');
-            $table->string('video');
+            $table->string('video')->nullable();
             $table->text('text');
             $table->timestamps();
         });

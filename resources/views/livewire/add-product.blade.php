@@ -88,6 +88,10 @@
                                                 <input type="text" wire:model="title" class="form-control" />
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label">Reference*</label>
+                                                <input type="text" wire:model="reference" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label">Description*</label>
                                                 <textarea wire:model="description" class="form-control" rows="3"></textarea>
                                             </div>

@@ -1,4 +1,4 @@
-<header id="header-container" class="header head-tr">
+<header id="header-container" class="header head-tr ">
     <!-- Header -->
     <div id="header" class="head-tr bottom">
         <div class="container container-header">
@@ -25,6 +25,7 @@
                     <li><a href="/conseils">Conseils</a></li>
                     <li><a href="/decouvrezMaroc">Decouvrez le maroc</a></li>
                     <li><a href="/commercialiser">Commercialiser Votre bien</a></li>
+                    <li><a href="/catalog">Nos Services</a></li>
                 </ul>
             </nav>
         </div>

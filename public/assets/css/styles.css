@@ -5991,7 +5991,7 @@ a.button,
 }
 
 .homepage-3 .welcome-area {
-    height: 840px;
+    height: 740px;
     position: relative;
     z-index: 99;
 }
@@ -6011,7 +6011,7 @@ a.button,
 }
 
 .homepage-3 .hero-main {
-    padding: 243px 0;
+    padding: 200px 0;
 }
 
 @media (max-width: 550px) {

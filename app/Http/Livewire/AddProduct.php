@@ -18,7 +18,7 @@ class AddProduct extends Component
 
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
-    public $category, $type, $title, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $i = 0;
 
@@ -46,6 +46,7 @@ class AddProduct extends Component
         $this->validate([
             'type' => 'required',
             'title' => 'required|string|max:255|min:1',
+            'reference' => 'required|string|max:255|min:1',
             'description' => 'required|min:1',
             'position' => 'required|string|max:255|min:1',
             'ville' => 'required|string|max:255|min:1',
@@ -104,6 +105,7 @@ class AddProduct extends Component
         $product->product_type_id = $this->type;
         $product->product_category_id = $this->category;
         $product->title = $this->title;
+        $product->reference = $this->reference;
         $product->description = $this->description;
         $e = explode(",", $this->position);
         $product->latitude = $e[0];

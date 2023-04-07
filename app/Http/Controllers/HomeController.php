@@ -141,4 +141,9 @@ class HomeController extends Controller
         session()->flash('success', 'Blog has been updated sucssefuly');
         return redirect('/commercialiser');
     }
+
+    public function catalogue()
+    {
+        return view('catalogue');
+    }
 }

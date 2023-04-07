@@ -23,9 +23,28 @@
                             <div class="tab-pane fade show active">
                                 <div class="rld-main-search">
                                     <div class="row px-3 mb-2">
-                                        <div class="col-12 mb-4">
+                                        <div class="col-6 mb-4">
                                             <div class="rld-single-input">
-                                                <input type="text" placeholder="Ville">
+                                                <div class="rld-single-select">
+                                                    <select class="select single-select mr-0">
+                                                        <option>Villes</option>
+                                                        <option>Ville 1</option>
+                                                        <option>Ville 2</option>
+                                                        <option>Ville 3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 mb-4">
+                                            <div class="rld-single-input">
+                                                <div class="rld-single-select">
+                                                    <select class="select single-select mr-0">
+                                                        <option>Quartiers</option>
+                                                        <option>Quartier 1</option>
+                                                        <option>Quartier 2</option>
+                                                        <option>Quartier 3</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-6 mb-2">
@@ -61,12 +80,12 @@
                                         </div>
                                         <div class="col-6 mb-4">
                                             <div class="rld-single-input">
-                                                <input type="number" placeholder="Prix Max">
+                                                <input type="number" placeholder="Surface Min">
                                             </div>
                                         </div>
                                         <div class="col-6 mb-4">
                                             <div class="rld-single-input">
-                                                <input type="number" placeholder="Surface Max">
+                                                <input type="number" placeholder="Prix Max">
                                             </div>
                                         </div>
                                         <div class="col-12 mb-4">

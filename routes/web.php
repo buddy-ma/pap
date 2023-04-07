@@ -85,6 +85,7 @@ Route::get('/blog/{id?}', [HomeController::class, 'blogDetails'])->name('blogDet
 Route::get('/ville/{id?}', [HomeController::class, 'villeDetails'])->name('villeDetails');
 
 Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
+Route::get('/catalog', [HomeController::class, 'catalogue'])->name('catalogue');
 
 Route::get('/storageLink', function () {
     symlink('/home/agenhdbt/test.pap.ma/myapp/storage/app/public', '/home/agenhdbt/test.pap.ma/storage');
@@ -97,5 +98,5 @@ Route::get('/optimize', function () {
     Artisan::call('cache:clear');
     Artisan::call('route:clear');
     Artisan::call('view:clear');
-    return redirect('/mgmt/dashboard');
+    return redirect('/');
 })->name('optimize');

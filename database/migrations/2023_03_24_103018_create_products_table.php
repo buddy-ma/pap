@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('product_type_id')->constrained();
             $table->tinyInteger('is_dispo')->default(1);
             $table->tinyInteger('is_new')->default(1);
+            $table->string('reference');
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('extras')->nullable();
