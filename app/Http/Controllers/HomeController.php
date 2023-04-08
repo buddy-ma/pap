@@ -8,11 +8,14 @@ use App\Models\Categorie;
 use Illuminate\Http\Request;
 use App\Models\CommercialiserPage;
 use App\Models\CommercialiserContact;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
     public function home()
     {
+        $products = Product::where('status', 1)->get();
+
         $categoryConseils = Categorie::where('title', 'Conseils')->get();
         $conseils = $categoryConseils[0]->blogs()->take(3)->get();
 
@@ -25,6 +28,58 @@ class HomeController extends Controller
             'conseils' => $conseils,
             'articlesMaroc' => $articlesMaroc,
             'villes' => $villes,
+            'products' => $products
+        ]);
+    }
+
+    public function achat()
+    {
+        $products = Product::where([
+            'status' => 1,
+            'product_category_id' => 1,
+        ])->get();
+
+        return view('achat', [
+            'products' => $products
+        ]);
+    }
+
+
+
+    public function location()
+    {
+        $products = Product::where([
+            'status' => 1,
+            'product_category_id' => 2,
+        ])->get();
+
+        return view('location', [
+            'products' => $products
+        ]);
+    }
+
+    public function immoneuf()
+    {
+        $products = Product::where([
+            'status' => 1,
+            'product_category_id' => 3,
+        ])->get();
+        $villes = Product::villes();
+        return view('immoneuf', [
+            'products' => $products,
+            'villes' => $villes
+        ]);
+    }
+
+    public function vacances()
+    {
+        $products = Product::where([
+            'status' => 1,
+            'product_category_id' => 4,
+        ])->get();
+
+        return view('vacances', [
+            'products' => $products
         ]);
     }
 

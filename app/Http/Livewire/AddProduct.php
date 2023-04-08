@@ -60,7 +60,7 @@ class AddProduct extends Component
             'surface_habitable' => 'nullable',
             'surface_terrain' => 'nullable',
             'nbr_salons' => 'required',
-            'nbr_chambres' => 'nullable',
+            'nbr_chambres' => 'required',
             'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
             'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
         ]);

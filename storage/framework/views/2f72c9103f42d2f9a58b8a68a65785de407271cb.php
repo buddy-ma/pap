@@ -51,7 +51,8 @@
                                         </div>
                                     </div>
                                     <div class="card-footer text-center pb-4 pl-4 pr-4">
-                                        <a href="#" class="btn btn-primary btn-block mb-2">
+                                        <a href="/admin/products/edit/<?php echo e($product->id); ?>"
+                                            class="btn btn-primary btn-block mb-2">
                                             <i class="fe fe-edit mr-1"></i>Modifier</a>
                                         <a href="#" class="btn btn-success btn-block mb-2">
                                             <i class="fe fe-eye mr-1"></i>Voir</a>

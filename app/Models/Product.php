@@ -47,4 +47,15 @@ class Product extends Model
                 ->orWhere('products.description', 'like', $term);
         });
     }
+
+    public function scopeVilles($query, $count = 10)
+    {
+        $villes = $query->pluck('ville')->toArray();
+        $villes = implode(',', $villes);
+        $villes = explode(',', $villes);
+        $villes = array_filter($villes);
+        $villes = array_slice($villes, 0, $count);
+        $villes = array_unique($villes);
+        return $villes;
+    }
 }

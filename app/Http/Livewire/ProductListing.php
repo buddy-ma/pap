@@ -23,6 +23,20 @@ class ProductListing extends Component
         $this->types = ProductType::get();
     }
 
+    public function render()
+    {
+        $products = Product::where('status', $this->status)->when($this->selected_category != 0, function ($query) {
+            $query->where('product_category_id', $this->selected_category);
+        })->when($this->selected_type != 0, function ($query) {
+            $query->where('product_type_id', $this->selected_type);
+        })->search(trim($this->search))
+            ->paginate($this->perPage);
+
+        return view('livewire.product-listing', [
+            'products' => $products
+        ]);
+    }
+
     public function off()
     {
         $this->status = 0;
@@ -49,19 +63,6 @@ class ProductListing extends Component
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
             'message' => 'Saved Successfully!',
-        ]);
-    }
-    public function render()
-    {
-        $products = Product::where('status', $this->status)->when($this->selected_category != 0, function ($query) {
-            $query->where('product_category_id', $this->selected_category);
-        })->when($this->selected_type != 0, function ($query) {
-            $query->where('product_type_id', $this->selected_type);
-        })->search(trim($this->search))
-            ->paginate($this->perPage);
-
-        return view('livewire.product-listing', [
-            'products' => $products
         ]);
     }
 }

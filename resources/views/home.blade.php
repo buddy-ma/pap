@@ -4,6 +4,8 @@
 @section('bodyClasses', 'homepage-3 the-search')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/css/colors/blue.css') }}">
+
     <style>
         .ville h4 {
             position: relative;
