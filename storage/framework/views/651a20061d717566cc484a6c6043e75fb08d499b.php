@@ -2,21 +2,21 @@
 <section id="home" class="parallax-searchs section welcome-area overlay">
     <div class="hero-main">
         <div class="container">
-            <form action="{{ route('vacances') }}" method="GET">
-                <input type="hidden" name="category_id" id="category_id" value="4" style="display: none">
+            <form action="<?php echo e(route('achat')); ?>" method="GET">
+                <input type="hidden" name="category_id" id="category_id" value="1" style="display: none">
 
                 <div class="row">
                     <div class="col-12" style="max-width: 700px">
                         <div class="banner-search-wrap" data-aos="zoom-in">
                             <ul class="nav nav-tabs rld-banner-tab">
                                 <li class="nav-item">
-                                    <a class="nav-link " data-toggle="tab" href="#tabs_1">Achat</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs_1">Achat</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " data-toggle="tab" href="#tabs_2">Location</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs_2">Location</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs_3">Vacances</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs_3">Vacances</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs_4">ImmoNeuf</a>
@@ -31,12 +31,13 @@
                                                     <div class="rld-single-select">
                                                         <select name="ville" class="select single-select mr-0">
                                                             <option value="">Villes</option>
-                                                            @foreach ($villes as $vll)
-                                                                <option value="{{ $vll }}"
-                                                                    @if ($vll == $ville) selected @endif>
-                                                                    {{ $vll }}
+                                                            <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vll): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($vll); ?>"
+                                                                    <?php if($vll == $ville): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($vll); ?>
+
                                                                 </option>
-                                                            @endforeach
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -46,11 +47,12 @@
                                                     <div class="rld-single-select">
                                                         <select name="quartier" class="select single-select mr-0">
                                                             <option value="">Quartiers</option>
-                                                            @foreach ($quartiers as $qrt)
-                                                                <option value="{{ $qrt }}"
-                                                                    @if ($quartier == $qrt) selected @endif>
-                                                                    {{ $qrt }}
-                                                            @endforeach
+                                                            <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qrt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($qrt); ?>"
+                                                                    <?php if($quartier == $qrt): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($qrt); ?>
+
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -59,37 +61,38 @@
                                                 <div class="rld-single-select">
                                                     <select name="type_id" class="select single-select mr-0">
                                                         <option value="">Type</option>
-                                                        @foreach ($types as $type)
-                                                            <option value="{{ $type->id }}"
-                                                                @if ($type_id == $type->id) selected @endif>
-                                                                {{ $type->title }}
+                                                        <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($type->id); ?>"
+                                                                <?php if($type_id == $type->id): ?> selected <?php endif; ?>>
+                                                                <?php echo e($type->title); ?>
+
                                                             </option>
-                                                        @endforeach
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-2">
                                                 <div class="rld-single-input">
-                                                    <input name="nbr_pieces" value="{{ $nbr_pieces }}" type="number"
-                                                        placeholder="Nbr. pieces" max="{{ $nbr_pieces }}"
-                                                        value="{{ $nbr_pieces }}">
+                                                    <input name="nbr_pieces" value="<?php echo e($nbr_pieces); ?>" type="number"
+                                                        placeholder="Nbr. pieces" max="<?php echo e($nbr_pieces); ?>"
+                                                        value="<?php echo e($nbr_pieces); ?>">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input name="surface_min" value="{{ $surface_min }}"
+                                                    <input name="surface_min" value="<?php echo e($surface_min); ?>"
                                                         type="number" placeholder="Surface Min">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input name="prix_max" value="{{ $prix_max }}" type="number"
+                                                    <input name="prix_max" value="<?php echo e($prix_max); ?>" type="number"
                                                         placeholder="Prix Max">
                                                 </div>
                                             </div>
                                             <div class="col-12 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input name="reference" value="{{ $reference }}" type="text"
+                                                    <input name="reference" value="<?php echo e($reference); ?>" type="text"
                                                         placeholder="Réference...">
                                                 </div>
                                             </div>
@@ -108,3 +111,4 @@
         </div>
     </div>
 </section>
+<?php /**PATH C:\Users\ayman\Desktop\Project\pap\resources\views/landing/hero.blade.php ENDPATH**/ ?>

@@ -15,7 +15,7 @@ class CreateProductExtrasTable extends Migration
     {
         Schema::create('product_extras', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_category_id')->constrained();
+            $table->foreignId('product_type_id')->constrained();
             $table->string('title');
             $table->timestamps();
         });

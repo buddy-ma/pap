@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\CommercialiserPage;
 use App\Models\CommercialiserContact;
 use App\Models\Product;
+use App\Models\ProductType;
 
 class HomeController extends Controller
 {
@@ -32,29 +33,106 @@ class HomeController extends Controller
         ]);
     }
 
-    public function achat()
+    public function achat(Request $request)
     {
-        $products = Product::where([
-            'status' => 1,
-            'product_category_id' => 1,
-        ])->get();
+        if ($request->category) {
+            $products = Product::query()
+                ->where('status', 1)
+                ->when($request->category_id, function ($q) use ($request) {
+                    $q->where('product_category_id', $request->category_id);
+                })->when($request->type_id, function ($q) use ($request) {
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference, function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', 'like', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', 'like', $request->quartier);
+                })->when($request->nbr_pieces, function ($q) use ($request) {
+                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface_min', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix_max', '<', $request->prix_max);
+                })
+                ->get();
+        } else {
+            $products = Product::where([
+                'status' => 1,
+                'product_category_id' => 1,
+            ])->get();
+        }
+        $villes = Product::villes();
+        $quartiers = Product::quartiers();
+        $types = ProductType::where('product_category_id', 1)->get();
+        $nbr_pieces = Product::where('product_category_id', 1)->max('nbr_chambres');
 
         return view('achat', [
-            'products' => $products
+            'products' => $products,
+            'villes' => $villes,
+            'quartiers' => $quartiers,
+            'types' => $types,
+            'nbr_pieces' => $nbr_pieces,
+            'category_id' => $request->category_id,
+            'type_id' => $request->type_id,
+            'reference' => $request->reference,
+            'ville' => $request->ville,
+            'quartier' => $request->quartier,
+            'nbr_chambres' => $request->nbr_chambres,
+            'surface_min' => $request->surface_min,
+            'prix_max' => $request->prix_max,
         ]);
     }
 
-
-
-    public function location()
+    public function location(Request $request)
     {
-        $products = Product::where([
-            'status' => 1,
-            'product_category_id' => 2,
-        ])->get();
+        if ($request->category) {
+            $products = Product::query()
+                ->where('status', 1)
+                ->when($request->category_id, function ($q) use ($request) {
+                    $q->where('product_category_id', $request->category_id);
+                })->when($request->type_id, function ($q) use ($request) {
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference, function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', 'like', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', 'like', $request->quartier);
+                })->when($request->nbr_pieces, function ($q) use ($request) {
+                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface_min', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix_max', '<', $request->prix_max);
+                })
+                ->get();
+        } else {
+            $products = Product::where([
+                'status' => 1,
+                'product_category_id' => 2,
+            ])->get();
+        }
+
+        $villes = Product::villes();
+        $quartiers = Product::quartiers();
+        $types = ProductType::where('product_category_id', 2)->get();
+        $nbr_pieces = Product::where('product_category_id', 2)->max('nbr_chambres');
 
         return view('location', [
-            'products' => $products
+            'products' => $products,
+            'villes' => $villes,
+            'quartiers' => $quartiers,
+            'types' => $types,
+            'nbr_pieces' => $nbr_pieces,
+            'category_id' => $request->category_id,
+            'type_id' => $request->type_id,
+            'reference' => $request->reference,
+            'ville' => $request->ville,
+            'quartier' => $request->quartier,
+            'nbr_chambres' => $request->nbr_chambres,
+            'surface_min' => $request->surface_min,
+            'prix_max' => $request->prix_max,
         ]);
     }
 
@@ -71,15 +149,55 @@ class HomeController extends Controller
         ]);
     }
 
-    public function vacances()
+    public function vacances(Request $request)
     {
-        $products = Product::where([
-            'status' => 1,
-            'product_category_id' => 4,
-        ])->get();
+        if ($request->category) {
+            $products = Product::query()
+                ->where('status', 1)
+                ->when($request->category_id, function ($q) use ($request) {
+                    $q->where('product_category_id', $request->category_id);
+                })->when($request->type_id, function ($q) use ($request) {
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference, function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', 'like', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', 'like', $request->quartier);
+                })->when($request->nbr_pieces, function ($q) use ($request) {
+                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface_min', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix_max', '<', $request->prix_max);
+                })
+                ->get();
+        } else {
+            $products = Product::where([
+                'status' => 1,
+                'product_category_id' => 4,
+            ])->get();
+        }
+
+        $villes = Product::villes();
+        $quartiers = Product::quartiers();
+        $types = ProductType::where('product_category_id', 4)->get();
+        $nbr_pieces = Product::where('product_category_id', 4)->max('nbr_chambres');
 
         return view('vacances', [
-            'products' => $products
+            'products' => $products,
+            'villes' => $villes,
+            'quartiers' => $quartiers,
+            'types' => $types,
+            'nbr_pieces' => $nbr_pieces,
+            'category_id' => $request->category_id,
+            'type_id' => $request->type_id,
+            'reference' => $request->reference,
+            'ville' => $request->ville,
+            'quartier' => $request->quartier,
+            'nbr_chambres' => $request->nbr_chambres,
+            'surface_min' => $request->surface_min,
+            'prix_max' => $request->prix_max,
         ]);
     }
 
@@ -200,5 +318,34 @@ class HomeController extends Controller
     public function catalogue()
     {
         return view('catalogue');
+    }
+
+    public function heroForm(Request $request)
+    {
+        $category_id = $request->category_id ?? 0;
+        $type_id = $request->type_id ?? 0;
+        $ville = $request->ville ?? '';
+        $quartier = $request->quartier ?? '';
+        $nbr_pieces = $request->nbr_pieces;
+        $surface_min = $request->surface_min;
+        $prix_max = $request->prix_max ?? 100000000000;
+        $reference = $request->reference ?? '';
+
+        $products = Product::where('status', 1)
+            ->where('product_category_id', $category_id)
+            ->where('product_type_id', $type_id)
+            ->where('reference', 'like', $reference)
+            ->where('ville', 'like', $ville)
+            ->where('quartier', 'like', $quartier)
+            ->where('nbr_pieces', '>', $nbr_pieces)
+            ->where('surface_min', '>', $surface_min)
+            ->where('prix_max', '<', $prix_max)
+            ->get();
+
+
+        // if ($category_id == 1) {
+        // } elseif ($category_id == 2) {
+        // } elseif ($category_id == 3) {
+        // }
     }
 }

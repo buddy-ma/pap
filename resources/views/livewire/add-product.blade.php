@@ -115,7 +115,6 @@
                                                 <label class="form-label">Ville*</label>
                                                 <input type="text" wire:model="ville" class="form-control" />
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
                                                 <input type="text" wire:model="quartier" class="form-control" />

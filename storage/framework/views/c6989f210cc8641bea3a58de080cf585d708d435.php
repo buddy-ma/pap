@@ -2,6 +2,11 @@
 <?php $__env->startSection('css'); ?>
     <!--INTERNAL Select2 css -->
     <link href="<?php echo e(URL::asset('admin_assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
+    <style>
+        .selected {
+            border: 2px solid #4bff37;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-header'); ?>
     <!--Page header-->
@@ -29,15 +34,15 @@
             <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('product-types-admin')->html();
-} elseif ($_instance->childHasBeenRendered('NHsr10w')) {
-    $componentId = $_instance->getRenderedChildComponentId('NHsr10w');
-    $componentTag = $_instance->getRenderedChildComponentTagName('NHsr10w');
+} elseif ($_instance->childHasBeenRendered('x4WoVNM')) {
+    $componentId = $_instance->getRenderedChildComponentId('x4WoVNM');
+    $componentTag = $_instance->getRenderedChildComponentTagName('x4WoVNM');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('NHsr10w');
+    $_instance->preserveRenderedChild('x4WoVNM');
 } else {
     $response = \Livewire\Livewire::mount('product-types-admin');
     $html = $response->html();
-    $_instance->logRenderedChild('NHsr10w', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('x4WoVNM', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>

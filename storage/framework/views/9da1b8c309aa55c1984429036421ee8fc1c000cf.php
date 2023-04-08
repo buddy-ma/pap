@@ -248,6 +248,8 @@
         </script>
     <?php endif; ?>
     <script src="<?php echo e(asset('assets/js/script.js')); ?>"></script>
+    <!-- END HEADER SEARCH -->
+
     <?php echo $__env->yieldContent('js'); ?>
 
 </body>

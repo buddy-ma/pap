@@ -2,16 +2,18 @@
 <section id="home" class="parallax-searchs section welcome-area overlay">
     <div class="hero-main">
         <div class="container">
-            <form action="" method="POST">
+            <form action="{{ route('location') }}" method="GET">
+                <input type="hidden" name="category_id" id="category_id" value="2" style="display: none">
+
                 <div class="row">
                     <div class="col-12" style="max-width: 700px">
                         <div class="banner-search-wrap" data-aos="zoom-in">
                             <ul class="nav nav-tabs rld-banner-tab">
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs_1">Achat</a>
+                                    <a class="nav-link " data-toggle="tab" href="#tabs_1">Achat</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs_2">Location</a>
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs_2">Location</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs_3">Vacances</a>
@@ -27,11 +29,14 @@
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
-                                                        <select class="select single-select mr-0">
-                                                            <option>Villes</option>
-                                                            <option>Ville 1</option>
-                                                            <option>Ville 2</option>
-                                                            <option>Ville 3</option>
+                                                        <select name="ville" class="select single-select mr-0">
+                                                            <option value="">Villes</option>
+                                                            @foreach ($villes as $vll)
+                                                                <option value="{{ $vll }}"
+                                                                    @if ($vll == $ville) selected @endif>
+                                                                    {{ $vll }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -39,64 +44,57 @@
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
-                                                        <select class="select single-select mr-0">
-                                                            <option>Quartiers</option>
-                                                            <option>Quartier 1</option>
-                                                            <option>Quartier 2</option>
-                                                            <option>Quartier 3</option>
+                                                        <select name="quartier" class="select single-select mr-0">
+                                                            <option value="">Quartiers</option>
+                                                            @foreach ($quartiers as $qrt)
+                                                                <option value="{{ $qrt }}"
+                                                                    @if ($quartier == $qrt) selected @endif>
+                                                                    {{ $qrt }}
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-2">
                                                 <div class="rld-single-select">
-                                                    <select class="select single-select mr-0">
-                                                        <option>Type</option>
-                                                        <option>Type1</option>
-                                                        <option>Type2</option>
-                                                        <option>Type3</option>
-                                                        <option>Type4</option>
+                                                    <select name="type_id" class="select single-select mr-0">
+                                                        <option value="">Type</option>
+                                                        @foreach ($types as $type)
+                                                            <option value="{{ $type->id }}"
+                                                                @if ($type_id == $type->id) selected @endif>
+                                                                {{ $type->title }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-2">
-                                                <div class="form-group beds mb-0">
-                                                    <div class="nice-select form-control wide" tabindex="0">
-                                                        <span class="current"><i class="fa fa-bed"
-                                                                aria-hidden="true"></i>
-                                                            Nbr. pieces</span>
-                                                        <ul class="list">
-                                                            <li data-value="1" class="option selected">1</li>
-                                                            <li data-value="2" class="option">2</li>
-                                                            <li data-value="3" class="option">3</li>
-                                                            <li data-value="3" class="option">4</li>
-                                                            <li data-value="3" class="option">5</li>
-                                                            <li data-value="3" class="option">6</li>
-                                                            <li data-value="3" class="option">7</li>
-                                                            <li data-value="3" class="option">8</li>
-                                                            <li data-value="3" class="option">9</li>
-                                                            <li data-value="3" class="option">10</li>
-                                                        </ul>
-                                                    </div>
+                                                <div class="rld-single-input">
+                                                    <input name="nbr_pieces" value="{{ $nbr_pieces }}" type="number"
+                                                        placeholder="Nbr. pieces" max="{{ $nbr_pieces }}"
+                                                        value="{{ $nbr_pieces }}">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input type="number" placeholder="Surface Min">
+                                                    <input name="surface_min" value="{{ $surface_min }}"
+                                                        type="number" placeholder="Surface Min">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input type="number" placeholder="Prix Max">
+                                                    <input name="prix_max" value="{{ $prix_max }}" type="number"
+                                                        placeholder="Prix Max">
                                                 </div>
                                             </div>
                                             <div class="col-12 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input type="text" placeholder="Réference...">
+                                                    <input name="reference" value="{{ $reference }}" type="text"
+                                                        placeholder="Réference...">
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <a class="btn btn-yellow w-100" href="#">Recherchez</a>
+                                                <button class="btn btn-yellow w-100">Recherchez</button>
                                             </div>
                                         </div>
                                     </div>
@@ -110,4 +108,3 @@
         </div>
     </div>
 </section>
-<!-- END HEADER SEARCH -->

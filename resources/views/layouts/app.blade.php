@@ -252,6 +252,8 @@
         </script>
     @endif
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <!-- END HEADER SEARCH -->
+
     @yield('js')
 
 </body>

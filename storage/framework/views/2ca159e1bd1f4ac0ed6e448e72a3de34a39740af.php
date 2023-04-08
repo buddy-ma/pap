@@ -29,9 +29,11 @@
                                                     <div class="rld-single-select">
                                                         <select class="select single-select mr-0">
                                                             <option>Villes</option>
-                                                            <option>Ville 1</option>
-                                                            <option>Ville 2</option>
-                                                            <option>Ville 3</option>
+                                                            <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($ville); ?>"><?php echo e($ville); ?>
+
+                                                                </option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -41,9 +43,10 @@
                                                     <div class="rld-single-select">
                                                         <select class="select single-select mr-0">
                                                             <option>Quartiers</option>
-                                                            <option>Quartier 1</option>
-                                                            <option>Quartier 2</option>
-                                                            <option>Quartier 3</option>
+                                                            <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qrt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($qrt); ?>"><?php echo e($qrt); ?>
+
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -52,32 +55,18 @@
                                                 <div class="rld-single-select">
                                                     <select class="select single-select mr-0">
                                                         <option>Type</option>
-                                                        <option>Type1</option>
-                                                        <option>Type2</option>
-                                                        <option>Type3</option>
-                                                        <option>Type4</option>
+                                                        <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($type->id); ?>"><?php echo e($type->title); ?>
+
+                                                            </option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-2">
-                                                <div class="form-group beds mb-0">
-                                                    <div class="nice-select form-control wide" tabindex="0">
-                                                        <span class="current"><i class="fa fa-bed"
-                                                                aria-hidden="true"></i>
-                                                            Nbr. pieces</span>
-                                                        <ul class="list">
-                                                            <li data-value="1" class="option selected">1</li>
-                                                            <li data-value="2" class="option">2</li>
-                                                            <li data-value="3" class="option">3</li>
-                                                            <li data-value="3" class="option">4</li>
-                                                            <li data-value="3" class="option">5</li>
-                                                            <li data-value="3" class="option">6</li>
-                                                            <li data-value="3" class="option">7</li>
-                                                            <li data-value="3" class="option">8</li>
-                                                            <li data-value="3" class="option">9</li>
-                                                            <li data-value="3" class="option">10</li>
-                                                        </ul>
-                                                    </div>
+                                                <div class="rld-single-input">
+                                                    <input type="number" placeholder="Nbr. pieces"
+                                                        max="<?php echo e($nbr_pieces); ?>">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">

@@ -37,10 +37,12 @@
                                         <div class="expanel-body">
                                             <ul class="list-group mb-0">
                                                 <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li class="list-group-item d-flex border-top-0 border-left-0 border-right-0 pt-5"
-                                                        tabindex="0">
-                                                        <div class="w-3 h-3 bg-success mr-3 mt-1 brround">
-                                                        </div>
+                                                    <li class="list-group-item d-flex border-top-0 border-left-0 border-right-0 pt-5 "
+                                                        tabindex="0" wire:click="selectType(<?php echo e($type->id); ?>)">
+                                                        <?php if($type->id == $selected_type): ?>
+                                                            <div class="w-3 h-3 bg-success mr-3 mt-1 brround">
+                                                            </div>
+                                                        <?php endif; ?>
                                                         <h5 class="d-inline"><?php echo e($type->title); ?></h5>
                                                         <p class="mb-0 text-muted fs-12 ml-auto float-right">
                                                             <strong>
@@ -78,8 +80,7 @@
                                                 <?php $__currentLoopData = $extras; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extra): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <li class="list-group-item d-flex border-top-0 border-left-0 border-right-0 pt-5"
                                                         tabindex="0">
-                                                        <div class="w-3 h-3 bg-success mr-3 mt-1 brround">
-                                                        </div>
+
                                                         <h5 class="d-inline"><?php echo e($extra->title); ?></h5>
                                                         <p class="mb-0 text-muted fs-12 ml-auto float-right">
                                                             <strong>

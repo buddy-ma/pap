@@ -48,14 +48,29 @@ class Product extends Model
         });
     }
 
-    public function scopeVilles($query, $count = 10)
+    public function scopeVilles($query, $count = 0)
     {
         $villes = $query->pluck('ville')->toArray();
         $villes = implode(',', $villes);
         $villes = explode(',', $villes);
         $villes = array_filter($villes);
-        $villes = array_slice($villes, 0, $count);
+        if ($count != 0) {
+            $villes = array_slice($villes, 0, $count);
+        }
         $villes = array_unique($villes);
         return $villes;
+    }
+
+    public function scopeQuartiers($query, $count = 0)
+    {
+        $quartiers = $query->pluck('quartier')->toArray();
+        $quartiers = implode(',', $quartiers);
+        $quartiers = explode(',', $quartiers);
+        $quartiers = array_filter($quartiers);
+        if ($count != 0) {
+            $quartiers = array_slice($quartiers, 0, $count);
+        }
+        $quartiers = array_unique($quartiers);
+        return $quartiers;
     }
 }

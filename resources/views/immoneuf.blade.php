@@ -29,7 +29,7 @@
 @endsection
 @section('content')
 
-    @include('landing.immoneuf.hero')
+    @include('landing.hero')
     @include('landing.immoneuf.villes-tags')
 
     @include('landing.immoneuf.catalogueProduits')

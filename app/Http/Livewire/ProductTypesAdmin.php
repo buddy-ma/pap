@@ -25,13 +25,21 @@ class ProductTypesAdmin extends Component
             $query->where('product_category_id', $this->selected_category);
         })->get();
 
-        $this->extras = ProductExtras::when($this->selected_category != 0, function ($query) {
-            $query->where('product_category_id', $this->selected_category);
+        $this->extras = ProductExtras::when($this->selected_type != 0, function ($query) {
+            $query->where('product_type_id', $this->selected_type);
         })->get();
 
         return view('livewire.product-types-admin');
     }
 
+    public function selectType($id)
+    {
+        if ($this->selected_type != $id) {
+            $this->selected_type = $id;
+        } else {
+            $this->selected_type = null;
+        }
+    }
     public function add()
     {
         $this->dispatchBrowserEvent('swal:addType', [
@@ -129,7 +137,7 @@ class ProductTypesAdmin extends Component
     public function submitAddExtra($title)
     {
         $extra = new ProductExtras();
-        $extra->product_category_id = $this->selected_category;
+        $extra->product_type_id = $this->selected_type;
         $extra->title = $title;
         $extra->save();
         $this->dispatchBrowserEvent('swal:modal', [

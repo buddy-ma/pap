@@ -37,10 +37,12 @@
                                         <div class="expanel-body">
                                             <ul class="list-group mb-0">
                                                 @foreach ($types as $type)
-                                                    <li class="list-group-item d-flex border-top-0 border-left-0 border-right-0 pt-5"
-                                                        tabindex="0">
-                                                        <div class="w-3 h-3 bg-success mr-3 mt-1 brround">
-                                                        </div>
+                                                    <li class="list-group-item d-flex border-top-0 border-left-0 border-right-0 pt-5 "
+                                                        tabindex="0" wire:click="selectType({{ $type->id }})">
+                                                        @if ($type->id == $selected_type)
+                                                            <div class="w-3 h-3 bg-success mr-3 mt-1 brround">
+                                                            </div>
+                                                        @endif
                                                         <h5 class="d-inline">{{ $type->title }}</h5>
                                                         <p class="mb-0 text-muted fs-12 ml-auto float-right">
                                                             <strong>
@@ -78,8 +80,7 @@
                                                 @foreach ($extras as $extra)
                                                     <li class="list-group-item d-flex border-top-0 border-left-0 border-right-0 pt-5"
                                                         tabindex="0">
-                                                        <div class="w-3 h-3 bg-success mr-3 mt-1 brround">
-                                                        </div>
+
                                                         <h5 class="d-inline">{{ $extra->title }}</h5>
                                                         <p class="mb-0 text-muted fs-12 ml-auto float-right">
                                                             <strong>

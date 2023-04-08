@@ -2,6 +2,11 @@
 @section('css')
     <!--INTERNAL Select2 css -->
     <link href="{{ URL::asset('admin_assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
+    <style>
+        .selected {
+            border: 2px solid #4bff37;
+        }
+    </style>
 @endsection
 @section('page-header')
     <!--Page header-->

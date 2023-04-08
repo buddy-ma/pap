@@ -9,8 +9,8 @@ class ProductExtras extends Model
 {
     use HasFactory;
 
-    public function category()
+    public function type()
     {
-        return $this->belongsTo(ProductCategory::class, 'product_category_id');
+        return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 }
