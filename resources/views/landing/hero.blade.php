@@ -2,7 +2,7 @@
 <section id="home" class="parallax-searchs section welcome-area overlay">
     <div class="hero-main">
         <div class="container">
-            <form action="{{ route('vacances') }}" method="GET">
+            <form action="{{ route($active) }}" method="GET" id="heroForm">
                 <input type="hidden" name="category_id" id="category_id" value="4" style="display: none">
 
                 <div class="row">
@@ -10,16 +10,16 @@
                         <div class="banner-search-wrap" data-aos="zoom-in">
                             <ul class="nav nav-tabs rld-banner-tab">
                                 <li class="nav-item">
-                                    <a class="nav-link " data-toggle="tab" href="#tabs_1">Achat</a>
+                                    <a class="nav-link" id="tab1" onclick="switchType('achat')">Achat</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " data-toggle="tab" href="#tabs_2">Location</a>
+                                    <a class="nav-link" id="tab2" onclick="switchType('location')">Location</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs_3">Vacances</a>
+                                    <a class="nav-link" id="tab3" onclick="switchType('vacances')">Vacances</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs_4">ImmoNeuf</a>
+                                    <a class="nav-link" id="tab4" onclick="switchType('immoneuf')">ImmoNeuf</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -108,3 +108,41 @@
         </div>
     </div>
 </section>
+
+@section('js')
+    <script>
+        $(document).ready(function() {
+            var active = '{{ $active }}';
+            switchType(active);
+        });
+
+        function switchType(n) {
+            $('.nav-link').removeClass('active');
+            switch (n) {
+                case "achat":
+                    $('#tab1').addClass('active');
+                    $('#category_id').val(1);
+                    $('#heroForm').attr('action', '{{ route('achat') }}');
+                    break;
+                case "location":
+                    $('#tab2').addClass('active');
+                    $('#category_id').val(2);
+                    $('#heroForm').attr('action', '{{ route('location') }}');
+                    break;
+                case "vacances":
+                    $('#tab3').addClass('active');
+                    $('#category_id').val(3);
+                    $('#heroForm').attr('action', '{{ route('vacances') }}');
+                    break;
+                case "immoneuf":
+                    $('#tab4').addClass('active');
+                    $('#category_id').val(4);
+                    $('#heroForm').attr('action', '{{ route('immoneuf') }}');
+                    break;
+                default:
+                    $('#tab1').addClass('active');
+                    $('#category_id').val(1);
+            }
+        }
+    </script>
+@endsection

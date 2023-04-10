@@ -21,7 +21,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
-    <?php echo $__env->make('landing.hero', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('landing.hero', ['active' => 'achat'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <?php echo $__env->make('landing.achat.catalogueProduits', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

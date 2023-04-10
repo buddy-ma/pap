@@ -21,7 +21,7 @@
 @endsection
 @section('content')
 
-    @include('landing.index.hero')
+    @include('landing.hero', ['active' => 'achat'])
 
     @include('landing.index.catalogueProduits')
 

@@ -17862,8 +17862,10 @@ div.datedropper.my-style.picker-lkd .pick-submit {
 }
 
 #map-contact {
+    max-height: 300px;
     width: 100%;
     height: 300px;
+    overflow: hidden;
 }
 
 .contact-map {

@@ -10,16 +10,16 @@
                         <div class="banner-search-wrap" data-aos="zoom-in">
                             <ul class="nav nav-tabs rld-banner-tab">
                                 <li class="nav-item">
-                                    <a class="nav-link " data-toggle="tab" href="#tabs_1">Achat</a>
+                                    <a class="nav-link" id="tab1" onclick="switchType(1)">Achat</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link " data-toggle="tab" href="#tabs_2">Location</a>
+                                    <a class="nav-link" id="tab2" onclick="switchType(2)">Location</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs_3">Vacances</a>
+                                    <a class="nav-link active" id="tab3" onclick="switchType(3)">Vacances</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs_4">ImmoNeuf</a>
+                                    <a class="nav-link" id="tab4" onclick="switchType(4)">ImmoNeuf</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -111,4 +111,14 @@
         </div>
     </div>
 </section>
+
+<?php $__env->startSection('js'); ?>
+    <script>
+        function switchType($n) {
+            $('#category_id').val($n);
+            $('.nav-link').removeClass('active');
+            $('#tab' + $n).addClass('active');
+        }
+    </script>
+<?php $__env->stopSection(); ?>
 <?php /**PATH C:\Users\ayman\Desktop\Project\pap\resources\views/landing/vacances/hero.blade.php ENDPATH**/ ?>
