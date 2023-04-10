@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreignId('product_category_id')->constrained();
             $table->foreignId('product_type_id')->constrained();
             $table->tinyInteger('is_dispo')->default(1);
+            $table->string('disponibilite')->nullable();
             $table->tinyInteger('is_new')->default(1);
             $table->string('reference');
             $table->string('title');

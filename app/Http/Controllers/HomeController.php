@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Models\CommercialiserPage;
 use App\Models\CommercialiserContact;
 use App\Models\Product;
+use App\Models\ProductContact;
 use App\Models\ProductType;
+use App\Models\Proprietaire;
 
 class HomeController extends Controller
 {
@@ -23,31 +25,48 @@ class HomeController extends Controller
         $categoryMaroc = Categorie::where('title', 'DecouvrezLeMaroc')->get();
         $articlesMaroc = $categoryMaroc[0]->blogs()->take(3)->get();
 
-        $villes = Ville::take(4)->get();
+        $citys = Ville::take(4)->get();
+
+        $villes = Product::villes();
+        $quartiers = Product::quartiers();
+        $types = ProductType::where('product_category_id', 1)->get();
+        $nbr_pieces = Product::where('product_category_id', 1)->max('nbr_chambres');
+
 
         return view('home', [
             'conseils' => $conseils,
             'articlesMaroc' => $articlesMaroc,
+            'citys' => $citys,
+            'quartiers' => $quartiers,
+            'types' => $types,
+            'nbr_pieces' => $nbr_pieces,
+            'products' => $products,
             'villes' => $villes,
-            'products' => $products
+            'category_id' => '',
+            'type_id' => '',
+            'reference' => '',
+            'ville' => '',
+            'quartier' => '',
+            'nbr_chambres' => '',
+            'surface_min' => '',
+            'prix_max' => '',
         ]);
     }
 
     public function achat(Request $request)
     {
-        if ($request->category) {
+        if ($request->category_id) {
             $products = Product::query()
                 ->where('status', 1)
-                ->when($request->category_id, function ($q) use ($request) {
-                    $q->where('product_category_id', $request->category_id);
+                ->where('product_category_id', $request->category_id)
+                ->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', $request->quartier);
                 })->when($request->type_id, function ($q) use ($request) {
                     $q->where('product_type_id', $request->type_id);
-                })->when($request->reference, function ($q) use ($request) {
+                })->when($request->reference != '', function ($q) use ($request) {
                     $q->where('reference', 'like', $request->reference);
-                })->when($request->ville, function ($q) use ($request) {
-                    $q->where('ville', 'like', $request->ville);
-                })->when($request->quartier, function ($q) use ($request) {
-                    $q->where('quartier', 'like', $request->quartier);
                 })->when($request->nbr_pieces, function ($q) use ($request) {
                     $q->where('nbr_chambres', '>', $request->nbr_pieces);
                 })->when($request->surface_min, function ($q) use ($request) {
@@ -86,7 +105,7 @@ class HomeController extends Controller
 
     public function location(Request $request)
     {
-        if ($request->category) {
+        if ($request->category_id) {
             $products = Product::query()
                 ->where('status', 1)
                 ->when($request->category_id, function ($q) use ($request) {
@@ -136,22 +155,63 @@ class HomeController extends Controller
         ]);
     }
 
-    public function immoneuf()
+    public function immoneuf(Request $request)
     {
-        $products = Product::where([
-            'status' => 1,
-            'product_category_id' => 3,
-        ])->get();
+        if ($request->category_id) {
+            $products = Product::query()
+                ->where('status', 1)
+                ->when($request->category_id, function ($q) use ($request) {
+                    $q->where('product_category_id', $request->category_id);
+                })->when($request->type_id, function ($q) use ($request) {
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference, function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', 'like', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', 'like', $request->quartier);
+                })->when($request->nbr_pieces, function ($q) use ($request) {
+                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface_min', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix_max', '<', $request->prix_max);
+                })
+                ->get();
+        } else {
+            $products = Product::where([
+                'status' => 1,
+                'product_category_id' => 3,
+            ])->get();
+        }
+
         $villes = Product::villes();
+        $quartiers = Product::quartiers();
+        $types = ProductType::where('product_category_id', 2)->get();
+        $nbr_pieces = Product::where('product_category_id', 2)->max('nbr_chambres');
+        $promoteurs = Proprietaire::where('is_promoteur', 1)->get();
+
         return view('immoneuf', [
             'products' => $products,
-            'villes' => $villes
+            'villes' => $villes,
+            'quartiers' => $quartiers,
+            'types' => $types,
+            'promoteurs' => $promoteurs,
+            'nbr_pieces' => $nbr_pieces,
+            'category_id' => $request->category_id,
+            'type_id' => $request->type_id,
+            'reference' => $request->reference,
+            'ville' => $request->ville,
+            'quartier' => $request->quartier,
+            'nbr_chambres' => $request->nbr_chambres,
+            'surface_min' => $request->surface_min,
+            'prix_max' => $request->prix_max,
         ]);
     }
 
     public function vacances(Request $request)
     {
-        if ($request->category) {
+        if ($request->category_id) {
             $products = Product::query()
                 ->where('status', 1)
                 ->when($request->category_id, function ($q) use ($request) {
@@ -320,32 +380,39 @@ class HomeController extends Controller
         return view('catalogue');
     }
 
-    public function heroForm(Request $request)
+    public function produit($id)
     {
-        $category_id = $request->category_id ?? 0;
-        $type_id = $request->type_id ?? 0;
-        $ville = $request->ville ?? '';
-        $quartier = $request->quartier ?? '';
-        $nbr_pieces = $request->nbr_pieces;
-        $surface_min = $request->surface_min;
-        $prix_max = $request->prix_max ?? 100000000000;
-        $reference = $request->reference ?? '';
+        $p = Product::findOrFail($id);
+        $products = Product::where('status', 1)->take(3)->get();
 
-        $products = Product::where('status', 1)
-            ->where('product_category_id', $category_id)
-            ->where('product_type_id', $type_id)
-            ->where('reference', 'like', $reference)
-            ->where('ville', 'like', $ville)
-            ->where('quartier', 'like', $quartier)
-            ->where('nbr_pieces', '>', $nbr_pieces)
-            ->where('surface_min', '>', $surface_min)
-            ->where('prix_max', '<', $prix_max)
-            ->get();
+        return view('produit', [
+            'product' => $p,
+            'products' => $products
+        ]);
+    }
 
+    public function produitContact($id, Request $request)
+    {
+        $request->validate([
+            'fullname' => 'required|string|min:5|max:30',
+            'phone' => 'required|digits:10',
+            'email' => 'nullable|email|min:5|max:255',
+            'message' => 'required|string|min:5|max:255',
+        ]);
 
-        // if ($category_id == 1) {
-        // } elseif ($category_id == 2) {
-        // } elseif ($category_id == 3) {
-        // }
+        $fullname = $request->fullname;
+        $phone = $request->phone;
+        $email = $request->email;
+        $message = $request->message;
+
+        $contact = new ProductContact();
+        $contact->product_id = $id;
+        $contact->fullname = $fullname;
+        $contact->phone = $phone;
+        $contact->email = $email;
+        $contact->message = $message;
+        $contact->save();
+
+        return redirect()->back()->with('success', 'Envoyé avec success');
     }
 }

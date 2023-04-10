@@ -77,11 +77,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('king-logout');
 });
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
+Route::get('/test', [HomeController::class, 'home'])->name('home');
 Route::get('/achat', [HomeController::class, 'achat'])->name('achat');
 Route::get('/vacances', [HomeController::class, 'vacances'])->name('vacances');
 Route::get('/location', [HomeController::class, 'location'])->name('location');
 Route::get('/immoneuf', [HomeController::class, 'immoneuf'])->name('immoneuf');
+
+Route::get('/produit/{id?}', [HomeController::class, 'produit'])->name('produit');
+Route::post('/produit/contact/{id?}', [HomeController::class, 'produitContact'])->name('produitContact');
 
 Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');

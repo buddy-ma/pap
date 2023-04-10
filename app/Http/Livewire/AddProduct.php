@@ -18,9 +18,11 @@ class AddProduct extends Component
 
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
-    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $i = 0;
+
+    protected $listeners = ['submitAddBien'];
 
     public function mount()
     {
@@ -34,8 +36,8 @@ class AddProduct extends Component
             $query->where('product_category_id', $this->category);
         })->get();
 
-        $this->productextras = ProductExtras::when($this->category != 0, function ($query) {
-            $query->where('product_category_id', $this->category);
+        $this->productextras = ProductExtras::when($this->type != 0, function ($query) {
+            $query->where('product_type_id', $this->type);
         })->get();
         return view('livewire.add-product');
     }
@@ -54,6 +56,7 @@ class AddProduct extends Component
             'address' => 'required|string|max:255|min:1',
             'prix' => 'required',
             'video' => 'nullable|string|max:255|min:1',
+            'disponibilite' => 'nullable|string|max:255|min:1',
             'vr' => 'nullable|string|max:255|min:1',
             'unite_surface' => 'required',
             'surface' => 'required',
@@ -97,6 +100,7 @@ class AddProduct extends Component
                 $this->pdf->storeAs('public/product/pdf', $pdf);
                 $proprietaire->pdf = $pdf;
             }
+            $proprietaire->is_promoteur = 1;
         }
         $proprietaire->save();
 
@@ -115,6 +119,7 @@ class AddProduct extends Component
         $product->address = $this->address;
         $product->prix = $this->prix;
         $product->video_link = $this->video ?? '';
+        $product->disponibilite = $this->disponibilite ?? '';
         $product->vr_link = $this->vr ?? '';
         $product->unite_surface = $this->unite_surface;
         $product->surface = $this->surface;
@@ -158,5 +163,15 @@ class AddProduct extends Component
     public function removeimg($key)
     {
         unset($this->images[$key]);
+    }
+
+    public function addBien()
+    {
+        $this->dispatchBrowserEvent('swal:addBien');
+    }
+
+    public function submitAddBien($request)
+    {
+        dd($request);
     }
 }

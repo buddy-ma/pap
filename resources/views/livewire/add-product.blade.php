@@ -99,6 +99,13 @@
                                                 <label class="form-label">Prix*</label>
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
+                                            @if ($category == 3)
+                                                <div class="form-group">
+                                                    <label class="form-label">Prix*</label>
+                                                    <input type="text" wire:model="disponibilite"
+                                                        class="form-control" />
+                                                </div>
+                                            @endif
                                             <div class="form-group">
                                                 <label class="form-label">Video</label>
                                                 <input type="text" wire:model="video" class="form-control" />
@@ -199,6 +206,37 @@
                                             <button class="btn btn-primary btn-block" type="button"
                                                 wire:click="addImage">
                                                 Ajouter Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="e-panel mt-3">
+                                    <div class="expanel expanel-default">
+                                        <div class="expanel-heading">
+                                            <h3 class="expanel-title text-center">Biens inclus</h3>
+                                        </div>
+                                        <div class="expanel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                    <tbody>
+                                                        <tr class="">
+                                                            <td class="view-message dont-show font-weight-semibold">
+                                                                Studio
+                                                            </td>
+                                                            <td class="view-message">150.000 dh </td>
+                                                            <td class="view-message">17,43m² </td>
+                                                            <td class="view-message text-center font-weight-semibold">
+                                                                <i class="fe fe-edit"></i>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="expanel-footer">
+                                            <button class="btn btn-primary btn-block" type="button"
+                                                wire:click="addBien">
+                                                Ajouter Appartement
                                             </button>
                                         </div>
                                     </div>

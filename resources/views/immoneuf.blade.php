@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Particulier a particulier')
+@section('title', 'IMMO NEUF')
 @section('logo', 'green')
 @section('bodyClasses', 'homepage-3 the-search')
 
@@ -29,7 +29,7 @@
 @endsection
 @section('content')
 
-    @include('landing.hero')
+    @include('landing.hero', ['active' => 'immoneuf'])
     @include('landing.immoneuf.villes-tags')
 
     @include('landing.immoneuf.catalogueProduits')

@@ -18,9 +18,16 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-5-all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-    <!-- ARCHIVES CSS -->
+
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet-gesture-handling.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet.markercluster.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet.markercluster.default.css') }}">
+
     <link rel="stylesheet" href="{{ asset('assets/css/search-form.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/search.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/timedropper.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/datedropper.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/aos2.css') }}">
@@ -57,7 +64,10 @@
     <!-- ARCHIVES JS -->
     <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/rangeSlider.js') }}"></script>
+    <script src="{{ asset('assets/js/range-slider.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-ui.js') }}"></script>
     <script src="{{ asset('assets/js/tether.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/moment.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/mmenu.min.js') }}"></script>
@@ -65,8 +75,18 @@
     <script src="{{ asset('assets/js/aos.js') }}"></script>
     <script src="{{ asset('assets/js/aos2.js') }}"></script>
     <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slick4.js') }}"></script>
     <script src="{{ asset('assets/js/fitvids.js') }}"></script>
-    <script src="{{ asset('assets/js/fitvids.js') }}"></script>
+    <script src="{{ asset('assets/js/popup.js') }}"></script>
+    <script src="{{ asset('assets/js/timedropper.js') }}"></script>
+    <script src="{{ asset('assets/js/datedropper.js') }}"></script>
+    <script src="{{ asset('assets/js/jqueryadd-count.js') }}"></script>
+    <script src="{{ asset('assets/js/leaflet.js') }}"></script>
+    <script src="{{ asset('assets/js/leaflet-gesture-handling.min.js') }}"></script>
+    <script src="{{ asset('assets/js/leaflet-providers.js') }}"></script>
+    <script src="{{ asset('assets/js/leaflet.markercluster.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/map-single.js') }}"></script> --}}
+
     <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
     <script src="{{ asset('assets/js/imagesloaded.pkgd.min.js') }}"></script>
@@ -84,13 +104,10 @@
     <script src="{{ asset('assets/js/forms-2.js') }}"></script>
     <script src="{{ asset('assets/js/range.js') }}"></script>
     <script src="{{ asset('assets/js/color-switcher.js') }}"></script>
-    <script>
-        $(window).on('scroll load', function() {
-            $("#header.cloned #logo img").attr("src", $('#header #logo img').attr('data-sticky-logo'));
-        });
-    </script>
-    <script src="{{ asset('revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script src="{{ asset('revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <script src="{{ asset('assets/js/inner.js') }}"></script>
+
+    <script src="{{ asset('assets/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{ asset('assets/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
 
     <script>
         $('.slick-lancers').slick({
@@ -252,8 +269,12 @@
         </script>
     @endif
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <!-- END HEADER SEARCH -->
-
+    <script>
+        function villeTag(t) {
+            $('#form_ville').val(t);
+            $('#heroForm').submit();
+        }
+    </script>
     @yield('js')
 
 </body>

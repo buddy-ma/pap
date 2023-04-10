@@ -11,7 +11,7 @@
                         <div class="project-single">
                             <div class="project-inner project-head">
                                 <div class="homes">
-                                    <a href="single-property-1.html" class="homes-img">
+                                    <a href="/produit/{{ $product->id }}" class="homes-img">
                                         <div class="homes-tag button alt featured">{{ $product->category->title }}
                                         </div>
                                         @if ($product->first_image() !== null)
@@ -34,16 +34,16 @@
                                                 class="fas fa-video"></i></a>
                                     @endisset
 
-                                    <a href="/product/{{ $product->id }}" class="img-poppu btn"><i
+                                    <a href="/produit/{{ $product->id }}" class="img-poppu btn"><i
                                             class="fa fa-photo"></i></a>
                                 </div>
                             </div>
                             <!-- homes content -->
                             <div class="homes-content">
                                 <!-- homes address -->
-                                <h3><a href="single-property-1.html">{{ $product->title }}</a></h3>
+                                <h3><a href="/produit/{{ $product->id }}">{{ $product->title }}</a></h3>
                                 <p class="homes-address mb-3">
-                                    <a href="single-property-1.html">
+                                    <a href="/produit/{{ $product->id }}">
                                         <i class="fa fa-map-marker"></i><span>{{ $product->ville }},
                                             {{ $product->quartier }}, {{ $product->address }}</span>
                                     </a>
@@ -62,7 +62,7 @@
                                 </ul>
                                 <div class="price-properties footer pt-3 pb-0">
                                     <h3 class="title mt-3">
-                                        <a href="single-property-1.html"> {{ $product->prix }} dh</a>
+                                        <a> {{ $product->prix }} dh</a>
                                     </h3>
                                     <div class="compare">
                                         <a href="#" title="Share">

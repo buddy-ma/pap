@@ -88,6 +88,10 @@
                                                 <input type="text" wire:model="title" class="form-control" />
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label">Reference*</label>
+                                                <input type="text" wire:model="reference" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label">Description*</label>
                                                 <textarea wire:model="description" class="form-control" rows="3"></textarea>
                                             </div>
@@ -95,6 +99,13 @@
                                                 <label class="form-label">Prix*</label>
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
+                                            <?php if($category == 3): ?>
+                                                <div class="form-group">
+                                                    <label class="form-label">Prix*</label>
+                                                    <input type="text" wire:model="disponibilite"
+                                                        class="form-control" />
+                                                </div>
+                                            <?php endif; ?>
                                             <div class="form-group">
                                                 <label class="form-label">Video</label>
                                                 <input type="text" wire:model="video" class="form-control" />
@@ -111,7 +122,6 @@
                                                 <label class="form-label">Ville*</label>
                                                 <input type="text" wire:model="ville" class="form-control" />
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
                                                 <input type="text" wire:model="quartier" class="form-control" />
@@ -151,7 +161,7 @@
                                                 <input type="number" wire:model="nbr_salons" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Nbr Chambres</label>
+                                                <label class="form-label">Nbr Chambres*</label>
                                                 <input type="number" wire:model="nbr_chambres"
                                                     class="form-control" />
                                             </div>
@@ -198,21 +208,36 @@
                                                 Ajouter Image
                                             </button>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="e-panel mt-3">
+                                    <div class="expanel expanel-default">
+                                        <div class="expanel-heading">
+                                            <h3 class="expanel-title text-center">Biens inclus</h3>
+                                        </div>
                                         <div class="expanel-body">
-                                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <div class="col-6 col-md-3 input-group">
-                                                    <button type="button"
-                                                        class="btn btn-icon btn-outline-danger btn-delete mt-2 ml-2"
-                                                        wire:click="removeimg(<?php echo e($ke); ?>)">
-                                                        <i class="fas fa-trash m-0"></i>
-                                                    </button>
-
-                                                    <div class="dropify-wrapper" style="height: 160px;">
-                                                        <img src="storage/product/images/<?php echo e($val); ?>"
-                                                            style="height: 100%;width:100%">
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <div class="table-responsive">
+                                                <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                    <tbody>
+                                                        <tr class="">
+                                                            <td class="view-message dont-show font-weight-semibold">
+                                                                Studio
+                                                            </td>
+                                                            <td class="view-message">150.000 dh </td>
+                                                            <td class="view-message">17,43m² </td>
+                                                            <td class="view-message text-center font-weight-semibold">
+                                                                <i class="fe fe-edit"></i>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="expanel-footer">
+                                            <button class="btn btn-primary btn-block" type="button"
+                                                wire:click="addBien">
+                                                Ajouter Appartement
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

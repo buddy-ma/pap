@@ -4988,7 +4988,7 @@ a.button,
 }
 
 .homepage-3 .hero-main {
-    padding: 200px 0;
+    padding: 200px 0 0;
 }
 
 .homepage-3 .rld-main-search {
@@ -12023,8 +12023,6 @@ div.datedropper.my-style.picker-lkd .pick-submit {
 
 .agent-contact-form-sidebar {
     width: 100%;
-    padding-top: 20px;
-    border-top: 1px solid #eeeeee;
 }
 
 .agent-contact-form-sidebar h4 {
@@ -12734,6 +12732,8 @@ div.datedropper.my-style.picker-lkd .pick-submit {
 }
 
 #map-contact {
+    overflow: hidden;
+    max-height: 300px;
     width: 100%;
     height: 300px;
 }
