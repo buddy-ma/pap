@@ -101,7 +101,7 @@
                                             </div>
                                             @if ($category == 3)
                                                 <div class="form-group">
-                                                    <label class="form-label">Prix*</label>
+                                                    <label class="form-label">Disponibilite</label>
                                                     <input type="text" wire:model="disponibilite"
                                                         class="form-control" />
                                                 </div>

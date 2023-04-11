@@ -71,15 +71,14 @@
                                             </div>
                                             <div class="col-6 mb-2">
                                                 <div class="rld-single-input">
-                                                    <input name="nbr_pieces" value="{{ $nbr_pieces }}" type="number"
-                                                        placeholder="Nbr. pieces" max="{{ $nbr_pieces }}"
-                                                        value="{{ $nbr_pieces }}">
+                                                    <input name="nbr_pieces" type="number" placeholder="Nbr. pieces"
+                                                        max="{{ $nbr_pieces }}">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input name="surface_min" value="{{ $surface_min }}"
-                                                        type="number" placeholder="Surface Min">
+                                                    <input name="surface_min" value="{{ $surface_min }}" type="number"
+                                                        placeholder="Surface Min">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">

@@ -12,7 +12,7 @@
                             <div class="project-single">
                                 <div class="project-inner project-head">
                                     <div class="homes">
-                                        <a href="single-property-1.html" class="homes-img">
+                                        <a href="/produit/<?php echo e($product->id); ?>" class="homes-img">
                                             <div class="homes-tag button alt featured"><?php echo e($product->category->title); ?>
 
                                             </div>
@@ -36,16 +36,16 @@
                                                     class="fas fa-video"></i></a>
                                         <?php endif; ?>
 
-                                        <a href="/product/<?php echo e($product->id); ?>" class="img-poppu btn"><i
+                                        <a href="/produit/<?php echo e($product->id); ?>" class="img-poppu btn"><i
                                                 class="fa fa-photo"></i></a>
                                     </div>
                                 </div>
                                 <!-- homes content -->
                                 <div class="homes-content">
                                     <!-- homes address -->
-                                    <h3><a href="single-property-1.html"><?php echo e($product->title); ?></a></h3>
+                                    <h3><a href="/produit/<?php echo e($product->id); ?>"><?php echo e($product->title); ?></a></h3>
                                     <p class="homes-address mb-3">
-                                        <a href="single-property-1.html">
+                                        <a href="/produit/<?php echo e($product->id); ?>">
                                             <i class="fa fa-map-marker"></i><span><?php echo e($product->ville); ?>,
                                                 <?php echo e($product->quartier); ?>, <?php echo e($product->address); ?></span>
                                         </a>
@@ -64,7 +64,7 @@
                                     </ul>
                                     <div class="price-properties footer pt-3 pb-0">
                                         <h3 class="title mt-3">
-                                            <a href="single-property-1.html"> <?php echo e($product->prix); ?> dh</a>
+                                            <a> <?php echo e($product->prix); ?> dh</a>
                                         </h3>
                                         <div class="compare">
                                             <a href="#" title="Share">

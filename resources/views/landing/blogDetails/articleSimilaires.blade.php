@@ -31,7 +31,7 @@
                                     </ul> --}}
                                 </div>
                                 <a href="/blog/{{ $art->id }}">
-                                    <h3>{{ $art->title }}</h3>
+                                    <h3>{{ $art->title }} - {{ $art->id }}</h3>
                                 </a>
 
                                 <div class="news-item-descr big-news">

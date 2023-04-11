@@ -114,11 +114,6 @@
           }).then((result) => {
               if (result.isConfirmed) {
                   Livewire.emit(event.detail.fun);
-                  Swal.fire(
-                      'Deleted!',
-                      'Deleted Succesfully.',
-                      'success'
-                  )
               }
           })
       });

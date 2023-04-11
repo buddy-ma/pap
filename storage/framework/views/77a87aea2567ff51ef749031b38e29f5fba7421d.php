@@ -35,7 +35,7 @@
                                                 class="fas fa-video"></i></a>
                                     <?php endif; ?>
 
-                                    <a href="/product/<?php echo e($product->id); ?>" class="img-poppu btn"><i
+                                    <a href="/produit/<?php echo e($product->id); ?>" class="img-poppu btn"><i
                                             class="fa fa-photo"></i></a>
                                 </div>
                             </div>

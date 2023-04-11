@@ -28,7 +28,7 @@
                                     
                                 </div>
                                 <a href="/blog/<?php echo e($art->id); ?>">
-                                    <h3><?php echo e($art->title); ?></h3>
+                                    <h3><?php echo e($art->title); ?> - <?php echo e($art->id); ?></h3>
                                 </a>
 
                                 <div class="news-item-descr big-news">

@@ -20,10 +20,10 @@ class HomeController extends Controller
         $products = Product::where('status', 1)->get();
 
         $categoryConseils = Categorie::where('title', 'Conseils')->get();
-        $conseils = $categoryConseils[0]->blogs()->take(3)->get();
+        $conseils = $categoryConseils[0]->blogs()->get();
 
         $categoryMaroc = Categorie::where('title', 'DecouvrezLeMaroc')->get();
-        $articlesMaroc = $categoryMaroc[0]->blogs()->take(3)->get();
+        $articlesMaroc = $categoryMaroc[0]->blogs()->get();
 
         $citys = Ville::take(4)->get();
 
@@ -56,9 +56,8 @@ class HomeController extends Controller
     public function achat(Request $request)
     {
         if ($request->category_id) {
-            $products = Product::query()
-                ->where('status', 1)
-                ->where('product_category_id', $request->category_id)
+            $products = Product::where('status', 1)
+                ->whereIn('product_category_id', [1, 3])
                 ->when($request->ville, function ($q) use ($request) {
                     $q->where('ville', $request->ville);
                 })->when($request->quartier, function ($q) use ($request) {
@@ -68,18 +67,15 @@ class HomeController extends Controller
                 })->when($request->reference != '', function ($q) use ($request) {
                     $q->where('reference', 'like', $request->reference);
                 })->when($request->nbr_pieces, function ($q) use ($request) {
-                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                    $q->where('nbr_chambres', $request->nbr_pieces);
                 })->when($request->surface_min, function ($q) use ($request) {
-                    $q->where('surface_min', '>', $request->surface_min);
+                    $q->where('surface', '>', $request->surface_min);
                 })->when($request->prix_max, function ($q) use ($request) {
-                    $q->where('prix_max', '<', $request->prix_max);
+                    $q->where('prix', '<', $request->prix_max);
                 })
                 ->get();
         } else {
-            $products = Product::where([
-                'status' => 1,
-                'product_category_id' => 1,
-            ])->get();
+            $products = Product::where('status', 1)->where('product_category_id', 1)->orWhere('product_category_id', 3)->get();
         }
         $villes = Product::villes();
         $quartiers = Product::quartiers();
@@ -187,8 +183,8 @@ class HomeController extends Controller
 
         $villes = Product::villes();
         $quartiers = Product::quartiers();
-        $types = ProductType::where('product_category_id', 2)->get();
-        $nbr_pieces = Product::where('product_category_id', 2)->max('nbr_chambres');
+        $types = ProductType::where('product_category_id', 3)->get();
+        $nbr_pieces = Product::where('product_category_id', 3)->max('nbr_chambres');
         $promoteurs = Proprietaire::where('is_promoteur', 1)->get();
 
         return view('immoneuf', [
@@ -328,7 +324,14 @@ class HomeController extends Controller
     public function blogDetails($id)
     {
         $blog = Blog::findOrFail($id);
-        $similaires = Blog::take(3)->get();
+        $catgs = $blog->categories()->pluck('categorie_id')->toArray();
+        $similaires = Blog::leftjoin('blog_has_categories', 'blog_has_categories.blog_id', 'blogs.id')
+            ->select('blogs.*')
+            ->whereIn('blog_has_categories.categorie_id',  $catgs)
+            ->where('blogs.id', '!=', $id)
+            ->groupBy('blogs.id')
+            ->get();
+
         return view('blogDetail', [
             'blog' => $blog,
             'similaires' => $similaires,

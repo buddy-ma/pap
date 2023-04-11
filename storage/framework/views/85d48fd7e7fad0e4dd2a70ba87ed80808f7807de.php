@@ -3,17 +3,31 @@
 <?php $__env->startSection('bodyClasses', 'conseils homepage-3 the-search'); ?>
 
 <?php $__env->startSection('css'); ?>
-
+    <style>
+        .tags {
+            background: #555 !important;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
     <?php echo $__env->make('landing.conseils.hero', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
+    <?php echo $__env->make('landing.tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('landing.conseils.catalogueConseilsMaroc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
-
+    <script>
+        function tags($t) {
+            console.log($t);
+            $('#search').val($t);
+            $('#decouvrezMaroc').submit();
+        }
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/conseils.blade.php ENDPATH**/ ?>

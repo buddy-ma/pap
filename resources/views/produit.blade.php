@@ -1,21 +1,22 @@
 @extends('layouts.app')
 @section('title', 'Particulier a particulier')
 @section('logo', 'blue')
-@section('bodyClasses', 'inner-pages sin-1 homepage-4 hd-white')
+@section('bodyClasses', 'inner-pages hd-white')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/colors/blue.css') }}">
 @endsection
 @section('content')
-    <section class="headings">
+    {{-- <section class="headings">
         <div class="text-heading text-center">
         </div>
-    </section>
+    </section> --}}
+
     <section class="single-proper blog details">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <section class="headings-2 pt-1 pb-2">
+                    <section class="headings-2 pt-1 pb-2 mt-5">
                         <div class="pro-wrapper">
                             <div class="detail-wrapper-body">
                                 <div class="listing-title-bar">

@@ -51,6 +51,10 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Add Blog </h3>
+                    <button class="btn btn-success float-right ml-auto"
+                        onclick="event.preventDefault(); document.getElementById('blog-add').submit();">
+                        Save
+                    </button>
                 </div>
                 <div class="card-body pb-2">
                     <?php if($message = Session::get('success')): ?>
@@ -70,12 +74,13 @@
                         </div>
                     <?php endif; ?>
 
-                    <form method="post" action="<?php echo e(route('blog-add')); ?>" enctype="multipart/form-data">
+                    <form method="post" action="<?php echo e(route('blog-add')); ?>" onsubmit="event.preventDefault(); askBefore()"
+                        enctype="multipart/form-data" id="blog-add">
                         <?php echo csrf_field(); ?>
                         <div class="row">
                             <div class="col-lg">
                                 <label>Title*</label>
-                                <input type="text" name="title" class="form-control" />
+                                <input type="text" name="title" required class="form-control" />
                             </div>
 
                             <div class="col-lg">
@@ -85,8 +90,9 @@
                             <div class="col-lg">
                                 <div class="form-group">
                                     <label>Categories*</label>
-                                    <select multiple="multiple" onchange="console.log($(this).children(':selected').length)"
-                                        id="categories" name="categories[]" class="search-box">
+                                    <select multiple="multiple" required
+                                        onchange="console.log($(this).children(':selected').length)" id="categories"
+                                        name="categories[]" class="search-box">
                                         <?php if($categories): ?>
                                             <?php $dash = ''; ?>
                                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -122,7 +128,7 @@
                         <div class="row mt-4">
                             <div class="col-lg">
                                 <label>Main Image*</label>
-                                <input type="file" class="dropify" data-height="180" name="image" />
+                                <input type="file" required class="dropify" data-height="180" name="image" />
                             </div>
 
                             <div class="col-lg">
@@ -133,7 +139,7 @@
 
                         <div class="form-group mt-4">
                             <label>Article :</label>
-                            <textarea name="editor1" rows="500" style="min-height: 500px;"></textarea>
+                            <textarea name="editor1" required rows="500" style="min-height: 500px;"></textarea>
                         </div>
 
                         <div class="btn-list text-right">
@@ -203,7 +209,18 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
         <script src="<?php echo e(asset('js/app.js')); ?>"></script>
-        <script src="/js/app.js"></script>
+        <script>
+            function askBefore() {
+                new swal({
+                    title: 'Are you sure?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'C\'est fini'
+                }).then((result) => {
+                    document.getElementById('blog-add').submit();
+                })
+            }
+        </script>
     <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/blogs/blog-add.blade.php ENDPATH**/ ?>

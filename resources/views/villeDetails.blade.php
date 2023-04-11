@@ -16,12 +16,12 @@
 @endsection
 @section('content')
 
-    <section class="headings">
+    {{-- <section class="headings">
         <div class="text-heading text-center">
         </div>
-    </section>
+    </section> --}}
 
-    <section class="blog blog-section bg-white">
+    <section class="blog blog-section bg-white mt-2">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-xs-12">

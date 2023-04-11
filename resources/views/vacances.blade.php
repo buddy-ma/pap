@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', 'Particulier a particulier')
-@section('logo', 'purple')
+@section('logo', 'orange')
 @section('bodyClasses', 'homepage-3 the-search')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('assets/css/colors/purple.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/colors/orange.css') }}">
 
     <style>
         .ville h4 {

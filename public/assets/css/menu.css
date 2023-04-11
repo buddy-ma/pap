@@ -327,6 +327,7 @@ a.button.border, a.button {
     visibility: visible;
     transform: translate(0, 0) scale(1);
     transition: 0.3s;
+    border-bottom: 2px solid #ddd;
 }
 .head-tr.bottom {
     background: rgba(255, 255, 255, 0.12);

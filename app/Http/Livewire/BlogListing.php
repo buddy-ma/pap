@@ -8,8 +8,10 @@ use Livewire\Component;
 
 class BlogListing extends Component
 {
-    public $categories, $selected_category;
+    public $categories, $selected_category, $deleted;
     public $search, $paginate, $order_by, $sort_by, $perPage;
+
+    protected $listeners = ['confirmDeleteBlog'];
 
     public function mount($decouvrez = 0)
     {
@@ -63,6 +65,25 @@ class BlogListing extends Component
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
             'message' => 'Saved Successfully!',
+        ]);
+    }
+
+    public function delete($id)
+    {
+        $this->deleted = $id;
+        $this->dispatchBrowserEvent('swal:confirmDelete', [
+            'text' => 'Vous ne pourrez pas revenir en arrière !',
+            'fun' => 'confirmDeleteBlog',
+        ]);
+    }
+
+    public function confirmDeleteBlog()
+    {
+        $blogg = Blog::find($this->deleted);
+        $blogg->delete();
+        $this->dispatchBrowserEvent('swal:modal', [
+            'type' => 'success',
+            'text' => 'Suprimé en success !'
         ]);
     }
 

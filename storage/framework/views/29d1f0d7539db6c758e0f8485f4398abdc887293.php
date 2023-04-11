@@ -74,15 +74,14 @@
                                             </div>
                                             <div class="col-6 mb-2">
                                                 <div class="rld-single-input">
-                                                    <input name="nbr_pieces" value="<?php echo e($nbr_pieces); ?>" type="number"
-                                                        placeholder="Nbr. pieces" max="<?php echo e($nbr_pieces); ?>"
-                                                        value="<?php echo e($nbr_pieces); ?>">
+                                                    <input name="nbr_pieces" type="number" placeholder="Nbr. pieces"
+                                                        max="<?php echo e($nbr_pieces); ?>">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">
                                                 <div class="rld-single-input">
-                                                    <input name="surface_min" value="<?php echo e($surface_min); ?>"
-                                                        type="number" placeholder="Surface Min">
+                                                    <input name="surface_min" value="<?php echo e($surface_min); ?>" type="number"
+                                                        placeholder="Surface Min">
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-4">

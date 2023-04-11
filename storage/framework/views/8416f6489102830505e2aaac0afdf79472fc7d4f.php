@@ -1,20 +1,18 @@
 <?php $__env->startSection('title', 'Particulier a particulier'); ?>
 <?php $__env->startSection('logo', 'blue'); ?>
-<?php $__env->startSection('bodyClasses', 'inner-pages sin-1 homepage-4 hd-white'); ?>
+<?php $__env->startSection('bodyClasses', 'inner-pages hd-white'); ?>
 
 <?php $__env->startSection('css'); ?>
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/colors/blue.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <section class="headings">
-        <div class="text-heading text-center">
-        </div>
-    </section>
+    
+
     <section class="single-proper blog details">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <section class="headings-2 pt-1 pb-2">
+                    <section class="headings-2 pt-1 pb-2 mt-5">
                         <div class="pro-wrapper">
                             <div class="detail-wrapper-body">
                                 <div class="listing-title-bar">

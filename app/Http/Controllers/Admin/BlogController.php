@@ -36,6 +36,17 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|string|min:3|max:255',
+            'subtitle' => 'nullable|string|min:3|max:255',
+            'vr_link' => 'nullable|string|min:3|max:255',
+            'video_link' => 'nullable|string|min:3|max:255',
+            'tags' => 'nullable|string|min:3|max:255',
+            'editor1' => 'required',
+        ], [
+            'editor1.required' => 'Article is required'
+        ]);
+
         $blog = new Blog();
         if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
@@ -80,6 +91,17 @@ class BlogController extends Controller
 
     public function storeDecouvrez(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|string|min:3|max:255',
+            'subtitle' => 'nullable|string|min:3|max:255',
+            'vr_link' => 'nullable|string|min:3|max:255',
+            'video_link' => 'nullable|string|min:3|max:255',
+            'tags' => 'nullable|string|min:3|max:255',
+            'editor1' => 'required',
+        ], [
+            'editor1.required' => 'Article is required'
+        ]);
+
         $blog = new Blog();
         if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
@@ -120,15 +142,16 @@ class BlogController extends Controller
 
         $blog->save();
         $blog->categories()->sync([9]);
-        session()->flash('success', 'Blog has been created successfully');
+        session()->flash('success', 'Blog ajouté avec success');
         return redirect('admin/blogs/decouvrez');
     }
 
     public function update($id)
     {
+
         $blog = Blog::find($id);
 
-        $catgs = $blog->categories()->get();
+        $catgs = $blog->categories()->pluck('categorie_id')->toArray();
 
         $categories = Categorie::with('children')->whereNull('parent_id')->get();
         $autrs = Blog::join("users", "users.id", "=", "blogs.user_id")
@@ -154,6 +177,17 @@ class BlogController extends Controller
 
     public function edit(Request $request, $id)
     {
+        $this->validate($request, [
+            'title' => 'required|string|min:3|max:255',
+            'subtitle' => 'nullable|string|min:3|max:255',
+            'vr_link' => 'nullable|string|min:3|max:255',
+            'video_link' => 'nullable|string|min:3|max:255',
+            'tags' => 'nullable|string|min:3|max:255',
+            'editor1' => 'required',
+        ], [
+            'editor1.required' => 'Article is required'
+        ]);
+
         $blog = Blog::find($id);
         $blog->title = $request->title;
         $blog->subtitle = $request->subtitle;
@@ -175,7 +209,7 @@ class BlogController extends Controller
         }
         $blog->categories()->sync($request->categories);
         $blog->save();
-        session()->flash('success', 'Merci de nous contacter, on vous rappelle le plus proche possible');
+        session()->flash('success', 'Blog enregistré avec success');
         return redirect('admin/blogs');
     }
 
