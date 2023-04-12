@@ -63,8 +63,8 @@ class EditProduct extends Component
         $this->producttypes = ProductType::when($this->category != 0, function ($query) {
             $query->where('product_category_id', $this->category);
         })->get();
-        $this->productextras = ProductExtras::when($this->category != 0, function ($query) {
-            $query->where('product_category_id', $this->category);
+        $this->productextras = ProductExtras::when($this->type != 0, function ($query) {
+            $query->where('product_type_id', $this->type);
         })->get();
 
         return view('livewire.edit-product');

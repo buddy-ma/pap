@@ -324,6 +324,8 @@ class HomeController extends Controller
     public function blogDetails($id)
     {
         $blog = Blog::findOrFail($id);
+        $blog->vues++;
+        $blog->save();
         $catgs = $blog->categories()->pluck('categorie_id')->toArray();
         $similaires = Blog::leftjoin('blog_has_categories', 'blog_has_categories.blog_id', 'blogs.id')
             ->select('blogs.*')
@@ -386,6 +388,8 @@ class HomeController extends Controller
     public function produit($id)
     {
         $p = Product::findOrFail($id);
+        $p->vues++;
+        $p->save();
         $products = Product::where('status', 1)->take(3)->get();
 
         return view('produit', [
