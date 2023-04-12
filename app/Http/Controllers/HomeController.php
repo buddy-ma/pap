@@ -391,10 +391,28 @@ class HomeController extends Controller
         $p->vues++;
         $p->save();
         $products = Product::where('status', 1)->take(3)->get();
-
+        $title = $p->category->title;
+        switch ($title) {
+            case 'Achat':
+                $color = 'blue';
+                break;
+            case 'Location':
+                $color = 'blue';
+                break;
+            case 'ImmoNeuf':
+                $color = 'green';
+                break;
+            case 'Vacances':
+                $color = 'orange';
+                break;
+            default:
+                $color = 'blue';
+                break;
+        }
         return view('produit', [
             'product' => $p,
-            'products' => $products
+            'products' => $products,
+            'color' => $color
         ]);
     }
 

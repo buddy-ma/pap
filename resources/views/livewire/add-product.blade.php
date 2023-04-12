@@ -112,8 +112,8 @@
                                             @if ($category == 3)
                                                 <div class="form-group">
                                                     <label class="form-label">Disponibilite</label>
-                                                    <input type="text" wire:model="disponibilite"
-                                                        class="form-control" />
+                                                    <input type="text" wire:model.defer="disponibilite"
+                                                        class="form-control" value="Livraison ..." />
                                                 </div>
                                             @endif
                                             <div class="form-group">
@@ -200,14 +200,14 @@
                                         </div>
                                         <div class="expanel-body">
                                             <div class="row">
-                                                @foreach ($images as $img)
+                                                @foreach ($images as $key => $img)
                                                     <div class="col-12 mb-3">
                                                         <label class="form-label">Image {{ $loop->iteration }}*</label>
                                                         <input type="file" data-height="100"
-                                                            wire:model="images.{{ $loop->index }}" />
+                                                            wire:model="images.{{ $key }}" />
                                                         <button class="btn btn-danger ml-auto float-right"
                                                             type="button"
-                                                            wire:click="removeimg({{ $loop->index }})">
+                                                            wire:click="removeimg({{ $key }})">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </div>
@@ -220,37 +220,47 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="e-panel mt-3">
-                                    <div class="expanel expanel-default">
-                                        <div class="expanel-heading">
-                                            <h3 class="expanel-title text-center">Biens inclus</h3>
-                                        </div>
-                                        <div class="expanel-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-inbox table-hover text-nowrap mb-0">
-                                                    <tbody>
-                                                        <tr class="">
-                                                            <td class="view-message dont-show font-weight-semibold">
-                                                                Studio
-                                                            </td>
-                                                            <td class="view-message">150.000 dh </td>
-                                                            <td class="view-message">17,43m² </td>
-                                                            <td class="view-message text-center font-weight-semibold">
-                                                                <i class="fe fe-edit"></i>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                @if ($category == 3)
+                                    <div class="e-panel mt-3">
+                                        <div class="expanel expanel-default">
+                                            <div class="expanel-heading">
+                                                <h3 class="expanel-title text-center">Biens inclus</h3>
+                                            </div>
+                                            <div class="expanel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                        <tbody>
+                                                            @isset($productbiens)
+                                                                @foreach ($productbiens as $key => $bien)
+                                                                    <tr class="">
+                                                                        <td
+                                                                            class="view-message dont-show font-weight-semibold">
+                                                                            {{ $bien['title'] }}
+                                                                        </td>
+                                                                        <td class="view-message">{{ $bien['price'] }} dh
+                                                                        </td>
+                                                                        <td class="view-message">{{ $bien['surface'] }}m²
+                                                                        </td>
+                                                                        <td class="view-message text-center font-weight-semibold"
+                                                                            wire:click="removebien({{ $key }})">
+                                                                            <i class="fe fe-trash"></i>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @endisset
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="expanel-footer">
+                                                <button class="btn btn-primary btn-block" type="button"
+                                                    wire:click="addBien">
+                                                    Ajouter Appartement
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="expanel-footer">
-                                            <button class="btn btn-primary btn-block" type="button"
-                                                wire:click="addBien">
-                                                Ajouter Appartement
-                                            </button>
-                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>

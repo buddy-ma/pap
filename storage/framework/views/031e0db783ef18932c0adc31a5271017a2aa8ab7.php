@@ -88,6 +88,10 @@
                                                 <input type="text" wire:model="title" class="form-control" />
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label">Reference*</label>
+                                                <input type="text" wire:model="reference" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label">Description*</label>
                                                 <textarea wire:model="description" class="form-control" rows="3"></textarea>
                                             </div>
@@ -212,6 +216,45 @@
                                                     </div>
                                                 <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="e-panel mt-3">
+                                    <div class="expanel expanel-default">
+                                        <div class="expanel-heading">
+                                            <h3 class="expanel-title text-center">Biens inclus</h3>
+                                        </div>
+                                        <div class="expanel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                    <tbody>
+                                                        <?php if(isset($productbiens)): ?>
+                                                            <?php $__currentLoopData = $productbiens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $bien): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <tr class="">
+                                                                    <td
+                                                                        class="view-message dont-show font-weight-semibold">
+                                                                        <?php echo e($bien['title']); ?>
+
+                                                                    </td>
+                                                                    <td class="view-message"><?php echo e($bien['price']); ?> dh </td>
+                                                                    <td class="view-message"><?php echo e($bien['surface']); ?>m²
+                                                                    </td>
+                                                                    <td wire:click="removebien(<?php echo e($key); ?>)"
+                                                                        class="view-message text-center font-weight-semibold">
+                                                                        <i class="fe fe-trash"></i>
+                                                                    </td>
+                                                                </tr>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php endif; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="expanel-footer">
+                                            <button class="btn btn-primary btn-block" type="button"
+                                                wire:click="addBien">
+                                                Ajouter Appartement
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

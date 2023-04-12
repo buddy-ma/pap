@@ -45,15 +45,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('add-product')->html();
-} elseif ($_instance->childHasBeenRendered('DKcyCCU')) {
-    $componentId = $_instance->getRenderedChildComponentId('DKcyCCU');
-    $componentTag = $_instance->getRenderedChildComponentTagName('DKcyCCU');
+} elseif ($_instance->childHasBeenRendered('mfvIjao')) {
+    $componentId = $_instance->getRenderedChildComponentId('mfvIjao');
+    $componentTag = $_instance->getRenderedChildComponentTagName('mfvIjao');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('DKcyCCU');
+    $_instance->preserveRenderedChild('mfvIjao');
 } else {
     $response = \Livewire\Livewire::mount('add-product');
     $html = $response->html();
-    $_instance->logRenderedChild('DKcyCCU', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('mfvIjao', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -98,19 +98,19 @@ echo $html;
                     <div class="form-group col-6 mb-0">
                         <div class="form-group">
                             <label class="form-label text-left">Titre*</label>
-                            <input type="text" name="title" class="form-control" />
+                            <input type="text" name="title" class="form-control" id="title" required/>
                         </div>
                     </div>
                     <div class="form-group col-6 mb-0">
                         <div class="form-group">
                             <label class="form-label text-left">Prix*</label>
-                            <input type="text" name="prix" class="form-control" />
+                            <input type="text" name="prix" class="form-control" id="prix" required/>
                         </div>
                     </div>
                     <div class="form-group col-12 mb-0">
                         <div class="form-group">
                             <label class="form-label text-left">Surface*</label>
-                            <input type="text" name="surface" class="form-control" /><br>
+                            <input type="text" name="surface" class="form-control" id="surface" /><br>
                         </div>
                     </div>
                 </div>
@@ -125,7 +125,10 @@ echo $html;
                 allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Livewire.emit(submitAddBien);
+                    var title = document.getElementById("title").value;
+                    var prix = document.getElementById("prix").value;
+                    var surface = document.getElementById("surface").value;
+                    Livewire.emit('submitAddBien', title, prix, surface);
                 }
             });
         });

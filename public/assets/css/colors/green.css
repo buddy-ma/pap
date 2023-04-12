@@ -572,6 +572,7 @@ section.pricing-table {
     transition: all 1s ease-in-out;
 }
 
+
 .homepage-3 .rld-banner-tab .nav-item a.active,
 .homepage-3 .rld-banner-tab .nav-item a:hover,
 .homepage-3 .rld-banner-tab .nav-item a.active:before,
@@ -591,4 +592,40 @@ section.pricing-table {
             rgba(18, 56, 12, 0.2) 0%,
             rgba(4, 29, 17, 0.2) 100%),
         url(../../images/bg/purple.png) no-repeat scroll center center/cover;
+}
+
+.inner-pages .btn:hover,
+.inner-pages .popular-places .listing-badges .featured,
+.inner-pages .homes-tag.featured {
+    background: #18ba60 !important;
+}
+
+.inner-pages .rld-banner-tab .nav-item a.active,
+.inner-pages .rld-banner-tab .nav-item a:hover,
+.inner-pages .rld-banner-tab .nav-item a.active:before,
+.inner-pages .range-slider .ui-widget-header,
+.inner-pages .checkboxes input[type="checkbox"]:checked+label:before {
+    background: #18ba60;
+}
+
+.inner-pages .btn,
+.inner-pages .btn:active,
+.inner-pages .btn.sApp-btn:before,
+.inner-pages .bg-overlay::after,
+.inner-pages .benifits-item:after {
+    background: #18ba60 !important;
+}
+
+.inner-pages a.btn.btn-yellow:hover {
+    background: #18ba60 !important;
+    color: #fff;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #18ba60;
+    color: white;
 }

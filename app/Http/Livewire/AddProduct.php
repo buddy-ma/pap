@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductBiens;
 use Livewire\Component;
 use App\Models\ProductType;
 use App\Models\Proprietaire;
@@ -21,7 +22,7 @@ class AddProduct extends Component
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
     public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
-    public $images = [], $i = 0;
+    public $images = [], $productbiens = [], $i = 0, $j = 0;
 
     protected $listeners = ['submitAddBien'];
 
@@ -65,8 +66,6 @@ class AddProduct extends Component
             'surface_terrain' => 'nullable',
             'nbr_salons' => 'required',
             'nbr_chambres' => 'required',
-            'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
-            'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
         ]);
 
         if (isset($this->images)) {
@@ -113,12 +112,13 @@ class AddProduct extends Component
             }
             $proprietaire->is_promoteur = 1;
         }
-        if ($this->is_commercial) {
-            $proprietaire->user_id = Auth::guard('web')->id();
-        }
+
         $proprietaire->save();
 
         $product = new Product();
+        if ($this->is_commercial) {
+            $product->user_id = Auth::guard('web')->id();
+        }
         $product->proprietaire_id = $proprietaire->id;
         $product->product_type_id = $this->type;
         $product->product_category_id = $this->category;
@@ -151,6 +151,17 @@ class AddProduct extends Component
                 ProductImages::create([
                     'product_id' => $product->id,
                     'image' => $img_title
+                ]);
+            }
+        }
+        ProductBiens::where('product_id',  $product->id)->delete();
+        if (isset($this->productbiens)) {
+            foreach ($this->productbiens as $bien) {
+                ProductBiens::create([
+                    'product_id' => $product->id,
+                    'title' => $bien['title'],
+                    'price' => $bien['price'],
+                    'surface' => $bien['surface'],
                 ]);
             }
         }
@@ -196,13 +207,25 @@ class AddProduct extends Component
         unset($this->images[$key]);
     }
 
+
+
     public function addBien()
     {
         $this->dispatchBrowserEvent('swal:addBien');
     }
 
-    public function submitAddBien($request)
+    public function submitAddBien($title, $prix, $surface)
     {
-        dd($request);
+        $this->productbiens[$this->j] = [
+            'title'  => $title,
+            'price'   => $prix,
+            'surface' => $surface
+        ];
+        $this->j++;
+    }
+
+    public function removebien($key)
+    {
+        unset($this->productbiens[$key]);
     }
 }

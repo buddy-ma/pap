@@ -99,6 +99,13 @@
                                                 <label class="form-label">Prix*</label>
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
+                                            @if ($category == 3)
+                                                <div class="form-group">
+                                                    <label class="form-label">Disponibilite</label>
+                                                    <input type="text" wire:model.defer="disponibilite"
+                                                        class="form-control" value="Livraison ..." />
+                                                </div>
+                                            @endif
                                             <div class="form-group">
                                                 <label class="form-label">Video</label>
                                                 <input type="text" wire:model="video" class="form-control" />
@@ -219,6 +226,47 @@
                                         </div>
                                     </div>
                                 </div>
+                                @if ($category == 3)
+                                    <div class="e-panel mt-3">
+                                        <div class="expanel expanel-default">
+                                            <div class="expanel-heading">
+                                                <h3 class="expanel-title text-center">Biens inclus</h3>
+                                            </div>
+                                            <div class="expanel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                        <tbody>
+                                                            @isset($productbiens)
+                                                                @foreach ($productbiens as $key => $bien)
+                                                                    <tr class="">
+                                                                        <td
+                                                                            class="view-message dont-show font-weight-semibold">
+                                                                            {{ $bien['title'] }}
+                                                                        </td>
+                                                                        <td class="view-message">{{ $bien['price'] }} dh
+                                                                        </td>
+                                                                        <td class="view-message">{{ $bien['surface'] }}m²
+                                                                        </td>
+                                                                        <td wire:click="removebien({{ $key }})"
+                                                                            class="view-message text-center font-weight-semibold">
+                                                                            <i class="fe fe-trash"></i>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @endisset
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="expanel-footer">
+                                                <button class="btn btn-primary btn-block" type="button"
+                                                    wire:click="addBien">
+                                                    Ajouter Appartement
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
