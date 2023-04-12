@@ -11,6 +11,7 @@ use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 use App\Rules\PhoneValidation;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Auth;
 
 class AddProduct extends Component
 {
@@ -68,6 +69,16 @@ class AddProduct extends Component
             'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
         ]);
 
+        if (isset($this->images)) {
+            foreach ($this->images as $img) {
+                $img = str_replace(' ', '', $img->getClientOriginalName());
+            }
+            $this->validate([
+                'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
+            ]);
+        }
+
         if (!$this->is_commercial) {
             $this->validate([
                 'firstname' => 'required|string|max:50|min:1',
@@ -101,6 +112,9 @@ class AddProduct extends Component
                 $proprietaire->pdf = $pdf;
             }
             $proprietaire->is_promoteur = 1;
+        }
+        if ($this->is_commercial) {
+            $proprietaire->user_id = Auth::guard('web')->id();
         }
         $proprietaire->save();
 
@@ -151,6 +165,23 @@ class AddProduct extends Component
     public function is_promoteur()
     {
         $this->is_promoteur = !$this->is_promoteur;
+    }
+
+    public function is_commercial()
+    {
+        $this->is_commercial = !$this->is_commercial;
+        if ($this->is_commercial) {
+            $user = Auth::guard('web')->user();
+            $this->firstname = $user->firstname;
+            $this->lastname = $user->lastname;
+            $this->phone = $user->phone;
+            $this->email = $user->email;
+        } else {
+            $this->firstname = '';
+            $this->lastname = '';
+            $this->phone = '';
+            $this->email = '';
+        }
     }
 
     public function addImage()

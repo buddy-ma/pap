@@ -10,7 +10,7 @@
             <h4 class="page-title mb-0 d-block">Liste de villes
             </h4>
         </div>
-        <a class="btn btn-success float-right ml-auto"> <i class="fa fa-plus"></i> Ajouter</a>
+        <a href="/admin/villes/add" class="btn btn-success float-right ml-auto"> <i class="fa fa-plus"></i> Ajouter</a>
     </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>

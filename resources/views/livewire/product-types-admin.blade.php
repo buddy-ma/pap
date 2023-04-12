@@ -38,12 +38,21 @@
                                             <ul class="list-group mb-0">
                                                 @foreach ($types as $type)
                                                     <li class="list-group-item d-flex border-top-0 border-left-0 border-right-0 pt-5 "
-                                                        tabindex="0" wire:click="selectType({{ $type->id }})">
+                                                        tabindex="0">
                                                         @if ($type->id == $selected_type)
-                                                            <div class="w-3 h-3 bg-success mr-3 mt-1 brround">
+                                                            <div wire:click="selectType({{ $type->id }})"
+                                                                style="cursor: pointer"
+                                                                class="w-3 h-3 bg-success mr-3 mt-1 brround">
+                                                            </div>
+                                                        @else
+                                                            <div wire:click="selectType({{ $type->id }})"
+                                                                style="cursor: pointer"
+                                                                class="w-3 h-3 bg-gray mr-3 mt-1 brround">
                                                             </div>
                                                         @endif
-                                                        <h5 class="d-inline">{{ $type->title }}</h5>
+                                                        <h5 class="d-inline" style="cursor: pointer"
+                                                            wire:click="selectType({{ $type->id }})">
+                                                            {{ $type->title }}</h5>
                                                         <p class="mb-0 text-muted fs-12 ml-auto float-right">
                                                             <strong>
                                                                 <a wire:click="edit({{ $type->id }})"

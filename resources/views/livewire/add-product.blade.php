@@ -43,6 +43,16 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="expanel-footer">
+                                            <div class="form-group mb-0">
+                                                <label class="custom-switch">
+                                                    <input type="checkbox" wire:click="is_commercial()"
+                                                        class="custom-switch-input">
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <span class="custom-switch-description">Commercial ?</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                         @if ($is_promoteur)
                                             <div class="expanel-body">
                                                 <label class="form-label">Logo*</label>
