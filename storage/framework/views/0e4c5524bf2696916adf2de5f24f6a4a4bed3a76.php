@@ -1,6 +1,6 @@
 
 <?php $__env->startSection('title', 'Particulier a particulier'); ?>
-<?php $__env->startSection('logo', 'blue'); ?>
+<?php $__env->startSection('logo', 'purple'); ?>
 <?php $__env->startSection('bodyClasses', 'homepage-3 the-search'); ?>
 
 <?php $__env->startSection('css'); ?>
@@ -21,7 +21,8 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
-    <?php echo $__env->make('landing.location.hero', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('landing.hero', ['active' => 'location'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 
     <?php echo $__env->make('landing.location.catalogueProduits', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

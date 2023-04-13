@@ -8,28 +8,33 @@
                 <div class="row">
                     <div class="col-12" style="max-width: 700px">
                         <div class="banner-search-wrap" data-aos="zoom-in">
-                            <ul class="nav nav-tabs rld-banner-tab">
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab1" onclick="switchType('achat')">Achat</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab2" onclick="switchType('location')">Location</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab3" onclick="switchType('vacances')">Vacances</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab4" onclick="switchType('immoneuf')">ImmoNeuf</a>
-                                </li>
-                            </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active">
                                     <div class="rld-main-search">
-                                        <div class="row px-3 mb-2">
-                                            <div class="col-6 mb-4">
+                                        <ul class="nav nav-tabs rld-banner-tab mb-4">
+                                            <li class="nav-item mb-2">
+                                                <a class="nav-link" id="tab1"
+                                                    onclick="switchType('achat')">Achat</a>
+                                            </li>
+                                            <li class="nav-item mb-2">
+                                                <a class="nav-link" id="tab2"
+                                                    onclick="switchType('location')">Location</a>
+                                            </li>
+                                            <li class="nav-item mb-2">
+                                                <a class="nav-link" id="tab3"
+                                                    onclick="switchType('vacances')">Vacances</a>
+                                            </li>
+                                            <li class="nav-item ">
+                                                <a class="nav-link" id="tab4"
+                                                    onclick="switchType('immoneuf')">ImmoNeuf</a>
+                                            </li>
+                                        </ul>
+                                        <div class="row px-3 mb-2 ">
+                                            <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
-                                                        <select name="ville" class="select single-select mr-0">
+                                                        <select id="form_ville" name="ville"
+                                                            class="select single-select mr-0">
                                                             <option value="">Villes</option>
                                                             <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vll): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <option value="<?php echo e($vll); ?>"
@@ -42,7 +47,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6 mb-4">
+                                            <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
                                                         <select name="quartier" class="select single-select mr-0">
@@ -57,7 +62,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-6 mb-2">
+                                            <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-select">
                                                     <select name="type_id" class="select single-select mr-0">
                                                         <option value="">Type</option>
@@ -71,26 +76,25 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-6 mb-2">
+                                            <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
-                                                    <input name="nbr_pieces" value="<?php echo e($nbr_pieces); ?>" type="number"
-                                                        placeholder="Nbr. pieces" max="<?php echo e($nbr_pieces); ?>"
-                                                        value="<?php echo e($nbr_pieces); ?>">
+                                                    <input name="nbr_pieces" type="number" placeholder="Nbr. pieces"
+                                                        max="<?php echo e($nbr_pieces); ?>">
                                                 </div>
                                             </div>
-                                            <div class="col-6 mb-4">
+                                            <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
-                                                    <input name="surface_min" value="<?php echo e($surface_min); ?>"
-                                                        type="number" placeholder="Surface Min">
+                                                    <input name="surface_min" value="<?php echo e($surface_min); ?>" type="number"
+                                                        placeholder="Surface Min">
                                                 </div>
                                             </div>
-                                            <div class="col-6 mb-4">
+                                            <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <input name="prix_max" value="<?php echo e($prix_max); ?>" type="number"
                                                         placeholder="Prix Max">
                                                 </div>
                                             </div>
-                                            <div class="col-12 mb-4">
+                                            <div class="col-12 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <input name="reference" value="<?php echo e($reference); ?>" type="text"
                                                         placeholder="Réference...">
