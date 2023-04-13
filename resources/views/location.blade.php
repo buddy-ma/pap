@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Particulier a particulier')
-@section('logo', 'blue')
+@section('logo', 'purple')
 @section('bodyClasses', 'homepage-3 the-search')
 
 @section('css')

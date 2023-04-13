@@ -1,26 +1,25 @@
 <section class="blog-section bg-white-2 w-100">
     <div class="container">
         <div class="sec-title">
-            <?php if (isset($term)) : ?>
+            <?php if(isset($term)): ?>
                 <h2><span> <?php echo e(count($conseils)); ?> Resultats de </span>( <?php echo e($term); ?> )</h2>
-            <?php else : ?>
+            <?php else: ?>
                 <h2><span> Catalogue des </span>articles sur le Maroc.</h2>
             <?php endif; ?>
         </div>
         <div class="news-wrap">
             <div class="row">
-                <?php $__currentLoopData = $conseils;
-                $__env->addLoop($__currentLoopData);
-                foreach ($__currentLoopData as $cns) : $__env->incrementLoopIndices();
-                    $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $conseils; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cns): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
                             <a href="/blog/<?php echo e($cns->id); ?>" class="news-img-link">
                                 <div class="news-item-img">
-                                    <?php if (isset($cns->image)) : ?>
-                                        <img class="img-responsive" src="<?php echo e(asset('images/' . $cns->image)); ?>" alt="blog image">
-                                    <?php else : ?>
-                                        <img class="img-responsive" src="<?php echo e(asset('assets/images/blog/b-10.jpg')); ?>" alt="blog image">
+                                    <?php if(isset($cns->image)): ?>
+                                        <img class="img-responsive" src="<?php echo e(asset('images/' . $cns->image)); ?>"
+                                            alt="blog image">
+                                    <?php else: ?>
+                                        <img class="img-responsive" src="<?php echo e(asset('assets/images/blog/b-10.jpg')); ?>"
+                                            alt="blog image">
                                     <?php endif; ?>
                                 </div>
                             </a>
@@ -37,8 +36,8 @@
 
                                 <div class="news-item-descr big-news">
                                     <?php
-                                    $txt = strip_tags($cns->text);
-                                    $txt = html_entity_decode($txt);
+                                        $txt = strip_tags($cns->text);
+                                        $txt = html_entity_decode($txt);
                                     ?>
                                     <p><?php echo e(substr($txt, 0, 170)); ?>... </p>
                                 </div>
@@ -48,9 +47,7 @@
                             </div>
                         </div>
                     </div>
-                <?php endforeach;
-                $__env->popLoop();
-                $loop = $__env->getLastLoop(); ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                 <?php echo e($conseils->links()); ?>
 

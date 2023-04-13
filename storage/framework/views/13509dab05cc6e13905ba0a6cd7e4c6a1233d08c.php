@@ -6,7 +6,7 @@
         </div>
         <div class="portfolio row">
             <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="agents-grid col-xl-3 col-md-4 col-6">
+                <div class="agents-grid col-xl-3 col-md-4 col-12 mb-3">
                     <div class="landscapes">
                         <div class="project-single">
                             <div class="project-inner project-head">

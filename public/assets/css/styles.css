@@ -6011,14 +6011,26 @@ a.button,
 }
 
 .homepage-3 .hero-main {
-    padding: 200px 0 0;
+    padding: 160px 0 0;
 }
 
 @media (max-width: 550px) {
     .homepage-3 .hero-main {
-        padding: 160px 0 0;
+        padding: 100px 0 0;
     }
-
+    .decouvrez .hero-main,
+    .conseils .hero-main {
+        padding: 200px 0 0!important;
+    }
+    .decouvrez .welcome-area,
+    .conseils .welcome-area{
+        height: 540px;
+    }
+    .decouvrez .btn.btn-yellow,
+    .conseils .btn.btn-yellow{
+        height: 50px !important;
+        line-height: 48px;
+    }
     .homepage-3 .banner-inner h1 {
         font-size: 22px;
     }
@@ -6077,6 +6089,10 @@ a.button,
     opacity: 0.87;
     z-index: -1;
 }
+.homepage-3 .rld-banner-tab .nav-item a{
+    border: 2px solid #ebebeb;
+    box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.4);
+}
 
 .homepage-3 .rld-banner-tab .nav-item a.active,
 .homepage-3 .rld-banner-tab .nav-item a:hover,
@@ -6084,6 +6100,7 @@ a.button,
 .homepage-3 .range-slider .ui-widget-header,
 .homepage-3 .checkboxes input[type="checkbox"]:checked+label:before {
     background: #1266e3;
+    border: none;
 }
 
 .homepage-3 .parallax-searchs .form-group .nice-select i,
@@ -6431,6 +6448,29 @@ a.button,
 .homepage-3 .slick-dots li {
     -webkit-box-shadow: inset 0 0 0 2px #1266e3;
     box-shadow: inset 0 0 0 2px #1266e3;
+}
+
+.bg-blue .slick-dots li.slick-active {
+    -webkit-box-shadow: inset 0 0 0 6px #fff;
+    box-shadow: inset 0 0 0 6px #fff;
+}
+
+.bg-blue .slick-prev:hover,
+.bg-blue .slick-next:hover {
+    background: #fff;
+}
+
+.bg-blue .slick-dots li {
+    color: #fff;
+}
+
+.bg-blue .slick-dots li:after {
+    background: #fff;
+}
+
+.bg-blue .slick-dots li {
+    -webkit-box-shadow: inset 0 0 0 2px #fff;
+    box-shadow: inset 0 0 0 2px #fff;
 }
 
 .homepage-3 .popular-places .img-box {
@@ -6841,6 +6881,47 @@ a.button,
     z-index: -1;
 }
 
+.homepage-4 .info i {
+    font-size: 18px !important;
+    line-height: 40px !important;
+    color: #fff;
+    border-radius: 100px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding-bottom: 10px;
+    background: #0098ef;
+}
+
+.info p {
+    font-size: 18px !important;
+    line-height: 50px !important;
+    padding-bottom: 10px;
+    font-weight: 500;
+    color: #333;
+}
+
+@media (max-width: 500px) {
+    .homepage-4 .info i {
+        font-size: 12px !important;
+        line-height: 25px !important;
+        color: #fff;
+        border-radius: 100px;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        padding-bottom: 10px;
+        background: #0098ef;
+    }
+    
+    .homepage-4 .info p {
+        font-size: 12px !important;
+        line-height: 50px !important;
+        padding-bottom: 10px;
+        font-weight: 500;
+        color: #333;
+    }
+}
 /*BACKGROUND COLORS*/
 .homepage-4 .bg-gray {
     background-color: #f6f9fe;
@@ -13617,7 +13698,7 @@ form label.error {
 /* Search Form */
 .th-8 .parallax-search8 .trip-search {
     background: #fff;
-    padding: 30px;
+    padding: 20px;
     -webkit-box-shadow: 0 0 10px 7px rgba(0, 0, 0, 0.08);
     box-shadow: 0 0 10px 7px rgba(0, 0, 0, 0.08);
     border-radius: 5px;
@@ -14933,6 +15014,32 @@ a.button {
 
     .homepage-23 .banner-inner .sub-title {
         font-size: 15px;
+    }
+    .rld-banner-tab .nav-item a {
+        height: 30px;
+        line-height: 27px;
+        padding: 0 10px;
+        margin-right: 5px;
+        font-size:12px;
+    }
+    .px-xs-1{
+        padding-right: 0.25rem !important;
+        padding-left: 0.25rem !important; 
+    }
+    .d-xs-none{
+        display: none !important; 
+    }
+    .d-xs-inline{
+        display: inline !important;
+    }
+    .homepage-3 .portfolio .homes-content .homes-list li{
+        width: 45%;
+    }
+    .th-8 .header-image{
+        height: 110vh !important;
+    }
+    .th-8 .parallax-search8 .trip-search{
+        margin-top: 60px !important;
     }
 }
 
@@ -20153,7 +20260,6 @@ select:focus {
 @media screen and (max-width: 320px) {
     #logo img {
         width: 55px;
-        margin-right: 35px;
     }
 }
 

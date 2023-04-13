@@ -2,7 +2,7 @@
     border-radius: 8px;
 }
 .the-search .rld-main-search {
-    height: 380px;
+    height: 460px;
     padding: 30px 20px 30px 20px;
     border-radius: 8px;
 }
@@ -199,8 +199,12 @@ a.btn.btn-yellow:hover {
     .the-search .rld-main-search {
         display: flex;
         flex-direction: column;
-        height: 363px;
+        height: 460px;
         border-radius: 10px;
+    }
+    .the-search .rld-main-search,
+    .the-search .rld-main-search .rld-single-select .single-select {
+        margin-right: 0px;
     }
 }
 /* Range Slider
@@ -445,8 +449,12 @@ a.btn.btn-yellow:hover {
     .the-search .rld-main-search {
         display: flex;
         flex-direction: column;
-        height: 360px !important;
+        height: 400px !important;
         border-radius: 10px;
+    }
+    .homepage-3 .btn.btn-yellow{
+        height: 40px!important;
+        line-height: 38px;
     }
 
     .the-search .rld-single-select {

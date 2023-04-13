@@ -76,11 +76,12 @@
             .clone(true)
             .addClass("cloned sticky")
             .insertAfter("#header");
+        $("#header").hide();
+
         $("#navigation.style-2")
             .clone(true)
             .addClass("cloned sticky")
             .insertAfter("#navigation.style-2");
-
         // Logo for header style 2
         $("#logo .sticky-logo")
             .clone(true)
