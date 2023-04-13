@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Models\CommercialiserPage;
 use App\Models\CommercialiserContact;
 use App\Models\Product;
+use App\Models\ProductContact;
 use App\Models\ProductType;
+use App\Models\Proprietaire;
 
 class HomeController extends Controller
 {
@@ -18,10 +20,10 @@ class HomeController extends Controller
         $products = Product::where('status', 1)->get();
 
         $categoryConseils = Categorie::where('title', 'Conseils')->get();
-        $conseils = $categoryConseils[0]->blogs()->take(3)->get();
+        $conseils = $categoryConseils[0]->blogs()->get();
 
         $categoryMaroc = Categorie::where('title', 'DecouvrezLeMaroc')->get();
-        $articlesMaroc = $categoryMaroc[0]->blogs()->take(3)->get();
+        $articlesMaroc = $categoryMaroc[0]->blogs()->get();
 
         $citys = Ville::take(4)->get();
 
@@ -54,9 +56,8 @@ class HomeController extends Controller
     public function achat(Request $request)
     {
         if ($request->category_id) {
-            $products = Product::query()
-                ->where('status', 1)
-                ->where('product_category_id', $request->category_id)
+            $products = Product::where('status', 1)
+                ->whereIn('product_category_id', [1, 3])
                 ->when($request->ville, function ($q) use ($request) {
                     $q->where('ville', $request->ville);
                 })->when($request->quartier, function ($q) use ($request) {
@@ -66,18 +67,15 @@ class HomeController extends Controller
                 })->when($request->reference != '', function ($q) use ($request) {
                     $q->where('reference', 'like', $request->reference);
                 })->when($request->nbr_pieces, function ($q) use ($request) {
-                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                    $q->where('nbr_chambres', $request->nbr_pieces);
                 })->when($request->surface_min, function ($q) use ($request) {
-                    $q->where('surface_min', '>', $request->surface_min);
+                    $q->where('surface', '>', $request->surface_min);
                 })->when($request->prix_max, function ($q) use ($request) {
-                    $q->where('prix_max', '<', $request->prix_max);
+                    $q->where('prix', '<', $request->prix_max);
                 })
                 ->get();
         } else {
-            $products = Product::where([
-                'status' => 1,
-                'product_category_id' => 1,
-            ])->get();
+            $products = Product::where('status', 1)->where('product_category_id', 1)->orWhere('product_category_id', 3)->get();
         }
         $villes = Product::villes();
         $quartiers = Product::quartiers();
@@ -185,14 +183,16 @@ class HomeController extends Controller
 
         $villes = Product::villes();
         $quartiers = Product::quartiers();
-        $types = ProductType::where('product_category_id', 2)->get();
-        $nbr_pieces = Product::where('product_category_id', 2)->max('nbr_chambres');
+        $types = ProductType::where('product_category_id', 3)->get();
+        $nbr_pieces = Product::where('product_category_id', 3)->max('nbr_chambres');
+        $promoteurs = Proprietaire::where('is_promoteur', 1)->get();
 
         return view('immoneuf', [
             'products' => $products,
             'villes' => $villes,
             'quartiers' => $quartiers,
             'types' => $types,
+            'promoteurs' => $promoteurs,
             'nbr_pieces' => $nbr_pieces,
             'category_id' => $request->category_id,
             'type_id' => $request->type_id,
@@ -324,7 +324,16 @@ class HomeController extends Controller
     public function blogDetails($id)
     {
         $blog = Blog::findOrFail($id);
-        $similaires = Blog::take(3)->get();
+        $blog->vues++;
+        $blog->save();
+        $catgs = $blog->categories()->pluck('categorie_id')->toArray();
+        $similaires = Blog::leftjoin('blog_has_categories', 'blog_has_categories.blog_id', 'blogs.id')
+            ->select('blogs.*')
+            ->whereIn('blog_has_categories.categorie_id',  $catgs)
+            ->where('blogs.id', '!=', $id)
+            ->groupBy('blogs.id')
+            ->get();
+
         return view('blogDetail', [
             'blog' => $blog,
             'similaires' => $similaires,
@@ -376,43 +385,59 @@ class HomeController extends Controller
         return view('catalogue');
     }
 
-    public function heroForm(Request $request)
-    {
-        $category_id = $request->category_id ?? 0;
-        $type_id = $request->type_id ?? 0;
-        $ville = $request->ville ?? '';
-        $quartier = $request->quartier ?? '';
-        $nbr_pieces = $request->nbr_pieces;
-        $surface_min = $request->surface_min;
-        $prix_max = $request->prix_max ?? 100000000000;
-        $reference = $request->reference ?? '';
-
-        $products = Product::where('status', 1)
-            ->where('product_category_id', $category_id)
-            ->where('product_type_id', $type_id)
-            ->where('reference', 'like', $reference)
-            ->where('ville', 'like', $ville)
-            ->where('quartier', 'like', $quartier)
-            ->where('nbr_pieces', '>', $nbr_pieces)
-            ->where('surface_min', '>', $surface_min)
-            ->where('prix_max', '<', $prix_max)
-            ->get();
-
-
-        // if ($category_id == 1) {
-        // } elseif ($category_id == 2) {
-        // } elseif ($category_id == 3) {
-        // }
-    }
-
     public function produit($id)
     {
         $p = Product::findOrFail($id);
+        $p->vues++;
+        $p->save();
         $products = Product::where('status', 1)->take(3)->get();
-
+        $title = $p->category->title;
+        switch ($title) {
+            case 'Achat':
+                $color = 'blue';
+                break;
+            case 'Location':
+                $color = 'blue';
+                break;
+            case 'ImmoNeuf':
+                $color = 'green';
+                break;
+            case 'Vacances':
+                $color = 'orange';
+                break;
+            default:
+                $color = 'blue';
+                break;
+        }
         return view('produit', [
             'product' => $p,
-            'products' => $products
+            'products' => $products,
+            'color' => $color
         ]);
+    }
+
+    public function produitContact($id, Request $request)
+    {
+        $request->validate([
+            'fullname' => 'required|string|min:5|max:30',
+            'phone' => 'required|digits:10',
+            'email' => 'nullable|email|min:5|max:255',
+            'message' => 'required|string|min:5|max:255',
+        ]);
+
+        $fullname = $request->fullname;
+        $phone = $request->phone;
+        $email = $request->email;
+        $message = $request->message;
+
+        $contact = new ProductContact();
+        $contact->product_id = $id;
+        $contact->fullname = $fullname;
+        $contact->phone = $phone;
+        $contact->email = $email;
+        $contact->message = $message;
+        $contact->save();
+
+        return redirect()->back()->with('success', 'Envoyé avec success');
     }
 }

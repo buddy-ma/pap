@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductBiens;
 use Livewire\Component;
 use App\Models\ProductType;
 use App\Models\Proprietaire;
@@ -15,13 +16,14 @@ use App\Models\ProductCategory;
 class EditProduct extends Component
 {
     use WithFileUploads;
+    protected $listeners = ['submitAddBien'];
 
     public $product;
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
-    public $category, $type, $title, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
-    public $images = [], $i = 0;
+    public $images = [], $productbiens = [], $i = 0;
 
     public function mount($id)
     {
@@ -34,6 +36,7 @@ class EditProduct extends Component
         $this->type = $this->product->product_type_id;
         $this->category = $this->product->product_category_id;
         $this->title = $this->product->title;
+        $this->reference = $this->product->reference;
         $this->description = $this->product->description;
         $this->position = $this->product->latitude . ',' . $this->product->longitude;
         $this->ville = $this->product->ville;
@@ -56,6 +59,14 @@ class EditProduct extends Component
             $this->images[$key] = $value->image;
         }
         array_push($this->images, $this->i);
+
+        foreach (json_decode($this->product->biens) as $key => $value) {
+            $this->productbiens[$key] = [
+                'title' => $value->title,
+                'price' => $value->price,
+                'surface' => $value->surface,
+            ];
+        }
     }
 
     public function render()
@@ -63,8 +74,8 @@ class EditProduct extends Component
         $this->producttypes = ProductType::when($this->category != 0, function ($query) {
             $query->where('product_category_id', $this->category);
         })->get();
-        $this->productextras = ProductExtras::when($this->category != 0, function ($query) {
-            $query->where('product_category_id', $this->category);
+        $this->productextras = ProductExtras::when($this->type != 0, function ($query) {
+            $query->where('product_type_id', $this->type);
         })->get();
 
         return view('livewire.edit-product');
@@ -76,6 +87,7 @@ class EditProduct extends Component
         $this->validate([
             'type' => 'required',
             'title' => 'required|string|max:255|min:1',
+            'reference' => 'required|string|max:255|min:1',
             'description' => 'required|min:1',
             'position' => 'required|string|max:255|min:1',
             'ville' => 'required|string|max:255|min:1',
@@ -131,6 +143,7 @@ class EditProduct extends Component
         $this->product->product_type_id = $this->type;
         $this->product->product_category_id = $this->category;
         $this->product->title = $this->title;
+        $this->product->reference = $this->reference;
         $this->product->description = $this->description;
         $e = explode(",", $this->position);
         $this->product->latitude = $e[0];
@@ -150,6 +163,7 @@ class EditProduct extends Component
         $extra = json_encode($this->hasextras);
         $this->product->extras = $extra;
         $this->product->save();
+
         if (isset($this->images)) {
             foreach ($this->images as $img) {
                 if (is_file($img)) {
@@ -160,6 +174,18 @@ class EditProduct extends Component
                         'image' => $img_title
                     ]);
                 }
+            }
+        }
+        ProductBiens::where('product_id',  $this->product->id)->delete();
+
+        if (isset($this->productbiens)) {
+            foreach ($this->productbiens as $bien) {
+                ProductBiens::create([
+                    'product_id' => $this->product->id,
+                    'title' => $bien['title'],
+                    'price' => $bien['price'],
+                    'surface' => $bien['surface'],
+                ]);
             }
         }
         $this->dispatchBrowserEvent('swal:modal', [
@@ -185,5 +211,24 @@ class EditProduct extends Component
     public function removeimg($key)
     {
         unset($this->images[$key]);
+    }
+
+    public function addBien()
+    {
+        $this->dispatchBrowserEvent('swal:addBien');
+    }
+
+    public function submitAddBien($title, $prix, $surface)
+    {
+        $this->productbiens[] = [
+            'title'  => $title,
+            'price'   => $prix,
+            'surface' => $surface
+        ];
+    }
+
+    public function removebien($key)
+    {
+        unset($this->productbiens[$key]);
     }
 }

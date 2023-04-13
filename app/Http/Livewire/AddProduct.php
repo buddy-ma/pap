@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
+use App\Models\ProductBiens;
 use Livewire\Component;
 use App\Models\ProductType;
 use App\Models\Proprietaire;
@@ -11,6 +12,7 @@ use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 use App\Rules\PhoneValidation;
 use App\Models\ProductCategory;
+use Illuminate\Support\Facades\Auth;
 
 class AddProduct extends Component
 {
@@ -18,9 +20,11 @@ class AddProduct extends Component
 
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
-    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
-    public $images = [], $i = 0;
+    public $images = [], $productbiens = [], $i = 0, $j = 0;
+
+    protected $listeners = ['submitAddBien'];
 
     public function mount()
     {
@@ -34,8 +38,8 @@ class AddProduct extends Component
             $query->where('product_category_id', $this->category);
         })->get();
 
-        $this->productextras = ProductExtras::when($this->category != 0, function ($query) {
-            $query->where('product_category_id', $this->category);
+        $this->productextras = ProductExtras::when($this->type != 0, function ($query) {
+            $query->where('product_type_id', $this->type);
         })->get();
         return view('livewire.add-product');
     }
@@ -54,6 +58,7 @@ class AddProduct extends Component
             'address' => 'required|string|max:255|min:1',
             'prix' => 'required',
             'video' => 'nullable|string|max:255|min:1',
+            'disponibilite' => 'nullable|string|max:255|min:1',
             'vr' => 'nullable|string|max:255|min:1',
             'unite_surface' => 'required',
             'surface' => 'required',
@@ -61,9 +66,17 @@ class AddProduct extends Component
             'surface_terrain' => 'nullable',
             'nbr_salons' => 'required',
             'nbr_chambres' => 'required',
-            'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
-            'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
         ]);
+
+        if (isset($this->images)) {
+            foreach ($this->images as $img) {
+                $img = str_replace(' ', '', $img->getClientOriginalName());
+            }
+            $this->validate([
+                'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
+            ]);
+        }
 
         if (!$this->is_commercial) {
             $this->validate([
@@ -97,10 +110,15 @@ class AddProduct extends Component
                 $this->pdf->storeAs('public/product/pdf', $pdf);
                 $proprietaire->pdf = $pdf;
             }
+            $proprietaire->is_promoteur = 1;
         }
+
         $proprietaire->save();
 
         $product = new Product();
+        if ($this->is_commercial) {
+            $product->user_id = Auth::guard('web')->id();
+        }
         $product->proprietaire_id = $proprietaire->id;
         $product->product_type_id = $this->type;
         $product->product_category_id = $this->category;
@@ -115,6 +133,7 @@ class AddProduct extends Component
         $product->address = $this->address;
         $product->prix = $this->prix;
         $product->video_link = $this->video ?? '';
+        $product->disponibilite = $this->disponibilite ?? '';
         $product->vr_link = $this->vr ?? '';
         $product->unite_surface = $this->unite_surface;
         $product->surface = $this->surface;
@@ -135,6 +154,17 @@ class AddProduct extends Component
                 ]);
             }
         }
+        ProductBiens::where('product_id',  $product->id)->delete();
+        if (isset($this->productbiens)) {
+            foreach ($this->productbiens as $bien) {
+                ProductBiens::create([
+                    'product_id' => $product->id,
+                    'title' => $bien['title'],
+                    'price' => $bien['price'],
+                    'surface' => $bien['surface'],
+                ]);
+            }
+        }
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
             'text' => 'Saved successfully !'
@@ -148,6 +178,23 @@ class AddProduct extends Component
         $this->is_promoteur = !$this->is_promoteur;
     }
 
+    public function is_commercial()
+    {
+        $this->is_commercial = !$this->is_commercial;
+        if ($this->is_commercial) {
+            $user = Auth::guard('web')->user();
+            $this->firstname = $user->firstname;
+            $this->lastname = $user->lastname;
+            $this->phone = $user->phone;
+            $this->email = $user->email;
+        } else {
+            $this->firstname = '';
+            $this->lastname = '';
+            $this->phone = '';
+            $this->email = '';
+        }
+    }
+
     public function addImage()
     {
         $this->i++;
@@ -158,5 +205,27 @@ class AddProduct extends Component
     public function removeimg($key)
     {
         unset($this->images[$key]);
+    }
+
+
+
+    public function addBien()
+    {
+        $this->dispatchBrowserEvent('swal:addBien');
+    }
+
+    public function submitAddBien($title, $prix, $surface)
+    {
+        $this->productbiens[$this->j] = [
+            'title'  => $title,
+            'price'   => $prix,
+            'surface' => $surface
+        ];
+        $this->j++;
+    }
+
+    public function removebien($key)
+    {
+        unset($this->productbiens[$key]);
     }
 }
