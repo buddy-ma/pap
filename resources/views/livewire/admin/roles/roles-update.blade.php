@@ -48,7 +48,7 @@
                                                         class="table table-bordered mp-0 table-striped table-vcenter border-top text-nowrap">
                                                         <tbody>
                                                             <tr
-                                                                @isset($select[0]) style="background-color:#f4eefd"
+                                                                @isset($select[0]) style="background-color:#5300d0"
                                                                 @endisset>
                                                                 <td><label class="custom-control custom-checkbox">
                                                                         <input type="checkbox"
@@ -64,7 +64,7 @@
                                                             @foreach ($permissions as $permission)
                                                                 <tr
                                                                     @isset($select[$permission->id])
-                                                                style="background-color:#f4eefd" @endisset>
+                                                                style="background-color:#5300d0" @endisset>
                                                                     <td><label class="custom-control custom-checkbox">
                                                                             <input type="checkbox"
                                                                                 class="custom-control-input"

@@ -48,7 +48,7 @@
                                                         class="table table-bordered mp-0 table-striped table-vcenter border-top text-nowrap">
                                                         <tbody>
                                                             <tr
-                                                                <?php if(isset($select[0])): ?> style="background-color:#f4eefd"
+                                                                <?php if(isset($select[0])): ?> style="background-color:#5300d0"
                                                                 <?php endif; ?>>
                                                                 <td><label class="custom-control custom-checkbox">
                                                                         <input type="checkbox"
@@ -64,7 +64,7 @@
                                                             <?php $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <tr
                                                                     <?php if(isset($select[$permission->id])): ?>
-                                                                style="background-color:#f4eefd" <?php endif; ?>>
+                                                                style="background-color:#5300d0" <?php endif; ?>>
                                                                     <td><label class="custom-control custom-checkbox">
                                                                             <input type="checkbox"
                                                                                 class="custom-control-input"

@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-5-all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
 
-    <link rel="stylesheet" href="css/leaflet.css">
-    <link rel="stylesheet" href="css/leaflet-gesture-handling.min.css">
-    <link rel="stylesheet" href="css/leaflet.markercluster.css">
-    <link rel="stylesheet" href="css/leaflet.markercluster.default.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet-gesture-handling.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet.markercluster.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/leaflet.markercluster.default.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/search-form.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/search.css') }}">
@@ -85,7 +85,7 @@
     <script src="{{ asset('assets/js/leaflet-gesture-handling.min.js') }}"></script>
     <script src="{{ asset('assets/js/leaflet-providers.js') }}"></script>
     <script src="{{ asset('assets/js/leaflet.markercluster.js') }}"></script>
-    <script src="{{ asset('assets/js/map-single.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/map-single.js') }}"></script> --}}
 
     <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.counterup.min.js') }}"></script>
@@ -106,14 +106,8 @@
     <script src="{{ asset('assets/js/color-switcher.js') }}"></script>
     <script src="{{ asset('assets/js/inner.js') }}"></script>
 
-    <script>
-        $(window).on('scroll load', function() {
-            $("#header.cloned #logo img").attr("src", $('#header #logo img').attr('data-sticky-logo'));
-        });
-    </script>
-
-    <script src="{{ asset('revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script src="{{ asset('revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
+    <script src="{{ asset('assets/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{ asset('assets/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
 
     <script>
         $('.slick-lancers').slick({
@@ -154,6 +148,41 @@
         $('.slick-lancers2').slick({
             infinite: false,
             slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: true,
+            arrows: false,
+            adaptiveHeight: true,
+            responsive: [{
+                breakpoint: 1292,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 993,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    dots: true,
+                    arrows: false
+                }
+            }, {
+                breakpoint: 769,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true,
+                    arrows: false
+                }
+            }, ]
+        });
+    </script>
+    <script>
+        $('.slick-blogs').slick({
+            infinite: false,
+            slidesToShow: 3,
             slidesToScroll: 1,
             dots: true,
             arrows: false,
@@ -275,8 +304,12 @@
         </script>
     @endif
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <!-- END HEADER SEARCH -->
-
+    <script>
+        function villeTag(t) {
+            $('#form_ville').val(t);
+            $('#heroForm').submit();
+        }
+    </script>
     @yield('js')
 
 </body>

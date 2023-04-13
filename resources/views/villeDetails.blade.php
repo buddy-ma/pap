@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Blog')
+@section('title', $ville->title)
 @section('logo', 'blue')
 @section('bodyClasses', 'inner-pages hd-white')
 
@@ -16,12 +16,12 @@
 @endsection
 @section('content')
 
-    <section class="headings">
+    {{-- <section class="headings">
         <div class="text-heading text-center">
         </div>
-    </section>
+    </section> --}}
 
-    <section class="blog blog-section bg-white">
+    <section class="blog blog-section bg-white mt-2">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
@@ -42,6 +42,18 @@
             </div>
         </div>
     </section>
+
+    @isset($ville->video)
+        <div class="container">
+            <div class="property wprt-image-video w50 pro vid-si2">
+                <h5>Video</h5>
+                <div style="position:relative;padding-top:56.25%;">
+                    <iframe src="{{ $ville->video }}" frameborder="0" allowfullscreen
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                </div>
+            </div>
+        </div>
+    @endisset
 
     @include('landing.decouvrezMaroc.villeBlogs')
 

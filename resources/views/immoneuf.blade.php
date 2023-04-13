@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Particulier a particulier')
+@section('title', 'IMMO NEUF')
 @section('logo', 'green')
 @section('bodyClasses', 'homepage-3 the-search')
 

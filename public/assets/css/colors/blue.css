@@ -336,3 +336,6 @@ section.pricing-table {
     padding: 6rem 0;
     background: #fff;
 }
+.portfolio .homes-content .homes-address .fa-map-marker{
+	color: #0098ef;
+}

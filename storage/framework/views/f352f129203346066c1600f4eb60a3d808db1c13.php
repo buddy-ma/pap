@@ -45,15 +45,15 @@
     <?php
 if (! isset($_instance)) {
     $html = \Livewire\Livewire::mount('add-product')->html();
-} elseif ($_instance->childHasBeenRendered('83YOSjj')) {
-    $componentId = $_instance->getRenderedChildComponentId('83YOSjj');
-    $componentTag = $_instance->getRenderedChildComponentTagName('83YOSjj');
+} elseif ($_instance->childHasBeenRendered('mfvIjao')) {
+    $componentId = $_instance->getRenderedChildComponentId('mfvIjao');
+    $componentTag = $_instance->getRenderedChildComponentTagName('mfvIjao');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('83YOSjj');
+    $_instance->preserveRenderedChild('mfvIjao');
 } else {
     $response = \Livewire\Livewire::mount('add-product');
     $html = $response->html();
-    $_instance->logRenderedChild('83YOSjj', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('mfvIjao', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
@@ -89,8 +89,50 @@ echo $html;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
-    <script src="/js/app.js"></script>
+    <script src="<?php echo e(URL::asset('js/app.js')); ?>"></script>
+    <script>
+        window.addEventListener('swal:addBien', event => {
+            var form = document.createElement("div");
+            form.innerHTML = `
+                <div class="form-row">
+                    <div class="form-group col-6 mb-0">
+                        <div class="form-group">
+                            <label class="form-label text-left">Titre*</label>
+                            <input type="text" name="title" class="form-control" id="title" required/>
+                        </div>
+                    </div>
+                    <div class="form-group col-6 mb-0">
+                        <div class="form-group">
+                            <label class="form-label text-left">Prix*</label>
+                            <input type="text" name="prix" class="form-control" id="prix" required/>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 mb-0">
+                        <div class="form-group">
+                            <label class="form-label text-left">Surface*</label>
+                            <input type="text" name="surface" class="form-control" id="surface" /><br>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            new swal({
+                title: 'Ajouter appartement',
+                html: form,
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                showLoaderOnConfirm: true,
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var title = document.getElementById("title").value;
+                    var prix = document.getElementById("prix").value;
+                    var surface = document.getElementById("surface").value;
+                    Livewire.emit('submitAddBien', title, prix, surface);
+                }
+            });
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/products/product-add.blade.php ENDPATH**/ ?>

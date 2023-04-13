@@ -36,7 +36,6 @@
 @section('js')
     <script>
         function tags($t) {
-            console.log($t);
             $('#search').val($t);
             $('#decouvrezMaroc').submit();
         }

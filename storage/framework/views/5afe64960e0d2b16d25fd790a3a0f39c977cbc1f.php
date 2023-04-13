@@ -1,11 +1,12 @@
-<header id="header-container" class="header head-tr">
+<header id="header-container" class="header head-tr ">
     <!-- Header -->
     <div id="header" class="head-tr bottom">
         <div class="container container-header">
             <div id="logo">
-                <a href="/test"><img src="<?php echo e(asset('assets/images/logo-white.png')); ?>"
-                        data-sticky-logo="<?php echo e(asset('assets/images/logo-' . app()->view->getSections()['logo'] . '.png')); ?>"
-                        alt=""></a>
+                <a href="/">
+                    <img src="<?php echo e(asset('assets/images/logo-' . app()->view->getSections()['logo'] . '.png')); ?>"
+                        alt="logo">
+                </a>
             </div>
             <!-- Mobile Navigation -->
             <div class="mmenu-trigger">
@@ -18,13 +19,14 @@
             <!-- Main Navigation -->
             <nav id="navigation" class="style-1 head-tr">
                 <ul id="responsive">
-                    <li><a href="/test">Achat</a></li>
-                    <li><a href="/">Location</a></li>
-                    <li><a href="/">Vacances</a></li>
-                    <li><a href="/">Immo neuf</a></li>
-                    <li><a href="/">Conseils</a></li>
+                    <li><a href="/achat">Achat</a></li>
+                    <li><a href="/location">Location</a></li>
+                    <li><a href="/vacances">Vacances</a></li>
+                    <li><a href="/immoneuf">Immo neuf</a></li>
+                    <li><a href="/conseils">Conseils</a></li>
                     <li><a href="/decouvrezMaroc">Decouvrez le maroc</a></li>
                     <li><a href="/commercialiser">Commercialiser Votre bien</a></li>
+                    <li><a href="/catalog">Nos Services</a></li>
                 </ul>
             </nav>
         </div>

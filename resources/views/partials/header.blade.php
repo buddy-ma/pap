@@ -3,9 +3,10 @@
     <div id="header" class="head-tr bottom">
         <div class="container container-header">
             <div id="logo">
-                <a href="/"><img src="{{ asset('assets/images/logo-white.png') }}"
-                        data-sticky-logo="{{ asset('assets/images/logo-' . app()->view->getSections()['logo'] . '.png') }}"
-                        alt=""></a>
+                <a href="/">
+                    <img src="{{ asset('assets/images/logo-' . app()->view->getSections()['logo'] . '.png') }}"
+                        alt="logo">
+                </a>
             </div>
             <!-- Mobile Navigation -->
             <div class="mmenu-trigger">

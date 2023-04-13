@@ -50,6 +50,9 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Edit Blog </h3>
+                    <button class="btn btn-success float-right ml-auto" onclick="event.preventDefault();askBefore();">
+                        Save
+                    </button>
                 </div>
                 <div class="card-body pb-2">
                     @if ($message = Session::get('success'))
@@ -69,8 +72,8 @@
                         </div>
                     @endif
                     @can('user-edit')
-                        <form action="{{ route('blog-update', [$blog->id]) }}" method='POST' role="form"
-                            enctype="multipart/form-data">
+                        <form action="{{ route('blog-update', [$blog->id]) }}" onsubmit="event.preventDefault(); askBefore()"
+                            method='POST' role="form" id="blog-update" enctype="multipart/form-data">
                             @csrf
                             <input id="user_id" type="hidden" value="{{ $blog->id }}">
                         @endcan
@@ -94,13 +97,10 @@
                                         @if ($categories)
                                             <?php $dash = ''; ?>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->title }}
+                                                <option value="{{ $category->id }}"
+                                                    {{ in_array($category->id, $catgs) ? 'selected' : '' }}>
+                                                    {{ $category->title }}
                                                 </option>
-                                                @if (count($category->children) > 0)
-                                                    @include('admin.mains-admin.blogs.subcateg-list', [
-                                                        'subcategories' => $category->children,
-                                                    ])
-                                                @endif
                                             @endforeach
                                         @endif
                                     </select>
@@ -144,7 +144,8 @@
 
                         @can('user-edit')
                             <div class="btn-list text-right">
-                                <input type="submit" value="Save" name="action" class="btn btn-primary">
+                                <input type="submit" value="Save" onclick="event.preventDefault();askBefore();"
+                                    name="action" class="btn btn-primary">
                             </div>
                         @endcan
                     </form>
@@ -195,4 +196,19 @@
         });
     </script>
     <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        function askBefore() {
+            new swal({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'C\'est fini'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('blog-update').submit();
+                }
+            })
+        }
+    </script>
 @endsection

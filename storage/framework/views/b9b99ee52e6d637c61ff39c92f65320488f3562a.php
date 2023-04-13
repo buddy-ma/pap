@@ -94,26 +94,18 @@
                                                     <td><?php echo e($blog->created_at); ?></td>
                                                     <td>
 
-                                                        <form action="<?php echo e(route('blog-delete', [$blog->id])); ?>"
-                                                            method="post">
-                                                            <?php echo method_field('delete'); ?>
-                                                            <?php echo csrf_field(); ?>
-                                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-edit')): ?>
-                                                                <a href="<?php echo e(route('show-blog-update', [$blog->id])); ?>"
-                                                                    class="btn btn-primary">
-                                                                    <i class="fe fe-edit"></i>
-                                                                </a>
-                                                                <a href="<?php echo e(route('show-blog-show', [$blog->id])); ?>"
-                                                                    class="btn btn-success <?php echo e($blog->ismodified && $blog->status == 0 ? 'flash' : ''); ?>">
-                                                                    <i class="fe fe-eye"></i>
-                                                                </a>
-                                                            <?php endif; ?>
-                                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-delete')): ?>
-                                                                <button type="submit" class="btn btn-danger">
-                                                                    <i class="fe fe-trash"></i>
-                                                                </button>
-                                                            <?php endif; ?>
-                                                        </form>
+                                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-edit')): ?>
+                                                            <a href="<?php echo e(route('show-blog-update', [$blog->id])); ?>"
+                                                                class="btn btn-primary">
+                                                                <i class="fe fe-edit"></i>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-delete')): ?>
+                                                            <button type="button" class="btn btn-danger"
+                                                                wire:click="delete(<?php echo e($blog->id); ?>)">
+                                                                <i class="fe fe-trash"></i>
+                                                            </button>
+                                                        <?php endif; ?>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

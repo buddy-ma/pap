@@ -91,26 +91,19 @@
                                                     </td>
                                                     <td>{{ $blog->created_at }}</td>
                                                     <td>
-                                                        <form action="{{ route('blog-delete', [$blog->id]) }}"
-                                                            method="post">
-                                                            @method('delete')
-                                                            @csrf
-                                                            @can('blog-edit')
-                                                                <a href="{{ route('show-blog-update', [$blog->id]) }}"
-                                                                    class="btn btn-primary">
-                                                                    <i class="fe fe-edit"></i>
-                                                                </a>
-                                                                <a href="{{ route('show-blog-show', [$blog->id]) }}"
-                                                                    class="btn btn-success {{ $blog->ismodified && $blog->status == 0 ? 'flash' : '' }}">
-                                                                    <i class="fe fe-eye"></i>
-                                                                </a>
-                                                            @endcan
-                                                            @can('blog-delete')
-                                                                <button type="submit" class="btn btn-danger">
-                                                                    <i class="fe fe-trash"></i>
-                                                                </button>
-                                                            @endcan
-                                                        </form>
+
+                                                        @can('blog-edit')
+                                                            <a href="{{ route('show-blog-update', [$blog->id]) }}"
+                                                                class="btn btn-primary">
+                                                                <i class="fe fe-edit"></i>
+                                                            </a>
+                                                        @endcan
+                                                        @can('blog-delete')
+                                                            <button type="button" class="btn btn-danger"
+                                                                wire:click="delete({{ $blog->id }})">
+                                                                <i class="fe fe-trash"></i>
+                                                            </button>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -56,7 +56,7 @@ a.button.border, a.button {
 .slick-next:hover {
     color: transparent;
     outline: none;
-    background: #18ba60;
+    background: #f7a13e;
 }
 .welcome-title h2 span,
 .welcome-title h2 span {
@@ -343,4 +343,78 @@ section.pricing-table {
 }
 .blog-section .action-list .fa-heart {
     color: #f7a13e;
+}
+.homepage-3 .btn,
+.homepage-3 .btn:active,
+.homepage-3 .btn.sApp-btn::before,
+.homepage-3 .bg-overlay::after,
+.homepage-3 .benifits-item::after {
+	background: #f7a13e !important;
+}
+.homepage-3 a.btn.btn-yellow:hover {
+	background: #f7a13e !important;
+    color: #fff;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.homepage-3 .rld-banner-tab .nav-item a.active,
+.homepage-3 .rld-banner-tab .nav-item a:hover,
+.homepage-3 .rld-banner-tab .nav-item a.active:before,
+.homepage-3 .range-slider .ui-widget-header,
+.homepage-3 .checkboxes input[type="checkbox"]:checked+label:before {
+    background: #f7a13e;
+}
+
+.homepage-3 .btn:hover,
+.homepage-3 .popular-places .listing-badges .featured,
+.homepage-3 .homes-tag.featured {
+    background: #f7a13e !important;
+}
+
+.homepage-3 .welcome-area {
+    background: linear-gradient(-36deg,
+            rgba(56, 33, 12, 0.2) 0%,
+            rgba(29, 19, 4, 0.2) 100%),
+        url(../../images/bg/purple.png) no-repeat scroll center center/cover;
+}
+
+.inner-pages .btn:hover,
+.inner-pages .popular-places .listing-badges .featured,
+.inner-pages .homes-tag.featured {
+    background: #f7a13e !important;
+}
+
+.inner-pages .rld-banner-tab .nav-item a.active,
+.inner-pages .rld-banner-tab .nav-item a:hover,
+.inner-pages .rld-banner-tab .nav-item a.active:before,
+.inner-pages .range-slider .ui-widget-header,
+.inner-pages .checkboxes input[type="checkbox"]:checked+label:before {
+    background: #f7a13e;
+}
+
+.inner-pages .btn,
+.inner-pages .btn:active,
+.inner-pages .btn.sApp-btn:before,
+.inner-pages .bg-overlay::after,
+.inner-pages .benifits-item:after {
+    background: #f7a13e !important;
+}
+
+.inner-pages a.btn.btn-yellow:hover {
+    background: #f7a13e !important;
+    color: #fff;
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.portfolio .homes-content .homes-address .fa-map-marker{
+	color: #f7a13e;
+}
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #f7a13e;
+    color: white;
 }

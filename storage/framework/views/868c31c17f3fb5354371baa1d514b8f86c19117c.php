@@ -12,26 +12,6 @@
             max-height: 200px !important;
             height: auto;
         }
-
-        .info i {
-            font-size: 18px !important;
-            line-height: 40px !important;
-            color: #fff;
-            border-radius: 100px;
-            width: 40px;
-            height: 40px;
-            text-align: center;
-            padding-bottom: 10px;
-            background: #0098ef;
-        }
-
-        .info p {
-            font-size: 18px !important;
-            line-height: 50px !important;
-            padding-bottom: 10px;
-            font-weight: 500;
-            color: #333;
-        }
     </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
