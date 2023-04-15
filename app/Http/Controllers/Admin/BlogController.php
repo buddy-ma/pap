@@ -17,9 +17,19 @@ class BlogController extends Controller
         return view('admin.mains-admin.blogs.blog-list');
     }
 
+    public function new()
+    {
+        return view('admin.mains-admin.blogs.blog-new');
+    }
+
     public function decouvrez()
     {
         return view('admin.mains-admin.blogs.blog-decouvrez');
+    }
+
+    public function decouvrezNew()
+    {
+        return view('admin.mains-admin.blogs.blog-decouvrez-new');
     }
 
     public function add()
@@ -83,6 +93,7 @@ class BlogController extends Controller
             $blog->pdf_link = $filenamepdf;
         }
 
+        $blog->status = 0;
         $blog->save();
         $blog->categories()->sync($request->categories);
         session()->flash('success', 'Blog has been created successfully');
@@ -140,6 +151,7 @@ class BlogController extends Controller
             $blog->pdf_link = $filenamepdf;
         }
 
+        $blog->status = 0;
         $blog->save();
         $blog->categories()->sync([9]);
         session()->flash('success', 'Blog ajouté avec success');
@@ -148,7 +160,6 @@ class BlogController extends Controller
 
     public function update($id)
     {
-
         $blog = Blog::find($id);
 
         $catgs = $blog->categories()->pluck('categorie_id')->toArray();
@@ -221,7 +232,7 @@ class BlogController extends Controller
         return redirect('admin/blogs');
     }
 
-    function restore($id)
+    public function restore($id)
     {
         Blog::withTrashed()
             ->where('id', $id)
@@ -230,11 +241,18 @@ class BlogController extends Controller
         return redirect('admin/blogs');
     }
 
-    function changeStatus(Request $request)
+    public function approve($id)
+    {
+        $blog = Blog::find($id);
+        $blog->approved = 1;
+        $blog->save();
+        return redirect('/admin/blogs')->with('success', 'Blog has been approved sucssefuly');
+    }
+
+    public function changeStatus(Request $request)
     {
         $user = Blog::find($request->user_id);
         $user->status = $request->status;
-        dd($request->status);
         $user->save();
         return response()->json(['success' => 'Status change successfully.']);
     }
