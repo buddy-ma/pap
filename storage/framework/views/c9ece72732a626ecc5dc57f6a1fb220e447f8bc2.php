@@ -18,8 +18,11 @@
                                                         placeholder="Recherchez">
                                                 </div>
                                             </div>
-                                            <div class="col-3">
-                                                <button class="btn btn-yellow w-100" type="submit">Recherchez</button>
+                                            <div class="col-3 px-xs-1">
+                                                <button class="btn btn-yellow w-100 d-xs-none"
+                                                    type="submit">Recherchez</button>
+                                                <button class="btn btn-yellow w-100 d-md-none" type="submit"><i
+                                                        class="fa fa-search"></i></button>
                                             </div>
                                         </div>
                                     </form>

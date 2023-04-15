@@ -12,19 +12,19 @@
                                 <div class="tab-pane fade show active">
                                     <div class="rld-main-search">
                                         <ul class="nav nav-tabs rld-banner-tab mb-4">
-                                            <li class="nav-item">
+                                            <li class="nav-item mb-2">
                                                 <a class="nav-link" id="tab1"
                                                     onclick="switchType('achat')">Achat</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item mb-2">
                                                 <a class="nav-link" id="tab2"
                                                     onclick="switchType('location')">Location</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item mb-2">
                                                 <a class="nav-link" id="tab3"
                                                     onclick="switchType('vacances')">Vacances</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item ">
                                                 <a class="nav-link" id="tab4"
                                                     onclick="switchType('immoneuf')">ImmoNeuf</a>
                                             </li>
