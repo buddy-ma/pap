@@ -173,11 +173,7 @@
             </li>
         <?php endif; ?>
 
-        <?php if(Auth::user()->hasAnyPermission([
-                'commercialiser-contact-list',
-                'commercialiser-contact-edit',
-                'commercialiser-contact-delete',
-            ])): ?>
+        <?php if(Auth::user()->hasAnyPermission(['commercialiser-landing'])): ?>
             <li class="slide mt-3">
                 <a class="side-menu__item" data-toggle="slide">
                     <svg class="side-menu__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"

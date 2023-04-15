@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title', 'Blog'); ?>
+<?php $__env->startSection('title', $ville->title); ?>
 <?php $__env->startSection('logo', 'blue'); ?>
 <?php $__env->startSection('bodyClasses', 'inner-pages hd-white'); ?>
 
@@ -16,12 +16,9 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
-    <section class="headings">
-        <div class="text-heading text-center">
-        </div>
-    </section>
+    
 
-    <section class="blog blog-section bg-white">
+    <section class="blog blog-section bg-white mt-2">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-xs-12">
@@ -43,6 +40,18 @@
             </div>
         </div>
     </section>
+
+    <?php if(isset($ville->video)): ?>
+        <div class="container">
+            <div class="property wprt-image-video w50 pro vid-si2">
+                <h5>Video</h5>
+                <div style="position:relative;padding-top:56.25%;">
+                    <iframe src="<?php echo e($ville->video); ?>" frameborder="0" allowfullscreen
+                        style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 
     <?php echo $__env->make('landing.decouvrezMaroc.villeBlogs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

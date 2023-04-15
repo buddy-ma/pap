@@ -125,7 +125,7 @@
                                                 <input type="text" wire:model="vr" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Position*</label>
+                                                <label class="form-label">Position</label>
                                                 <input type="text" wire:model="position" class="form-control" />
                                             </div>
                                             <div class="form-group">

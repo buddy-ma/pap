@@ -1,7 +1,7 @@
 <section class="blog-section bg-white-2 w-100">
     <div class="container">
         <div class="sec-title">
-            <h2><span> Catalogue des </span>articles sur le Maroc.</h2>
+            <h2><span> Decouvrez </span> le Maroc.</h2>
         </div>
         <div class="news-wrap">
             <div class="row">

@@ -43,6 +43,16 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="expanel-footer">
+                                            <div class="form-group mb-0">
+                                                <label class="custom-switch">
+                                                    <input type="checkbox" wire:click="is_commercial()"
+                                                        class="custom-switch-input">
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <span class="custom-switch-description">Commercial ?</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                         <?php if($is_promoteur): ?>
                                             <div class="expanel-body">
                                                 <label class="form-label">Logo*</label>
@@ -99,6 +109,13 @@
                                                 <label class="form-label">Prix*</label>
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
+                                            <?php if($category == 3): ?>
+                                                <div class="form-group">
+                                                    <label class="form-label">Disponibilite</label>
+                                                    <input type="text" wire:model.defer="disponibilite"
+                                                        class="form-control" value="Livraison ..." />
+                                                </div>
+                                            <?php endif; ?>
                                             <div class="form-group">
                                                 <label class="form-label">Video</label>
                                                 <input type="text" wire:model="video" class="form-control" />
@@ -108,14 +125,13 @@
                                                 <input type="text" wire:model="vr" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Position*</label>
+                                                <label class="form-label">Position</label>
                                                 <input type="text" wire:model="position" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Ville*</label>
                                                 <input type="text" wire:model="ville" class="form-control" />
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
                                                 <input type="text" wire:model="quartier" class="form-control" />
@@ -184,14 +200,14 @@
                                         </div>
                                         <div class="expanel-body">
                                             <div class="row">
-                                                <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="col-12 mb-3">
                                                         <label class="form-label">Image <?php echo e($loop->iteration); ?>*</label>
                                                         <input type="file" data-height="100"
-                                                            wire:model="images.<?php echo e($loop->index); ?>" />
+                                                            wire:model="images.<?php echo e($key); ?>" />
                                                         <button class="btn btn-danger ml-auto float-right"
                                                             type="button"
-                                                            wire:click="removeimg(<?php echo e($loop->index); ?>)">
+                                                            wire:click="removeimg(<?php echo e($key); ?>)">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </div>
@@ -204,6 +220,48 @@
                                         </div>
                                     </div>
                                 </div>
+                                <?php if($category == 3): ?>
+                                    <div class="e-panel mt-3">
+                                        <div class="expanel expanel-default">
+                                            <div class="expanel-heading">
+                                                <h3 class="expanel-title text-center">Biens inclus</h3>
+                                            </div>
+                                            <div class="expanel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                        <tbody>
+                                                            <?php if(isset($productbiens)): ?>
+                                                                <?php $__currentLoopData = $productbiens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $bien): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <tr class="">
+                                                                        <td
+                                                                            class="view-message dont-show font-weight-semibold">
+                                                                            <?php echo e($bien['title']); ?>
+
+                                                                        </td>
+                                                                        <td class="view-message"><?php echo e($bien['price']); ?> dh
+                                                                        </td>
+                                                                        <td class="view-message"><?php echo e($bien['surface']); ?>m²
+                                                                        </td>
+                                                                        <td class="view-message text-center font-weight-semibold"
+                                                                            wire:click="removebien(<?php echo e($key); ?>)">
+                                                                            <i class="fe fe-trash"></i>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            <?php endif; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="expanel-footer">
+                                                <button class="btn btn-primary btn-block" type="button"
+                                                    wire:click="addBien">
+                                                    Ajouter Appartement
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

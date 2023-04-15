@@ -4,7 +4,7 @@
             @isset($term)
                 <h2><span> {{ count($conseils) }} Resultats de </span>( {{ $term }} )</h2>
             @else
-                <h2><span> Catalogue des </span>articles sur le Maroc.</h2>
+                <h2><span> Catalogue des </span>conseils immobilier.</h2>
             @endisset
         </div>
         <div class="news-wrap">
