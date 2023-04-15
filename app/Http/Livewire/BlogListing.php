@@ -32,7 +32,7 @@ class BlogListing extends Component
         $blogs = Blog::leftJoin('blog_has_categories as bc', 'bc.blog_id', 'blogs.id')
             ->when($this->selected_category != 0, function ($query) {
                 $query->where('bc.categorie_id', $this->selected_category);
-            })
+            })->where('blogs.approved', 1)
             ->groupBy('bc.blog_id')
             ->select('blogs.*')
             ->search(trim($this->search))

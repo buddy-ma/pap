@@ -84,6 +84,9 @@
                         @can('blog-list')
                             <a class="slide-item" href="{{ url('/admin/blogs/decouvrez') }}">Tous les articles</a>
                         @endcan
+                        @can('blog-new')
+                            <a class="slide-item" href="{{ url('/admin/blogs/decouvrez/new') }}">Nouveaux articles</a>
+                        @endcan
                     </li>
                 </ul>
             </li>
@@ -105,6 +108,9 @@
                     <li>
                         @can('blog-list')
                             <a class="slide-item" href="{{ url('/admin/blogs') }}">Tous les articles</a>
+                        @endcan
+                        @can('blog-new')
+                            <a class="slide-item" href="{{ url('/admin/blogs/new') }}">Nouveaux articles</a>
                         @endcan
                         @can('blog-create')
                             <a class="slide-item" href="{{ url('/admin/blogs/add') }}">Ajouter un article</a>

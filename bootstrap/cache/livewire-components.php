@@ -3,6 +3,8 @@
   'blog-categories-admin' => 'App\\Http\\Livewire\\BlogCategoriesAdmin',
   'blog-listing' => 'App\\Http\\Livewire\\BlogListing',
   'blog-listing-decouvrez' => 'App\\Http\\Livewire\\BlogListingDecouvrez',
+  'blog-listing-decouvrez-new' => 'App\\Http\\Livewire\\BlogListingDecouvrezNew',
+  'blog-listing-new' => 'App\\Http\\Livewire\\BlogListingNew',
   'commercialiser-contacts-admin' => 'App\\Http\\Livewire\\CommercialiserContactsAdmin',
   'commercialiser-page-admin' => 'App\\Http\\Livewire\\CommercialiserPageAdmin',
   'edit-product' => 'App\\Http\\Livewire\\EditProduct',

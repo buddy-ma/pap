@@ -50,9 +50,15 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Edit Blog </h3>
-                    <button class="btn btn-success float-right ml-auto" onclick="event.preventDefault();askBefore();">
-                        Save
-                    </button>
+                    <div class="btn-group float-right ml-auto">
+                        <button class="btn btn-secondary"
+                            onclick="event.preventDefault();askBeforeApprove({{ $blog->id }});">
+                            Approve
+                        </button>
+                        <button class="btn btn-primary" onclick="event.preventDefault();askBefore();">
+                            Save
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body pb-2">
                     @if ($message = Session::get('success'))
@@ -207,6 +213,19 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('blog-update').submit();
+                }
+            })
+        }
+
+        function askBeforeApprove(id) {
+            new swal({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'C\'est fini'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/admin/blogs/approve/" + id;
                 }
             })
         }

@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Ville;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 
@@ -51,6 +53,21 @@ class AppServiceProvider extends ServiceProvider
                     'logo_wh' => "$logo_wh",
                 ]);
             }
+        });
+
+        view()->composer(['partials.footer'], function ($view) {
+            $conseils_cat = Categorie::where('title', 'Conseils')->first();
+            $dm_cat = Categorie::where('title', 'DecouvrezLeMaroc')->first();
+
+            $villes = Ville::get()->take(5);
+            $all_conseils = $conseils_cat->blogs()->where('status', 1)->where('approved', 1)->take(5)->get();
+            $all_dm = $dm_cat->blogs()->where('status', 1)->where('approved', 1)->take(5)->get();
+
+            $view->with([
+                'villes' => $villes,
+                'all_conseils' => $all_conseils,
+                'all_dm' => $all_dm
+            ]);
         });
     }
 }
