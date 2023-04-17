@@ -23,6 +23,7 @@ class AddProduct extends Component
     public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $productbiens = [], $j = 0;
+    public $clicked = false;
 
     protected $listeners = ['submitAddBien'];
 
@@ -53,7 +54,7 @@ class AddProduct extends Component
             'title' => 'required|string|max:255|min:1',
             'reference' => 'required|string|max:255|min:1',
             'description' => 'required|min:1',
-            'position' => 'nullable|string|max:255|min:1',
+            'position' => 'nullable|string',
             'ville' => 'required|string|max:255|min:1',
             'quartier' => 'required|string|max:255|min:1',
             'address' => 'required|string|max:255|min:1',
@@ -131,11 +132,7 @@ class AddProduct extends Component
         $product->title = $this->title;
         $product->reference = $this->reference;
         $product->description = $this->description;
-        if ($this->position) {
-            $e = explode(",", $this->position);
-            $product->latitude = $e[0];
-            $product->longitude = $e[1];
-        }
+        $product->position = $this->position;
         $product->ville = $this->ville;
         $product->quartier = $this->quartier;
         $product->address = $this->address;
@@ -205,6 +202,7 @@ class AddProduct extends Component
         }
     }
 
+
     // public function addImage()
     // {
     //     $this->i++;
@@ -235,5 +233,15 @@ class AddProduct extends Component
     public function removebien($key)
     {
         unset($this->productbiens[$key]);
+    }
+
+    public function getSrc()
+    {
+        if (isset($this->position)) {
+            $html = $this->position;
+            preg_match('~iframe.*src="([^"]*)"~', $html, $result);
+            $this->position = $result[1];
+        }
+        $this->clicked = true;
     }
 }

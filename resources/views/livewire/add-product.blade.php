@@ -161,7 +161,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Position</label>
-                                                <input type="text" wire:model="position" class="form-control" />
+                                                <div class="input-group">
+                                                    <input type="text" wire:model="position"
+                                                        class="form-control" />
+                                                    @if (!$clicked)
+                                                        <button class="btn btn btn-primary br-tl-0 br-bl-0"
+                                                            type="button" wire:click="getSrc()">save</button>
+                                                    @endif
+                                                </div>
                                             </div>
                                             @if ($category == 1 || $category == 3)
                                                 <div class="form-group">
