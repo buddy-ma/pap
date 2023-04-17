@@ -1,9 +1,6 @@
 .header-top {
 	background: #ff7503;
 }
-a.button.border, a.button {
-    background: #ff7503;
-}
 #main-menu ul li a:hover {
 	background: #ff7503;
 }
@@ -54,8 +51,6 @@ a.button.border, a.button {
 }
 .slick-prev:hover,
 .slick-next:hover {
-    color: transparent;
-    outline: none;
     background: #ff7503;
 }
 .welcome-title h2 span,
@@ -66,7 +61,7 @@ a.button.border, a.button {
 	color: #ff7503;
 }
 .welcome .wprt-image-video .iq-waves .waves {
-	background: rgb(247, 161, 62) none repeat scroll 0 0 padding-box;
+	background: rgb(229, 66, 66) none repeat scroll 0 0 padding-box;
 }
 .services-home .bg-base {
 	background: #ff7503;
@@ -132,9 +127,14 @@ a.button.border, a.button {
 }
 .second-footer {
 	background: #ff7503;
+    color: black !important;
+}
+.second-footer i{
+    color: black !important;
 }
 .go-up {
 	background: #ff7503!important;
+    color: black !important;
 }
 .main-search-field {
 	background: #ff7503;
@@ -270,7 +270,7 @@ a.button.border, a.button {
 	background: #ff7503;
 }
 .single-blog-post .img-box .overlay {
-	background: rgba(247, 161, 62, 0.8);
+	background: rgba(229, 66, 66, 0.8);
 }
 .inner-pages .form-control {
 	border: 1px solid #ff7503;
@@ -332,27 +332,17 @@ section.pricing-table {
     padding: 6rem 0;
     background: #fff;
 }
-.btn.btn-outline-light {
-    background-color: #ff7503;
-}
-.blog-section .action-list .fa-comment {
-    color: #ff7503;
-}
-.blog-section .action-list .fa-share-alt {
-    color: #ff7503;
-}
-.blog-section .action-list .fa-heart {
-    color: #ff7503;
-}
+
 .homepage-3 .btn,
 .homepage-3 .btn:active,
-.homepage-3 .btn.sApp-btn::before,
+.homepage-3 .btn.sApp-btn:before,
 .homepage-3 .bg-overlay::after,
-.homepage-3 .benifits-item::after {
-	background: #ff7503 !important;
+.homepage-3 .benifits-item:after {
+    background: linear-gradient(-47deg, #ff7503 0%, #ffcf33 100%);
 }
+
 .homepage-3 a.btn.btn-yellow:hover {
-	background: #ff7503 !important;
+    background: linear-gradient(180deg, #ffcf33 0%, #ff7503 100%) !important;
     color: #fff;
     -webkit-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
@@ -374,50 +364,7 @@ section.pricing-table {
 
 .homepage-3 .welcome-area {
     background: linear-gradient(-36deg,
-            rgba(56, 33, 12, 0.2) 0%,
-            rgba(29, 19, 4, 0.2) 100%),
+            rgba(32, 12, 56, 0.2) 0%,
+            rgba(27, 4, 29, 0.2) 100%),
         url(../../images/bg/morocco2.jpg) no-repeat scroll center center/cover;
-}
-
-.inner-pages .btn:hover,
-.inner-pages .popular-places .listing-badges .featured,
-.inner-pages .homes-tag.featured {
-    background: #ff7503 !important;
-}
-
-.inner-pages .rld-banner-tab .nav-item a.active,
-.inner-pages .rld-banner-tab .nav-item a:hover,
-.inner-pages .rld-banner-tab .nav-item a.active:before,
-.inner-pages .range-slider .ui-widget-header,
-.inner-pages .checkboxes input[type="checkbox"]:checked+label:before {
-    background: #ff7503;
-}
-
-.inner-pages .btn,
-.inner-pages .btn:active,
-.inner-pages .btn.sApp-btn:before,
-.inner-pages .bg-overlay::after,
-.inner-pages .benifits-item:after {
-    background: #ff7503 !important;
-}
-
-.inner-pages a.btn.btn-yellow:hover {
-    background: #ff7503 !important;
-    color: #fff;
-    -webkit-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
-}
-
-.portfolio .homes-content .homes-address .fa-map-marker{
-	color: #ff7503;
-}
-#customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #ff7503;
-    color: white;
-}
-.decouvrez .blog-section .news-link{
-	color: #ff7503;
 }

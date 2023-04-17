@@ -4,6 +4,8 @@
 @section('bodyClasses', 'decouvrez homepage-3 the-search')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/css/colors/orange.css') }}">
+
     <style>
         .ville-tags {
             background: #ddd !important;

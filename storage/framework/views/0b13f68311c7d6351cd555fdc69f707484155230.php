@@ -40,6 +40,8 @@
         </div>
     </section>
 
+    <?php echo $__env->make('landing.decouvrezMaroc.villeBlogs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
     <?php if(isset($ville->video)): ?>
         <div class="container">
             <div class="property wprt-image-video w50 pro vid-si2">
@@ -51,8 +53,6 @@
             </div>
         </div>
     <?php endif; ?>
-
-    <?php echo $__env->make('landing.decouvrezMaroc.villeBlogs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>

@@ -3,6 +3,8 @@
 <?php $__env->startSection('bodyClasses', 'decouvrez homepage-3 the-search'); ?>
 
 <?php $__env->startSection('css'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/colors/orange.css')); ?>">
+
     <style>
         .ville-tags {
             background: #ddd !important;
@@ -25,9 +27,11 @@
 
     <?php echo $__env->make('landing.decouvrezMaroc.hero', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <?php echo $__env->make('landing.decouvrezMaroc.villes-tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
 
-    <?php echo $__env->make('landing.tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
+
+    <?php echo $__env->make('landing.index.catalogueConseilsMaroc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <?php echo $__env->make('landing.decouvrezMaroc.catalogueConseilsMaroc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

@@ -5973,21 +5973,21 @@ a.button,
     background: linear-gradient(-36deg,
             rgba(77, 165, 255, 0.2) 0%,
             rgba(49, 84, 232, 0.2) 100%),
-        url(../images/bg/video-poster2.jpg) no-repeat scroll center center/cover;
+        url(../images/bg/bg_index.jpg) no-repeat scroll center center/cover;
 }
 
 .decouvrez .welcome-area {
     background: linear-gradient(-36deg,
             rgba(0, 0, 0, 0.2) 0%,
             rgba(0, 18, 18, 0.2) 100%),
-        url(../images/bg/morocco.jpg) no-repeat scroll center center/cover;
+        url(../images/bg/morocco2.jpg) no-repeat scroll center center/cover;
 }
 
 .conseils .welcome-area {
     background: linear-gradient(-36deg,
             rgba(0, 0, 0, 0.2) 0%,
             rgba(0, 18, 18, 0.2) 100%),
-        url(../images/bg/conseils.jpg) no-repeat scroll center center/cover;
+        url(../images/bg/bg_conseils.jpg) no-repeat scroll center center/cover;
 }
 
 .homepage-3 .welcome-area {
@@ -6011,7 +6011,7 @@ a.button,
 }
 
 .homepage-3 .hero-main {
-    padding: 160px 0 0;
+    padding: 250px 0 0;
 }
 
 @media (max-width: 550px) {

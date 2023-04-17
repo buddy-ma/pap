@@ -37,7 +37,7 @@
                                         <p><?php echo e(substr($txt, 0, 170)); ?>... </p>
                                     </div>
                                     <div class="news-item-bottom">
-                                        <a href="/blog/<?php echo e($city->id); ?>" class="news-link">Read more...</a>
+                                        <a href="/ville/<?php echo e($city->id); ?>" class="news-link">Read more...</a>
                                     </div>
                                 </div>
                             </div>

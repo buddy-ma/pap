@@ -4,6 +4,8 @@
 @section('bodyClasses', 'conseils homepage-3 the-search')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/css/colors/red.css') }}">
+
     <style>
         .tags {
             background: #555 !important;

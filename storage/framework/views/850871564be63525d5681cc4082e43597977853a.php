@@ -4,7 +4,7 @@
             <?php if(isset($term)): ?>
                 <h2><span> <?php echo e(count($conseils)); ?> Resultats de </span>( <?php echo e($term); ?> )</h2>
             <?php else: ?>
-                <h2><span> Catalogue des </span>articles sur le Maroc.</h2>
+                <h2><span> Catalogue des </span>conseils immobilier.</h2>
             <?php endif; ?>
         </div>
         <div class="news-wrap">
@@ -48,8 +48,6 @@
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                <?php echo e($conseils->links()); ?>
 
             </div>
         </div>

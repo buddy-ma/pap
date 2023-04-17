@@ -37,7 +37,7 @@
                                         <p>{{ substr($txt, 0, 170) }}... </p>
                                     </div>
                                     <div class="news-item-bottom">
-                                        <a href="/blog/{{ $city->id }}" class="news-link">Read more...</a>
+                                        <a href="/ville/{{ $city->id }}" class="news-link">Read more...</a>
                                     </div>
                                 </div>
                             </div>

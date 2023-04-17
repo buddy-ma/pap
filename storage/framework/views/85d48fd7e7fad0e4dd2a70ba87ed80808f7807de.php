@@ -3,6 +3,8 @@
 <?php $__env->startSection('bodyClasses', 'conseils homepage-3 the-search'); ?>
 
 <?php $__env->startSection('css'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/colors/red.css')); ?>">
+
     <style>
         .tags {
             background: #555 !important;

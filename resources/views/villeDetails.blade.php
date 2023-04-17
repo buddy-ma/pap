@@ -43,6 +43,8 @@
         </div>
     </section>
 
+    @include('landing.decouvrezMaroc.villeBlogs')
+
     @isset($ville->video)
         <div class="container">
             <div class="property wprt-image-video w50 pro vid-si2">
@@ -54,8 +56,6 @@
             </div>
         </div>
     @endisset
-
-    @include('landing.decouvrezMaroc.villeBlogs')
 
 @endsection
 @section('js')
