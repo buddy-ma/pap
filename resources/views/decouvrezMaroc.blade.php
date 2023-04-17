@@ -26,9 +26,11 @@
 
     @include('landing.decouvrezMaroc.hero')
 
-    @include('landing.decouvrezMaroc.villes-tags')
+    {{-- @include('landing.decouvrezMaroc.villes-tags') --}}
 
-    @include('landing.tags')
+    {{-- @include('landing.tags') --}}
+
+    @include('landing.index.catalogueConseilsMaroc')
 
     @include('landing.decouvrezMaroc.catalogueConseilsMaroc')
 

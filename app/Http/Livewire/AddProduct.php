@@ -52,7 +52,7 @@ class AddProduct extends Component
             'title' => 'required|string|max:255|min:1',
             'reference' => 'required|string|max:255|min:1',
             'description' => 'required|min:1',
-            'position' => 'required|string|max:255|min:1',
+            'position' => 'nullable|string|max:255|min:1',
             'ville' => 'required|string|max:255|min:1',
             'quartier' => 'required|string|max:255|min:1',
             'address' => 'required|string|max:255|min:1',
@@ -127,9 +127,11 @@ class AddProduct extends Component
         $product->title = $this->title;
         $product->reference = $this->reference;
         $product->description = $this->description;
-        $e = explode(",", $this->position);
-        $product->latitude = $e[0];
-        $product->longitude = $e[1];
+        if ($this->position) {
+            $e = explode(",", $this->position);
+            $product->latitude = $e[0];
+            $product->longitude = $e[1];
+        }
         $product->ville = $this->ville;
         $product->quartier = $this->quartier;
         $product->address = $this->address;

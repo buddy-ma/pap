@@ -5,11 +5,11 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Villes</h3>
+                        <h3>Achat</h3>
                         <div class="nav-footer">
                             <ul>
-                                @foreach ($villes as $ville)
-                                    <li><a href="/ville/{{ $ville->id }}">{{ $ville->title }}</a></li>
+                                @foreach ($achat as $ach)
+                                    <li><a href="/produit/{{ $ach->id }}">{{ $ach->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -17,11 +17,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Conseils</h3>
+                        <h3>Location</h3>
                         <div class="nav-footer">
                             <ul>
-                                @foreach ($all_conseils as $conseil)
-                                    <li><a href="/blog/{{ $conseil->id }}">{{ $conseil->title }}</a></li>
+                                @foreach ($location as $loc)
+                                    <li><a href="/produit/{{ $loc->id }}">{{ $loc->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -29,11 +29,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Decouvrez le maroc</h3>
+                        <h3>ImmoNeuf</h3>
                         <div class="nav-footer">
                             <ul>
-                                @foreach ($all_dm as $dm)
-                                    <li><a href="/blog/{{ $dm->id }}">{{ $dm->title }}</a></li>
+                                @foreach ($immoneuf as $immo)
+                                    <li><a href="/produit/{{ $immo->id }}">{{ $immo->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -41,11 +41,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Decouvrez le maroc</h3>
+                        <h3>Vacances</h3>
                         <div class="nav-footer">
                             <ul>
-                                @foreach ($all_dm as $dm)
-                                    <li><a href="/blog/{{ $dm->id }}">{{ $dm->title }}</a></li>
+                                @foreach ($vacances as $vc)
+                                    <li><a href="/blog/{{ $vc->id }}">{{ $vc->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>

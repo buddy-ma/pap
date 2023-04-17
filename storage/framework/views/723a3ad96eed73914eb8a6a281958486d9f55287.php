@@ -85,6 +85,9 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/blogs/decouvrez')); ?>">Tous les articles</a>
                         <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-new')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/blogs/decouvrez/new')); ?>">Nouveaux articles</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </li>
@@ -106,6 +109,9 @@
                     <li>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/blogs')); ?>">Tous les articles</a>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-new')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/blogs/new')); ?>">Nouveaux articles</a>
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-create')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/blogs/add')); ?>">Ajouter un article</a>
@@ -173,11 +179,7 @@
             </li>
         <?php endif; ?>
 
-        <?php if(Auth::user()->hasAnyPermission([
-                'commercialiser-contact-list',
-                'commercialiser-contact-edit',
-                'commercialiser-contact-delete',
-            ])): ?>
+        <?php if(Auth::user()->hasAnyPermission(['commercialiser-landing'])): ?>
             <li class="slide mt-3">
                 <a class="side-menu__item" data-toggle="slide">
                     <svg class="side-menu__icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"

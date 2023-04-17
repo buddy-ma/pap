@@ -48,9 +48,6 @@
                         </div>
                     </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                <?php echo e($articlesMaroc->links()); ?>
-
             </div>
         </div>
     </div>
