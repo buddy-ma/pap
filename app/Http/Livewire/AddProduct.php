@@ -68,14 +68,16 @@ class AddProduct extends Component
             'nbr_chambres' => 'required',
         ]);
 
-        if (isset($this->images)) {
-            foreach ($this->images as $img) {
+
+        $j = 0;
+        foreach ($this->images as $img) {
+            if (isset($img)) {
+                $this->validate([
+                    'images.' . $j => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                ]);
                 $img = str_replace(' ', '', $img->getClientOriginalName());
+                ++$j;
             }
-            $this->validate([
-                'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
-                'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
-            ]);
         }
 
         if (!$this->is_commercial) {

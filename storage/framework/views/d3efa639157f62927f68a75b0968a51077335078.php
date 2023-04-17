@@ -112,8 +112,8 @@
                                             <?php if($category == 3): ?>
                                                 <div class="form-group">
                                                     <label class="form-label">Disponibilite</label>
-                                                    <input type="text" wire:model="disponibilite"
-                                                        class="form-control" />
+                                                    <input type="text" wire:model.defer="disponibilite"
+                                                        class="form-control" value="Livraison ..." />
                                                 </div>
                                             <?php endif; ?>
                                             <div class="form-group">
