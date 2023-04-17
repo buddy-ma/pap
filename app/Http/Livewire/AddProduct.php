@@ -22,14 +22,15 @@ class AddProduct extends Component
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
     public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
-    public $images = [], $productbiens = [], $i = 0, $j = 0;
+    public $images = [], $productbiens = [], $j = 0;
 
     protected $listeners = ['submitAddBien'];
 
     public function mount()
     {
         $this->productcategories = ProductCategory::get();
-        array_push($this->images, $this->i);
+        $this->images = array_fill_keys(array(0, 1, 2, 3, 4, 5, 6, 7), '');
+        $this->unite_surface = 'm²';
     }
 
     public function render()
@@ -64,16 +65,19 @@ class AddProduct extends Component
             'surface' => 'required',
             'surface_habitable' => 'nullable',
             'surface_terrain' => 'nullable',
-            'nbr_salons' => 'required',
+            'nbr_salons' => 'nullable',
             'nbr_chambres' => 'required',
+            'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+        ], [
+            'images.0.required' => 'Vous devez insérer au moins une image'
         ]);
 
 
-        $j = 0;
+        $j = 1;
         foreach ($this->images as $img) {
-            if (isset($img)) {
+            if (isset($img) && !empty($img)) {
                 $this->validate([
-                    'images.' . $j => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                    'images.' . $j => 'image|mimes:jpeg,jpg,png,svg|max:2048',
                 ]);
                 $img = str_replace(' ', '', $img->getClientOriginalName());
                 ++$j;
@@ -150,12 +154,14 @@ class AddProduct extends Component
         $product->save();
         if (isset($this->images)) {
             foreach ($this->images as $img) {
-                $img_title = md5(microtime()) . '.' . $img->extension();
-                $img->storeAs('public/product/images/', $img_title);
-                ProductImages::create([
-                    'product_id' => $product->id,
-                    'image' => $img_title
-                ]);
+                if (isset($img) && !empty($img)) {
+                    $img_title = md5(microtime()) . '.' . $img->extension();
+                    $img->storeAs('public/product/images/', $img_title);
+                    ProductImages::create([
+                        'product_id' => $product->id,
+                        'image' => $img_title
+                    ]);
+                }
             }
         }
         ProductBiens::where('product_id',  $product->id)->delete();
@@ -199,19 +205,17 @@ class AddProduct extends Component
         }
     }
 
-    public function addImage()
-    {
-        $this->i++;
+    // public function addImage()
+    // {
+    //     $this->i++;
 
-        array_push($this->images, $this->i);
-    }
+    //     array_push($this->images, $this->i);
+    // }
 
     public function removeimg($key)
     {
-        unset($this->images[$key]);
+        $this->images[$key] = null;
     }
-
-
 
     public function addBien()
     {

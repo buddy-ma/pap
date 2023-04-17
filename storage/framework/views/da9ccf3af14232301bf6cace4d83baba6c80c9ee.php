@@ -5,11 +5,11 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Villes</h3>
+                        <h3>Achat</h3>
                         <div class="nav-footer">
                             <ul>
-                                <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/ville/<?php echo e($ville->id); ?>"><?php echo e($ville->title); ?></a></li>
+                                <?php $__currentLoopData = $achat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ach): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><a href="/produit/<?php echo e($ach->id); ?>"><?php echo e($ach->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
@@ -17,11 +17,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Conseils</h3>
+                        <h3>Location</h3>
                         <div class="nav-footer">
                             <ul>
-                                <?php $__currentLoopData = $all_conseils; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conseil): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/blog/<?php echo e($conseil->id); ?>"><?php echo e($conseil->title); ?></a></li>
+                                <?php $__currentLoopData = $location; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $loc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><a href="/produit/<?php echo e($loc->id); ?>"><?php echo e($loc->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
@@ -29,11 +29,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Decouvrez le maroc</h3>
+                        <h3>ImmoNeuf</h3>
                         <div class="nav-footer">
                             <ul>
-                                <?php $__currentLoopData = $all_dm; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dm): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/blog/<?php echo e($dm->id); ?>"><?php echo e($dm->title); ?></a></li>
+                                <?php $__currentLoopData = $immoneuf; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $immo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><a href="/produit/<?php echo e($immo->id); ?>"><?php echo e($immo->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
@@ -41,11 +41,11 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="navigation">
-                        <h3>Decouvrez le maroc</h3>
+                        <h3>Vacances</h3>
                         <div class="nav-footer">
                             <ul>
-                                <?php $__currentLoopData = $all_dm; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $dm): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/blog/<?php echo e($dm->id); ?>"><?php echo e($dm->title); ?></a></li>
+                                <?php $__currentLoopData = $vacances; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><a href="/blog/<?php echo e($vc->id); ?>"><?php echo e($vc->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>

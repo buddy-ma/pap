@@ -136,7 +136,9 @@
                             <i class="fa fa-map-pin mr-3"></i>{{ $product->ville }}, {{ $product->quartier }},
                             {{ $product->address }}
                         </p>
-                        <div id="map-contact" class="contact-map"></div>
+                        <iframe src="{{ $product->position }}" width="100%" height="450" style="border:0;"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
                     </div>
 
                     @include('landing.product.similarProduits')

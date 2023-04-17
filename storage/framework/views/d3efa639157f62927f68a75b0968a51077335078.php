@@ -109,25 +109,6 @@
                                                 <label class="form-label">Prix*</label>
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
-                                            <?php if($category == 3): ?>
-                                                <div class="form-group">
-                                                    <label class="form-label">Disponibilite</label>
-                                                    <input type="text" wire:model.defer="disponibilite"
-                                                        class="form-control" value="Livraison ..." />
-                                                </div>
-                                            <?php endif; ?>
-                                            <div class="form-group">
-                                                <label class="form-label">Video</label>
-                                                <input type="text" wire:model="video" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Visite Virtuelle</label>
-                                                <input type="text" wire:model="vr" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Position*</label>
-                                                <input type="text" wire:model="position" class="form-control" />
-                                            </div>
                                             <div class="form-group">
                                                 <label class="form-label">Ville*</label>
                                                 <input type="text" wire:model="ville" class="form-control" />
@@ -153,28 +134,48 @@
                                                 <label class="form-label">Surface*</label>
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nbr Chambres*</label>
+                                                <input type="number" wire:model="nbr_chambres"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nbr Salons</label>
+                                                <input type="number" wire:model="nbr_salons" class="form-control" />
+                                            </div>
+
+                                            <?php if($category == 3): ?>
+                                                <div class="form-group">
+                                                    <label class="form-label">Disponibilite</label>
+                                                    <input type="text" wire:model.defer="disponibilite"
+                                                        class="form-control" value="Livraison ..." />
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="form-group">
+                                                <label class="form-label">Video</label>
+                                                <input type="text" wire:model="video" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Visite Virtuelle</label>
+                                                <input type="text" wire:model="vr" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Position</label>
+                                                <input type="text" wire:model="position" class="form-control" />
+                                            </div>
                                             <?php if($category == 1 || $category == 3): ?>
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Habitable</label>
                                                     <input type="text" wire:model="surface_habitable"
                                                         class="form-control" />
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Terrain</label>
                                                     <input type="text" wire:model="surface_terrain"
                                                         class="form-control" />
                                                 </div>
                                             <?php endif; ?>
-                                            <div class="form-group">
-                                                <label class="form-label">Nbr Salons*</label>
-                                                <input type="number" wire:model="nbr_salons" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Nbr Chambres*</label>
-                                                <input type="number" wire:model="nbr_chambres"
-                                                    class="form-control" />
-                                            </div>
+
                                         </div>
                                         <div class="expanel-body">
                                             <ul class="list-group">
@@ -213,10 +214,7 @@
                                                     </div>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>
-                                            <button class="btn btn-primary btn-block" type="button"
-                                                wire:click="addImage">
-                                                Ajouter Image
-                                            </button>
+                                            
                                         </div>
                                     </div>
                                 </div>

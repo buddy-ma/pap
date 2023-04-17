@@ -1,7 +1,7 @@
 <section class="blog-section bg-blue w-100">
     <div class="container">
         <div class="sec-title text-white">
-            <h2 class="text-white"><span class="text-white">Catalogue des </span>Conseils</h2>
+            <h2 class="text-white"><span class="text-white">Conseils </span>Immobilier</h2>
         </div>
         <div class="portfolio col-xl-12">
             <div class="slick-blogs">

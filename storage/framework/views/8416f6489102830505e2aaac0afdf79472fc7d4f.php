@@ -133,7 +133,9 @@
                             <?php echo e($product->address); ?>
 
                         </p>
-                        <div id="map-contact" class="contact-map"></div>
+                        <iframe src="<?php echo e($product->position); ?>" width="100%" height="450" style="border:0;"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
                     </div>
 
                     <?php echo $__env->make('landing.product.similarProduits', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
