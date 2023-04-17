@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use App\Models\Ville;
+use App\Models\Product;
 use App\Models\Categorie;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -61,17 +62,16 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer(['partials.footer'], function ($view) {
-            $conseils_cat = Categorie::where('title', 'Conseils')->first();
-            $dm_cat = Categorie::where('title', 'DecouvrezLeMaroc')->first();
-
-            $villes = Ville::get()->take(5);
-            $all_conseils = $conseils_cat->blogs()->where('status', 1)->where('approved', 1)->take(5)->get();
-            $all_dm = $dm_cat->blogs()->where('status', 1)->where('approved', 1)->take(5)->get();
+            $achat = Product::where('status', 1)->where('product_category_id', 1)->get()->take(5);
+            $location = Product::where('status', 1)->where('product_category_id', 2)->get()->take(5);
+            $immoneuf = Product::where('status', 1)->where('product_category_id', 3)->get()->take(5);
+            $vacances = Product::where('status', 1)->where('product_category_id', 4)->get()->take(5);
 
             $view->with([
-                'villes' => $villes,
-                'all_conseils' => $all_conseils,
-                'all_dm' => $all_dm
+                'achat' => $achat,
+                'location' => $location,
+                'immoneuf' => $immoneuf,
+                'vacances' => $vacances,
             ]);
         });
     }

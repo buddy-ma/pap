@@ -85,6 +85,9 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/blogs/decouvrez')); ?>">Tous les articles</a>
                         <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-new')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/blogs/decouvrez/new')); ?>">Nouveaux articles</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </li>
@@ -106,6 +109,9 @@
                     <li>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-list')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/blogs')); ?>">Tous les articles</a>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-new')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/blogs/new')); ?>">Nouveaux articles</a>
                         <?php endif; ?>
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-create')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/blogs/add')); ?>">Ajouter un article</a>

@@ -25,7 +25,7 @@ class HomeController extends Controller
         $categoryMaroc = Categorie::where('title', 'DecouvrezLeMaroc')->first();
         $articlesMaroc = $categoryMaroc->blogs()->where('status', 1)->where('approved', 1)->get();
 
-        $citys = Ville::take(4)->get();
+        $citys = Ville::get();
 
         $villes = Product::villes();
         $quartiers = Product::quartiers();
@@ -263,11 +263,11 @@ class HomeController extends Controller
         if ($term == '' || $term == null) {
             $villes = Ville::get();
             $categoryMaroc = Categorie::where('title', 'DecouvrezLeMaroc')->get();
-            $articlesMaroc = $categoryMaroc[0]->blogs()->where('status', 1)->where('approved', 1)->paginate(12);
+            $articlesMaroc = $categoryMaroc[0]->blogs()->where('status', 1)->where('approved', 1)->get();
             $tags = $categoryMaroc[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
             return view('decouvrezMaroc', [
                 'tags' => $tags,
-                'villes' => $villes,
+                'citys' => $villes,
                 'articlesMaroc' => $articlesMaroc,
             ]);
         } else {
@@ -279,13 +279,13 @@ class HomeController extends Controller
                 ->orWhere('subtitle', 'like', "%{$term}%")
                 ->orWhere('tags', 'like', "%{$term}%")
                 ->groupBy('blogs.id')
-                ->paginate(12);
+                ->get();
 
             $tags = $categoryMaroc[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
 
             return view('decouvrezMaroc', [
                 'tags' => $tags,
-                'villes' => $villes,
+                'citys' => $villes,
                 'articlesMaroc' => $articlesMaroc,
                 'term' => $term,
             ]);
@@ -297,7 +297,7 @@ class HomeController extends Controller
         $term = $request->input('search');
         if ($term == '' || $term == null) {
             $categoryConseils = Categorie::where('title', 'Conseils')->get();
-            $conseils = $categoryConseils[0]->blogs()->where('status', 1)->where('approved', 1)->paginate(12);
+            $conseils = $categoryConseils[0]->blogs()->where('status', 1)->where('approved', 1)->get();
 
             $tags = $categoryConseils[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
 
@@ -313,7 +313,7 @@ class HomeController extends Controller
                 ->orWhere('subtitle', 'like', '%' .  $term . '%')
                 ->orWhere('tags', 'like', '%' .  $term . '%')
                 ->groupBy('blogs.id')
-                ->paginate(12);
+                ->get();
             $tags = $categoryConseils[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
             return view('conseils', [
                 'tags' => $tags,

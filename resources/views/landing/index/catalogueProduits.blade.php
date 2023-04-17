@@ -2,7 +2,7 @@
 <section class="featured portfolio bg-white-2 rec-pro">
     <div class="container-fluid">
         <div class="sec-title">
-            <h2>PAP,<span>la quintessence de l'immobilier marocain. </span></h2>
+            <h2>PAP,<span> la quintessence de l'immobilier marocain. </span></h2>
             {{-- Commercialisation et marketing immobilier --}}
             {{-- Sans intermediare sans commission --}}
         </div>

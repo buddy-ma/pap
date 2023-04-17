@@ -47,8 +47,6 @@
                         </div>
                     </div>
                 @endforeach
-
-                {{ $articlesMaroc->links() }}
             </div>
         </div>
     </div>
