@@ -34,11 +34,8 @@
         </div>
     </div>
     @livewireScripts
-    @include('admin.layouts.footer-scripts')
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    @include('admin.layouts.footer-scripts')
 
     @if (Session::has('message'))
         <script>

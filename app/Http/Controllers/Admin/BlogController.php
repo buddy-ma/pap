@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Ville;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,22 @@ class BlogController extends Controller
         return view('admin.mains-admin.blogs.blog-add-decouvrez', ['villes' => $villes]);
     }
 
+    public function upload(Request $request): JsonResponse
+    {
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            $request->file('upload')->move(public_path('images'), $fileName);
+
+            $url = asset('images/' . $fileName);
+
+            return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
+        }
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -58,24 +75,6 @@ class BlogController extends Controller
         ]);
 
         $blog = new Blog();
-        if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
-            $request->file('upload')->move(public_path('images'), $fileName);
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/' . $fileName);
-            $msg = 'Image uploaded successfully';
-            $res = "<script>window.parent.CKEDITOR.tools.callFunction(" . $CKEditorFuncNum .  "," . $url . "," . $msg . ")</script>";
-            @header('Content-type: text/html; charset=utf-8');
-            echo $res;
-        }
-        if ($request->hasFile('image')) {
-            $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $filename);
-            $blog->image = $filename;
-        }
 
         $blog->user_id = Auth::id();
         $blog->title = $request->title;
@@ -84,8 +83,6 @@ class BlogController extends Controller
         $blog->video_link = $request->video_link;
         $blog->tags = $request->tags;
         $blog->text = $request->editor1;
-
-
 
         if ($request->hasFile('pdf')) {
             $filenamepdf = date('YmdHi') . $request->file('pdf')->getClientOriginalName();
@@ -114,20 +111,6 @@ class BlogController extends Controller
         ]);
 
         $blog = new Blog();
-        if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
-            $request->file('upload')->move(public_path('images'), $fileName);
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/' . $fileName);
-            $msg = 'Image uploaded successfully';
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-            $blog->image = $url;
-            @header('Content-type: text/html; charset=utf-8');
-            echo $response;
-        }
 
         $blog->user_id = Auth::id();
         $blog->title = $request->title;

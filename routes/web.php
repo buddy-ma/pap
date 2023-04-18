@@ -34,6 +34,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::get('/decouvrez/new', [BlogController::class, 'decouvrezNew'])->name('blog-decouvrez-new');
         Route::get('/add', [BlogController::class, 'add'])->name('show-blog-add');
         Route::post('/add', [BlogController::class, 'store'])->name('blog-add');
+        Route::post('/add/upload', [BlogController::class, 'upload'])->name('ckeditor.upload');
+
         Route::get('/add-decouvrez', [BlogController::class, 'addDecouvrez'])->name('show-blog-add-decouvrez');
         Route::post('/add-decouvrez', [BlogController::class, 'storeDecouvrez'])->name('blog-add-decouvrez');
         Route::get('/update/{id?}', [BlogController::class, 'update'])->name('show-blog-update');
@@ -42,7 +44,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::delete('/restore/{id?}', [BlogController::class, 'restore'])->name('blog-restore');
         Route::get('/approve/{id?}', [BlogController::class, 'approve'])->name('show-blog-approve');
         Route::get('/changeStatus', [BlogController::class, 'changeStatus']);
-        Route::post('/ckeditor/upload', [BlogController::class, 'upload'])->name('ckeditor.upload');
         Route::get('/show/{id?}', [BlogController::class, 'show'])->name('show-blog-show');
     });
 

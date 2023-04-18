@@ -183,7 +183,7 @@
         <script type="text/javascript">
             CKEDITOR.config.height = 1000;
             CKEDITOR.replace('editor1', {
-                filebrowserUploadUrl: "<?php echo e(route('blog-add', ['_token' => csrf_token()])); ?>",
+                filebrowserUploadUrl: "<?php echo e(route('ckeditor.upload', ['_token' => csrf_token()])); ?>",
                 filebrowserUploadMethod: 'form'
             });
         </script>
