@@ -1,5 +1,6 @@
   <!-- Back to top -->
   <a href="#top" id="back-to-top"><i class="fe fe-chevrons-up"></i></a>
+  <script src="https://cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
 
   <!-- Jquery js-->
   <script src="{{ URL::asset('admin_assets/js/jquery-3.5.1.min.js') }}"></script>
@@ -26,6 +27,7 @@
   <script src="{{ URL::asset('admin_assets/plugins/p-scrollbar/p-scroll.js') }}"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 
   <script src="{{ asset('js/app.js') }}"></script>

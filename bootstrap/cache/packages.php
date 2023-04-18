@@ -99,17 +99,6 @@
       0 => 'Conner\\Likeable\\LikeableServiceProvider',
     ),
   ),
-  'spatie/laravel-analytics' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Spatie\\Analytics\\AnalyticsServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Analytics' => 'Spatie\\Analytics\\AnalyticsFacade',
-    ),
-  ),
   'spatie/laravel-permission' => 
   array (
     'providers' => 

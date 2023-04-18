@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Ville;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +45,22 @@ class BlogController extends Controller
         return view('admin.mains-admin.blogs.blog-add-decouvrez', ['villes' => $villes]);
     }
 
+    public function upload(Request $request): JsonResponse
+    {
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            $request->file('upload')->move(public_path('images'), $fileName);
+
+            $url = asset('images/' . $fileName);
+
+            return response()->json(['fileName' => $fileName, 'uploaded' => 1, 'url' => $url]);
+        }
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -58,20 +75,6 @@ class BlogController extends Controller
         ]);
 
         $blog = new Blog();
-        if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
-            $request->file('upload')->move(public_path('images'), $fileName);
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('images/' . $fileName);
-            $msg = 'Image uploaded successfully';
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-            $blog->image = $url;
-            @header('Content-type: text/html; charset=utf-8');
-            echo $response;
-        }
 
         $blog->user_id = Auth::id();
         $blog->title = $request->title;
@@ -93,7 +96,7 @@ class BlogController extends Controller
             $blog->pdf_link = $filenamepdf;
         }
 
-        $blog->status = 0;
+        $blog->status = 1;
         $blog->save();
         $blog->categories()->sync($request->categories);
         session()->flash('success', 'Blog has been created successfully');
@@ -123,6 +126,7 @@ class BlogController extends Controller
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('images/' . $fileName);
             $msg = 'Image uploaded successfully';
+            console . log($CKEditorFuncNum, '$url', '$msg');
             $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
             $blog->image = $url;
             @header('Content-type: text/html; charset=utf-8');
@@ -151,7 +155,7 @@ class BlogController extends Controller
             $blog->pdf_link = $filenamepdf;
         }
 
-        $blog->status = 0;
+        $blog->status = 1;
         $blog->save();
         $blog->categories()->sync([9]);
         session()->flash('success', 'Blog ajouté avec success');
