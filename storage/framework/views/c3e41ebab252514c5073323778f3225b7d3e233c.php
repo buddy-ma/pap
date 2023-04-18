@@ -29,7 +29,7 @@
         }
     </style>
     <script src="https://unpkg.com/vue@3"></script>
-    <script src="https://cdn.ckeditor.com/4.20.2/full/ckeditor.js"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/js/ckeditor.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-header'); ?>
     <!--Page header-->
@@ -217,7 +217,9 @@
                     showCancelButton: true,
                     confirmButtonText: 'C\'est fini'
                 }).then((result) => {
-                    document.getElementById('blog-add').submit();
+                    if (result.isConfirmed) {
+                        document.getElementById('blog-add').submit();
+                    }
                 })
             }
         </script>

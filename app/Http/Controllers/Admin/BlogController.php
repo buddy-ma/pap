@@ -67,10 +67,14 @@ class BlogController extends Controller
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset('images/' . $fileName);
             $msg = 'Image uploaded successfully';
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-            $blog->image = $url;
+            $res = "<script>window.parent.CKEDITOR.tools.callFunction(" . $CKEditorFuncNum .  "," . $url . "," . $msg . ")</script>";
             @header('Content-type: text/html; charset=utf-8');
-            echo $response;
+            echo $res;
+        }
+        if ($request->hasFile('image')) {
+            $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images'), $filename);
+            $blog->image = $filename;
         }
 
         $blog->user_id = Auth::id();
@@ -81,11 +85,7 @@ class BlogController extends Controller
         $blog->tags = $request->tags;
         $blog->text = $request->editor1;
 
-        if ($request->hasFile('image')) {
-            $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images'), $filename);
-            $blog->image = $filename;
-        }
+
 
         if ($request->hasFile('pdf')) {
             $filenamepdf = date('YmdHi') . $request->file('pdf')->getClientOriginalName();
@@ -93,7 +93,7 @@ class BlogController extends Controller
             $blog->pdf_link = $filenamepdf;
         }
 
-        $blog->status = 0;
+        $blog->status = 1;
         $blog->save();
         $blog->categories()->sync($request->categories);
         session()->flash('success', 'Blog has been created successfully');
@@ -151,7 +151,7 @@ class BlogController extends Controller
             $blog->pdf_link = $filenamepdf;
         }
 
-        $blog->status = 0;
+        $blog->status = 1;
         $blog->save();
         $blog->categories()->sync([9]);
         session()->flash('success', 'Blog ajouté avec success');
