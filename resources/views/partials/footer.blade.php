@@ -9,7 +9,7 @@
                         <div class="nav-footer">
                             <ul>
                                 @foreach ($achat as $ach)
-                                    <li><a href="/produit/{{ $ach->id }}">{{ $ach->title }}</a></li>
+                                    <li><a href="/produit/{{ $ach->slug }}">{{ $ach->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -21,7 +21,7 @@
                         <div class="nav-footer">
                             <ul>
                                 @foreach ($location as $loc)
-                                    <li><a href="/produit/{{ $loc->id }}">{{ $loc->title }}</a></li>
+                                    <li><a href="/produit/{{ $loc->slug }}">{{ $loc->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="nav-footer">
                             <ul>
                                 @foreach ($immoneuf as $immo)
-                                    <li><a href="/produit/{{ $immo->id }}">{{ $immo->title }}</a></li>
+                                    <li><a href="/produit/{{ $immo->slug }}">{{ $immo->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>
@@ -45,7 +45,7 @@
                         <div class="nav-footer">
                             <ul>
                                 @foreach ($vacances as $vc)
-                                    <li><a href="/blog/{{ $vc->id }}">{{ $vc->title }}</a></li>
+                                    <li><a href="/produit/{{ $vc->slug }}">{{ $vc->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>

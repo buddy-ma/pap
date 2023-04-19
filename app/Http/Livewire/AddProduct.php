@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use Image;
+
 use App\Models\Product;
-use App\Models\ProductBiens;
 use Livewire\Component;
 use App\Models\ProductType;
+use Illuminate\Support\Str;
+use App\Models\ProductBiens;
 use App\Models\Proprietaire;
 use App\Models\ProductExtras;
 use App\Models\ProductImages;
@@ -20,15 +23,18 @@ class AddProduct extends Component
 
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
-    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $productbiens = [], $j = 0;
     public $clicked = false;
+    public $villes = [], $quartiers = [];
 
     protected $listeners = ['submitAddBien'];
 
     public function mount()
     {
+        $this->villes = Product::villes();
+        $this->quartiers = Product::quartiers();
         $this->productcategories = ProductCategory::get();
         $this->images = array_fill_keys(array(0, 1, 2, 3, 4, 5, 6, 7), '');
         $this->unite_surface = 'm²';
@@ -68,7 +74,7 @@ class AddProduct extends Component
             'surface_terrain' => 'nullable',
             'nbr_salons' => 'nullable',
             'nbr_chambres' => 'required',
-            'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+            'images.0' => 'required|image|mimes:jpeg,jpg,png,svg',
         ], [
             'images.0.required' => 'Vous devez insérer au moins une image'
         ]);
@@ -78,7 +84,7 @@ class AddProduct extends Component
         foreach ($this->images as $img) {
             if (isset($img) && !empty($img)) {
                 $this->validate([
-                    'images.' . $j => 'image|mimes:jpeg,jpg,png,svg|max:2048',
+                    'images.' . $j => 'image|mimes:jpeg,jpg,png,svg',
                 ]);
                 $img = str_replace(' ', '', $img->getClientOriginalName());
                 ++$j;
@@ -95,7 +101,7 @@ class AddProduct extends Component
 
             if ($this->is_promoteur) {
                 $this->validate([
-                    'logo'  => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                    'logo'  => 'required|image|mimes:jpeg,jpg,png,svg',
                     'pdf'  => 'required|mimes:pdf',
                 ]);
             }
@@ -108,9 +114,14 @@ class AddProduct extends Component
         $proprietaire->email = $this->email;
         if ($this->is_promoteur) {
             if (!empty($this->logo)) {
-                $logo = md5(microtime()) . '.' . $this->logo->extension();
-                $this->logo->storeAs('public/product/logo', $logo);
-                $proprietaire->logo = $logo;
+                $logo_title = md5(microtime()) . '.' . $this->logo->extension();
+                $destinationPath = public_path('/storage/product/logo');
+                $this->logo->storeAs('public/original/product/logo', $logo_title);
+                $newImage = Image::make($this->logo->getRealPath());
+                $newImage->resize(1200, 700, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath . '/' . $logo_title);
+                $proprietaire->logo = $logo_title;
             }
             if (!empty($this->pdf)) {
                 $pdf = md5(microtime()) . '.' . $this->pdf->extension();
@@ -130,6 +141,7 @@ class AddProduct extends Component
         $product->product_type_id = $this->type;
         $product->product_category_id = $this->category;
         $product->title = $this->title;
+        $product->slug = Str::slug($this->title, '-');
         $product->reference = $this->reference;
         $product->description = $this->description;
         $product->position = $this->position;
@@ -153,7 +165,14 @@ class AddProduct extends Component
             foreach ($this->images as $img) {
                 if (isset($img) && !empty($img)) {
                     $img_title = md5(microtime()) . '.' . $img->extension();
-                    $img->storeAs('public/product/images/', $img_title);
+                    $destinationPath = public_path('/storage/product/images');
+                    $img->storeAs('public/original/product/images/', $img_title);
+
+                    $newImage = Image::make($img->getRealPath());
+                    $newImage->resize(1200, 700, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($destinationPath . '/' . $img_title);
+
                     ProductImages::create([
                         'product_id' => $product->id,
                         'image' => $img_title

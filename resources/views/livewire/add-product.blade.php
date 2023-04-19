@@ -111,11 +111,23 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Ville*</label>
-                                                <input type="text" wire:model="ville" class="form-control" />
+                                                <input list="villes" type="text" wire:model="ville"
+                                                    class="form-control" />
+                                                <datalist id="villes">
+                                                    @foreach ($villes as $ville)
+                                                        <option value="{{ $ville }}">
+                                                    @endforeach
+                                                </datalist>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
-                                                <input type="text" wire:model="quartier" class="form-control" />
+                                                <input list="quartiers" type="text" wire:model="quartier"
+                                                    class="form-control" />
+                                                <datalist id="quartiers">
+                                                    @foreach ($quartiers as $quartier)
+                                                        <option value="{{ $quartier }}">
+                                                    @endforeach
+                                                </datalist>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Addresse*</label>

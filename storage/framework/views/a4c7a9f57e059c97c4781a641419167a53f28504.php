@@ -65,18 +65,7 @@
                     <div class="news-item details no-mb2">
                         <div class="news-item-text details pb-0">
                             <h2 class="title mb-4"><?php echo e($blog->title); ?></h2>
-                            <div class="admin">
-                                <?php if(isset($blog->user->avatar)): ?>
-                                    <img src="<?php echo e(asset('storage/users/' . $blog->user->avatar)); ?>" alt="">
-                                <?php else: ?>
-                                    <img src="<?php echo e(asset('assets/images/default.jpg')); ?>" alt="">
-                                <?php endif; ?>
-
-                                <p>Mis a jour par <b> <?php echo e($blog->user->firstname); ?> <?php echo e($blog->user->lastname); ?></b> le
-                                    <?php echo e($blog->updated_at->translatedFormat('F j, Y')); ?>
-
-                                </p>
-                            </div>
+                            
 
                             <div class="news-item-descr big-news details visib mb-0">
                                 <p>

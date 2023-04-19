@@ -100,25 +100,24 @@
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Video</label>
-                                                <input type="text" wire:model="video" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Visite Virtuelle</label>
-                                                <input type="text" wire:model="vr" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Position*</label>
-                                                <input type="text" wire:model="position" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="form-label">Ville*</label>
-                                                <input type="text" wire:model="ville" class="form-control" />
+                                                <input list="villes" type="text" wire:model="ville"
+                                                    class="form-control" />
+                                                <datalist id="villes">
+                                                    <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($ville); ?>">
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </datalist>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
-                                                <input type="text" wire:model="quartier" class="form-control" />
+                                                <input list="quartiers" type="text" wire:model="quartier"
+                                                    class="form-control" />
+                                                <datalist id="quartiers">
+                                                    <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $quartier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($quartier); ?>">
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </datalist>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Addresse*</label>
@@ -137,28 +136,55 @@
                                                 <label class="form-label">Surface*</label>
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nbr Chambres*</label>
+                                                <input type="number" wire:model="nbr_chambres"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nbr Salons</label>
+                                                <input type="number" wire:model="nbr_salons" class="form-control" />
+                                            </div>
+
+                                            <?php if($category == 3): ?>
+                                                <div class="form-group">
+                                                    <label class="form-label">Disponibilite</label>
+                                                    <input type="text" wire:model.defer="disponibilite"
+                                                        class="form-control" value="Livraison ..." />
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="form-group">
+                                                <label class="form-label">Video</label>
+                                                <input type="text" wire:model="video" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Visite Virtuelle</label>
+                                                <input type="text" wire:model="vr" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Position</label>
+                                                <div class="input-group">
+                                                    <input type="text" wire:model="position"
+                                                        class="form-control" />
+                                                    <?php if(!$clicked): ?>
+                                                        <button class="btn btn btn-primary br-tl-0 br-bl-0"
+                                                            type="button" wire:click="getSrc()">save</button>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
                                             <?php if($category == 1 || $category == 3): ?>
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Habitable</label>
                                                     <input type="text" wire:model="surface_habitable"
                                                         class="form-control" />
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Terrain</label>
                                                     <input type="text" wire:model="surface_terrain"
                                                         class="form-control" />
                                                 </div>
                                             <?php endif; ?>
-                                            <div class="form-group">
-                                                <label class="form-label">Nbr Salons*</label>
-                                                <input type="number" wire:model="nbr_salons" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Nbr Chambres</label>
-                                                <input type="number" wire:model="nbr_chambres"
-                                                    class="form-control" />
-                                            </div>
+
                                         </div>
                                         <div class="expanel-body">
                                             <ul class="list-group">
@@ -198,10 +224,6 @@
                                                     </div>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>
-                                            <button class="btn btn-primary btn-block" type="button"
-                                                wire:click="addImage">
-                                                Ajouter Image
-                                            </button>
                                         </div>
                                         <div class="expanel-body row">
                                             <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -219,45 +241,48 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="e-panel mt-3">
-                                    <div class="expanel expanel-default">
-                                        <div class="expanel-heading">
-                                            <h3 class="expanel-title text-center">Biens inclus</h3>
-                                        </div>
-                                        <div class="expanel-body">
-                                            <div class="table-responsive">
-                                                <table class="table table-inbox table-hover text-nowrap mb-0">
-                                                    <tbody>
-                                                        <?php if(isset($productbiens)): ?>
-                                                            <?php $__currentLoopData = $productbiens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $bien): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <tr class="">
-                                                                    <td
-                                                                        class="view-message dont-show font-weight-semibold">
-                                                                        <?php echo e($bien['title']); ?>
+                                <?php if($category == 3): ?>
+                                    <div class="e-panel mt-3">
+                                        <div class="expanel expanel-default">
+                                            <div class="expanel-heading">
+                                                <h3 class="expanel-title text-center">Biens inclus</h3>
+                                            </div>
+                                            <div class="expanel-body">
+                                                <div class="table-responsive">
+                                                    <table class="table table-inbox table-hover text-nowrap mb-0">
+                                                        <tbody>
+                                                            <?php if(isset($productbiens)): ?>
+                                                                <?php $__currentLoopData = $productbiens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $bien): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <tr class="">
+                                                                        <td
+                                                                            class="view-message dont-show font-weight-semibold">
+                                                                            <?php echo e($bien['title']); ?>
 
-                                                                    </td>
-                                                                    <td class="view-message"><?php echo e($bien['price']); ?> dh </td>
-                                                                    <td class="view-message"><?php echo e($bien['surface']); ?>m²
-                                                                    </td>
-                                                                    <td wire:click="removebien(<?php echo e($key); ?>)"
-                                                                        class="view-message text-center font-weight-semibold">
-                                                                        <i class="fe fe-trash"></i>
-                                                                    </td>
-                                                                </tr>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        <?php endif; ?>
-                                                    </tbody>
-                                                </table>
+                                                                        </td>
+                                                                        <td class="view-message"><?php echo e($bien['price']); ?> dh
+                                                                        </td>
+                                                                        <td class="view-message"><?php echo e($bien['surface']); ?>m²
+                                                                        </td>
+                                                                        <td wire:click="removebien(<?php echo e($key); ?>)"
+                                                                            class="view-message text-center font-weight-semibold">
+                                                                            <i class="fe fe-trash"></i>
+                                                                        </td>
+                                                                    </tr>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            <?php endif; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="expanel-footer">
+                                                <button class="btn btn-primary btn-block" type="button"
+                                                    wire:click="addBien">
+                                                    Ajouter Appartement
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="expanel-footer">
-                                            <button class="btn btn-primary btn-block" type="button"
-                                                wire:click="addBien">
-                                                Ajouter Appartement
-                                            </button>
-                                        </div>
                                     </div>
-                                </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

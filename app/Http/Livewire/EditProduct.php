@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use Image;
+
 use App\Models\Product;
-use App\Models\ProductBiens;
 use Livewire\Component;
 use App\Models\ProductType;
+use Illuminate\Support\Str;
+use App\Models\ProductBiens;
 use App\Models\Proprietaire;
 use App\Models\ProductExtras;
 use App\Models\ProductImages;
@@ -21,12 +24,17 @@ class EditProduct extends Component
     public $product;
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
-    public $category, $type, $title, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $productbiens = [], $i = 0;
+    public $clicked = false;
+    public $villes = [], $quartiers = [];
 
     public function mount($id)
     {
+        $this->villes = Product::villes();
+        $this->quartiers = Product::quartiers();
+
         $this->product = Product::find($id);
         $this->firstname = $this->product->proprietaire->firstname;
         $this->lastname = $this->product->proprietaire->lastname;
@@ -51,6 +59,7 @@ class EditProduct extends Component
         $this->surface_terrain = $this->product->surface_terrain;
         $this->nbr_salons = $this->product->nbr_salons;
         $this->nbr_chambres = $this->product->nbr_chambres;
+        $this->images = array_fill_keys(array(0, 1, 2, 3, 4, 5, 6, 7), '');
         foreach (json_decode($this->product->extras) as $key => $value) {
             $this->hasextras[$key] = $value;
         }
@@ -102,8 +111,8 @@ class EditProduct extends Component
             'surface_terrain' => 'nullable',
             'nbr_salons' => 'required',
             'nbr_chambres' => 'nullable',
-            // 'images.0' => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
-            // 'images.*' => 'image|mimes:jpeg,jpg,png,svg|max:2048',
+            // 'images.0' => 'required|image|mimes:jpeg,jpg,png,svg',
+            // 'images.*' => 'image|mimes:jpeg,jpg,png,svg',
         ]);
 
         if (!$this->is_commercial) {
@@ -116,7 +125,7 @@ class EditProduct extends Component
 
             if ($this->is_promoteur) {
                 $this->validate([
-                    'logo'  => 'required|image|mimes:jpeg,jpg,png,svg|max:2048',
+                    'logo'  => 'required|image|mimes:jpeg,jpg,png,svg',
                     'pdf'  => 'required|mimes:pdf',
                 ]);
             }
@@ -128,9 +137,14 @@ class EditProduct extends Component
         $this->product->proprietaire->email = $this->email;
         if ($this->is_promoteur) {
             if (!empty($this->logo)) {
-                $logo = md5(microtime()) . '.' . $this->logo->extension();
-                $this->logo->storeAs('public/product/logo', $logo);
-                $this->product->proprietaire->logo = $logo;
+                $logo_title = md5(microtime()) . '.' . $this->logo->extension();
+                $destinationPath = public_path('/storage/product/logo');
+                $this->logo->storeAs('public/original/product/logo', $logo_title);
+                $newImage = Image::make($this->logo->getRealPath());
+                $newImage->resize(1200, 700, function ($constraint) {
+                    $constraint->aspectRatio();
+                })->save($destinationPath . '/' . $logo_title);
+                $this->product->proprietaire->logo = $logo_title;
             }
             if (!empty($this->pdf)) {
                 $pdf = md5(microtime()) . '.' . $this->pdf->extension();
@@ -143,11 +157,10 @@ class EditProduct extends Component
         $this->product->product_type_id = $this->type;
         $this->product->product_category_id = $this->category;
         $this->product->title = $this->title;
+        $this->product->slug = Str::slug($this->title, '-');
         $this->product->reference = $this->reference;
         $this->product->description = $this->description;
-        $e = explode(",", $this->position);
-        $this->product->latitude = $e[0];
-        $this->product->longitude = $e[1];
+        $this->product->position = $this->position;
         $this->product->ville = $this->ville;
         $this->product->quartier = $this->quartier;
         $this->product->address = $this->address;
@@ -168,7 +181,14 @@ class EditProduct extends Component
             foreach ($this->images as $img) {
                 if (is_file($img)) {
                     $img_title = md5(microtime()) . '.' . $img->extension();
-                    $img->storeAs('public/product/images/', $img_title);
+                    $img->storeAs('public/original/product/images/', $img_title);
+                    $destinationPath = public_path('/storage/product/images');
+
+                    $newImage = Image::make($img->getRealPath());
+                    $newImage->resize(1200, 700, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($destinationPath . '/' . $img_title);
+
                     ProductImages::create([
                         'product_id' => $this->product->id,
                         'image' => $img_title
@@ -210,7 +230,7 @@ class EditProduct extends Component
 
     public function removeimg($key)
     {
-        unset($this->images[$key]);
+        $this->images[$key] = null;
     }
 
     public function addBien()
@@ -230,5 +250,15 @@ class EditProduct extends Component
     public function removebien($key)
     {
         unset($this->productbiens[$key]);
+    }
+
+    public function getSrc()
+    {
+        if (isset($this->position)) {
+            $html = $this->position;
+            preg_match('~iframe.*src="([^"]*)"~', $html, $result);
+            $this->position = $result[1];
+        }
+        $this->clicked = true;
     }
 }

@@ -99,33 +99,25 @@
                                                 <label class="form-label">Prix*</label>
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
-                                            @if ($category == 3)
-                                                <div class="form-group">
-                                                    <label class="form-label">Disponibilite</label>
-                                                    <input type="text" wire:model.defer="disponibilite"
-                                                        class="form-control" value="Livraison ..." />
-                                                </div>
-                                            @endif
-                                            <div class="form-group">
-                                                <label class="form-label">Video</label>
-                                                <input type="text" wire:model="video" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Visite Virtuelle</label>
-                                                <input type="text" wire:model="vr" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Position*</label>
-                                                <input type="text" wire:model="position" class="form-control" />
-                                            </div>
                                             <div class="form-group">
                                                 <label class="form-label">Ville*</label>
-                                                <input type="text" wire:model="ville" class="form-control" />
+                                                <input list="villes" type="text" wire:model="ville"
+                                                    class="form-control" />
+                                                <datalist id="villes">
+                                                    @foreach ($villes as $ville)
+                                                        <option value="{{ $ville }}">
+                                                    @endforeach
+                                                </datalist>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
-                                                <input type="text" wire:model="quartier" class="form-control" />
+                                                <input list="quartiers" type="text" wire:model="quartier"
+                                                    class="form-control" />
+                                                <datalist id="quartiers">
+                                                    @foreach ($quartiers as $quartier)
+                                                        <option value="{{ $quartier }}">
+                                                    @endforeach
+                                                </datalist>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Addresse*</label>
@@ -144,28 +136,55 @@
                                                 <label class="form-label">Surface*</label>
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nbr Chambres*</label>
+                                                <input type="number" wire:model="nbr_chambres"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Nbr Salons</label>
+                                                <input type="number" wire:model="nbr_salons" class="form-control" />
+                                            </div>
+
+                                            @if ($category == 3)
+                                                <div class="form-group">
+                                                    <label class="form-label">Disponibilite</label>
+                                                    <input type="text" wire:model.defer="disponibilite"
+                                                        class="form-control" value="Livraison ..." />
+                                                </div>
+                                            @endif
+                                            <div class="form-group">
+                                                <label class="form-label">Video</label>
+                                                <input type="text" wire:model="video" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Visite Virtuelle</label>
+                                                <input type="text" wire:model="vr" class="form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Position</label>
+                                                <div class="input-group">
+                                                    <input type="text" wire:model="position"
+                                                        class="form-control" />
+                                                    @if (!$clicked)
+                                                        <button class="btn btn btn-primary br-tl-0 br-bl-0"
+                                                            type="button" wire:click="getSrc()">save</button>
+                                                    @endif
+                                                </div>
+                                            </div>
                                             @if ($category == 1 || $category == 3)
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Habitable</label>
                                                     <input type="text" wire:model="surface_habitable"
                                                         class="form-control" />
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Terrain</label>
                                                     <input type="text" wire:model="surface_terrain"
                                                         class="form-control" />
                                                 </div>
                                             @endif
-                                            <div class="form-group">
-                                                <label class="form-label">Nbr Salons*</label>
-                                                <input type="number" wire:model="nbr_salons" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Nbr Chambres</label>
-                                                <input type="number" wire:model="nbr_chambres"
-                                                    class="form-control" />
-                                            </div>
+
                                         </div>
                                         <div class="expanel-body">
                                             <ul class="list-group">
@@ -205,10 +224,6 @@
                                                     </div>
                                                 @endforeach
                                             </div>
-                                            <button class="btn btn-primary btn-block" type="button"
-                                                wire:click="addImage">
-                                                Ajouter Image
-                                            </button>
                                         </div>
                                         <div class="expanel-body row">
                                             @foreach ($images as $ke => $val)

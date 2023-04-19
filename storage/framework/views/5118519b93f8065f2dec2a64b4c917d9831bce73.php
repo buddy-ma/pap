@@ -26,6 +26,7 @@
   <script src="<?php echo e(URL::asset('admin_assets/plugins/p-scrollbar/p-scroll.js')); ?>"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 
   <script src="<?php echo e(asset('js/app.js')); ?>"></script>

@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\User;
 use App\Models\Ville;
 use App\Models\Categorie;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
@@ -78,6 +79,7 @@ class BlogController extends Controller
 
         $blog->user_id = Auth::id();
         $blog->title = $request->title;
+        $blog->slug = Str::slug($request->title, '-');
         $blog->subtitle = $request->subtitle;
         $blog->vr_link = $request->vr_link;
         $blog->video_link = $request->video_link;
@@ -114,6 +116,7 @@ class BlogController extends Controller
 
         $blog->user_id = Auth::id();
         $blog->title = $request->title;
+        $blog->slug = Str::slug($request->title, '-');
         $blog->subtitle = $request->subtitle;
         $blog->vr_link = $request->vr_link;
         $blog->video_link = $request->video_link;
@@ -184,6 +187,7 @@ class BlogController extends Controller
 
         $blog = Blog::find($id);
         $blog->title = $request->title;
+        $blog->slug = Str::slug($request->title, '-');
         $blog->subtitle = $request->subtitle;
         $blog->tags = $request->tags;
         $blog->vr_link = $request->vr_link;

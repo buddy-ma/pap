@@ -8,7 +8,7 @@
                 <?php $__currentLoopData = $similaires; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $art): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
-                            <a href="/blog/<?php echo e($art->id); ?>" class="news-img-link">
+                            <a href="/blog/<?php echo e($art->slug); ?>" class="news-img-link">
                                 <div class="news-item-img">
                                     <?php if(isset($art->image)): ?>
                                         <img class="img-responsive" src="<?php echo e(asset('images/' . $art->image)); ?>"
@@ -27,7 +27,7 @@
                                     </span>
                                     
                                 </div>
-                                <a href="/blog/<?php echo e($art->id); ?>">
+                                <a href="/blog/<?php echo e($art->slug); ?>">
                                     <h3><?php echo e($art->title); ?> - <?php echo e($art->id); ?></h3>
                                 </a>
 
@@ -39,7 +39,7 @@
                                     <p><?php echo e(substr($txt, 0, 170)); ?>... </p>
                                 </div>
                                 <div class="news-item-bottom">
-                                    <a href="/blog/<?php echo e($art->id); ?>" class="news-link">Read more...</a>
+                                    <a href="/blog/<?php echo e($art->slug); ?>" class="news-link">Read more...</a>
                                 </div>
                             </div>
                         </div>

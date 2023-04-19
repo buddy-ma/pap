@@ -87,13 +87,13 @@ Route::get('/vacances', [HomeController::class, 'vacances'])->name('vacances');
 Route::get('/location', [HomeController::class, 'location'])->name('location');
 Route::get('/immoneuf', [HomeController::class, 'immoneuf'])->name('immoneuf');
 
-Route::get('/produit/{id?}', [HomeController::class, 'produit'])->name('produit');
+Route::get('/produit/{slug}', [HomeController::class, 'produit'])->name('produit');
 Route::post('/produit/contact/{id?}', [HomeController::class, 'produitContact'])->name('produitContact');
 
 Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
 Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
-Route::get('/blog/{id?}', [HomeController::class, 'blogDetails'])->name('blogDetails');
+Route::get('/blog/{slug}', [HomeController::class, 'blogDetails'])->name('blogDetails');
 Route::get('/ville/{id?}', [HomeController::class, 'villeDetails'])->name('villeDetails');
 
 Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');

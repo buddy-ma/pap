@@ -323,9 +323,9 @@ class HomeController extends Controller
         }
     }
 
-    public function blogDetails($id)
+    public function blogDetails($slug)
     {
-        $blog = Blog::findOrFail($id);
+        $blog = Blog::where('slug', $slug)->firstOrFail();
         $blog->vues++;
         $blog->save();
         $catgs = $blog->categories()->pluck('categorie_id')->toArray();
@@ -333,7 +333,7 @@ class HomeController extends Controller
             ->where('status', 1)->where('approved', 1)
             ->select('blogs.*')
             ->whereIn('blog_has_categories.categorie_id',  $catgs)
-            ->where('blogs.id', '!=', $id)
+            ->where('blogs.slug', '!=', $slug)
             ->groupBy('blogs.id')
             ->get();
 
@@ -388,9 +388,9 @@ class HomeController extends Controller
         return view('catalogue');
     }
 
-    public function produit($id)
+    public function produit($slug)
     {
-        $p = Product::findOrFail($id);
+        $p = Product::where('slug', $slug)->firstOrFail();
         $p->vues++;
         $p->save();
         $products = Product::where('status', 1)->take(3)->get();

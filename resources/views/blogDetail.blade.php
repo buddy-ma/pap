@@ -69,7 +69,7 @@
                     <div class="news-item details no-mb2">
                         <div class="news-item-text details pb-0">
                             <h2 class="title mb-4">{{ $blog->title }}</h2>
-                            <div class="admin">
+                            {{-- <div class="admin">
                                 @isset($blog->user->avatar)
                                     <img src="{{ asset('storage/users/' . $blog->user->avatar) }}" alt="">
                                 @else
@@ -79,7 +79,7 @@
                                 <p>Mis a jour par <b> {{ $blog->user->firstname }} {{ $blog->user->lastname }}</b> le
                                     {{ $blog->updated_at->translatedFormat('F j, Y') }}
                                 </p>
-                            </div>
+                            </div> --}}
 
                             <div class="news-item-descr big-news details visib mb-0">
                                 <p>

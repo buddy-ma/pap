@@ -30,7 +30,7 @@
 @section('content')
 
     @include('landing.hero', ['active' => 'immoneuf'])
-    @include('landing.immoneuf.villes-tags')
+    {{-- @include('landing.immoneuf.villes-tags') --}}
 
     @include('landing.immoneuf.catalogueProduits')
     @include('landing.immoneuf.cataloguePromoteurs')

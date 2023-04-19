@@ -62,68 +62,71 @@
                         </ul>
                     </div>
 
-                    <div class="single homes-content details mb-30">
-                        <h5 class="mb-4">Biens Disponibles</h5>
-                        <table id="customers">
-                            <tr>
-                                <th>Appartements</th>
-                                <th>A partir de</th>
-                                <th>Surface</th>
-                                <th></th>
-                            </tr>
-                            <?php $__currentLoopData = $product->biens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($product->product_category_id == 3): ?>
+                        <div class="single homes-content details mb-30">
+                            <h5 class="mb-4">Biens Disponibles</h5>
+                            <table id="customers">
                                 <tr>
-                                    <td><?php echo e($v->title); ?></td>
-                                    <td><?php echo e($v->price); ?> dh</td>
-                                    <td><?php echo e($v->surface); ?> m²</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal"
-                                            data-target="#modal<?php echo e($k); ?>">Plan</button></td>
+                                    <th>Appartements</th>
+                                    <th>A partir de</th>
+                                    <th>Surface</th>
+                                    <th></th>
                                 </tr>
-                                <div class="modal fade" id="modal<?php echo e($k); ?>" tabindex="-1" role="dialog"
-                                    aria-labelledby="modalTitle<?php echo e($k); ?>" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitle<?php echo e($k); ?>">Obtenir le plan
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="post" action="<?php echo e(route('produitContact', $product->id)); ?>">
-                                                    <?php echo csrf_field(); ?>
-                                                    <label for="fullname">Nom complet</label>
-                                                    <input type="text" name="fullname" placeholder="Nom complet"
-                                                        class="form-control mb-3" required />
-                                                    <label for="phone">Telephone</label>
-                                                    <input type="text" maxlength="10" name="phone"
-                                                        class="form-control mb-3" placeholder="Telephone" required />
-                                                    <label for="email">Email Address</label>
-                                                    <input type="email" name="email" placeholder="Email Address"
-                                                        class="form-control mb-3" />
-                                                    <label for="message">Message</label>
-                                                    <textarea placeholder="Message" name="message" required class="form-control mb-2">Bonjour, je souhaite recevoir le plan de <?php echo e($v->title); ?> de <?php echo e($v->surface); ?>m²  à <?php echo e($v->price); ?> dh. Cordialement.
-                                                    </textarea>
-                                                    <button type="submit" class="btn btn-block btn-primary mt-3"> Envoyer
+                                <?php $__currentLoopData = $product->biens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <td><?php echo e($v->title); ?></td>
+                                        <td><?php echo e($v->price); ?> dh</td>
+                                        <td><?php echo e($v->surface); ?> m²</td>
+                                        <td><button class="btn btn-primary" data-toggle="modal"
+                                                data-target="#modal<?php echo e($k); ?>">Plan</button></td>
+                                    </tr>
+                                    <div class="modal fade" id="modal<?php echo e($k); ?>" tabindex="-1" role="dialog"
+                                        aria-labelledby="modalTitle<?php echo e($k); ?>" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitle<?php echo e($k); ?>">Obtenir le
+                                                        plan
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                J'autorise pap.ma à collecter, traiter et transmettre ces données au
-                                                promoteur immobilier qui vous contactera par email ou par téléphone afin de
-                                                gérer votre demande.
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post"
+                                                        action="<?php echo e(route('produitContact', $product->id)); ?>">
+                                                        <?php echo csrf_field(); ?>
+                                                        <label for="fullname">Nom complet</label>
+                                                        <input type="text" name="fullname" placeholder="Nom complet"
+                                                            class="form-control mb-3" required />
+                                                        <label for="phone">Telephone</label>
+                                                        <input type="text" maxlength="10" name="phone"
+                                                            class="form-control mb-3" placeholder="Telephone" required />
+                                                        <label for="email">Email Address</label>
+                                                        <input type="email" name="email" placeholder="Email Address"
+                                                            class="form-control mb-3" />
+                                                        <label for="message">Message</label>
+                                                        <textarea placeholder="Message" name="message" required class="form-control mb-2">Bonjour, je souhaite recevoir le plan de <?php echo e($v->title); ?> de <?php echo e($v->surface); ?>m²  à <?php echo e($v->price); ?> dh. Cordialement.
+                                                    </textarea>
+                                                        <button type="submit" class="btn btn-block btn-primary mt-3">
+                                                            Envoyer
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    J'autorise pap.ma à collecter, traiter et transmettre ces données au
+                                                    promoteur immobilier qui vous contactera par email ou par téléphone afin
+                                                    de
+                                                    gérer votre demande.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </table>
-                    </div>
-
-
-
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </table>
+                        </div>
+                    <?php endif; ?>
 
                     <div class="property-location map">
                         <h5>Location</h5>

@@ -6,7 +6,7 @@
                     <ul>
                         @foreach ($chunk as $blog)
                             <li>
-                                <a href="/blog/{{ $blog->id }}">{{ $blog->title }}</a>
+                                <a href="/blog/{{ $blog->slug }}">{{ $blog->title }}</a>
                             </li>
                         @endforeach
                     </ul>

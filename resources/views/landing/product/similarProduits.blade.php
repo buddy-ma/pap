@@ -7,7 +7,7 @@
                     <div class="project-single">
                         <div class="project-inner project-head">
                             <div class="homes">
-                                <a href="/produit/{{ $product->id }}" class="homes-img">
+                                <a href="/produit/{{ $product->slug }}" class="homes-img">
                                     <div class="homes-tag button alt featured">{{ $product->category->title }}</div>
                                     @if ($product->first_image() !== null)
                                         <img src="{{ URL::asset('storage/product/images/' . $product->first_image()->image) }}"
@@ -19,25 +19,24 @@
                                 </a>
                             </div>
                             <div class="button-effect">
-                                @isset($product->vr_link)
+                                @if (!empty($product->vr_link))
                                     <a href="{{ $product->vr_link }}" class="btn"><i class="fa fa-link"></i></a>
-                                @endisset
-
-                                @isset($product->video_link)
+                                @endif
+                                @if (!empty($product->video_link))
                                     <a href="{{ $product->video_link }}" class="btn popup-video popup-youtube"><i
                                             class="fas fa-video"></i></a>
-                                @endisset
+                                @endif
 
-                                <a href="/produit/{{ $product->id }}" class="img-poppu btn"><i
+                                <a href="/produit/{{ $product->slug }}" class="img-poppu btn"><i
                                         class="fa fa-photo"></i></a>
                             </div>
                         </div>
                         <!-- homes content -->
                         <div class="homes-content">
                             <!-- homes address -->
-                            <h3><a href="/produit/{{ $product->id }}">{{ $product->title }}</a></h3>
+                            <h3><a href="/produit/{{ $product->slug }}">{{ $product->title }}</a></h3>
                             <p class="homes-address mb-3">
-                                <a href="/produit/{{ $product->id }}">
+                                <a href="/produit/{{ $product->slug }}">
                                     <i class="fa fa-map-marker"></i><span>{{ $product->ville }},
                                         {{ $product->quartier }}, {{ $product->address }}</span>
                                 </a>

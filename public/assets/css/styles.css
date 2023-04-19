@@ -6011,6 +6011,10 @@ a.button,
 }
 
 .homepage-3 .hero-main {
+    padding: 140px 0 0;
+}
+.decouvrez .hero-main,
+.conseils .hero-main {
     padding: 250px 0 0;
 }
 

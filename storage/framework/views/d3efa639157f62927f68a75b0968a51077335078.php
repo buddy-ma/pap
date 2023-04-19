@@ -111,11 +111,23 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Ville*</label>
-                                                <input type="text" wire:model="ville" class="form-control" />
+                                                <input list="villes" type="text" wire:model="ville"
+                                                    class="form-control" />
+                                                <datalist id="villes">
+                                                    <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($ville); ?>">
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </datalist>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
-                                                <input type="text" wire:model="quartier" class="form-control" />
+                                                <input list="quartiers" type="text" wire:model="quartier"
+                                                    class="form-control" />
+                                                <datalist id="quartiers">
+                                                    <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $quartier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($quartier); ?>">
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </datalist>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Addresse*</label>

@@ -53,7 +53,8 @@
                                         <a href="/admin/products/edit/{{ $product->id }}"
                                             class="btn btn-primary btn-block mb-2">
                                             <i class="fe fe-edit mr-1"></i>Modifier</a>
-                                        <a href="#" class="btn btn-success btn-block mb-2">
+                                        <a href="/produit/{{ $product->slug }}" target="_blank"
+                                            class="btn btn-success btn-block mb-2">
                                             <i class="fe fe-eye mr-1"></i>Voir</a>
                                     </div>
                                 </div>

@@ -66,68 +66,71 @@
                         </ul>
                     </div>
 
-                    <div class="single homes-content details mb-30">
-                        <h5 class="mb-4">Biens Disponibles</h5>
-                        <table id="customers">
-                            <tr>
-                                <th>Appartements</th>
-                                <th>A partir de</th>
-                                <th>Surface</th>
-                                <th></th>
-                            </tr>
-                            @foreach ($product->biens as $k => $v)
+                    @if ($product->product_category_id == 3)
+                        <div class="single homes-content details mb-30">
+                            <h5 class="mb-4">Biens Disponibles</h5>
+                            <table id="customers">
                                 <tr>
-                                    <td>{{ $v->title }}</td>
-                                    <td>{{ $v->price }} dh</td>
-                                    <td>{{ $v->surface }} m²</td>
-                                    <td><button class="btn btn-primary" data-toggle="modal"
-                                            data-target="#modal{{ $k }}">Plan</button></td>
+                                    <th>Appartements</th>
+                                    <th>A partir de</th>
+                                    <th>Surface</th>
+                                    <th></th>
                                 </tr>
-                                <div class="modal fade" id="modal{{ $k }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="modalTitle{{ $k }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitle{{ $k }}">Obtenir le plan
-                                                </h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form method="post" action="{{ route('produitContact', $product->id) }}">
-                                                    @csrf
-                                                    <label for="fullname">Nom complet</label>
-                                                    <input type="text" name="fullname" placeholder="Nom complet"
-                                                        class="form-control mb-3" required />
-                                                    <label for="phone">Telephone</label>
-                                                    <input type="text" maxlength="10" name="phone"
-                                                        class="form-control mb-3" placeholder="Telephone" required />
-                                                    <label for="email">Email Address</label>
-                                                    <input type="email" name="email" placeholder="Email Address"
-                                                        class="form-control mb-3" />
-                                                    <label for="message">Message</label>
-                                                    <textarea placeholder="Message" name="message" required class="form-control mb-2">Bonjour, je souhaite recevoir le plan de {{ $v->title }} de {{ $v->surface }}m²  à {{ $v->price }} dh. Cordialement.
-                                                    </textarea>
-                                                    <button type="submit" class="btn btn-block btn-primary mt-3"> Envoyer
+                                @foreach ($product->biens as $k => $v)
+                                    <tr>
+                                        <td>{{ $v->title }}</td>
+                                        <td>{{ $v->price }} dh</td>
+                                        <td>{{ $v->surface }} m²</td>
+                                        <td><button class="btn btn-primary" data-toggle="modal"
+                                                data-target="#modal{{ $k }}">Plan</button></td>
+                                    </tr>
+                                    <div class="modal fade" id="modal{{ $k }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="modalTitle{{ $k }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitle{{ $k }}">Obtenir le
+                                                        plan
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                J'autorise pap.ma à collecter, traiter et transmettre ces données au
-                                                promoteur immobilier qui vous contactera par email ou par téléphone afin de
-                                                gérer votre demande.
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form method="post"
+                                                        action="{{ route('produitContact', $product->id) }}">
+                                                        @csrf
+                                                        <label for="fullname">Nom complet</label>
+                                                        <input type="text" name="fullname" placeholder="Nom complet"
+                                                            class="form-control mb-3" required />
+                                                        <label for="phone">Telephone</label>
+                                                        <input type="text" maxlength="10" name="phone"
+                                                            class="form-control mb-3" placeholder="Telephone" required />
+                                                        <label for="email">Email Address</label>
+                                                        <input type="email" name="email" placeholder="Email Address"
+                                                            class="form-control mb-3" />
+                                                        <label for="message">Message</label>
+                                                        <textarea placeholder="Message" name="message" required class="form-control mb-2">Bonjour, je souhaite recevoir le plan de {{ $v->title }} de {{ $v->surface }}m²  à {{ $v->price }} dh. Cordialement.
+                                                    </textarea>
+                                                        <button type="submit" class="btn btn-block btn-primary mt-3">
+                                                            Envoyer
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    J'autorise pap.ma à collecter, traiter et transmettre ces données au
+                                                    promoteur immobilier qui vous contactera par email ou par téléphone afin
+                                                    de
+                                                    gérer votre demande.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endforeach
-                        </table>
-                    </div>
-
-
-
+                                @endforeach
+                            </table>
+                        </div>
+                    @endif
 
                     <div class="property-location map">
                         <h5>Location</h5>

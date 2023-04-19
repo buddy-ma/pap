@@ -9,7 +9,7 @@
                         <div class="nav-footer">
                             <ul>
                                 <?php $__currentLoopData = $achat; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ach): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/produit/<?php echo e($ach->id); ?>"><?php echo e($ach->title); ?></a></li>
+                                    <li><a href="/produit/<?php echo e($ach->slug); ?>"><?php echo e($ach->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
@@ -21,7 +21,7 @@
                         <div class="nav-footer">
                             <ul>
                                 <?php $__currentLoopData = $location; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $loc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/produit/<?php echo e($loc->id); ?>"><?php echo e($loc->title); ?></a></li>
+                                    <li><a href="/produit/<?php echo e($loc->slug); ?>"><?php echo e($loc->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
@@ -33,7 +33,7 @@
                         <div class="nav-footer">
                             <ul>
                                 <?php $__currentLoopData = $immoneuf; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $immo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/produit/<?php echo e($immo->id); ?>"><?php echo e($immo->title); ?></a></li>
+                                    <li><a href="/produit/<?php echo e($immo->slug); ?>"><?php echo e($immo->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
@@ -45,7 +45,7 @@
                         <div class="nav-footer">
                             <ul>
                                 <?php $__currentLoopData = $vacances; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><a href="/blog/<?php echo e($vc->id); ?>"><?php echo e($vc->title); ?></a></li>
+                                    <li><a href="/produit/<?php echo e($vc->slug); ?>"><?php echo e($vc->title); ?></a></li>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
