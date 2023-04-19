@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Blog;
+use App\Models\Product;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -112,3 +115,15 @@ Route::get('/optimize', function () {
     Artisan::call('view:clear');
     return redirect('/');
 })->name('optimize');
+
+Route::get('/fixSlug', function () {
+    $products = Product::where('slug', '')->get();
+    foreach ($products as $product) {
+        $p = Product::where('id', $product->id)->update(['slug' => Str::slug($product->title, '-')]);
+    }
+    $blogs = Blog::where('slug', '')->get();
+    foreach ($blogs as $blog) {
+        $p = Blog::where('id', $blog->id)->update(['slug' => Str::slug($blog->title, '-')]);
+    }
+    dd('done');
+})->name('fixSlug');
