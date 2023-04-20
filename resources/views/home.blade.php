@@ -51,6 +51,7 @@
     @include('landing.index.catalogueConseilsMaroc')
 
     {{-- @include('landing.index.ilsParlentDeNous') --}}
+    @include('partials.footer')
 
 @endsection
 @section('js')

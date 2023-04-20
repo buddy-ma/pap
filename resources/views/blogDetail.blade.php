@@ -99,7 +99,8 @@
         </div>
     </section>
 
-    @include('landing.blogDetails.articleSimilaires')
+    {{-- @include('landing.blogDetails.articleSimilaires') --}}
+    @include('landing.blogDetails.footer')
 
 @endsection
 @section('js')

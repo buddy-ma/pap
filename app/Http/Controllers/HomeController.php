@@ -337,9 +337,19 @@ class HomeController extends Controller
             ->groupBy('blogs.id')
             ->get();
 
+        $achat = Product::where('status', 1)->where('product_category_id', 1)->get()->take(5);
+        $location = Product::where('status', 1)->where('product_category_id', 2)->get()->take(5);
+        $immoneuf = Product::where('status', 1)->where('product_category_id', 3)->get()->take(5);
+        $vacances = Product::where('status', 1)->where('product_category_id', 4)->get()->take(5);
+
         return view('blogDetail', [
             'blog' => $blog,
             'similaires' => $similaires,
+
+            'achat' => $achat,
+            'location' => $location,
+            'immoneuf' => $immoneuf,
+            'vacances' => $vacances,
         ]);
     }
 

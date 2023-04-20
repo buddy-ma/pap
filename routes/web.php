@@ -94,10 +94,12 @@ Route::get('/produit/{slug}', [HomeController::class, 'produit'])->name('produit
 Route::post('/produit/contact/{id?}', [HomeController::class, 'produitContact'])->name('produitContact');
 
 Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');
+Route::get('/decouvrezMaroc/{slug}', [HomeController::class, 'blogDetails'])->name('decouvrezMarocDetails');
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
 Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
-Route::get('/blog/{slug}', [HomeController::class, 'blogDetails'])->name('blogDetails');
+Route::get('/conseils/{slug}', [HomeController::class, 'blogDetails'])->name('conseilsDetails');
 Route::get('/ville/{id?}', [HomeController::class, 'villeDetails'])->name('villeDetails');
+Route::get('/ville/{slug}', [HomeController::class, 'blogDetails'])->name('villeblogDetails');
 
 Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
 Route::get('/catalog', [HomeController::class, 'catalogue'])->name('catalogue');

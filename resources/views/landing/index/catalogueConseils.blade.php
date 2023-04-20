@@ -11,7 +11,7 @@
                             <div class="project-single">
                                 <div class="project-inner project-head">
                                     <div class="homes">
-                                        <a href="/blog/{{ $cns->slug }}" class="news-img-link">
+                                        <a href="/conseils/{{ $cns->slug }}" class="news-img-link">
                                             <div class="news-item-img">
                                                 @isset($cns->image)
                                                     <img class="img-responsive" src="{{ asset('images/' . $cns->image) }}"
@@ -30,7 +30,7 @@
                                             {{ $cns->updated_at->translatedFormat('F j, Y') }}
                                         </span>
                                     </div>
-                                    <a href="/blog/{{ $cns->slug }}">
+                                    <a href="/conseils/{{ $cns->slug }}">
                                         <h3>{{ $cns->title }}</h3>
                                     </a>
 
@@ -42,7 +42,7 @@
                                         <p>{{ substr($txt, 0, 170) }}... </p>
                                     </div>
                                     <div class="news-item-bottom">
-                                        <a href="/blog/{{ $cns->slug }}" class="news-link">Read more...</a>
+                                        <a href="/conseils/{{ $cns->slug }}" class="news-link">Read more...</a>
                                     </div>
                                 </div>
                             </div>

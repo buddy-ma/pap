@@ -98,7 +98,7 @@
                                                                 <i class="fe fe-edit"></i>
                                                             </a>
                                                         @endcan
-                                                        <a href="/blog/{{ $blog->slug }}" target="_blank"
+                                                        <a href="/conseils/{{ $blog->slug }}" target="_blank"
                                                             class="btn btn-success {{ $blog->ismodified && $blog->status == 0 ? 'flash' : '' }}">
                                                             <i class="fe fe-eye"></i>
                                                         </a>

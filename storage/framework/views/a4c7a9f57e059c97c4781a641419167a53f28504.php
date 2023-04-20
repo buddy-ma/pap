@@ -86,7 +86,8 @@
         </div>
     </section>
 
-    <?php echo $__env->make('landing.blogDetails.articleSimilaires', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
+    <?php echo $__env->make('landing.blogDetails.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>

@@ -48,7 +48,6 @@
 
         <?php echo $__env->yieldContent('content'); ?>
 
-        <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <a data-scroll href="#wrapper" class="go-up"><i class="fa fa-angle-double-up" aria-hidden="true"></i></a>
     </div>

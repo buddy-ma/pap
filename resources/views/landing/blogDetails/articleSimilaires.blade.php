@@ -8,7 +8,7 @@
                 @foreach ($similaires as $art)
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
-                            <a href="/blog/{{ $art->slug }}" class="news-img-link">
+                            <a href="/conseils/{{ $art->slug }}" class="news-img-link">
                                 <div class="news-item-img">
                                     @isset($art->image)
                                         <img class="img-responsive" src="{{ asset('images/' . $art->image) }}"
@@ -30,7 +30,7 @@
                                         <li class="action-item"><i class="fa fa-share-alt"></i> <span>122</span></li>
                                     </ul> --}}
                                 </div>
-                                <a href="/blog/{{ $art->slug }}">
+                                <a href="/conseils/{{ $art->slug }}">
                                     <h3>{{ $art->title }} - {{ $art->id }}</h3>
                                 </a>
 
@@ -42,7 +42,7 @@
                                     <p>{{ substr($txt, 0, 170) }}... </p>
                                 </div>
                                 <div class="news-item-bottom">
-                                    <a href="/blog/{{ $art->slug }}" class="news-link">Read more...</a>
+                                    <a href="/conseils/{{ $art->slug }}" class="news-link">Read more...</a>
                                 </div>
                             </div>
                         </div>

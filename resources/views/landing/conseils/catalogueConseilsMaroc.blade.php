@@ -12,7 +12,7 @@
                 @foreach ($conseils as $cns)
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
-                            <a href="/blog/{{ $cns->slug }}" class="news-img-link">
+                            <a href="/conseils/{{ $cns->slug }}" class="news-img-link">
                                 <div class="news-item-img">
                                     @isset($cns->image)
                                         <img class="img-responsive" src="{{ asset('images/' . $cns->image) }}"
@@ -29,7 +29,7 @@
                                         {{ $cns->updated_at->translatedFormat('F j, Y') }}
                                     </span>
                                 </div>
-                                <a href="/blog/{{ $cns->slug }}">
+                                <a href="/conseils/{{ $cns->slug }}">
                                     <h3>{{ $cns->title }}</h3>
                                 </a>
 
@@ -41,7 +41,7 @@
                                     <p>{{ substr($txt, 0, 170) }}... </p>
                                 </div>
                                 <div class="news-item-bottom">
-                                    <a href="/blog/{{ $cns->slug }}" class="news-link">Read more...</a>
+                                    <a href="/conseils/{{ $cns->slug }}" class="news-link">Read more...</a>
                                 </div>
                             </div>
                         </div>
