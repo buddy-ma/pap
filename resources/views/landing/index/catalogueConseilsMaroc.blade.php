@@ -11,7 +11,7 @@
                             <div class="project-single">
                                 <div class="project-inner project-head">
                                     <div class="homes">
-                                        <a href="/ville/{{ $city->id }}" class="news-img-link">
+                                        <a href="/ville/{{ $city->title }}" class="news-img-link">
                                             <div class="news-item-img">
                                                 @isset($city->image)
                                                     <img class="img-responsive"
@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                                 <div class="homes-content">
-                                    <a href="/ville/{{ $city->id }}">
+                                    <a href="/ville/{{ $city->title }}">
                                         <h3>{{ $city->title }}</h3>
                                     </a>
 
@@ -37,7 +37,7 @@
                                         <p>{{ substr($txt, 0, 170) }}... </p>
                                     </div>
                                     <div class="news-item-bottom">
-                                        <a href="/ville/{{ $city->id }}" class="news-link">Read more...</a>
+                                        <a href="/ville/{{ $city->title }}" class="news-link">Read more...</a>
                                     </div>
                                 </div>
                             </div>

@@ -98,8 +98,8 @@ Route::get('/decouvrezMaroc/{slug}', [HomeController::class, 'blogDetails'])->na
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
 Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
 Route::get('/conseils/{slug}', [HomeController::class, 'blogDetails'])->name('conseilsDetails');
-Route::get('/ville/{id?}', [HomeController::class, 'villeDetails'])->name('villeDetails');
-Route::get('/ville/{slug}', [HomeController::class, 'blogDetails'])->name('villeblogDetails');
+Route::get('/ville/{slug}', [HomeController::class, 'villeDetails'])->name('villeDetails');
+Route::get('/quartier/{slug}', [HomeController::class, 'blogDetails'])->name('quartierblogDetails');
 
 Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
 Route::get('/catalog', [HomeController::class, 'catalogue'])->name('catalogue');

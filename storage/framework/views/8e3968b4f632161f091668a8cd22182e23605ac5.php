@@ -1,14 +1,14 @@
 <?php $__env->startSection('page-header'); ?>
-    <div class="page-header">
-        <div class="page-leftheader">
-            <h4 class="page-title mb-0">Set design</h4>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a wire:click="toggleAddDesign()"><i
-                            class="fe fe-file-text mr-2 fs-14"></i>designs</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a wire:click="toggleAddDesign()">Add design</a></li>
-            </ol>
-        </div>
+<div class="page-header">
+    <div class="page-leftheader">
+        <h4 class="page-title mb-0">Set design</h4>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a wire:click="toggleAddDesign()"><i
+                        class="fe fe-file-text mr-2 fs-14"></i>designs</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a wire:click="toggleAddDesign()">Add design</a></li>
+        </ol>
     </div>
+</div>
 <?php $__env->stopSection(); ?>
 
 <div class="row">
@@ -20,14 +20,14 @@
                             class="fe fe-x"></i></a> </div>
             </div>
             <?php if(count($errors) > 0): ?>
-                <div class="alert alert-danger">
-                    <strong>Whoops!</strong> There were some problems with your input.
-                    <ul>
-                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li><?php echo e($error); ?></li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </ul>
-                </div>
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.
+                <ul>
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
+            </div>
             <?php endif; ?>
             <div class="card-body pb-2">
                 <form enctype="multipart/form-data">
@@ -50,8 +50,7 @@
                                 </div>
                                 <div class="col-lg">
                                     <label class="col-md-12 form-label">Link</label>
-                                    <input class="form-control mb-4" placeholder="Link" type="text"
-                                        wire:model='link'>
+                                    <input class="form-control mb-4" placeholder="Link" type="text" wire:model='link'>
                                 </div>
                             </div>
                             <div class="row row-sm">
@@ -59,7 +58,8 @@
                                     <label class="col-md-12 form-label">Category*</label>
                                     <select class="form-control mb-4" wire:model='category_id'>
                                         <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($cat->id); ?>"><?php echo e($cat->category); ?></option>
+                                        <option value="<?php echo e($cat->id); ?>"><?php echo e($cat->category); ?>
+                                        </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
@@ -73,16 +73,12 @@
                             <div class="row row-sm">
                                 <div class="col-lg">
                                     <label class="col-md-12 form-label">Description</label>
-                                    <textarea class="form-control mb-4" wire:model='description' rows="5">project description</textarea>
+                                    <textarea class="form-control mb-4" wire:model='description'
+                                        rows="5">project description</textarea>
                                 </div>
                                 <div class="col-lg">
                                     <div class="custom-controls-stacked">
-<<<<<<< HEAD
-                                        <label class="col-md-12 form-label">Design Image* <small
-                                                class="float-right">(960 x 980px)</small></label>
-=======
                                         <label class="col-md-12 form-label">Design Image*</label>
->>>>>>> aacd4e2de0ca21c0a5bf970afa282bfa2bd268cb
                                         <div class="dropify-wrapper" style="height: 135px;">
                                             <div class="dropify-message">
                                                 <span class="file-icon">

@@ -1,9 +1,5 @@
 <!-- section start -->
-<<<<<<< HEAD
-<section class="portfolio-section zoom-gallery" id="portfolio">
-=======
 <section class="portfolio-section zoom-gallery">
->>>>>>> aacd4e2de0ca21c0a5bf970afa282bfa2bd268cb
     <div class="filter-section">
         <div class="container-fluid">
             <div class="row">

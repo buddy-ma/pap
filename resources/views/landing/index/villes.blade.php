@@ -6,7 +6,7 @@
         <div class="row">
             @foreach ($villes as $ville)
                 <div class="col-sm-6 col-lg-3 col-xl-3 ville" data-aos="zoom-in" data-aos-delay="150">
-                    <a href="/ville/{{ $ville->id }}" class="img-box hover-effect">
+                    <a href="/ville/{{ $ville->title }}" class="img-box hover-effect">
                         <img src="{{ asset('images/villes/' . $ville->image) }}" class="img-responsive"
                             alt="{{ $ville->title }}">
                         {{-- <div class="listing-badges">

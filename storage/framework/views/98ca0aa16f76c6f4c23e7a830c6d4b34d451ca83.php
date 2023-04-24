@@ -11,7 +11,7 @@
                             <div class="project-single">
                                 <div class="project-inner project-head">
                                     <div class="homes">
-                                        <a href="/ville/<?php echo e($city->id); ?>" class="news-img-link">
+                                        <a href="/ville/<?php echo e($city->title); ?>" class="news-img-link">
                                             <div class="news-item-img">
                                                 <?php if(isset($city->image)): ?>
                                                     <img class="img-responsive"
@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                                 <div class="homes-content">
-                                    <a href="/ville/<?php echo e($city->id); ?>">
+                                    <a href="/ville/<?php echo e($city->title); ?>">
                                         <h3><?php echo e($city->title); ?></h3>
                                     </a>
 
@@ -37,7 +37,7 @@
                                         <p><?php echo e(substr($txt, 0, 170)); ?>... </p>
                                     </div>
                                     <div class="news-item-bottom">
-                                        <a href="/blog/<?php echo e($city->id); ?>" class="news-link">Read more...</a>
+                                        <a href="/ville/<?php echo e($city->title); ?>" class="news-link">Read more...</a>
                                     </div>
                                 </div>
                             </div>

@@ -17,11 +17,30 @@
         .ville:hover h4 {
             background: none !important;
         }
+
+        .hero-title {
+            display: table-cell;
+            height: 500px;
+            padding: 10px;
+            font-size: 40px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 568px) {
+            .row-reverse {
+                flex-direction: row-reverse;
+
+            }
+
+            .no-mobile {
+                display: none;
+            }
+        }
     </style>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
-    <?php echo $__env->make('landing.hero', ['active' => 'achat'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    <?php echo $__env->make('landing.hero', ['active' => 'achat', 'index' => true], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <?php echo $__env->make('landing.index.catalogueProduits', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
@@ -32,6 +51,7 @@
     <?php echo $__env->make('landing.index.catalogueConseilsMaroc', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     
+    <?php echo $__env->make('partials.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>

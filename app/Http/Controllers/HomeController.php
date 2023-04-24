@@ -353,10 +353,10 @@ class HomeController extends Controller
         ]);
     }
 
-    public function villeDetails($id)
+    public function villeDetails($slug)
     {
-        $ville = Ville::findOrFail($id);
-        $blogs = Blog::where('ville_id', $id)->where('status', 1)->where('approved', 1)->get();
+        $ville = Ville::where('title', $slug)->firstOrFail();
+        $blogs = Blog::where('ville_id', $ville->id)->where('status', 1)->where('approved', 1)->get();
         return view('villeDetails', [
             'ville' => $ville,
             'blogs' => $blogs,

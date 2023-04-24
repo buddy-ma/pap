@@ -1,5 +1,5 @@
 
-<?php $__env->startSection('title', 'Particulier a particulier'); ?>
+<?php $__env->startSection('title', 'IMMO NEUF'); ?>
 <?php $__env->startSection('logo', 'green'); ?>
 <?php $__env->startSection('bodyClasses', 'homepage-3 the-search'); ?>
 
@@ -30,7 +30,7 @@
 <?php $__env->startSection('content'); ?>
 
     <?php echo $__env->make('landing.hero', ['active' => 'immoneuf'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-    <?php echo $__env->make('landing.immoneuf.villes-tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+    
 
     <?php echo $__env->make('landing.immoneuf.catalogueProduits', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <?php echo $__env->make('landing.immoneuf.cataloguePromoteurs', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

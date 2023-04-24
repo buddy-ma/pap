@@ -15,7 +15,9 @@
                                 <div class="project-inner project-head">
                                     <div class="homes">
                                         <a href="/produit/{{ $product->slug }}" class="homes-img">
-                                            <div class="homes-tag button alt featured">{{ $product->category->title }}
+                                            <div
+                                                class="homes-tag button alt featured {{ strtolower($product->category->title) }}">
+                                                {{ $product->category->title }}
                                             </div>
                                             @if ($product->first_image() !== null)
                                                 <img src="{{ URL::asset('storage/product/images/' . $product->first_image()->image) }}"
@@ -68,11 +70,6 @@
                                         <h3 class="title mt-3">
                                             <a> {{ $product->prix }} dh</a>
                                         </h3>
-                                        <div class="compare">
-                                            <a href="#" title="Share">
-                                                <i class="flaticon-share"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
