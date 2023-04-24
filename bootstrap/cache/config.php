@@ -1,16 +1,16 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'pap',
+    'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
-    'url' => 'localhost',
+    'url' => 'http://localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:JVtwTMAIc7KOR+tL6apxo3o7an5SKuZSBtL8iEyVtpI=',
+    'key' => 'base64:az1PUwJTrCqKDo4NYOok9OLcIy4M1TPtvxD4sOlK8BM=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -174,7 +174,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\framework/cache/data',
+        'path' => '/var/www/html/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -213,7 +213,7 @@
         'endpoint' => NULL,
       ),
     ),
-    'prefix' => 'pap_cache',
+    'prefix' => 'laravel_cache',
   ),
   'cors' => 
   array (
@@ -259,11 +259,11 @@
       array (
         'driver' => 'mysql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => 'mariadb',
         'port' => '3306',
         'database' => 'pap',
         'username' => 'root',
-        'password' => '',
+        'password' => 'password',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -279,11 +279,11 @@
       array (
         'driver' => 'pgsql',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => 'mariadb',
         'port' => '3306',
         'database' => 'pap',
         'username' => 'root',
-        'password' => '',
+        'password' => 'password',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -294,11 +294,11 @@
       array (
         'driver' => 'sqlsrv',
         'url' => NULL,
-        'host' => 'localhost',
+        'host' => 'mariadb',
         'port' => '3306',
         'database' => 'pap',
         'username' => 'root',
-        'password' => '',
+        'password' => 'password',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -311,7 +311,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'pap_database_',
+        'prefix' => 'laravel_database_',
       ),
       'default' => 
       array (
@@ -340,13 +340,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\app',
+        'root' => '/var/www/html/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\app/public',
-        'url' => 'localhost/storage',
+        'root' => '/var/www/html/storage/app/public',
+        'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -362,7 +362,7 @@
     ),
     'links' => 
     array (
-      'C:\\Users\\ayman\\Desktop\\Project\\pap\\public\\storage' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\app/public',
+      '/var/www/html/public/storage' => '/var/www/html/storage/app/public',
     ),
   ),
   'hashing' => 
@@ -396,13 +396,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\logs/laravel.log',
+        'path' => '/var/www/html/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\logs/laravel.log',
+        'path' => '/var/www/html/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -452,7 +452,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\logs/laravel.log',
+        'path' => '/var/www/html/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -464,11 +464,11 @@
       'smtp' => 
       array (
         'transport' => 'smtp',
-        'host' => 'mail.buddy.ma',
-        'port' => '465',
-        'encryption' => 'tls',
-        'username' => 'info@buddy.ma',
-        'password' => 'Sherlockk_1$$',
+        'host' => 'smtp.mailtrap.io',
+        'port' => '2525',
+        'encryption' => NULL,
+        'username' => NULL,
+        'password' => NULL,
         'timeout' => NULL,
         'auth_mode' => NULL,
       ),
@@ -501,15 +501,15 @@
     ),
     'from' => 
     array (
-      'address' => 'info@buddy.ma',
-      'name' => 'Buddy.ma',
+      'address' => NULL,
+      'name' => 'Laravel',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\resources\\views/vendor/mail',
+        0 => '/var/www/html/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -584,11 +584,11 @@
   ),
   'session' => 
   array (
-    'driver' => 'database',
+    'driver' => 'file',
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\framework/sessions',
+    'files' => '/var/www/html/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -597,7 +597,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'pap_session',
+    'cookie' => 'laravel_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
@@ -608,9 +608,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\resources\\views',
+      0 => '/var/www/html/resources/views',
     ),
-    'compiled' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\framework\\views',
+    'compiled' => '/var/www/html/storage/framework/views',
   ),
   'visits' => 
   array (
@@ -644,7 +644,7 @@
     array (
       'enabled' => true,
       'driver' => 'file',
-      'path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\debugbar',
+      'path' => '/var/www/html/storage/debugbar',
       'connection' => NULL,
       'provider' => '',
       'hostname' => '127.0.0.1',
@@ -785,7 +785,7 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
-    'view_path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\resources\\views/livewire',
+    'view_path' => '/var/www/html/resources/views/livewire',
     'layout' => 'layouts.app',
     'asset_url' => NULL,
     'app_url' => NULL,
@@ -851,9 +851,23 @@
     'cache' => 
     array (
       'expiration_time' => 
-      \DateInterval::__set_state(array(
-         'from_string' => true,
-         'date_string' => '24 hours',
+      DateInterval::__set_state(array(
+         'y' => 0,
+         'm' => 0,
+         'd' => 0,
+         'h' => 24,
+         'i' => 0,
+         's' => 0,
+         'f' => 0.0,
+         'weekday' => 0,
+         'weekday_behavior' => 0,
+         'first_last_day_of' => 0,
+         'invert' => 0,
+         'days' => false,
+         'special_type' => 0,
+         'special_amount' => 0,
+         'have_weekday_relative' => 0,
+         'have_special_relative' => 0,
       )),
       'key' => 'spatie.permission.cache',
       'store' => 'default',
@@ -878,7 +892,7 @@
       'maxmind_database' => 
       array (
         'class' => 'Torann\\GeoIP\\Services\\MaxMindDatabase',
-        'database_path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\app/geoip.mmdb',
+        'database_path' => '/var/www/html/storage/app/geoip.mmdb',
         'update_url' => 'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=&suffix=tar.gz',
         'locales' => 
         array (
@@ -900,7 +914,7 @@
         'class' => 'Torann\\GeoIP\\Services\\IPApi',
         'secure' => true,
         'key' => NULL,
-        'continent_path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\app/continents.json',
+        'continent_path' => '/var/www/html/storage/app/continents.json',
         'lang' => 'en',
       ),
       'ipgeolocation' => 
@@ -908,7 +922,7 @@
         'class' => 'Torann\\GeoIP\\Services\\IPGeoLocation',
         'secure' => true,
         'key' => NULL,
-        'continent_path' => 'C:\\Users\\ayman\\Desktop\\Project\\pap\\storage\\app/continents.json',
+        'continent_path' => '/var/www/html/storage/app/continents.json',
         'lang' => 'en',
       ),
       'ipdata' => 

@@ -15,7 +15,9 @@
                                 <div class="project-inner project-head">
                                     <div class="homes">
                                         <a href="/produit/<?php echo e($product->slug); ?>" class="homes-img">
-                                            <div class="homes-tag button alt featured"><?php echo e($product->category->title); ?>
+                                            <div
+                                                class="homes-tag button alt featured <?php echo e(strtolower($product->category->title)); ?>">
+                                                <?php echo e($product->category->title); ?>
 
                                             </div>
                                             <?php if($product->first_image() !== null): ?>
@@ -69,11 +71,6 @@
                                         <h3 class="title mt-3">
                                             <a> <?php echo e($product->prix); ?> dh</a>
                                         </h3>
-                                        <div class="compare">
-                                            <a href="#" title="Share">
-                                                <i class="flaticon-share"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
