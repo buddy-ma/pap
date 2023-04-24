@@ -4,6 +4,8 @@
 <?php $__env->startSection('bodyClasses', 'decouvrez homepage-3 the-search'); ?>
 
 <?php $__env->startSection('css'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/colors/orange.css')); ?>">
+
     <style>
         .ville-tags {
             background: #ddd !important;

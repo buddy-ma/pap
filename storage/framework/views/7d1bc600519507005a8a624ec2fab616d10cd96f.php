@@ -1,10 +1,10 @@
 
 <?php $__env->startSection('title', 'Particulier a particulier'); ?>
-<?php $__env->startSection('logo', 'purple'); ?>
+<?php $__env->startSection('logo', 'orange'); ?>
 <?php $__env->startSection('bodyClasses', 'homepage-3 the-search'); ?>
 
 <?php $__env->startSection('css'); ?>
-    <link rel="stylesheet" href="<?php echo e(asset('assets/css/colors/purple.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/colors/orange.css')); ?>">
 
     <style>
         .ville h4 {

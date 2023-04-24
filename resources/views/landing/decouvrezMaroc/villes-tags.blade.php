@@ -5,7 +5,7 @@
             <div class="slick-villes">
                 @foreach ($villes as $ville)
                     <div class="agents-grid" data-aos="fade-up" data-aos-delay="150">
-                        <a href="/ville/{{ $ville->id }}"
+                        <a href="/ville/{{ $ville->title }}"
                             class="btn btn-primary ville-tags btn-block">{{ $ville->title }}</a>
                     </div>
                 @endforeach

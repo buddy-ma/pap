@@ -6013,6 +6013,7 @@ a.button,
 .homepage-3 .hero-main {
     padding: 140px 0 0;
 }
+
 .decouvrez .hero-main,
 .conseils .hero-main {
     padding: 250px 0 0;
@@ -6022,19 +6023,23 @@ a.button,
     .homepage-3 .hero-main {
         padding: 100px 0 0;
     }
+
     .decouvrez .hero-main,
     .conseils .hero-main {
-        padding: 200px 0 0!important;
+        padding: 200px 0 0 !important;
     }
+
     .decouvrez .welcome-area,
-    .conseils .welcome-area{
+    .conseils .welcome-area {
         height: 540px;
     }
+
     .decouvrez .btn.btn-yellow,
-    .conseils .btn.btn-yellow{
+    .conseils .btn.btn-yellow {
         height: 50px !important;
         line-height: 48px;
     }
+
     .homepage-3 .banner-inner h1 {
         font-size: 22px;
     }
@@ -6093,7 +6098,8 @@ a.button,
     opacity: 0.87;
     z-index: -1;
 }
-.homepage-3 .rld-banner-tab .nav-item a{
+
+.homepage-3 .rld-banner-tab .nav-item a {
     border: 2px solid #ebebeb;
     box-shadow: 0px 0px 0px 8px rgba(255, 255, 255, 0.4);
 }
@@ -6356,15 +6362,19 @@ a.button,
 
 .homepage-3 .btn:hover,
 .homepage-3 .popular-places .listing-badges .featured,
-.homepage-3 .homes-tag.featured {
+.homepage-3 .homes-tag.achat {
     background: #1266e3 !important;
 }
 
-.homepage-3 .portfolio .homes-tag.sale {
-    background: #ff385c !important;
+.homepage-3 .portfolio .homes-tag.location {
+    background: #a321ff !important;
 }
 
-.homepage-3 .portfolio .homes-tag.rent {
+.homepage-3 .portfolio .homes-tag.vacances {
+    background: #ff7503 !important;
+}
+
+.homepage-3 .portfolio .homes-tag.immoneuf {
     background: #18ba60 !important;
 }
 
@@ -6917,7 +6927,7 @@ a.button,
         padding-bottom: 10px;
         background: #0098ef;
     }
-    
+
     .homepage-4 .info p {
         font-size: 12px !important;
         line-height: 50px !important;
@@ -6926,6 +6936,7 @@ a.button,
         color: #333;
     }
 }
+
 /*BACKGROUND COLORS*/
 .homepage-4 .bg-gray {
     background-color: #f6f9fe;
@@ -15019,30 +15030,37 @@ a.button {
     .homepage-23 .banner-inner .sub-title {
         font-size: 15px;
     }
+
     .rld-banner-tab .nav-item a {
         height: 30px;
         line-height: 27px;
         padding: 0 10px;
         margin-right: 5px;
-        font-size:12px;
+        font-size: 12px;
     }
-    .px-xs-1{
+
+    .px-xs-1 {
         padding-right: 0.25rem !important;
-        padding-left: 0.25rem !important; 
+        padding-left: 0.25rem !important;
     }
-    .d-xs-none{
-        display: none !important; 
+
+    .d-xs-none {
+        display: none !important;
     }
-    .d-xs-inline{
+
+    .d-xs-inline {
         display: inline !important;
     }
-    .homepage-3 .portfolio .homes-content .homes-list li{
+
+    .homepage-3 .portfolio .homes-content .homes-list li {
         width: 45%;
     }
-    .th-8 .header-image{
+
+    .th-8 .header-image {
         height: 110vh !important;
     }
-    .th-8 .parallax-search8 .trip-search{
+
+    .th-8 .parallax-search8 .trip-search {
         margin-top: 60px !important;
     }
 }

@@ -55,7 +55,6 @@ class Blog extends Model
         });
     }
 
-
     public function scopeTags($query, $count = 10)
     {
         $tags = $query->pluck('tags')->toArray();

@@ -9,23 +9,27 @@
         <div class="single widget">
             <div class="sidebar">
                 <div class="widget-boxed mt-33">
-                    <div class="widget-boxed-header">
-                        <h4>Agent Information</h4>
-                    </div>
                     <div class="widget-boxed-body">
                         <div class="sidebar-widget author-widget2">
                             <div class="agent-contact-form-sidebar">
                                 <h4>Contact</h4>
-                                <form name="contact_form" method="post" action="functions.php">
-                                    <input type="text" id="fname" name="full_name" placeholder="Full Name"
+                                <?php if($errors->any()): ?>
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <li><?php echo e($error); ?></li>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </ul>
+                                    </div>
+                                <?php endif; ?>
+                                <form method="post" action="<?php echo e(route('produitContact', $product->id)); ?>">
+                                    <?php echo csrf_field(); ?>
+                                    <input type="text" name="fullname" placeholder="Nom complet" required />
+                                    <input type="text" maxlength="10" name="phone" placeholder="Telephone"
                                         required />
-                                    <input type="number" id="pnumber" name="phone_number" placeholder="Phone Number"
-                                        required />
-                                    <input type="email" id="emailid" name="email_address"
-                                        placeholder="Email Address" required />
+                                    <input type="email" name="email" placeholder="Email Address" />
                                     <textarea placeholder="Message" name="message" required></textarea>
-                                    <input type="submit" name="sendmessage" class="multiple-send-message"
-                                        value="Submit Request" />
+                                    <button type="submit" class="btn btn-block btn-primary mt-3"> Envoyer </button>
                                 </form>
                             </div>
                         </div>

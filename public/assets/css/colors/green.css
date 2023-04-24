@@ -54,10 +54,6 @@ a.button,
     color: #18ba60 !important;
 }
 
-.homepage-4 .homes-tag.featured {
-    background: #18ba60 !important;
-}
-
 .slick-prev.slick-disabled:hover,
 .slick-next.slick-disabled:hover,
 .slick-prev:hover,
@@ -581,9 +577,19 @@ section.pricing-table {
     background: #18ba60;
 }
 
-.homepage-3 .btn:hover,
-.homepage-3 .popular-places .listing-badges .featured,
-.homepage-3 .homes-tag.featured {
+.homes-tag.achat {
+    background: #1266e3 !important;
+}
+
+.homes-tag.location {
+    background: #a321ff !important;
+}
+
+.homes-tag.vacances {
+    background: #ff7503 !important;
+}
+
+.homes-tag.immoneuf {
     background: #18ba60 !important;
 }
 
@@ -592,12 +598,6 @@ section.pricing-table {
             rgba(18, 56, 12, 0.2) 0%,
             rgba(4, 29, 17, 0.2) 100%),
         url(../../images/bg/purple.png) no-repeat scroll center center/cover;
-}
-
-.inner-pages .btn:hover,
-.inner-pages .popular-places .listing-badges .featured,
-.inner-pages .homes-tag.featured {
-    background: #18ba60 !important;
 }
 
 .inner-pages .rld-banner-tab .nav-item a.active,
@@ -622,6 +622,7 @@ section.pricing-table {
     -webkit-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
 }
+
 #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
