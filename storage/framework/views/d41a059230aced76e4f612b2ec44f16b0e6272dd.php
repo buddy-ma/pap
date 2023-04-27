@@ -45,125 +45,57 @@
     <!--End Page header-->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <!-- Row -->
-    <div class="row">
-        <div class="col-lg-12 col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Add Ville </h3>
-                </div>
-                <div class="card-body pb-2">
-                    <?php if($message = Session::get('success')): ?>
-                        <div class="alert alert-success" role="alert"><button type="button" class="close"
-                                data-dismiss="alert" aria-hidden="true">×</button>
-                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i><?php echo e($message); ?>.
-                        </div>
-                    <?php endif; ?>
-                    <?php if(count($errors) > 0): ?>
-                        <div class="alert alert-danger">
-                            <strong>Whoops!</strong> There were some problems with your input.
-                            <ul>
-                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <li><?php echo e($error); ?></li>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </ul>
-                        </div>
-                    <?php endif; ?>
+    <div>
+        <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('ville-links', ['ville', $ville])->html();
+} elseif ($_instance->childHasBeenRendered('qBIm3YM')) {
+    $componentId = $_instance->getRenderedChildComponentId('qBIm3YM');
+    $componentTag = $_instance->getRenderedChildComponentTagName('qBIm3YM');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('qBIm3YM');
+} else {
+    $response = \Livewire\Livewire::mount('ville-links', ['ville', $ville]);
+    $html = $response->html();
+    $_instance->logRenderedChild('qBIm3YM', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+    </div>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+    <!-- INTERNAL Select2 js -->
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/select2/select2.full.min.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/js/select2.js')); ?>"></script>
 
-                    <form method="post" action="<?php echo e(route('ville-update', [$ville->id])); ?>" enctype="multipart/form-data">
-                        <?php echo csrf_field(); ?>
-                        <div class="row">
-                            <div class="col-lg">
-                                <label>Title*</label>
-                                <input type="text" name="title" value="<?php echo e($ville->title); ?>" class="form-control" />
-                            </div>
-                            <div class="col-lg">
-                                <label class="d-block">Video </label>
-                                <input name="video_link" type="text" value="<?php echo e($ville->video); ?>" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="row mt-4">
-                            <div class="col-lg">
-                                <label>Main Image*</label>
-                                <input type="file" class="dropify" data-height="180" name="image" />
-                            </div>
-                        </div>
-                        <div class="form-group mt-4">
-                            <label>Article :</label>
-                            <textarea name="editor1" rows="500" style="min-height: 500px;">
-                                <?php echo $ville->text; ?>
+    <!-- INTERNAL Datepicker js -->
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/date-picker/date-picker.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/date-picker/jquery-ui.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js')); ?>"></script>
 
-                            </textarea>
-                        </div>
+    <!-- INTERNAL File-Uploads Js-->
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.ui.widget.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.fileupload.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.iframe-transport.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.fancy-fileupload.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/fancy-uploader.js')); ?>"></script>
 
-                        <div class="btn-list text-right">
-                            <button name="action" type="submit" class="btn btn-success">Save</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    <?php $__env->stopSection(); ?>
-    <?php $__env->startSection('js'); ?>
-        <!-- INTERNAL Select2 js -->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/select2/select2.full.min.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/select2.js')); ?>"></script>
+    <!-- INTERNAL File uploads js -->
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/fileupload/js/dropify.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/js/filupload.js')); ?>"></script>
 
-        <!-- INTERNAL Datepicker js -->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/date-picker/date-picker.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/date-picker/jquery-ui.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js')); ?>"></script>
+    <!--INTERNAL Sumoselect js-->
+    <script src="<?php echo e(URL::asset('admin_assets/plugins/sumoselect/jquery.sumoselect.js')); ?>"></script>
 
-        <!-- INTERNAL File-Uploads Js-->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.ui.widget.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.fileupload.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.iframe-transport.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/jquery.fancy-fileupload.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fancyuploder/fancy-uploader.js')); ?>"></script>
+    <!--INTERNAL Form Advanced Element -->
+    <script src="<?php echo e(URL::asset('admin_assets/js/formelementadvnced.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/js/form-elements.js')); ?>"></script>
+    <script src="<?php echo e(URL::asset('admin_assets/js/file-upload.js')); ?>"></script>
 
-        <!-- INTERNAL File uploads js -->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/fileupload/js/dropify.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/filupload.js')); ?>"></script>
-
-        <!--INTERNAL Sumoselect js-->
-        <script src="<?php echo e(URL::asset('admin_assets/plugins/sumoselect/jquery.sumoselect.js')); ?>"></script>
-
-        <!--INTERNAL Form Advanced Element -->
-        <script src="<?php echo e(URL::asset('admin_assets/js/formelementadvnced.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/form-elements.js')); ?>"></script>
-        <script src="<?php echo e(URL::asset('admin_assets/js/file-upload.js')); ?>"></script>
-
-        <script type="text/javascript">
-            CKEDITOR.config.height = 1000;
-            CKEDITOR.replace('editor1', {
-                filebrowserUploadUrl: "<?php echo e(route('ville-add', ['_token' => csrf_token()])); ?>",
-                filebrowserUploadMethod: 'form'
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.ckeditor').ckeditor();
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('.dropdown-submenu a.test').on("click", function(e) {
-                    $(this).next('ul').toggle();
-                    e.stopPropagation();
-                    e.preventDefault();
-                });
-            });
-        </script>
-        <script>
-            $('#tags').tagsinput({
-                maxTags: 3
-            });
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-        <script src="<?php echo e(asset('js/app.js')); ?>"></script>
-        <script src="/js/app.js"></script>
-    <?php $__env->stopSection(); ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/villes/ville-show.blade.php ENDPATH**/ ?>

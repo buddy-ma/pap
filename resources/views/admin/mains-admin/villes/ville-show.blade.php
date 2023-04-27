@@ -36,10 +36,10 @@
     <!--Page header-->
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">Create Ville</h4>
+            <h4 class="page-title mb-0">Edit Ville</h4>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><i class="fe fe-layout  mr-2 fs-14"></i>Tables</li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="">Create Ville</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Edit Ville</a></li>
             </ol>
         </div>
     </div>
@@ -51,7 +51,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Add Ville </h3>
+                    <h3 class="card-title">Edit Ville </h3>
                 </div>
                 <div class="card-body pb-2">
                     @if ($message = Session::get('success'))
@@ -82,18 +82,29 @@
                                 <label class="d-block">Video </label>
                                 <input name="video_link" type="text" value="{{ $ville->video }}" class="form-control" />
                             </div>
-                        </div>
-                        <div class="row mt-4">
                             <div class="col-lg">
                                 <label>Main Image*</label>
-                                <input type="file" class="dropify" data-height="180" name="image" />
+                                <div class="input-group file-browser ">
+                                    <input type="text" class="form-control border-right-0 browse-file"
+                                        placeholder="choose" readonly="">
+                                    <label class="input-group-btn">
+                                        <span class="btn btn-primary">
+                                            Browse <input type="file" style="display: none;" name="image"
+                                                multiple="">
+                                        </span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group mt-4">
-                            <label>Article :</label>
-                            <textarea name="editor1" rows="500" style="min-height: 500px;">
-                                {!! $ville->text !!}
-                            </textarea>
+                        <div class="row mt-2">
+                            <div class="col-lg">
+                                <div class="form-group">
+                                    <label>Article*</label>
+                                    <textarea name="editor1" rows="500" style="min-height: 500px;">
+                                        {!! $ville->text !!}
+                                </textarea>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="btn-list text-right">
@@ -103,65 +114,66 @@
                 </div>
             </div>
         </div>
-    @endsection
-    @section('js')
-        <!-- INTERNAL Select2 js -->
-        <script src="{{ URL::asset('admin_assets/plugins/select2/select2.full.min.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/js/select2.js') }}"></script>
+    </div>
+@endsection
+@section('js')
+    <!-- INTERNAL Select2 js -->
+    <script src="{{ URL::asset('admin_assets/plugins/select2/select2.full.min.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/select2.js') }}"></script>
 
-        <!-- INTERNAL Datepicker js -->
-        <script src="{{ URL::asset('admin_assets/plugins/date-picker/date-picker.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/plugins/date-picker/jquery-ui.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
+    <!-- INTERNAL Datepicker js -->
+    <script src="{{ URL::asset('admin_assets/plugins/date-picker/date-picker.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/date-picker/jquery-ui.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/input-mask/jquery.maskedinput.js') }}"></script>
 
-        <!-- INTERNAL File-Uploads Js-->
-        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
+    <!-- INTERNAL File-Uploads Js-->
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.ui.widget.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fileupload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/jquery.fancy-fileupload.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/plugins/fancyuploder/fancy-uploader.js') }}"></script>
 
-        <!-- INTERNAL File uploads js -->
-        <script src="{{ URL::asset('admin_assets/plugins/fileupload/js/dropify.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/js/filupload.js') }}"></script>
+    <!-- INTERNAL File uploads js -->
+    <script src="{{ URL::asset('admin_assets/plugins/fileupload/js/dropify.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/filupload.js') }}"></script>
 
-        <!--INTERNAL Sumoselect js-->
-        <script src="{{ URL::asset('admin_assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
+    <!--INTERNAL Sumoselect js-->
+    <script src="{{ URL::asset('admin_assets/plugins/sumoselect/jquery.sumoselect.js') }}"></script>
 
-        <!--INTERNAL Form Advanced Element -->
-        <script src="{{ URL::asset('admin_assets/js/formelementadvnced.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/js/form-elements.js') }}"></script>
-        <script src="{{ URL::asset('admin_assets/js/file-upload.js') }}"></script>
+    <!--INTERNAL Form Advanced Element -->
+    <script src="{{ URL::asset('admin_assets/js/formelementadvnced.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/form-elements.js') }}"></script>
+    <script src="{{ URL::asset('admin_assets/js/file-upload.js') }}"></script>
 
-        <script type="text/javascript">
-            CKEDITOR.config.height = 1000;
-            CKEDITOR.replace('editor1', {
-                filebrowserUploadUrl: "{{ route('ville-add', ['_token' => csrf_token()]) }}",
-                filebrowserUploadMethod: 'form'
+    <script type="text/javascript">
+        CKEDITOR.config.height = 1000;
+        CKEDITOR.replace('editor1', {
+            filebrowserUploadUrl: "{{ route('ville-add', ['_token' => csrf_token()]) }}",
+            filebrowserUploadMethod: 'form'
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.dropdown-submenu a.test').on("click", function(e) {
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
             });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('.ckeditor').ckeditor();
-            });
-        </script>
-        <script>
-            $(document).ready(function() {
-                $('.dropdown-submenu a.test').on("click", function(e) {
-                    $(this).next('ul').toggle();
-                    e.stopPropagation();
-                    e.preventDefault();
-                });
-            });
-        </script>
-        <script>
-            $('#tags').tagsinput({
-                maxTags: 3
-            });
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
-        <script src="/js/app.js"></script>
-    @endsection
+        });
+    </script>
+    <script>
+        $('#tags').tagsinput({
+            maxTags: 3
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
+@endsection

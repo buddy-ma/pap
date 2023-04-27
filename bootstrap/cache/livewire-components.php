@@ -14,4 +14,5 @@
   'product-types-admin' => 'App\\Http\\Livewire\\ProductTypesAdmin',
   'roles' => 'App\\Http\\Livewire\\Roles',
   'users' => 'App\\Http\\Livewire\\Users',
+  'ville-links-livewire' => 'App\\Http\\Livewire\\VilleLinksLivewire',
 );

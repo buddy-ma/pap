@@ -29,11 +29,17 @@
                         <p class="card-text">{{ substr($txt, 0, 100) }}...</p>
                     </div>
                     <div class="card-footer">
-                        <a class="btn btn-primary" href="/admin/villes/edit/{{ $ville->id }}"> <i class="fa fa-edit"></i>
-                            Modifier</a>
-                        <a class="btn btn-danger" href="/admin/villes/delete/{{ $ville->id }}"> <i
-                                class="fa fa-trash"></i>
-                            Supprimer</a>
+                        <div class="btn-group btn-block">
+                            <a class="btn btn-primary w-100" href="/admin/villes/edit/{{ $ville->id }}"> <i
+                                    class="fa fa-edit"></i>
+                                Modifier</a>
+                            <a class="btn btn-danger w-100" href="/admin/villes/delete/{{ $ville->id }}"> <i
+                                    class="fa fa-trash"></i>
+                                Supprimer</a>
+                        </div>
+                        <a class="btn btn-secondary btn-block" href="/admin/villes/liens/{{ $ville->id }}"> <i
+                                class="fa fa-link"></i>
+                            Liens</a>
                     </div>
                 </div>
             </div>

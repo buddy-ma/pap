@@ -41,7 +41,7 @@ class Blog extends Model
 
     public function ville()
     {
-        return $this->belongsTo(Proprietaire::class, 'ville_id');
+        return $this->belongsTo(Ville::class, 'ville_id');
     }
 
     public function scopeSearch($query, $term)
