@@ -86,4 +86,11 @@ class VilleController extends Controller
         session()->flash('success', 'Ville has been deleted sucssefuly');
         return redirect('admin/villes');
     }
+
+    public function liens($id)
+    {
+        return view('admin.mains-admin.villes.ville-links', [
+            'id' => $id,
+        ]);
+    }
 }

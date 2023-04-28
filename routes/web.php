@@ -66,6 +66,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::get('/edit/{id?}', [VilleController::class, 'edit'])->name('show-ville-edit');
         Route::post('/{id?}', [VilleController::class, 'update'])->name('ville-update');
         Route::get('/delete/{id?}', [VilleController::class, 'delete'])->name('ville-delete');
+        Route::get('/liens/{id?}', [VilleController::class, 'liens'])->name('show-ville-liens');
     });
 
     //Categorie

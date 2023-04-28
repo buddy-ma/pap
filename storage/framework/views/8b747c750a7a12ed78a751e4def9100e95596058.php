@@ -101,7 +101,8 @@
                                                                     class="btn btn-primary">
                                                                     <i class="fe fe-edit"></i>
                                                                 </a>
-                                                                <a href="/blog/<?php echo e($blog->slug); ?>" target="_blank"
+                                                                <a href="/decouvrezMaroc/<?php echo e($blog->slug); ?>"
+                                                                    target="_blank"
                                                                     class="btn btn-success <?php echo e($blog->ismodified && $blog->status == 0 ? 'flash' : ''); ?>">
                                                                     <i class="fe fe-eye"></i>
                                                                 </a>

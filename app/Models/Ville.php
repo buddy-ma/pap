@@ -13,4 +13,9 @@ class Ville extends Model
     {
         return $this->hasMany(Blog::class, 'ville_id');
     }
+
+    public function links()
+    {
+        return $this->hasMany(VilleLinks::class, 'ville_id');
+    }
 }
