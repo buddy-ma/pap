@@ -36,15 +36,15 @@
     <div class="articlesHub__menu">
         <div class="articlesHub__menu__container text-center">
             <div class="articlesHub__menu__content">
-                <a @click="reset" class="articlesHub__menu__item selected"><i class="fa fa-home"></i>
+                <a @click="reset" class="articlesHub__menu__item" :class="(this.id === 0) ? 'selected' : ''"><i
+                        class="fa fa-home"></i>
                     <span class="caretForSmallMenu"><i class="fa fa-caret-down"></i></span>
                 </a>
-                @foreach ($categoryConseils as $categoryConseil)
-                    <a @click="filter({{ $categoryConseil->id }})"
-                        class="articlesHub__menu__item">{{ $categoryConseil->title }}
-                        <span class="caretForSmallMenu"><i class="fa fa-caret-down"></i></span>
-                    </a>
-                @endforeach
+                <a @click="filter(categoryConseil.id)" class="articlesHub__menu__item"
+                    :class="(categoryConseil.id === this.id) ? 'selected' : ''"
+                    v-for="categoryConseil in categoryConseils" :key="categoryConseil.id"> @{{ categoryConseil.title }}
+                    <span class="caretForSmallMenu"><i class="fa fa-caret-down"></i></span>
+                </a>
                 <div class="articlesHub__menu__content-border"></div>
             </div>
         </div>
@@ -103,16 +103,18 @@
             data() {
                 return {
                     searchInput: null,
+                    isActive: null,
                     results: [],
+                    categoryConseils: [],
                     id: 0,
                     conseilsLink: "/conseils/",
                 };
             },
             mounted: function() {
-                this.filter(this.id);
+                this.getData(this.id);
             },
             methods: {
-                filter(id, searchInput = '') {
+                getData(id, searchInput = '') {
                     axios.get('/filterConseils', {
                             params: {
                                 id: id,
@@ -120,17 +122,22 @@
                             }
                         })
                         .then(response => {
-                            this.results = response.data;
+                            this.results = response.data.conseils;
+                            this.categoryConseils = response.data.categoryConseils;
                         })
                         .catch(error => {});
                 },
+                filter(id) {
+                    this.id = id;
+                    this.getData(id);
+                },
                 search() {
-                    this.filter(this.id, this.searchInput);
+                    this.getData(this.id, this.searchInput);
                 },
                 reset() {
                     this.searchInput = '';
                     this.id = 0;
-                    this.filter(this.id, this.searchInput);
+                    this.getData(this.id, this.searchInput);
                 }
             }
         }).mount('#app')

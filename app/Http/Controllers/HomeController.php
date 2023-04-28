@@ -332,6 +332,8 @@ class HomeController extends Controller
 
     public function filterConseils(Request $request)
     {
+        $categoryConseils = ConseilCategory::get();
+        
         $c = Categorie::where('title', 'Conseils')->first();
         $ids = $c->blogs()->pluck('blogs.id')->toArray();
         if($request->id == 0){
@@ -357,7 +359,9 @@ class HomeController extends Controller
                 ->get();
         }
         
-        return response()->json($conseils);
+        return response()->json([
+            'conseils' => $conseils, 
+            'categoryConseils' => $categoryConseils]);
     }
 
     public function blogDetails($slug)
