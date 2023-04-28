@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Models\ConseilCategory;
 use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
@@ -37,7 +38,8 @@ class BlogController extends Controller
     public function add()
     {
         $categories = Categorie::with('children')->where('id', '!=', 9)->get();
-        return view('admin.mains-admin.blogs.blog-add', ['categories' => $categories]);
+        $conseilscategories = ConseilCategory::get();
+        return view('admin.mains-admin.blogs.blog-add', ['categories' => $categories, 'conseilscategories' => $conseilscategories]);
     }
 
     public function addDecouvrez()
@@ -95,6 +97,7 @@ class BlogController extends Controller
         $blog->status = 1;
         $blog->save();
         $blog->categories()->sync($request->categories);
+        $blog->conseilscategories()->sync($request->conseilscategories);
         session()->flash('success', 'Blog has been created successfully');
         return redirect('admin/blogs');
     }
@@ -149,8 +152,10 @@ class BlogController extends Controller
         $blog = Blog::find($id);
 
         $catgs = $blog->categories()->pluck('categorie_id')->toArray();
+        $conseils_catgs = $blog->conseilscategories()->pluck('conseil_category_id')->toArray();
 
         $categories = Categorie::with('children')->whereNull('parent_id')->get();
+        $conseilscategories = ConseilCategory::get();
         $autrs = Blog::join("users", "users.id", "=", "blogs.user_id")
             ->where("blogs.id", $id)
             ->get('firstname', 'lastname');
@@ -163,7 +168,9 @@ class BlogController extends Controller
         return view('admin.mains-admin.blogs.blog-show', [
             'blog' => $blog,
             'catgs' => $catgs,
+            'conseils_catgs' => $conseils_catgs,
             'categories' => $categories,
+            'conseilscategories' => $conseilscategories,
             'users' => $users,
             'autrs' => $autrs,
             'tags' => $tags,
@@ -206,6 +213,7 @@ class BlogController extends Controller
             $blog->pdf_link = $filenamepdf;
         }
         $blog->categories()->sync($request->categories);
+        $blog->conseilscategories()->sync($request->conseilscategories);
         $blog->save();
         session()->flash('success', 'Blog enregistré avec success');
         return redirect('admin/blogs');

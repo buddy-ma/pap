@@ -95,6 +95,10 @@
                                                                 <i class="fe fe-edit"></i>
                                                             </a>
                                                         <?php endif; ?>
+                                                        <a href="/conseils/<?php echo e($blog->slug); ?>" target="_blank"
+                                                            class="btn btn-success <?php echo e($blog->ismodified && $blog->status == 0 ? 'flash' : ''); ?>">
+                                                            <i class="fe fe-eye"></i>
+                                                        </a>
                                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-delete')): ?>
                                                             <button type="button" class="btn btn-danger"
                                                                 wire:click="delete(<?php echo e($blog->id); ?>)">

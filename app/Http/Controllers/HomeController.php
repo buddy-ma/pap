@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Ville;
-use App\Models\Categorie;
-use Illuminate\Http\Request;
-use App\Models\CommercialiserPage;
-use App\Models\CommercialiserContact;
 use App\Models\Product;
-use App\Models\ProductContact;
+use App\Models\Categorie;
 use App\Models\ProductType;
 use App\Models\Proprietaire;
+use Illuminate\Http\Request;
+use App\Models\ProductContact;
+use App\Models\ConseilCategory;
+use App\Models\CommercialiserPage;
+use App\Models\CommercialiserContact;
 
 class HomeController extends Controller
 {
@@ -295,30 +296,34 @@ class HomeController extends Controller
     public function conseils(Request $request)
     {
         $term = $request->input('search');
-        if ($term == '' || $term == null) {
-            $categoryConseils = Categorie::where('title', 'Conseils')->get();
-            $conseils = $categoryConseils[0]->blogs()->where('status', 1)->where('approved', 1)->get();
+        $categoryConseils = ConseilCategory::get();
 
-            $tags = $categoryConseils[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
+        if ($term == '' || $term == null) {
+            $category = Categorie::where('title', 'Conseils')->get();
+            $conseils = $category[0]->blogs()->where('status', 1)->where('approved', 1)->get();
+
+            $tags = $category[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
 
             return view('conseils', [
                 'tags' => $tags,
                 'conseils' => $conseils,
+                'categoryConseils' => $categoryConseils,
             ]);
         } else {
-            $categoryConseils = Categorie::where('title', 'Conseils')->get();
-            $conseils = $categoryConseils[0]->blogs()
+            $category = Categorie::where('title', 'Conseils')->get();
+            $conseils = $category[0]->blogs()
                 ->where('status', 1)->where('approved', 1)
                 ->where('title', 'like', '%' .  $term . '%')
                 ->orWhere('subtitle', 'like', '%' .  $term . '%')
                 ->orWhere('tags', 'like', '%' .  $term . '%')
                 ->groupBy('blogs.id')
                 ->get();
-            $tags = $categoryConseils[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
+            $tags = $category[0]->blogs()->where('status', 1)->where('approved', 1)->tags();
             return view('conseils', [
                 'tags' => $tags,
                 'conseils' => $conseils,
                 'term' => $term,
+                'categoryConseils' => $categoryConseils,
             ]);
         }
     }

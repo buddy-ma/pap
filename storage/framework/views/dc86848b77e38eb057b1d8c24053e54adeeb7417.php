@@ -45,6 +45,7 @@
         }
 
         .articlesHub__menu__item:focus,
+        .articlesHub__menu__item:hover,
         .articlesHub__menu__item:visited {
             color: #495960;
             text-decoration: none;
@@ -112,6 +113,79 @@
         .articlesHub__articles-header .articlesHub__articles-header__content .metaDescription {
             font-size: 20px;
             line-height: 30px;
+        }
+
+        @media  screen and (max-width: 600px) {
+            .articlesHub__menu__container {
+                max-width: 1080px;
+                padding: 0 20px;
+                margin: auto;
+                text-align: left;
+                width: 100%;
+                overflow-x: auto;
+            }
+
+            .articlesHub__menu.smallMenuEnabled {
+                height: auto;
+            }
+
+            .articlesHub__menu__container {
+                padding: 0 10px;
+            }
+
+            .articlesHub__menu.smallMenuEnabled .articlesHub__menu__content {
+                position: relative;
+                border-width: 0;
+                display: block;
+                white-space: nowrap;
+            }
+
+            .articlesHub__menu.smallMenuEnabled .articlesHub__menu__item.selected {
+                height: 50px;
+                opacity: 1;
+                -ms-filter: none;
+                filter: none;
+                border-width: 5px;
+            }
+
+            .articlesHub__menu.smallMenuEnabled .articlesHub__menu__item {
+                -webkit-transition: height .3s, opacity .3s;
+                -moz-transition: height .3s, opacity .3s;
+                -o-transition: height .3s, opacity .3s;
+                -ms-transition: height ease .3s, opacity ease .3s;
+                transition: height .3s, opacity .3s;
+                height: 0;
+                opacity: 0;
+                overflow: hidden;
+                line-height: 50px;
+                display: block;
+                padding: 0;
+                border-bottom: 0 solid #495960;
+            }
+
+            .articlesHub__menu.smallMenuEnabled .iconForBigMenu {
+                display: none;
+            }
+
+            .articlesHub__menu.smallMenuEnabled .textForSmallMenu {
+                display: inline-block;
+            }
+
+            .articlesHub__menu.smallMenuEnabled .articlesHub__menu__item.selected .caretForSmallMenu {
+                opacity: 1;
+                -ms-filter: none;
+                filter: none;
+            }
+
+            .articlesHub__menu.smallMenuEnabled .articlesHub__menu__item .caretForSmallMenu {
+                display: inline-block;
+                opacity: 0;
+                -webkit-transition: .3s;
+                -moz-transition: .3s;
+                -o-transition: .3s;
+                -ms-transition: all ease .3s;
+                transition: .3s;
+            }
         }
     </style>
 <?php $__env->stopSection(); ?>

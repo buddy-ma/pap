@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Categorie;
+use App\Models\ConseilCategory;
 
 class BlogCategoriesAdmin extends Component
 {
@@ -14,7 +14,7 @@ class BlogCategoriesAdmin extends Component
 
     public function mount()
     {
-        $this->categories = Categorie::get();
+        $this->categories = ConseilCategory::get();
     }
 
     public function render()
@@ -33,7 +33,7 @@ class BlogCategoriesAdmin extends Component
             'categorie_title' => 'required|string|min:2|max:255'
         ]);
 
-        $categorie = new Categorie();
+        $categorie = new ConseilCategory();
         $categorie->title = $this->categorie_title;
         $categorie->save();
         $this->dispatchBrowserEvent('swal:modal', [
@@ -49,7 +49,7 @@ class BlogCategoriesAdmin extends Component
             'categorie_title' => 'required|string|min:2|max:255'
         ]);
 
-        $categorie = Categorie::find($this->selectedId);
+        $categorie = ConseilCategory::find($this->selectedId);
         $categorie->title = $this->categorie_title;
         $categorie->save();
         $this->dispatchBrowserEvent('swal:modal', [
@@ -62,7 +62,7 @@ class BlogCategoriesAdmin extends Component
     public function editCategory($id)
     {
         $this->selectedId = $id;
-        $c = Categorie::find($id);
+        $c = ConseilCategory::find($id);
         $this->categorie_title = $c->title;
         $this->editCategory = true;
     }
@@ -78,9 +78,9 @@ class BlogCategoriesAdmin extends Component
 
     public function confirmDelete()
     {
-        $c = Categorie::find($this->deletedId);
+        $c = ConseilCategory::find($this->deletedId);
         $c->delete();
-        $this->categories = Categorie::get();
+        $this->categories = ConseilCategory::get();
     }
 
     public function resetInput()
@@ -89,6 +89,6 @@ class BlogCategoriesAdmin extends Component
         $this->editCategory = false;
         $this->addCategory = false;
         $this->selectedId = null;
-        $this->categories = Categorie::get();
+        $this->categories = ConseilCategory::get();
     }
 }

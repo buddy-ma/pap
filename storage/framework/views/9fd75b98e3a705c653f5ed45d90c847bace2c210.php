@@ -50,6 +50,15 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Edit Blog </h3>
+                    <div class="btn-group float-right ml-auto">
+                        <button class="btn btn-secondary"
+                            onclick="event.preventDefault();askBeforeApprove(<?php echo e($blog->id); ?>);">
+                            Approve
+                        </button>
+                        <button class="btn btn-primary" onclick="event.preventDefault();askBefore();">
+                            Save
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body pb-2">
                     <?php if($message = Session::get('success')): ?>
@@ -69,8 +78,8 @@
                         </div>
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-edit')): ?>
-                        <form action="<?php echo e(route('blog-update', [$blog->id])); ?>" method='POST' role="form"
-                            enctype="multipart/form-data">
+                        <form action="<?php echo e(route('blog-update', [$blog->id])); ?>" onsubmit="event.preventDefault(); askBefore()"
+                            method='POST' role="form" id="blog-update" enctype="multipart/form-data">
                             <?php echo csrf_field(); ?>
                             <input id="user_id" type="hidden" value="<?php echo e($blog->id); ?>">
                         <?php endif; ?>
@@ -94,14 +103,25 @@
                                         <?php if($categories): ?>
                                             <?php $dash = ''; ?>
                                             <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->title); ?>
+                                                <option value="<?php echo e($category->id); ?>"
+                                                    <?php echo e(in_array($category->id, $catgs) ? 'selected' : ''); ?>>
+                                                    <?php echo e($category->title); ?>
 
                                                 </option>
-                                                <?php if(count($category->children) > 0): ?>
-                                                    <?php echo $__env->make('admin.mains-admin.blogs.subcateg-list', [
-                                                        'subcategories' => $category->children,
-                                                    ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg">
+                                <div class="form-group">
+                                    <label>Conseils Categories*</label>
+                                    <select multiple="multiple" required name="conseilscategories[]" class="search-box">
+                                        <?php if($conseilscategories): ?>
+                                            <?php $__currentLoopData = $conseilscategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($cc->id); ?>"><?php echo e($cc->title); ?>
+
+                                                </option>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         <?php endif; ?>
                                     </select>
@@ -145,7 +165,8 @@
 
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('user-edit')): ?>
                             <div class="btn-list text-right">
-                                <input type="submit" value="Save" name="action" class="btn btn-primary">
+                                <input type="submit" value="Save" onclick="event.preventDefault();askBefore();"
+                                    name="action" class="btn btn-primary">
                             </div>
                         <?php endif; ?>
                     </form>
@@ -186,7 +207,7 @@
     <script type="text/javascript">
         CKEDITOR.config.height = 1000;
         CKEDITOR.replace('editor1', {
-            filebrowserUploadUrl: "<?php echo e(route('blog-add', ['_token' => csrf_token()])); ?>",
+            filebrowserUploadUrl: "<?php echo e(route('ckeditor.upload', ['_token' => csrf_token()])); ?>",
             filebrowserUploadMethod: 'form'
         });
     </script>
@@ -196,6 +217,34 @@
         });
     </script>
     <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+    <script src="<?php echo e(asset('js/app.js')); ?>"></script>
+    <script>
+        function askBefore() {
+            new swal({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'C\'est fini'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('blog-update').submit();
+                }
+            })
+        }
+
+        function askBeforeApprove(id) {
+            new swal({
+                title: 'Are you sure?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'C\'est fini'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/admin/blogs/approve/" + id;
+                }
+            })
+        }
+    </script>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\ayman\Desktop\Project\pap\resources\views/admin/mains-admin/blogs/blog-show.blade.php ENDPATH**/ ?>

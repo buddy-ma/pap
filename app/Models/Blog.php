@@ -39,6 +39,11 @@ class Blog extends Model
         return $this->belongsToMany(Categorie::class, 'blog_has_categories');
     }
 
+    public function conseilscategories()
+    {
+        return $this->belongsToMany(ConseilCategory::class, 'blog_has_conseils_categories');
+    }
+
     public function ville()
     {
         return $this->belongsTo(Proprietaire::class, 'ville_id');
