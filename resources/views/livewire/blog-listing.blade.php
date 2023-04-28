@@ -61,7 +61,7 @@
                                                 <th class="wd-15p border-bottom-0">Blog Title</th>
                                                 <th class="wd-15p border-bottom-0">Categorie</th>
                                                 <th class="wd-15p border-bottom-0">Blogger</th>
-                                                {{-- <th class="wd-15p border-bottom-0">Visits</th> --}}
+                                                <th class="wd-15p border-bottom-0">Status</th>
                                                 <th class="wd-15p border-bottom-0">Date Creation</th>
                                                 <th class="wd-15p border-bottom-0">Actions</th>
                                             </tr>

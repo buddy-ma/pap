@@ -1,14 +1,16 @@
 <section class="blog-section bg-white-2 w-100">
     <div class="container">
-        <div class="sec-title">
+        {{-- <div class="sec-title">
             @isset($term)
                 <h2><span> {{ count($conseils) }} Resultats de </span>( {{ $term }} )</h2>
             @else
                 <h2><span> Catalogue des </span>conseils immobilier.</h2>
             @endisset
-        </div>
+        </div> --}}
         <div class="news-wrap">
             <div class="row">
+
+
                 @foreach ($conseils as $cns)
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">

@@ -4,127 +4,127 @@
         <div class="container">
             <form action="<?php echo e(route($active)); ?>" method="GET" id="heroForm">
                 <input type="hidden" name="category_id" id="category_id" value="4" style="display: none">
-                <?php if(isset($index)): ?>
-                    <div class="row row-reverse">
-                        <div class="col-md-8 col-12" style="max-width: 700px">
-                        <?php else: ?>
-                            <div class="row">
-                                <div class="col-12" style="max-width: 700px">
-                                <?php endif; ?>
+                <div class="row">
+                    <?php if(isset($index)): ?>
+                        <div class="col-12 only-mobile">
+                            <h4 class="text-white text-center" style="font-size: 24px">
+                                Sans intermediare, <br>Sans commission
+                            </h4>
+                        </div>
+                    <?php endif; ?>
+                    <div class="<?php if(isset($index)): ?> col-md-8 <?php endif; ?> col-12" style="max-width: 700px">
+                        <div class="banner-search-wrap" data-aos="zoom-in">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active">
+                                    <div class="rld-main-search">
+                                        <ul class="nav nav-tabs rld-banner-tab mb-4">
+                                            <li class="nav-item mb-2">
+                                                <a class="nav-link" id="tab1"
+                                                    onclick="switchType('achat')">Achat</a>
+                                            </li>
+                                            <li class="nav-item mb-2">
+                                                <a class="nav-link" id="tab2"
+                                                    onclick="switchType('location')">Location</a>
+                                            </li>
+                                            <li class="nav-item mb-2">
+                                                <a class="nav-link" id="tab3"
+                                                    onclick="switchType('vacances')">Vacances</a>
+                                            </li>
+                                            <li class="nav-item ">
+                                                <a class="nav-link" id="tab4"
+                                                    onclick="switchType('immoneuf')">ImmoNeuf</a>
+                                            </li>
+                                        </ul>
+                                        <div class="row px-3 mb-2 ">
+                                            <div class="col-6 mb-md-4 px-xs-1">
+                                                <div class="rld-single-input">
+                                                    <div class="rld-single-select">
+                                                        <select id="form_ville" name="ville"
+                                                            class="select single-select mr-0">
+                                                            <option value="">Villes</option>
+                                                            <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vll): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($vll); ?>"
+                                                                    <?php if($vll == $ville): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($vll); ?>
 
-                                <div class="banner-search-wrap" data-aos="zoom-in">
-                                    <div class="tab-content">
-                                        <div class="tab-pane fade show active">
-                                            <div class="rld-main-search">
-                                                <ul class="nav nav-tabs rld-banner-tab mb-4">
-                                                    <li class="nav-item mb-2">
-                                                        <a class="nav-link" id="tab1"
-                                                            onclick="switchType('achat')">Achat</a>
-                                                    </li>
-                                                    <li class="nav-item mb-2">
-                                                        <a class="nav-link" id="tab2"
-                                                            onclick="switchType('location')">Location</a>
-                                                    </li>
-                                                    <li class="nav-item mb-2">
-                                                        <a class="nav-link" id="tab3"
-                                                            onclick="switchType('vacances')">Vacances</a>
-                                                    </li>
-                                                    <li class="nav-item ">
-                                                        <a class="nav-link" id="tab4"
-                                                            onclick="switchType('immoneuf')">ImmoNeuf</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="row px-3 mb-2 ">
-                                                    <div class="col-6 mb-md-4 px-xs-1">
-                                                        <div class="rld-single-input">
-                                                            <div class="rld-single-select">
-                                                                <select id="form_ville" name="ville"
-                                                                    class="select single-select mr-0">
-                                                                    <option value="">Villes</option>
-                                                                    <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vll): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($vll); ?>"
-                                                                            <?php if($vll == $ville): ?> selected <?php endif; ?>>
-                                                                            <?php echo e($vll); ?>
-
-                                                                        </option>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mb-md-4 px-xs-1">
-                                                        <div class="rld-single-input">
-                                                            <div class="rld-single-select">
-                                                                <select name="quartier"
-                                                                    class="select single-select mr-0">
-                                                                    <option value="">Quartiers</option>
-                                                                    <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qrt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($qrt); ?>"
-                                                                            <?php if($quartier == $qrt): ?> selected <?php endif; ?>>
-                                                                            <?php echo e($qrt); ?>
-
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mb-md-4 px-xs-1">
-                                                        <div class="rld-single-select">
-                                                            <select name="type_id" class="select single-select mr-0">
-                                                                <option value="">Type</option>
-                                                                <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                    <option value="<?php echo e($type->id); ?>"
-                                                                        <?php if($type_id == $type->id): ?> selected <?php endif; ?>>
-                                                                        <?php echo e($type->title); ?>
-
-                                                                    </option>
-                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mb-md-4 px-xs-1">
-                                                        <div class="rld-single-input">
-                                                            <input name="nbr_pieces" type="number"
-                                                                placeholder="Nbr. pieces" max="<?php echo e($nbr_pieces); ?>">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mb-md-4 px-xs-1">
-                                                        <div class="rld-single-input">
-                                                            <input name="surface_min" value="<?php echo e($surface_min); ?>"
-                                                                type="number" placeholder="Surface Min">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mb-md-4 px-xs-1">
-                                                        <div class="rld-single-input">
-                                                            <input name="prix_max" value="<?php echo e($prix_max); ?>"
-                                                                type="number" placeholder="Prix Max">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 mb-md-4 px-xs-1">
-                                                        <div class="rld-single-input">
-                                                            <input name="reference" value="<?php echo e($reference); ?>"
-                                                                type="text" placeholder="Réference...">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-yellow w-100">Recherchez</button>
+                                                                </option>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </select>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-6 mb-md-4 px-xs-1">
+                                                <div class="rld-single-input">
+                                                    <div class="rld-single-select">
+                                                        <select name="quartier" class="select single-select mr-0">
+                                                            <option value="">Quartiers</option>
+                                                            <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qrt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <option value="<?php echo e($qrt); ?>"
+                                                                    <?php if($quartier == $qrt): ?> selected <?php endif; ?>>
+                                                                    <?php echo e($qrt); ?>
+
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-md-4 px-xs-1">
+                                                <div class="rld-single-select">
+                                                    <select name="type_id" class="select single-select mr-0">
+                                                        <option value="">Type</option>
+                                                        <?php $__currentLoopData = $types; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <option value="<?php echo e($type->id); ?>"
+                                                                <?php if($type_id == $type->id): ?> selected <?php endif; ?>>
+                                                                <?php echo e($type->title); ?>
+
+                                                            </option>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-md-4 px-xs-1">
+                                                <div class="rld-single-input">
+                                                    <input name="nbr_pieces" type="number" placeholder="Nbr. pieces"
+                                                        max="<?php echo e($nbr_pieces); ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-md-4 px-xs-1">
+                                                <div class="rld-single-input">
+                                                    <input name="surface_min" value="<?php echo e($surface_min); ?>" type="number"
+                                                        placeholder="Surface Min">
+                                                </div>
+                                            </div>
+                                            <div class="col-6 mb-md-4 px-xs-1">
+                                                <div class="rld-single-input">
+                                                    <input name="prix_max" value="<?php echo e($prix_max); ?>" type="number"
+                                                        placeholder="Prix Max">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-md-4 px-xs-1">
+                                                <div class="rld-single-input">
+                                                    <input name="reference" value="<?php echo e($reference); ?>" type="text"
+                                                        placeholder="Réference...">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-yellow w-100">Recherchez</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <?php if(isset($index)): ?>
-                                <div class="col-md-4 col-12 no-mobile">
-                                    <h2 class="text-white hero-title">
-                                        Commercialisation et marketing immobilier <br>
-                                        Sans intermediare sans commission
-                                    </h2>
-                                </div>
-                            <?php endif; ?>
-                            <!--/ End Search Form -->
                         </div>
+                    </div>
+                    <?php if(isset($index)): ?>
+                        <div class="col-md-4 col-12 no-mobile">
+                            <h2 class="text-white hero-title">
+                                
+                                Sans intermediare <br>Sans commission
+                            </h2>
+                        </div>
+                    <?php endif; ?>
+                    <!--/ End Search Form -->
+                </div>
             </form>
         </div>
     </div>

@@ -26,6 +26,10 @@
             vertical-align: middle;
         }
 
+        .only-mobile {
+            display: none !important;
+        }
+
         @media (max-width: 568px) {
             .row-reverse {
                 flex-direction: row-reverse;
@@ -34,6 +38,10 @@
 
             .no-mobile {
                 display: none;
+            }
+
+            .only-mobile {
+                display: block !important;
             }
         }
     </style>

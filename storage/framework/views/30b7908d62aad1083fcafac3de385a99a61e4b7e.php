@@ -1,14 +1,10 @@
 <section class="blog-section bg-white-2 w-100">
     <div class="container">
-        <div class="sec-title">
-            <?php if(isset($term)): ?>
-                <h2><span> <?php echo e(count($conseils)); ?> Resultats de </span>( <?php echo e($term); ?> )</h2>
-            <?php else: ?>
-                <h2><span> Catalogue des </span>conseils immobilier.</h2>
-            <?php endif; ?>
-        </div>
+        
         <div class="news-wrap">
             <div class="row">
+
+
                 <?php $__currentLoopData = $conseils; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cns): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">

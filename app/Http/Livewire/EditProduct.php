@@ -139,7 +139,7 @@ class EditProduct extends Component
             if (!empty($this->logo)) {
                 $logo_title = md5(microtime()) . '.' . $this->logo->extension();
                 $destinationPath = public_path('/storage/product/logo');
-                $this->logo->storeAs('public/original/product/logo', $logo_title);
+                // $this->logo->storeAs('public/original/product/logo', $logo_title);
                 $newImage = Image::make($this->logo->getRealPath());
                 $newImage->resize(1200, 700, function ($constraint) {
                     $constraint->aspectRatio();
@@ -181,7 +181,7 @@ class EditProduct extends Component
             foreach ($this->images as $img) {
                 if (is_file($img)) {
                     $img_title = md5(microtime()) . '.' . $img->extension();
-                    $img->storeAs('public/original/product/images/', $img_title);
+                    // $img->storeAs('public/original/product/images/', $img_title);
                     $destinationPath = public_path('/storage/product/images');
 
                     $newImage = Image::make($img->getRealPath());

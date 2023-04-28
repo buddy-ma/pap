@@ -22,7 +22,7 @@ class AddProduct extends Component
     use WithFileUploads;
 
     public $productcategories, $producttypes, $productextras;
-    public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
+    public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false, $hide_infos = false;
     public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $productbiens = [], $j = 0;
@@ -79,7 +79,6 @@ class AddProduct extends Component
             'images.0.required' => 'Vous devez insérer au moins une image'
         ]);
 
-
         $j = 1;
         foreach ($this->images as $img) {
             if (isset($img) && !empty($img)) {
@@ -112,11 +111,16 @@ class AddProduct extends Component
         $proprietaire->lastname = $this->lastname;
         $proprietaire->phone = $this->phone;
         $proprietaire->email = $this->email;
+        if ($this->hide_infos) {
+            $proprietaire->hide_infos = 1;
+        } else {
+            $proprietaire->hide_infos = 0;
+        }
         if ($this->is_promoteur) {
             if (!empty($this->logo)) {
                 $logo_title = md5(microtime()) . '.' . $this->logo->extension();
                 $destinationPath = public_path('/storage/product/logo');
-                $this->logo->storeAs('public/original/product/logo', $logo_title);
+                // $this->logo->storeAs('public/original/product/logo', $logo_title);
                 $newImage = Image::make($this->logo->getRealPath());
                 $newImage->resize(1200, 700, function ($constraint) {
                     $constraint->aspectRatio();
@@ -166,7 +170,7 @@ class AddProduct extends Component
                 if (isset($img) && !empty($img)) {
                     $img_title = md5(microtime()) . '.' . $img->extension();
                     $destinationPath = public_path('/storage/product/images');
-                    $img->storeAs('public/original/product/images/', $img_title);
+                    // $img->storeAs('public/original/product/images/', $img_title);
 
                     $newImage = Image::make($img->getRealPath());
                     $newImage->resize(1200, 700, function ($constraint) {
@@ -202,6 +206,11 @@ class AddProduct extends Component
     public function is_promoteur()
     {
         $this->is_promoteur = !$this->is_promoteur;
+    }
+
+    public function hide_infos()
+    {
+        $this->hide_infos = !$this->hide_infos;
     }
 
     public function is_commercial()

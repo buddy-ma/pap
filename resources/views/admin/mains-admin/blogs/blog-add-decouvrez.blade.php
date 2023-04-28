@@ -176,7 +176,7 @@
         <script type="text/javascript">
             CKEDITOR.config.height = 1000;
             CKEDITOR.replace('editor1', {
-                filebrowserUploadUrl: "{{ route('blog-add', ['_token' => csrf_token()]) }}",
+                filebrowserUploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
                 filebrowserUploadMethod: 'form'
             });
         </script>

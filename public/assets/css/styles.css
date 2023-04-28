@@ -4275,6 +4275,11 @@ section.blog-section {
         overflow: hidden;
     }
 
+    .blog-section .news-item-descr p img {
+        height: 100%;
+        max-height: 100%;
+    }
+
     .blog-section ul.action-list {
         padding-left: 0px;
     }

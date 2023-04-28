@@ -53,6 +53,16 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="expanel-footer">
+                                            <div class="form-group mb-0">
+                                                <label class="custom-switch">
+                                                    <input type="checkbox" wire:click="hide_infos()"
+                                                        class="custom-switch-input">
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <span class="custom-switch-description">cacher les infos ?</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                         @if ($is_promoteur)
                                             <div class="expanel-body">
                                                 <label class="form-label">Logo*</label>

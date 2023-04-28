@@ -71,11 +71,6 @@
                                         <h3 class="title mt-3">
                                             <a> <?php echo e($product->prix); ?> dh</a>
                                         </h3>
-                                        <div class="compare">
-                                            <a href="#" title="Share">
-                                                <i class="flaticon-share"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
