@@ -5,7 +5,8 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/colors/red.css') }}">
-
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <style>
         .tags {
             background: #555 !important;
@@ -191,9 +192,11 @@
 @endsection
 @section('content')
 
-    @include('landing.conseils.hero')
-    @include('landing.conseils.tags')
-    @include('landing.conseils.catalogueConseilsMaroc')
+    {{-- @include('landing.conseils.hero') --}}
+    {{-- @include('landing.conseils.tags') --}}
+    {{-- @include('landing.conseils.catalogueConseilsMaroc') --}}
+
+    @include('landing.conseils.filterTags')
 
 @endsection
 @section('js')

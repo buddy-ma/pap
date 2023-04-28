@@ -9,12 +9,14 @@ use Livewire\Component;
 use App\Models\ProductType;
 use Illuminate\Support\Str;
 use App\Models\ProductBiens;
+use App\Models\ProductVille;
 use App\Models\Proprietaire;
 use App\Models\ProductExtras;
 use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 use App\Rules\PhoneValidation;
 use App\Models\ProductCategory;
+use App\Models\ProductQuartier;
 use Illuminate\Support\Facades\Auth;
 
 class AddProduct extends Component
@@ -27,14 +29,14 @@ class AddProduct extends Component
     public $hasextras = [];
     public $images = [], $productbiens = [], $j = 0;
     public $clicked = false;
-    public $villes = [], $quartiers = [];
+    public $villes, $quartiers;
 
     protected $listeners = ['submitAddBien'];
 
     public function mount()
     {
-        $this->villes = Product::villes();
-        $this->quartiers = Product::quartiers();
+        $this->villes = ProductVille::get();
+        $this->quartiers = ProductQuartier::get();
         $this->productcategories = ProductCategory::get();
         $this->images = array_fill_keys(array(0, 1, 2, 3, 4, 5, 6, 7), '');
         $this->unite_surface = 'm²';
@@ -50,6 +52,12 @@ class AddProduct extends Component
             $query->where('product_type_id', $this->type);
         })->get();
         return view('livewire.add-product');
+    }
+
+    public function getQuartier()
+    {
+        $v = ProductVille::where('title', $this->ville)->first();
+        $this->quartiers = $v->quartiers;
     }
 
     public function save()

@@ -88,6 +88,12 @@ class BlogController extends Controller
         $blog->tags = $request->tags;
         $blog->text = $request->editor1;
 
+        if ($request->hasFile('image')) {
+            $filename = date('YmdHi') . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images'), $filename);
+            $blog->image = $filename;
+        }
+        
         if ($request->hasFile('pdf')) {
             $filenamepdf = date('YmdHi') . $request->file('pdf')->getClientOriginalName();
             $request->file('pdf')->move(public_path('files'), $filenamepdf);

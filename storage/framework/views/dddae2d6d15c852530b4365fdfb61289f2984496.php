@@ -1,53 +1,56 @@
 <?php $__env->startSection('css'); ?>
     <!--INTERNAL Select2 css -->
     <link href="<?php echo e(URL::asset('admin_assets/plugins/select2/select2.min.css')); ?>" rel="stylesheet" />
-    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        .selected {
+            border: 2px solid #4bff37;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('page-header'); ?>
+    <!--Page header-->
     <div class="page-header">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0 d-block">Liste de villes
-            </h4>
+            <h4 class="page-title mb-0">Product Villes List</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page"><a href="">Product Villes List</a></li>
+            </ol>
         </div>
-        <a href="/admin/villes/add" class="btn btn-success float-right ml-auto"> <i class="fa fa-plus"></i> Ajouter</a>
     </div>
+    <!--End Page header-->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <div class="row">
-        <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="col-3">
-                <div class="card overflow-hidden">
-                    <img src="<?php echo e(asset('images/villes/' . $ville->image)); ?>" alt="image" class="card-image1 ">
-                    <div class="card-body">
-                        <h3 class="card-title mb-3"><?php echo e($ville->title); ?></h3>
-                        <?php
-                            $txt = strip_tags($ville->text);
-                            $txt = html_entity_decode($txt);
-                        ?>
-                        <p class="card-text"><?php echo e(substr($txt, 0, 100)); ?>...</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="btn-group btn-block">
-                            <a class="btn btn-primary w-100" href="/admin/villes/edit/<?php echo e($ville->id); ?>"> <i
-                                    class="fa fa-edit"></i>
-                                Modifier</a>
-                            <a class="btn btn-danger w-100" href="/admin/villes/delete/<?php echo e($ville->id); ?>"> <i
-                                    class="fa fa-trash"></i>
-                                Supprimer</a>
-                        </div>
-                        <a class="btn btn-secondary btn-block" href="/admin/villes/liens/<?php echo e($ville->id); ?>"> <i
-                                class="fa fa-link"></i>
-                            Liens</a>
-                    </div>
+    <!-- Row -->
+    <div class="row flex-lg-nowrap">
+        <div class="col-12">
+            <?php if($message = Session::get('success')): ?>
+                <div class="alert alert-success" role="alert"><button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">×</button>
+                    <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i><?php echo e($message); ?>.
                 </div>
-            </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
 
+            <?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('product-villes-admin')->html();
+} elseif ($_instance->childHasBeenRendered('1cHaXaL')) {
+    $componentId = $_instance->getRenderedChildComponentId('1cHaXaL');
+    $componentTag = $_instance->getRenderedChildComponentTagName('1cHaXaL');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('1cHaXaL');
+} else {
+    $response = \Livewire\Livewire::mount('product-villes-admin');
+    $html = $response->html();
+    $_instance->logRenderedChild('1cHaXaL', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>
+
+        </div>
+    </div>
     </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
-    <!-- INTERNAl Data tables -->
     <script src="<?php echo e(URL::asset('admin_assets/plugins/datatable/js/jquery.dataTables.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('admin_assets/plugins/datatable/js/dataTables.bootstrap4.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('admin_assets/plugins/datatable/js/dataTables.buttons.min.js')); ?>"></script>
@@ -78,28 +81,42 @@
     <!--INTERNAL Form Advanced Element -->
     <script src="<?php echo e(URL::asset('admin_assets/js/formelementadvnced.js')); ?>"></script>
     <script src="<?php echo e(URL::asset('admin_assets/js/form-elements.js')); ?>"></script>
-    
     <script>
-        $(function() {
-            $('.toggle-class').change(function() {
-                var status = $(this).prop('checked') == true ? 1 : 0;
-                var user_id = $(this).data('id');
-
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: '/changeStatus',
-                    data: {
-                        'status': status,
-                        'user_id': user_id
-                    },
-                    success: function(data) {
-                        console.log(data.success)
-                    }
-                });
+        window.addEventListener('swal:addVille', event => {
+            new swal({
+                title: event.detail.title,
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                inputValue: event.detail.ville,
+                showCancelButton: true,
+                confirmButtonText: event.detail.button,
+                showLoaderOnConfirm: true,
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    livewire.emit(event.detail.returnFunction, result.value);
+                }
             })
-        })
+        });
+
+        window.addEventListener('swal:confirmDelete', event => {
+            new swal({
+                title: 'Es-tu sûr',
+                text: event.detail.text,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oui, supprimer!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit(event.detail.returnFunction);
+                }
+            })
+        });
     </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/villes/ville-list.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /var/www/html/resources/views/admin/mains-admin/products/product-villes.blade.php ENDPATH**/ ?>

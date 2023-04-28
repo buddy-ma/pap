@@ -43,9 +43,9 @@
                                                             class="select single-select mr-0">
                                                             <option value="">Villes</option>
                                                             @foreach ($villes as $vll)
-                                                                <option value="{{ $vll }}"
-                                                                    @if ($vll == $ville) selected @endif>
-                                                                    {{ $vll }}
+                                                                <option value=" {{ $vll->title }}"
+                                                                    @if ($vll->title == $ville) selected @endif>
+                                                                    {{ $vll->title }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -58,9 +58,9 @@
                                                         <select name="quartier" class="select single-select mr-0">
                                                             <option value="">Quartiers</option>
                                                             @foreach ($quartiers as $qrt)
-                                                                <option value="{{ $qrt }}"
-                                                                    @if ($quartier == $qrt) selected @endif>
-                                                                    {{ $qrt }}
+                                                                <option value="{{ $qrt->title }}"
+                                                                    @if ($quartier == $qrt->title) selected @endif>
+                                                                    {{ $qrt->title }}
                                                             @endforeach
                                                         </select>
                                                     </div>

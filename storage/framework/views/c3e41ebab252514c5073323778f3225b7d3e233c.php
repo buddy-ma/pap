@@ -109,6 +109,20 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-lg">
+                                <div class="form-group">
+                                    <label>Conseils Categories*</label>
+                                    <select multiple="multiple" required name="conseilscategories[]" class="search-box">
+                                        <?php if($conseilscategories): ?>
+                                            <?php $__currentLoopData = $conseilscategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($cc->id); ?>"><?php echo e($cc->title); ?>
+
+                                                </option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg">

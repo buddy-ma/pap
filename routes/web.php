@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
         Route::get('/edit/{id?}', [ProductController::class, 'edit'])->name('show-product-edit');
         Route::get('/contacts', [ProductController::class, 'contacts'])->name('product-contacts');
         Route::get('/types', [ProductController::class, 'types'])->name('product-types');
+        Route::get('/villes', [ProductController::class, 'villes'])->name('product-villes');
     });
 
     Route::prefix('villes')->group(function () {
@@ -97,6 +98,7 @@ Route::post('/produit/contact/{id?}', [HomeController::class, 'produitContact'])
 Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');
 Route::get('/decouvrezMaroc/{slug}', [HomeController::class, 'blogDetails'])->name('decouvrezMarocDetails');
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
+Route::get('/filterConseils', [HomeController::class, 'filterConseils'])->name('filterConseils');
 Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
 Route::get('/conseils/{slug}', [HomeController::class, 'blogDetails'])->name('conseilsDetails');
 Route::get('/ville/{slug}', [HomeController::class, 'villeDetails'])->name('villeDetails');

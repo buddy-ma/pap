@@ -53,6 +53,16 @@
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="expanel-footer">
+                                            <div class="form-group mb-0">
+                                                <label class="custom-switch">
+                                                    <input type="checkbox" wire:click="hide_infos()"
+                                                        class="custom-switch-input">
+                                                    <span class="custom-switch-indicator"></span>
+                                                    <span class="custom-switch-description">cacher les infos ?</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                         <?php if($is_promoteur): ?>
                                             <div class="expanel-body">
                                                 <label class="form-label">Logo*</label>
@@ -111,23 +121,24 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Ville*</label>
-                                                <input list="villes" type="text" wire:model="ville"
-                                                    class="form-control" />
-                                                <datalist id="villes">
+                                                <select wire:model="ville" class="form-control"
+                                                    wire:change="getQuartier">
                                                     <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($ville); ?>">
+                                                        <option value="<?php echo e($ville->title); ?>"><?php echo e($ville->title); ?>
+
+                                                        </option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </datalist>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
-                                                <input list="quartiers" type="text" wire:model="quartier"
-                                                    class="form-control" />
-                                                <datalist id="quartiers">
+                                                <select wire:model="ville" class="form-control">
                                                     <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $quartier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($quartier); ?>">
+                                                        <option value="<?php echo e($quartier->title); ?>"><?php echo e($quartier->title); ?>
+
+                                                        </option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </datalist>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Addresse*</label>
@@ -222,7 +233,8 @@
                                             <div class="row">
                                                 <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="col-12 mb-3">
-                                                        <label class="form-label">Image <?php echo e($loop->iteration); ?>*</label>
+                                                        <label class="form-label">Image
+                                                            <?php echo e($loop->iteration); ?>*</label>
                                                         <input type="file" data-height="100"
                                                             wire:model="images.<?php echo e($key); ?>" />
                                                         <button class="btn btn-danger ml-auto float-right"

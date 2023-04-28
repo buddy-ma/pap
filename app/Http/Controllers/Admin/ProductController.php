@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -30,5 +28,10 @@ class ProductController extends Controller
     public function types()
     {
         return view('admin.mains-admin.products.product-types');
+    }
+
+    public function villes()
+    {
+        return view('admin.mains-admin.products.product-villes');
     }
 }

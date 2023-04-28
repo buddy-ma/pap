@@ -63,7 +63,7 @@
                                                 <th class="wd-15p border-bottom-0">Blog Title</th>
                                                 <th class="wd-15p border-bottom-0">Categorie</th>
                                                 <th class="wd-15p border-bottom-0">Blogger</th>
-                                                
+                                                <th class="wd-15p border-bottom-0">Status</th>
                                                 <th class="wd-15p border-bottom-0">Date Creation</th>
                                                 <th class="wd-15p border-bottom-0">Actions</th>
                                             </tr>
@@ -100,6 +100,10 @@
                                                                 <i class="fe fe-edit"></i>
                                                             </a>
                                                         <?php endif; ?>
+                                                        <a href="/conseils/<?php echo e($blog->slug); ?>" target="_blank"
+                                                            class="btn btn-success <?php echo e($blog->ismodified && $blog->status == 0 ? 'flash' : ''); ?>">
+                                                            <i class="fe fe-eye"></i>
+                                                        </a>
                                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('blog-delete')): ?>
                                                             <button type="button" class="btn btn-danger"
                                                                 wire:click="delete(<?php echo e($blog->id); ?>)">
@@ -112,6 +116,8 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <?php echo e($blogs->links()); ?>
+
                             </div>
                         </div>
                     </div>
