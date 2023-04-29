@@ -6,6 +6,7 @@ use App\Models\Blog;
 use App\Models\Ville;
 use App\Models\Product;
 use App\Models\Categorie;
+use App\Models\VilleLinks;
 use App\Models\ProductType;
 use App\Models\ProductVille;
 use App\Models\Proprietaire;
@@ -397,9 +398,19 @@ class HomeController extends Controller
     {
         $ville = Ville::where('title', $slug)->firstOrFail();
         $blogs = Blog::where('ville_id', $ville->id)->where('status', 1)->where('approved', 1)->get();
+
+        $achat_links = VilleLinks::where('type', 'achat')->take(5)->get();
+        $location_links = VilleLinks::where('type', 'location')->take(5)->get();
+        $immoneuf_links = VilleLinks::where('type', 'immoneuf')->take(5)->get();
+        $vacances_links = VilleLinks::where('type', 'vacances')->take(5)->get();
+
         return view('villeDetails', [
             'ville' => $ville,
             'blogs' => $blogs,
+            'achat_links' => $achat_links,
+            'location_links' => $location_links,
+            'immoneuf_links' => $immoneuf_links,
+            'vacances_links' => $vacances_links,
         ]);
     }
 
