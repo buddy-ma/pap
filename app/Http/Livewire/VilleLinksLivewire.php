@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\ProductCategory;
 use App\Models\Ville;
 use Livewire\Component;
 use App\Models\VilleLinks;
 
 class VilleLinksLivewire extends Component
 {
-    public $ville_id, $links;
-    public $title, $link;
+    public $ville_id, $links, $p_catgories;
+    public $title, $link, $type;
     public $edit = false, $updated_id, $deleted;
 
     protected $listeners = ['confirmDelete'];
@@ -17,6 +18,7 @@ class VilleLinksLivewire extends Component
     public function mount($id)
     {
         $this->ville_id = $id;
+        $this->p_catgories = ProductCategory::get();
         $this->links = VilleLinks::where('ville_id', $this->ville_id)->get();
     }
 
@@ -30,10 +32,12 @@ class VilleLinksLivewire extends Component
         $this->validate([
             'title'  => 'required|string|max:255|min:3',
             'link'  => 'required|string|max:255|min:5',
+            'type'  => 'required',
         ]);
 
         $link = new VilleLinks();
         $link->ville_id = $this->ville_id;
+        $link->type = $this->type;
         $link->title = $this->title;
         $link->link = $this->link;
         $link->save();
@@ -50,6 +54,7 @@ class VilleLinksLivewire extends Component
     {
         $link = VilleLinks::find($id);
         $this->updated_id = $id;
+        $this->type = $link->type;
         $this->title = $link->title;
         $this->link = $link->link;
         $this->edit = true;
@@ -63,6 +68,7 @@ class VilleLinksLivewire extends Component
         ]);
 
         $link = VilleLinks::find($this->updated_id);
+        $link->type = $this->type;
         $link->title = $this->title;
         $link->link = $this->link;
         $link->save();
@@ -77,6 +83,7 @@ class VilleLinksLivewire extends Component
 
     public function resetInputFields()
     {
+        $this->type = null;
         $this->title = '';
         $this->link = '';
         $this->edit = false;

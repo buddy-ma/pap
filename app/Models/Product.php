@@ -24,6 +24,16 @@ class Product extends Model
         return $this->belongsTo(ProductType::class, 'product_type_id');
     }
 
+    public function ville()
+    {
+        return $this->belongsTo(ProductVille::class, 'product_ville_id');
+    }
+
+    public function quartier()
+    {
+        return $this->belongsTo(ProductQuartier::class, 'product_quartier_id');
+    }
+
     public function images()
     {
         return $this->hasMany(ProductImages::class);
@@ -53,18 +63,18 @@ class Product extends Model
         });
     }
 
-    public function scopeVilles($query, $count = 0)
-    {
-        $villes = $query->pluck('ville')->toArray();
-        $villes = implode(',', $villes);
-        $villes = explode(',', $villes);
-        $villes = array_filter($villes);
-        if ($count != 0) {
-            $villes = array_slice($villes, 0, $count);
-        }
-        $villes = array_unique($villes);
-        return $villes;
-    }
+    // public function scopeVilles($query, $count = 0)
+    // {
+    //     $villes = $query->pluck('ville')->toArray();
+    //     $villes = implode(',', $villes);
+    //     $villes = explode(',', $villes);
+    //     $villes = array_filter($villes);
+    //     if ($count != 0) {
+    //         $villes = array_slice($villes, 0, $count);
+    //     }
+    //     $villes = array_unique($villes);
+    //     return $villes;
+    // }
 
     public function scopeQuartiers($query, $count = 0)
     {
