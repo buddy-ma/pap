@@ -11,9 +11,9 @@ class VilleLinksLivewire extends Component
     public $ville_id, $links;
     public $title, $link;
     public $edit = false, $updated_id, $deleted;
-    
+
     protected $listeners = ['confirmDelete'];
-    
+
     public function mount($id)
     {
         $this->ville_id = $id;
@@ -28,7 +28,7 @@ class VilleLinksLivewire extends Component
     public function store()
     {
         $this->validate([
-            'title'  => 'required|string|max:20|min:3',
+            'title'  => 'required|string|max:255|min:3',
             'link'  => 'required|string|max:255|min:5',
         ]);
 
@@ -37,7 +37,7 @@ class VilleLinksLivewire extends Component
         $link->title = $this->title;
         $link->link = $this->link;
         $link->save();
-        
+
         $this->dispatchBrowserEvent('swal:modal', [
             'type' => 'success',
             'text' => 'Saved successfully !'
@@ -71,7 +71,7 @@ class VilleLinksLivewire extends Component
             'type' => 'success',
             'text' => 'Updated successfully !'
         ]);
-        
+
         $this->resetInputFields();
     }
 
@@ -98,5 +98,4 @@ class VilleLinksLivewire extends Component
         $cat->delete();
         $this->links = VilleLinks::where('ville_id', $this->ville_id)->get();
     }
-
 }

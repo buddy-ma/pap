@@ -1,17 +1,17 @@
 <!-- STAR HEADER SEARCH -->
 <section id="home" class="parallax-searchs section welcome-area overlay">
     <div class="hero-main">
-        <div class="container">
+        <div class="container-fluid">
             <form action="{{ route($active) }}" method="GET" id="heroForm">
                 <input type="hidden" name="category_id" id="category_id" value="4" style="display: none">
                 <div class="row">
-                    @isset($index)
+                    {{-- @isset($index)
                         <div class="col-12 only-mobile">
                             <h4 class="text-white text-center" style="font-size: 24px">
-                                Sans intermediare, <br>Sans commission
+                                Sans commission, <br>Sans intermediare
                             </h4>
                         </div>
-                    @endisset
+                    @endisset --}}
                     <div class="@isset($index) col-md-8 @endisset col-12" style="max-width: 700px">
                         <div class="banner-search-wrap" data-aos="zoom-in">
                             <div class="tab-content">
@@ -112,14 +112,13 @@
                             </div>
                         </div>
                     </div>
-                    @isset($index)
+                    {{-- @isset($index)
                         <div class="col-md-4 col-12 no-mobile">
                             <h2 class="text-white hero-title">
-                                {{-- Commercialisation et marketing immobilier <br> --}}
                                 Sans intermediare <br>Sans commission
                             </h2>
                         </div>
-                    @endisset
+                    @endisset --}}
                     <!--/ End Search Form -->
                 </div>
             </form>

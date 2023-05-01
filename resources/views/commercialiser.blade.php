@@ -13,6 +13,10 @@
             max-height: 200px !important;
             height: auto;
         }
+
+        p {
+            text-align: left !important;
+        }
     </style>
 @endsection
 @section('content')

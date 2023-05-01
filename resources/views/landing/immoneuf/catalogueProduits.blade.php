@@ -2,7 +2,8 @@
 <section class="featured portfolio bg-white rec-pro">
     <div class="container-fluid">
         <div class="sec-title">
-            <h2><span>Catalogue des </span>produits.</h2>
+            {{-- <h2><span>Catalogue des </span>produits.</h2> --}}
+            <h2>PAP,<span> la quintessence de l'immobilier marocain. </span></h2>
         </div>
         <div class="portfolio row">
             @foreach ($products as $product)

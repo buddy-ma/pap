@@ -15068,6 +15068,17 @@ a.button {
     .th-8 .parallax-search8 .trip-search {
         margin-top: 60px !important;
     }
+
+    .news-item-descr p img {
+        height: auto !important;
+    }
+}
+
+@media (max-width: 450px) {
+    .rld-banner-tab .nav-item a {
+        height: 40px !important;
+        padding: 4px 3px !important;
+    }
 }
 
 .homepage-23 .btn,
