@@ -1,18 +1,14 @@
 <section class="blog-section bg-white-2 w-100">
     <div class="container">
-        <div class="sec-title">
-            <?php if(isset($term)): ?>
-                <h2><span> <?php echo e(count($conseils)); ?> Resultats de </span>( <?php echo e($term); ?> )</h2>
-            <?php else: ?>
-                <h2><span> Catalogue des </span>conseils immobilier.</h2>
-            <?php endif; ?>
-        </div>
+        
         <div class="news-wrap">
             <div class="row">
+
+
                 <?php $__currentLoopData = $conseils; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cns): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="col-xl-4 col-md-6 col-xs-12">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
-                            <a href="/blog/<?php echo e($cns->slug); ?>" class="news-img-link">
+                            <a href="/conseils/<?php echo e($cns->slug); ?>" class="news-img-link">
                                 <div class="news-item-img">
                                     <?php if(isset($cns->image)): ?>
                                         <img class="img-responsive" src="<?php echo e(asset('images/' . $cns->image)); ?>"
@@ -30,7 +26,7 @@
 
                                     </span>
                                 </div>
-                                <a href="/blog/<?php echo e($cns->slug); ?>">
+                                <a href="/conseils/<?php echo e($cns->slug); ?>">
                                     <h3><?php echo e($cns->title); ?></h3>
                                 </a>
 
@@ -42,7 +38,7 @@
                                     <p><?php echo e(substr($txt, 0, 170)); ?>... </p>
                                 </div>
                                 <div class="news-item-bottom">
-                                    <a href="/blog/<?php echo e($cns->slug); ?>" class="news-link">Read more...</a>
+                                    <a href="/conseils/<?php echo e($cns->slug); ?>" class="news-link">Read more...</a>
                                 </div>
                             </div>
                         </div>

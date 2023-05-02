@@ -70,7 +70,7 @@ class AddProduct extends Component
             'description' => 'required|min:1',
             'position' => 'nullable|string',
             'ville' => 'required|string|max:255|min:1',
-            'quartier' => 'required|string|max:255|min:1',
+            'quartier' => 'nullable|string|max:255|min:1',
             'address' => 'required|string|max:255|min:1',
             'prix' => 'required',
             'video' => 'nullable|string|max:255|min:1',

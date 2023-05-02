@@ -147,6 +147,9 @@
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-types')): ?>
                             <a class="slide-item" href="<?php echo e(url('/admin/products/types')); ?>">Categories & Types</a>
                         <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('product-types')): ?>
+                            <a class="slide-item" href="<?php echo e(url('/admin/products/villes')); ?>">Villes & Quartiers</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </li>

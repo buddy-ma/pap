@@ -36,7 +36,7 @@
                                     class="fa fa-trash"></i>
                                 Supprimer</a>
                         </div>
-                        <a class="btn btn-secondary btn-block" href="/admin/villes/links/<?php echo e($ville->id); ?>"> <i
+                        <a class="btn btn-secondary btn-block" href="/admin/villes/liens/<?php echo e($ville->id); ?>"> <i
                                 class="fa fa-link"></i>
                             Liens</a>
                     </div>

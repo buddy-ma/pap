@@ -146,6 +146,9 @@
                         @can('product-types')
                             <a class="slide-item" href="{{ url('/admin/products/types') }}">Categories & Types</a>
                         @endcan
+                        @can('product-types')
+                            <a class="slide-item" href="{{ url('/admin/products/villes') }}">Villes & Quartiers</a>
+                        @endcan
                     </li>
                 </ul>
             </li>

@@ -44,6 +44,20 @@
                     <form>
                         <div class="row">
                             <div class="col-lg">
+                                <label>Type*</label>
+                                <select wire:model="type" class="form-control">
+                                    <option> Select category </option>
+                                    <?php $__currentLoopData = $p_catgories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($cat->title); ?>"
+                                            <?php if($type == $cat->title): ?> selected <?php endif; ?>><?php echo e($cat->title); ?>
+
+                                        </option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg">
                                 <label>Titre*</label>
                                 <input type="text" wire:model="title" class="form-control" />
                             </div>

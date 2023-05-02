@@ -5,7 +5,7 @@
                 <div class="trip-search contact-us">
                     <div class="row">
                         <div class="col-md-6 col-12 d-xs-none">
-                            <img src="{{ asset('assets/images/bg/bg_2.jpg') }}" class="mt-5 img-fluid w-100 "
+                            <img src="{{ asset('assets/images/images/logo-blue.png') }}" class="mt-5 img-fluid w-100 "
                                 style="height: 200px; border-radius: 10px">
                             <ul class="pl-md-5 mt-3 ">
                                 <li>
@@ -57,15 +57,15 @@
                             </form>
                         </div>
                         <div class="col-12 d-md-none">
-                            <ul class="pl-md-5 mt-3 row text-center">
-                                <li class="col-6 col-md-12">
+                            <ul class="pl-md-5 mt-3 row text-left">
+                                <li class="col-12">
                                     <div class="info">
                                         <i class="fa fa-map-marker" aria-hidden="true"></i>
                                         <p class="text-icon d-inline ml-2">
                                             {{ $page->address ?? '95 South Park Ave, USA' }}</p>
                                     </div>
                                 </li>
-                                <li class="col-6 col-md-12">
+                                <li class="col-12">
                                     <div class="info">
                                         <i class="fa fa-phone" aria-hidden="true"></i>
                                         <p class="text-icon d-inline ml-2"> {{ $page->phone ?? '+456 875 369 208' }}

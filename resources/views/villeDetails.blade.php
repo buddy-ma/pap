@@ -57,6 +57,65 @@
         </div>
     @endisset
 
+    <!-- START FOOTER -->
+    <footer class="first-footer ">
+        <div class="top-footer bg-blue w-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="navigation">
+                            <h3>Achat</h3>
+                            <div class="nav-footer">
+                                <ul>
+                                    @foreach ($achat_links as $ach)
+                                        <li><a href="{{ $ach->link }}">{{ $ach->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="navigation">
+                            <h3>Location</h3>
+                            <div class="nav-footer">
+                                <ul>
+                                    @foreach ($location_links as $loc)
+                                        <li><a href="{{ $loc->link }}">{{ $loc->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="navigation">
+                            <h3>ImmoNeuf</h3>
+                            <div class="nav-footer">
+                                <ul>
+                                    @foreach ($immoneuf_links as $immo)
+                                        <li><a href="{{ $immo->link }}">{{ $immo->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="navigation">
+                            <h3>Vacances</h3>
+                            <div class="nav-footer">
+                                <ul>
+                                    @foreach ($vacances_links as $vc)
+                                        <li><a href="{{ $vc->link }}">{{ $vc->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
 @endsection
 @section('js')
 

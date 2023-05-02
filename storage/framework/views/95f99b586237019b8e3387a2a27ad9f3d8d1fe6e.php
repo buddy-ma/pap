@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <?php $__currentLoopData = $blogs->chunk(5); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $chunk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            <div class="col-4">
+            <div class="col-md-4 col-12">
                 <div class="property wprt-image-video w50 pro vid-si2">
                     <ul>
                         <?php $__currentLoopData = $chunk; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $blog): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

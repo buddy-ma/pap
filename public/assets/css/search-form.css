@@ -29,6 +29,8 @@
     margin-top: 10px;
     border-right: 8px;
     z-index: 99999;
+    overflow-y: scroll !important;
+    max-height: 150px !important;
 }
 
 .the-search .rld-single-input input {

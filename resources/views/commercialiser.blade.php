@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Blog')
+@section('title', 'Commercialiser')
 @section('logo', 'blue')
 @section('bodyClasses', 'th-8 homepage-4 hp-6 hd-white')
 

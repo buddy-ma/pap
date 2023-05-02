@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Blog')
+@section('title', $blog->title)
 @section('logo', 'blue')
 @section('bodyClasses', 'inner-pages hd-white')
 

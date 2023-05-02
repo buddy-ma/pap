@@ -121,23 +121,24 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Ville*</label>
-                                                <input list="villes" type="text" wire:model="ville"
-                                                    class="form-control" />
-                                                <datalist id="villes">
+                                                <select wire:model="ville" class="form-control"
+                                                    wire:change="getQuartier">
+                                                    <option>Selectez une ville</option>
                                                     @foreach ($villes as $ville)
-                                                        <option value="{{ $ville }}">
+                                                        <option value="{{ $ville->title }}">{{ $ville->title }}
+                                                        </option>
                                                     @endforeach
-                                                </datalist>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
-                                                <input list="quartiers" type="text" wire:model="quartier"
-                                                    class="form-control" />
-                                                <datalist id="quartiers">
+                                                <select wire:model="quartier" class="form-control">
+                                                    <option>Selectez un quartier</option>
                                                     @foreach ($quartiers as $quartier)
-                                                        <option value="{{ $quartier }}">
+                                                        <option value="{{ $quartier->title }}">{{ $quartier->title }}
+                                                        </option>
                                                     @endforeach
-                                                </datalist>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Addresse*</label>
@@ -232,7 +233,8 @@
                                             <div class="row">
                                                 @foreach ($images as $key => $img)
                                                     <div class="col-12 mb-3">
-                                                        <label class="form-label">Image {{ $loop->iteration }}*</label>
+                                                        <label class="form-label">Image
+                                                            {{ $loop->iteration }}*</label>
                                                         <input type="file" data-height="100"
                                                             wire:model="images.{{ $key }}" />
                                                         <button class="btn btn-danger ml-auto float-right"

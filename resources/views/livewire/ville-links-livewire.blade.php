@@ -44,6 +44,19 @@
                     <form>
                         <div class="row">
                             <div class="col-lg">
+                                <label>Type*</label>
+                                <select wire:model="type" class="form-control">
+                                    <option> Select category </option>
+                                    @foreach ($p_catgories as $cat)
+                                        <option value="{{ $cat->title }}"
+                                            @if ($type == $cat->title) selected @endif>{{ $cat->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-lg">
                                 <label>Titre*</label>
                                 <input type="text" wire:model="title" class="form-control" />
                             </div>

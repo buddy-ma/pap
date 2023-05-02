@@ -141,7 +141,7 @@
                         <div class="row mt-4">
                             <div class="col-lg">
                                 <label>Main Image*</label>
-                                <input type="file" required class="dropify" data-height="180" name="image" />
+                                <input type="file" class="dropify" data-height="180" name="image" />
                             </div>
 
                             <div class="col-lg">
