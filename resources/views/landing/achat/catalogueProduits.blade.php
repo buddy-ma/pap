@@ -5,6 +5,9 @@
             {{-- <h2><span>Catalogue des </span>produits.</h2> --}}
             <h2>PAP,<span> la quintessence de l'immobilier marocain. </span></h2>
         </div>
+
+        {{-- @include('landing.tags') --}}
+
         <div class="portfolio row">
             @foreach ($products as $product)
                 <div class="agents-grid col-xl-3 col-md-4 col-12 mb-3">

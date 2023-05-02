@@ -5,9 +5,6 @@
             
             <h2>PAP,<span> la quintessence de l'immobilier marocain. </span></h2>
         </div>
-
-        <?php echo $__env->make('landing.tags', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
         <div class="portfolio row">
             <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="agents-grid col-xl-3 col-md-4 col-12 mb-3">
@@ -69,6 +66,7 @@
                                     <h3 class="title mt-3">
                                         <a> <?php echo e($product->prix); ?> dh</a>
                                     </h3>
+
                                 </div>
                             </div>
                         </div>
@@ -78,4 +76,4 @@
         </div>
     </div>
 </section>
-<?php /**PATH /var/www/html/resources/views/landing/achat/catalogueProduits.blade.php ENDPATH**/ ?>
+<?php /**PATH /var/www/html/resources/views/landing/location/catalogueProduits.blade.php ENDPATH**/ ?>

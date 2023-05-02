@@ -76,8 +76,7 @@ class HomeController extends Controller
                 $q->where('surface', '>', $request->surface_min);
             })->when($request->prix_max, function ($q) use ($request) {
                 $q->where('prix', '<', $request->prix_max);
-            })
-                ->get();
+            })->get();
         } else {
             $products = Product::where('status', 1)->where('product_category_id', 1)->orWhere('product_category_id', 3)->get();
         }
@@ -85,6 +84,13 @@ class HomeController extends Controller
         $quartiers = ProductQuartier::get();
         $types = ProductType::where('product_category_id', 1)->get();
         $nbr_pieces = Product::where('product_category_id', 1)->max('nbr_chambres');
+        $extras = $products->pluck('extras')->toArray();
+        foreach ($extras as $extra) {
+            foreach (json_decode($extra) as $ex) {
+                $tags_extras[] = $ex;
+            }
+        }
+        $tags = array_unique($tags_extras);
 
         return view('achat', [
             'products' => $products,
@@ -100,6 +106,7 @@ class HomeController extends Controller
             'nbr_chambres' => $request->nbr_chambres,
             'surface_min' => $request->surface_min,
             'prix_max' => $request->prix_max,
+            'tags' => $tags,
         ]);
     }
 
