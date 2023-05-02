@@ -16,7 +16,7 @@
                         <div class="banner-search-wrap" data-aos="zoom-in">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active">
-                                    <div class="rld-main-search">
+                                    <div class="rld-main-search" id="app">
                                         <ul class="nav nav-tabs rld-banner-tab mb-4">
                                             <li class="nav-item mb-2">
                                                 <a class="nav-link" id="tab1"
@@ -35,15 +35,15 @@
                                                     onclick="switchType('immoneuf')">ImmoNeuf</a>
                                             </li>
                                         </ul>
-                                        <div class="row px-3 mb-2 ">
+                                        <div class="row px-3 mb-2">
                                             <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
-                                                        <select id="form_ville" name="ville"
-                                                            class="select single-select mr-0">
+                                                        <select name="ville" @change="onChange($event)"
+                                                            v-model="ville" class="select single-select mr-0">
                                                             <option value="">Villes</option>
                                                             @foreach ($villes as $vll)
-                                                                <option value=" {{ $vll->title }}"
+                                                                <option value="{{ $vll->title }}"
                                                                     @if ($vll->title == $ville) selected @endif>
                                                                     {{ $vll->title }}
                                                                 </option>
@@ -55,7 +55,13 @@
                                             <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
-                                                        <select name="quartier" class="select single-select mr-0">
+                                                        <select name="quartier" v-if="results.length > 0"
+                                                            class="select single-select mr-0">
+                                                            <option :value="result.title" v-for="result in results"
+                                                                :key="result.id">@{{ result.title }}</option>
+                                                        </select>
+                                                        <select v-else name="quartier"
+                                                            class="select single-select mr-0">
                                                             <option value="">Quartiers</option>
                                                             @foreach ($quartiers as $qrt)
                                                                 <option value="{{ $qrt->title }}"
@@ -161,5 +167,41 @@
                     $('#category_id').val(1);
             }
         }
+    </script>
+    <script>
+        const {
+            createApp
+        } = Vue
+        createApp({
+            data() {
+                return {
+                    results: [],
+                    ville: '',
+                };
+            },
+            mounted: function() {
+                this.getData(this.ville);
+            },
+            methods: {
+                getData(ville) {
+                    console.log(ville);
+                    axios.get('/getQuartier', {
+                            params: {
+                                title: ville,
+                            }
+                        })
+                        .then(response => {
+                            this.results = response.data.quartiers;
+                            console.log(this.results);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                onChange(event) {
+                    this.getData(event.target.value);
+                }
+            }
+        }).mount('#app')
     </script>
 @endsection

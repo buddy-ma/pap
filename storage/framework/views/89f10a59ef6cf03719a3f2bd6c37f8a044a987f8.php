@@ -2,7 +2,8 @@
 <section class="featured portfolio bg-white-2 rec-pro">
     <div class="container-fluid">
         <div class="sec-title">
-            <h2><span>Catalogue des </span>produits.</h2>
+            
+            <h2>PAP,<span> la quintessence de l'immobilier marocain. </span></h2>
         </div>
         <div class="portfolio row">
             <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

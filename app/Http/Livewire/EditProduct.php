@@ -9,12 +9,13 @@ use Livewire\Component;
 use App\Models\ProductType;
 use Illuminate\Support\Str;
 use App\Models\ProductBiens;
-use App\Models\Proprietaire;
+use App\Models\ProductVille;
 use App\Models\ProductExtras;
 use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 use App\Rules\PhoneValidation;
 use App\Models\ProductCategory;
+use App\Models\ProductQuartier;
 
 class EditProduct extends Component
 {
@@ -23,7 +24,7 @@ class EditProduct extends Component
 
     public $product;
     public $productcategories, $producttypes, $productextras;
-    public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false;
+    public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false, $hide_infos = false;
     public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $productbiens = [], $i = 0;
@@ -32,8 +33,8 @@ class EditProduct extends Component
 
     public function mount($id)
     {
-        $this->villes = Product::villes();
-        $this->quartiers = Product::quartiers();
+        $this->villes = ProductVille::get();
+        $this->quartiers = ProductQuartier::get();
 
         $this->product = Product::find($id);
         $this->firstname = $this->product->proprietaire->firstname;
@@ -46,7 +47,7 @@ class EditProduct extends Component
         $this->title = $this->product->title;
         $this->reference = $this->product->reference;
         $this->description = $this->product->description;
-        $this->position = $this->product->latitude . ',' . $this->product->longitude;
+        $this->position = $this->product->position;
         $this->ville = $this->product->ville;
         $this->quartier = $this->product->quartier;
         $this->address = $this->product->address;
@@ -89,6 +90,13 @@ class EditProduct extends Component
 
         return view('livewire.edit-product');
     }
+
+    public function getQuartier()
+    {
+        $v = ProductVille::where('title', $this->ville)->first();
+        $this->quartiers = $v->quartiers;
+    }
+
 
     public function save()
     {
@@ -135,6 +143,11 @@ class EditProduct extends Component
         $this->product->proprietaire->lastname = $this->lastname;
         $this->product->proprietaire->phone = $this->phone;
         $this->product->proprietaire->email = $this->email;
+        if ($this->hide_infos) {
+            $this->product->proprietaire->hide_infos = 1;
+        } else {
+            $this->product->proprietaire->hide_infos = 0;
+        }
         if ($this->is_promoteur) {
             if (!empty($this->logo)) {
                 $logo_title = md5(microtime()) . '.' . $this->logo->extension();

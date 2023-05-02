@@ -123,6 +123,7 @@
                                                 <label class="form-label">Ville*</label>
                                                 <select wire:model="ville" class="form-control"
                                                     wire:change="getQuartier">
+                                                    <option>Selectez une ville</option>
                                                     <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($ville->title); ?>"><?php echo e($ville->title); ?>
 
@@ -132,7 +133,8 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
-                                                <select wire:model="ville" class="form-control">
+                                                <select wire:model="quartier" class="form-control">
+                                                    <option>Selectez un quartier</option>
                                                     <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $quartier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($quartier->title); ?>"><?php echo e($quartier->title); ?>
 

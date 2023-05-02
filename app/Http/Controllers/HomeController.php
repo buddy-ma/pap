@@ -365,6 +365,20 @@ class HomeController extends Controller
             'categoryConseils' => $categoryConseils]);
     }
 
+    public function getQuartier(Request $request)
+    {
+        if($request->title == '' || $request->title == 'Villes'){
+            $quartiers = ProductQuartier::get();
+        }else{
+            $ville = ProductVille::where('title', $request->title)->first();
+            $quartiers = $ville->quartiers()->get();
+        }
+        
+        return response()->json(['quartiers' => $quartiers]);
+    }
+
+    
+
     public function blogDetails($slug)
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();

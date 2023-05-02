@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/default.css') }}">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     @yield('css')
 </head>
 
@@ -105,7 +109,7 @@
     <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/smooth-scroll.min.js') }}"></script>
     <script src="{{ asset('assets/js/lightcase.js') }}"></script>
-    <script src="{{ asset('assets/js/search.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/search.js') }}"></script> --}}
     <script src="{{ asset('assets/js/owl.carousel.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('assets/js/ajaxchimp.min.js') }}"></script>

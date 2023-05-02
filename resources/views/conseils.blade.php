@@ -5,8 +5,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/css/colors/red.css') }}">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <style>
         .tags {
             background: #555 !important;

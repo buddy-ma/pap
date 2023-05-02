@@ -87,6 +87,8 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/test', [HomeController::class, 'home'])->name('home');
+Route::get('/getQuartier', [HomeController::class, 'getQuartier'])->name('getQuartier');
+
 Route::get('/achat', [HomeController::class, 'achat'])->name('achat');
 Route::get('/vacances', [HomeController::class, 'vacances'])->name('vacances');
 Route::get('/location', [HomeController::class, 'location'])->name('location');
@@ -99,17 +101,17 @@ Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('
 Route::get('/decouvrezMaroc/{slug}', [HomeController::class, 'blogDetails'])->name('decouvrezMarocDetails');
 Route::get('/conseils', [HomeController::class, 'conseils'])->name('conseils');
 Route::get('/filterConseils', [HomeController::class, 'filterConseils'])->name('filterConseils');
-Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
 Route::get('/conseils/{slug}', [HomeController::class, 'blogDetails'])->name('conseilsDetails');
 Route::get('/ville/{slug}', [HomeController::class, 'villeDetails'])->name('villeDetails');
 Route::get('/quartier/{slug}', [HomeController::class, 'blogDetails'])->name('quartierblogDetails');
 
+Route::get('/commercialiser', [HomeController::class, 'commercialiser'])->name('commercialiser');
 Route::post('/commercialiserContact', [HomeController::class, 'commercialiserContact'])->name('commercialiserContact');
+
 Route::get('/catalog', [HomeController::class, 'catalogue'])->name('catalogue');
 
 Route::get('/storageLink', function () {
     symlink('/home/agenhdbt/test.pap.ma/myapp/storage/app/public', '/home/agenhdbt/test.pap.ma/storage');
-
     return redirect('/');
 });
 

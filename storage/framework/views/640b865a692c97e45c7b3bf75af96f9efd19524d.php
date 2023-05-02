@@ -38,7 +38,11 @@
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/menu.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/slick.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('assets/css/styles.css')); ?>">
-    <link rel="stylesheet" id="color" href="<?php echo e(asset('assets/css/default.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('assets/css/default.css')); ?>">
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <?php echo $__env->yieldContent('css'); ?>
 </head>
 
@@ -101,7 +105,7 @@
     <script src="<?php echo e(asset('assets/js/isotope.pkgd.min.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/smooth-scroll.min.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/lightcase.js')); ?>"></script>
-    <script src="<?php echo e(asset('assets/js/search.js')); ?>"></script>
+    
     <script src="<?php echo e(asset('assets/js/owl.carousel.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/jquery.magnific-popup.min.js')); ?>"></script>
     <script src="<?php echo e(asset('assets/js/ajaxchimp.min.js')); ?>"></script>

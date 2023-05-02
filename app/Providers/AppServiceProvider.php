@@ -55,8 +55,8 @@ class AppServiceProvider extends ServiceProvider
                 $logo = "storage/user/$logo";
                 $logo_wh = "storage/user/$logo_wh";
                 $view->with([
-                    'logo' => "$logo",
-                    'logo_wh' => "$logo_wh",
+                    'logo' => $logo,
+                    'logo_wh' => $logo_wh,
                 ]);
             }
         });

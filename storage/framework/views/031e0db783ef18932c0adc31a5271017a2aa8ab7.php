@@ -37,7 +37,7 @@
                                             <div class="form-group mb-0">
                                                 <label class="custom-switch">
                                                     <input type="checkbox" wire:click="is_promoteur()"
-                                                        @if ($is_promoteur) checked @endif
+                                                        <?php if($is_promoteur): ?> checked <?php endif; ?>
                                                         class="custom-switch-input">
                                                     <span class="custom-switch-indicator"></span>
                                                     <span class="custom-switch-description">Promoteur ?</span>
@@ -49,7 +49,7 @@
                                                 <label class="custom-switch">
                                                     <input type="checkbox" wire:click="is_commercial()"
                                                         class="custom-switch-input"
-                                                        @if ($is_commercial) checked @endif>
+                                                        <?php if($is_commercial): ?> checked <?php endif; ?>>
                                                     <span class="custom-switch-indicator"></span>
                                                     <span class="custom-switch-description">Commercial ?</span>
                                                 </label>
@@ -60,13 +60,13 @@
                                                 <label class="custom-switch">
                                                     <input type="checkbox" wire:click="hide_infos()"
                                                         class="custom-switch-input"
-                                                        @if ($hide_infos) checked @endif>
+                                                        <?php if($hide_infos): ?> checked <?php endif; ?>>
                                                     <span class="custom-switch-indicator"></span>
                                                     <span class="custom-switch-description">cacher les infos ?</span>
                                                 </label>
                                             </div>
                                         </div>
-                                        @if ($is_promoteur)
+                                        <?php if($is_promoteur): ?>
                                             <div class="expanel-body">
                                                 <label class="form-label">Logo*</label>
                                                 <input type="file" class="dropify" data-height="180"
@@ -77,7 +77,7 @@
                                                 <input type="file" class="dropify" data-height="180"
                                                     wire:model="pdf" />
                                             </div>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
@@ -92,18 +92,18 @@
                                                 <label class="form-label">Category*</label>
                                                 <select wire:model="category" class="form-control">
                                                     <option>Select option</option>
-                                                    @foreach ($productcategories as $pc)
-                                                        <option value="{{ $pc->id }}">{{ $pc->title }}</option>
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $productcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($pc->id); ?>"><?php echo e($pc->title); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Type*</label>
                                                 <select wire:model="type" class="form-control">
                                                     <option>Select option</option>
-                                                    @foreach ($producttypes as $pt)
-                                                        <option value="{{ $pt->id }}">{{ $pt->title }}</option>
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $producttypes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($pt->id); ?>"><?php echo e($pt->title); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -127,20 +127,22 @@
                                                 <select wire:model="ville" class="form-control"
                                                     wire:change="getQuartier">
                                                     <option>Selectez une ville</option>
-                                                    @foreach ($villes as $ville)
-                                                        <option value="{{ $ville->title }}">{{ $ville->title }}
+                                                    <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ville): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($ville->title); ?>"><?php echo e($ville->title); ?>
+
                                                         </option>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Quartier*</label>
                                                 <select wire:model="quartier" class="form-control">
                                                     <option>Selectez un quartier</option>
-                                                    @foreach ($quartiers as $quartier)
-                                                        <option value="{{ $quartier->title }}">{{ $quartier->title }}
+                                                    <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $quartier): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <option value="<?php echo e($quartier->title); ?>"><?php echo e($quartier->title); ?>
+
                                                         </option>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
@@ -170,13 +172,13 @@
                                                 <input type="number" wire:model="nbr_salons" class="form-control" />
                                             </div>
 
-                                            @if ($category == 3)
+                                            <?php if($category == 3): ?>
                                                 <div class="form-group">
                                                     <label class="form-label">Disponibilite</label>
                                                     <input type="text" wire:model.defer="disponibilite"
                                                         class="form-control" value="Livraison ..." />
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
                                             <div class="form-group">
                                                 <label class="form-label">Video</label>
                                                 <input type="text" wire:model="video" class="form-control" />
@@ -190,13 +192,13 @@
                                                 <div class="input-group">
                                                     <input type="text" wire:model="position"
                                                         class="form-control" />
-                                                    @if (!$clicked)
+                                                    <?php if(!$clicked): ?>
                                                         <button class="btn btn btn-primary br-tl-0 br-bl-0"
                                                             type="button" wire:click="getSrc()">save</button>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
-                                            @if ($category == 1 || $category == 3)
+                                            <?php if($category == 1 || $category == 3): ?>
                                                 <div class="form-group">
                                                     <label class="form-label">Surface Habitable</label>
                                                     <input type="text" wire:model="surface_habitable"
@@ -207,20 +209,20 @@
                                                     <input type="text" wire:model="surface_terrain"
                                                         class="form-control" />
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
 
                                         </div>
                                         <div class="expanel-body">
                                             <ul class="list-group">
                                                 <label class="form-label">Extras</label>
-                                                @foreach ($productextras as $extra)
+                                                <?php $__currentLoopData = $productextras; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $extra): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <label class="custom-control custom-checkbox">
-                                                        <input wire:model="hasextras.{{ $extra->id }}"
+                                                        <input wire:model="hasextras.<?php echo e($extra->id); ?>"
                                                             type="checkbox" class="custom-control-input"
-                                                            name="example-checkbox1" value="{{ $extra->title }}">
-                                                        <span class="custom-control-label">{{ $extra->title }}</span>
+                                                            name="example-checkbox1" value="<?php echo e($extra->title); ?>">
+                                                        <span class="custom-control-label"><?php echo e($extra->title); ?></span>
                                                     </label>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </ul>
                                         </div>
                                     </div>
@@ -234,39 +236,39 @@
                                         </div>
                                         <div class="expanel-body">
                                             <div class="row">
-                                                @foreach ($images as $ke => $img)
+                                                <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke => $img): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="col-12 mb-3">
                                                         <label class="form-label">Image
-                                                            {{ $loop->iteration }}*</label>
+                                                            <?php echo e($loop->iteration); ?>*</label>
                                                         <input type="file" data-height="100"
-                                                            wire:model="images.{{ $ke }}"
-                                                            value="{{ $img }}" />
+                                                            wire:model="images.<?php echo e($ke); ?>"
+                                                            value="<?php echo e($img); ?>" />
                                                         <button class="btn btn-danger ml-auto float-right"
                                                             type="button"
-                                                            wire:click="removeimg({{ $ke }})">
+                                                            wire:click="removeimg(<?php echo e($ke); ?>)">
                                                             <i class="fa fa-trash"></i>
                                                         </button>
                                                     </div>
-                                                @endforeach
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>
                                         </div>
                                         <div class="expanel-body row">
-                                            @foreach ($images as $ke => $val)
-                                                @if (!empty($val))
+                                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ke => $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if(!empty($val)): ?>
                                                     <div class="col-6">
                                                         <div class="card mb-3">
                                                             <div class="card-body p-1">
                                                                 <img
-                                                                    src="{{ URL::asset('storage/product/images/' . $val) }}">
+                                                                    src="<?php echo e(URL::asset('storage/product/images/' . $val)); ?>">
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endif
-                                            @endforeach
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                     </div>
                                 </div>
-                                @if ($category == 3)
+                                <?php if($category == 3): ?>
                                     <div class="e-panel mt-3">
                                         <div class="expanel expanel-default">
                                             <div class="expanel-heading">
@@ -276,24 +278,25 @@
                                                 <div class="table-responsive">
                                                     <table class="table table-inbox table-hover text-nowrap mb-0">
                                                         <tbody>
-                                                            @isset($productbiens)
-                                                                @foreach ($productbiens as $key => $bien)
+                                                            <?php if(isset($productbiens)): ?>
+                                                                <?php $__currentLoopData = $productbiens; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $bien): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <tr class="">
                                                                         <td
                                                                             class="view-message dont-show font-weight-semibold">
-                                                                            {{ $bien['title'] }}
+                                                                            <?php echo e($bien['title']); ?>
+
                                                                         </td>
-                                                                        <td class="view-message">{{ $bien['price'] }} dh
+                                                                        <td class="view-message"><?php echo e($bien['price']); ?> dh
                                                                         </td>
-                                                                        <td class="view-message">{{ $bien['surface'] }}m²
+                                                                        <td class="view-message"><?php echo e($bien['surface']); ?>m²
                                                                         </td>
-                                                                        <td wire:click="removebien({{ $key }})"
+                                                                        <td wire:click="removebien(<?php echo e($key); ?>)"
                                                                             class="view-message text-center font-weight-semibold">
                                                                             <i class="fe fe-trash"></i>
                                                                         </td>
                                                                     </tr>
-                                                                @endforeach
-                                                            @endisset
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            <?php endif; ?>
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -306,21 +309,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                @endif
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
-                        @if (count($errors) > 0)
+                        <?php if(count($errors) > 0): ?>
                             <div class="alert alert-danger">
                                 <strong>Whoops!</strong> There were some problems with your input.
                                 <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
+                                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <li><?php echo e($error); ?></li>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </ul>
                             </div>
-                        @endif
+                        <?php endif; ?>
                         <div class="btn-list text-right">
                             <button type="button" wire:click="save" class="btn btn-success">Save</button>
                         </div>
@@ -330,3 +333,4 @@
         </div>
     </div>
 </div>
+<?php /**PATH /var/www/html/resources/views/livewire/edit-product.blade.php ENDPATH**/ ?>
