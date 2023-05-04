@@ -10,6 +10,26 @@
                         <div class="row">
                             <div class="col-4">
                                 <div class="e-panel ">
+                                    @if ($is_promoteur)
+                                        <div class="expanel expanel-default">
+                                            <div class="expanel-heading">
+                                                <h3 class="expanel-title text-center">Promoteur / Proprietaire</h3>
+                                            </div>
+                                            <div class="expanel-body">
+                                                <div class="form-group">
+                                                    <label class="form-label">Promoteur*</label>
+                                                    <select wire:model="promoteur_id" class="form-control">
+                                                        <option>Select option</option>
+                                                        @foreach ($promoteurs as $pr)
+                                                            <option value="{{ $pr->id }}">{{ $pr->firstname }}
+                                                                {{ $pr->lastname }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                     <div class="expanel expanel-default">
                                         <div class="expanel-heading">
                                             <h3 class="expanel-title text-center">Promoteur / Proprietaire</h3>
@@ -32,6 +52,18 @@
                                                 <label class="form-label">Email</label>
                                                 <input type="email" wire:model="email" class="form-control" />
                                             </div>
+                                            @if ($is_promoteur)
+                                                <div class="form-group">
+                                                    <label class="form-label">Logo*</label>
+                                                    <input type="file" class="dropify" data-height="180"
+                                                        wire:model="logo" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">PDF</label>
+                                                    <input type="file" class="dropify" data-height="180"
+                                                        wire:model="pdf" />
+                                                </div>
+                                            @endif
                                         </div>
                                         <div class="expanel-footer">
                                             <div class="form-group mb-0">
@@ -63,18 +95,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        @if ($is_promoteur)
-                                            <div class="expanel-body">
-                                                <label class="form-label">Logo*</label>
-                                                <input type="file" class="dropify" data-height="180"
-                                                    wire:model="logo" />
-                                            </div>
-                                            <div class="expanel-body">
-                                                <label class="form-label">PDF</label>
-                                                <input type="file" class="dropify" data-height="180"
-                                                    wire:model="pdf" />
-                                            </div>
-                                        @endif
+
                                     </div>
                                 </div>
                             </div>
@@ -146,8 +167,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Unite Surface</label>
-                                                <select wire:model="unite_surface" class="form-control"
-                                                    tabindex="-1" aria-hidden="true">
+                                                <select wire:model="unite_surface" class="form-control">
                                                     <option>Select option</option>
                                                     <option value="m²">m²</option>
                                                     <option value="hec">hec</option>
@@ -158,7 +178,7 @@
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Nbr Chambres*</label>
+                                                <label class="form-label">Nbr Chambres</label>
                                                 <input type="number" wire:model="nbr_chambres"
                                                     class="form-control" />
                                             </div>

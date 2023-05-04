@@ -10,7 +10,7 @@
                         <div class="banner-search-wrap" data-aos="zoom-in">
                             <div class="tab-content">
                                 <div class="tab-pane fade show active">
-                                    <div class="rld-main-search">
+                                    <div class="rld-main-search" id="app">
                                         <ul class="nav nav-tabs rld-banner-tab mb-4">
                                             <li class="nav-item mb-2">
                                                 <a class="nav-link" id="tab1"
@@ -29,15 +29,15 @@
                                                     onclick="switchType('immoneuf')">ImmoNeuf</a>
                                             </li>
                                         </ul>
-                                        <div class="row px-3 mb-2 ">
+                                        <div class="row px-3 mb-2">
                                             <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
-                                                        <select id="form_ville" name="ville"
-                                                            class="select single-select mr-0">
+                                                        <select name="ville" @change="onChange($event)"
+                                                            v-model="ville" class="select single-select mr-0">
                                                             <option value="">Villes</option>
                                                             <?php $__currentLoopData = $villes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $vll): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value=" <?php echo e($vll->title); ?>"
+                                                                <option value="<?php echo e($vll->title); ?>"
                                                                     <?php if($vll->title == $ville): ?> selected <?php endif; ?>>
                                                                     <?php echo e($vll->title); ?>
 
@@ -50,14 +50,16 @@
                                             <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
                                                     <div class="rld-single-select">
-                                                        <select name="quartier" class="select single-select mr-0">
+                                                        <select name="quartier" v-if="results.length > 0"
+                                                            class="select single-select mr-0">
                                                             <option value="">Quartiers</option>
-                                                            <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qrt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($qrt->title); ?>"
-                                                                    <?php if($quartier == $qrt->title): ?> selected <?php endif; ?>>
-                                                                    <?php echo e($qrt->title); ?>
-
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            <option :value="result.title" v-for="result in results"
+                                                                :key="result.id">{{ result.title }}</option>
+                                                        </select>
+                                                        <select v-else name="quartier"
+                                                            class="select single-select mr-0">
+                                                            <option value="">Quartiers</option>
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -78,8 +80,17 @@
                                             </div>
                                             <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
-                                                    <input name="nbr_pieces" type="number" placeholder="Nbr. pieces"
-                                                        max="<?php echo e($nbr_pieces); ?>">
+                                                    <select name="nbr_pieces" class="select single-select mr-0 w-100">
+                                                        <option value="">Nombre de pieces</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7+</option>
+                                                    </select>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-md-4 px-xs-1">
@@ -139,12 +150,12 @@
                     break;
                 case "vacances":
                     $('#tab3').addClass('active');
-                    $('#category_id').val(3);
+                    $('#category_id').val(4);
                     $('#heroForm').attr('action', '<?php echo e(route('vacances')); ?>');
                     break;
                 case "immoneuf":
                     $('#tab4').addClass('active');
-                    $('#category_id').val(4);
+                    $('#category_id').val(3);
                     $('#heroForm').attr('action', '<?php echo e(route('immoneuf')); ?>');
                     break;
                 default:
@@ -152,6 +163,42 @@
                     $('#category_id').val(1);
             }
         }
+    </script>
+    <script>
+        const {
+            createApp
+        } = Vue
+        createApp({
+            data() {
+                return {
+                    results: [],
+                    ville: '',
+                };
+            },
+            // mounted: function() {
+            //     this.getData(this.ville);
+            // },
+            methods: {
+                getData(ville) {
+                    console.log(ville);
+                    axios.get('/getQuartier', {
+                            params: {
+                                title: ville,
+                            }
+                        })
+                        .then(response => {
+                            this.results = response.data.quartiers;
+                            console.log(this.results);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                },
+                onChange(event) {
+                    this.getData(event.target.value);
+                }
+            }
+        }).mount('#app')
     </script>
 <?php $__env->stopSection(); ?>
 <?php /**PATH C:\Users\ayman\Desktop\Project\pap\resources\views/landing/hero.blade.php ENDPATH**/ ?>

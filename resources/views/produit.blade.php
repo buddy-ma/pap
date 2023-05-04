@@ -36,35 +36,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <section class="headings-2 pt-1 pb-2 mt-5">
-                        <div class="pro-wrapper">
-                            <div class="detail-wrapper-body">
-                                <div class="listing-title-bar">
-                                    <h3>{{ $product->title }}</h3>
-                                    @if ($product->product_category_id == 3)
-                                        <span
-                                            class="badge badge-pill badge-success px-3 py-2 mb-3">{{ $product->disponibilite }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </section>
 
                     @include('landing.product.carousel')
 
                     @include('landing.product.description')
-
-                    <div class="single homes-content details mb-30 mt-4">
-                        <h5 class="mb-4">Details</h5>
-                        <ul class="homes-list clearfix">
-                            @foreach (json_decode($product->extras) as $key => $value)
-                                <li class="w-100">
-                                    <i class="fa fa-check-square" aria-hidden="true"></i>
-                                    <span>{{ $value }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
 
                     @if ($product->product_category_id == 3)
                         <div class="single homes-content details mb-30">
@@ -133,7 +108,7 @@
                     @endif
 
                     <div class="property-location map">
-                        <h5>Location</h5>
+                        <h5>Localisation</h5>
                         <div class="divider-fade"></div>
                         <p>
                             <i class="fa fa-map-pin mr-3"></i>{{ $product->ville }}, {{ $product->quartier }},

@@ -38,6 +38,7 @@ class CreateProductsTable extends Migration
             $table->integer('surface_habitable')->nullable();
             $table->integer('surface_terrain')->nullable();
             $table->double('prix');
+            $table->string('prix_by')->default('fix');
             $table->integer('nbr_salons')->default(0);
             $table->integer('nbr_chambres')->default(0);
             $table->integer('vues')->default(0);

@@ -30,6 +30,7 @@ class AddProduct extends Component
     public $images = [], $productbiens = [], $j = 0;
     public $clicked = false;
     public $villes, $quartiers;
+    public $promoteurs, $promoteur_id;
 
     protected $listeners = ['submitAddBien'];
 
@@ -40,6 +41,8 @@ class AddProduct extends Component
         $this->productcategories = ProductCategory::get();
         $this->images = array_fill_keys(array(0, 1, 2, 3, 4, 5, 6, 7), '');
         $this->unite_surface = 'm²';
+
+        $this->promoteurs = Proprietaire::where('is_promoteur', 1)->get();
     }
 
     public function render()
@@ -81,7 +84,7 @@ class AddProduct extends Component
             'surface_habitable' => 'nullable',
             'surface_terrain' => 'nullable',
             'nbr_salons' => 'nullable',
-            'nbr_chambres' => 'required',
+            'nbr_chambres' => 'nullable',
             'images.0' => 'required|image|mimes:jpeg,jpg,png,svg',
         ], [
             'images.0.required' => 'Vous devez insérer au moins une image'
@@ -98,7 +101,7 @@ class AddProduct extends Component
             }
         }
 
-        if (!$this->is_commercial) {
+        if (!$this->is_commercial && !$this->promoteur_id) {
             $this->validate([
                 'firstname' => 'required|string|max:50|min:1',
                 'lastname' => 'required|string|max:50|min:1',
@@ -113,43 +116,48 @@ class AddProduct extends Component
                 ]);
             }
         }
-
-        $proprietaire = new Proprietaire();
-        $proprietaire->firstname = $this->firstname;
-        $proprietaire->lastname = $this->lastname;
-        $proprietaire->phone = $this->phone;
-        $proprietaire->email = $this->email;
-        if ($this->hide_infos) {
-            $proprietaire->hide_infos = 1;
-        } else {
-            $proprietaire->hide_infos = 0;
-        }
-        if ($this->is_promoteur) {
-            if (!empty($this->logo)) {
-                $logo_title = md5(microtime()) . '.' . $this->logo->extension();
-                $destinationPath = public_path('/storage/product/logo');
-                // $this->logo->storeAs('public/original/product/logo', $logo_title);
-                $newImage = Image::make($this->logo->getRealPath());
-                $newImage->resize(1200, 700, function ($constraint) {
-                    $constraint->aspectRatio();
-                })->save($destinationPath . '/' . $logo_title);
-                $proprietaire->logo = $logo_title;
+        if (!$this->promoteur_id) {
+            $proprietaire = new Proprietaire();
+            $proprietaire->firstname = $this->firstname;
+            $proprietaire->lastname = $this->lastname;
+            $proprietaire->phone = $this->phone;
+            $proprietaire->email = $this->email;
+            if ($this->hide_infos) {
+                $proprietaire->hide_infos = 1;
+            } else {
+                $proprietaire->hide_infos = 0;
             }
-            if (!empty($this->pdf)) {
-                $pdf = md5(microtime()) . '.' . $this->pdf->extension();
-                $this->pdf->storeAs('public/product/pdf', $pdf);
-                $proprietaire->pdf = $pdf;
+            if ($this->is_promoteur) {
+                if (!empty($this->logo)) {
+                    $logo_title = md5(microtime()) . '.' . $this->logo->extension();
+                    $destinationPath = public_path('/storage/product/logo');
+                    // $this->logo->storeAs('public/original/product/logo', $logo_title);
+                    $newImage = Image::make($this->logo->getRealPath());
+                    $newImage->resize(1200, 700, function ($constraint) {
+                        $constraint->aspectRatio();
+                    })->save($destinationPath . '/' . $logo_title);
+                    $proprietaire->logo = $logo_title;
+                }
+                if (!empty($this->pdf)) {
+                    $pdf = md5(microtime()) . '.' . $this->pdf->extension();
+                    $this->pdf->storeAs('/storage/product/pdf', $pdf);
+                    $proprietaire->pdf = $pdf;
+                }
+                $proprietaire->is_promoteur = 1;
             }
-            $proprietaire->is_promoteur = 1;
-        }
 
-        $proprietaire->save();
+            $proprietaire->save();
+        }
 
         $product = new Product();
         if ($this->is_commercial) {
             $product->user_id = Auth::guard('web')->id();
         }
-        $product->proprietaire_id = $proprietaire->id;
+        if (!$this->promoteur_id) {
+            $product->proprietaire_id = $proprietaire->id;
+        } else {
+            $product->proprietaire_id = $this->promoteur_id;
+        }
         $product->product_type_id = $this->type;
         $product->product_category_id = $this->category;
         $product->title = $this->title;
