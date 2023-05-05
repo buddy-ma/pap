@@ -95,6 +95,7 @@ Route::get('/location', [HomeController::class, 'location'])->name('location');
 Route::get('/immoneuf', [HomeController::class, 'immoneuf'])->name('immoneuf');
 
 Route::get('/produit/{slug}', [HomeController::class, 'produit'])->name('produit');
+Route::get('/vues_phone', [HomeController::class, 'vues_phone'])->name('vues_phone');
 Route::post('/produit/contact/{id?}', [HomeController::class, 'produitContact'])->name('produitContact');
 
 Route::get('/decouvrezMaroc', [HomeController::class, 'decouvrezMaroc'])->name('decouvrezMaroc');

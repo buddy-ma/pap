@@ -507,6 +507,14 @@ class HomeController extends Controller
         ]);
     }
 
+    public function vues_phone(Request $request)
+    {
+        $p = Product::find($request->id);
+        $p->vues_phone++;
+        $p->save();
+        return response()->json(['success' => 'Blog has been updated sucssefuly']);
+    }
+
     public function produitContact($id, Request $request)
     {
         $request->validate([

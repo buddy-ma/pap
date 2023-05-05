@@ -107,7 +107,7 @@
                         </div>
                     @endif
 
-                    <div class="property-location map">
+                    <div class="property-location map mt-4">
                         <h5>Localisation</h5>
                         <div class="divider-fade"></div>
                         <p>

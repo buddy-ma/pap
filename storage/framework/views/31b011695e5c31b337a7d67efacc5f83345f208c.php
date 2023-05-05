@@ -44,10 +44,12 @@
                                 </a>
                             </p>
                             <ul class="homes-list clearfix">
-                                <li class="the-icons">
-                                    <i class="flaticon-bed mr-2" aria-hidden="true"></i>
-                                    <span><?php echo e($product->nbr_chambres); ?> chambres</span>
-                                </li>
+                                <?php if($product->type->title != 'Terrains'): ?>
+                                    <li class="the-icons">
+                                        <i class="flaticon-bed mr-2" aria-hidden="true"></i>
+                                        <span><?php echo e($product->nbr_chambres); ?> chambres</span>
+                                    </li>
+                                <?php endif; ?>
 
                                 <li class="the-icons">
                                     <i class="flaticon-square" aria-hidden="true"></i>
