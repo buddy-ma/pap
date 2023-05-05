@@ -117,7 +117,7 @@ class EditProduct extends Component
             'surface' => 'required',
             'surface_habitable' => 'nullable',
             'surface_terrain' => 'nullable',
-            'nbr_salons' => 'required',
+            'nbr_salons' => 'nullable',
             'nbr_chambres' => 'nullable',
             // 'images.0' => 'required|image|mimes:jpeg,jpg,png,svg',
             // 'images.*' => 'image|mimes:jpeg,jpg,png,svg',

@@ -30,7 +30,7 @@
                                         <div class="text-center">
                                             @if ($product->first_image() !== null)
                                                 <img src="{{ URL::asset('storage/product/images/' . $product->first_image()->image) }}"
-                                                    alt="img" class="img-fluid w-100" style="max-height: 300px">
+                                                    alt="img" class="img-fluid w-100" style="max-height: 240px">
                                             @else
                                                 <img src="{{ URL::asset('admin_assets/images/products/1.jpg') }}"
                                                     alt="img" class="img-fluid w-100">

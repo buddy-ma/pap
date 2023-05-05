@@ -3023,6 +3023,8 @@ section.portfolio {
 .portfolio .project-head img {
     width: 100%;
     z-index: 2;
+    object-fit: cover;
+    max-height: 220px;
 }
 
 .portfolio .project-bottom {
@@ -16948,6 +16950,9 @@ h4.widget_author__name {
 .listing-details-sliders .img-fluid {
     max-width: 100%;
     height: auto;
+    object-fit: cover;
+    width: 100%;
+    max-height: 500px;
 }
 
 .single-proper .mb-30,

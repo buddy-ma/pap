@@ -65,18 +65,18 @@ class HomeController extends Controller
                 ->when($request->ville, function ($q) use ($request) {
                     $q->where('ville', $request->ville);
                 })->when($request->quartier, function ($q) use ($request) {
-                $q->where('quartier', $request->quartier);
-            })->when($request->type_id, function ($q) use ($request) {
-                $q->where('product_type_id', $request->type_id);
-            })->when($request->reference != '', function ($q) use ($request) {
-                $q->where('reference', 'like', $request->reference);
-            })->when($request->nbr_pieces, function ($q) use ($request) {
-                $q->where('nbr_chambres', $request->nbr_pieces);
-            })->when($request->surface_min, function ($q) use ($request) {
-                $q->where('surface', '>', $request->surface_min);
-            })->when($request->prix_max, function ($q) use ($request) {
-                $q->where('prix', '<', $request->prix_max);
-            })->get();
+                    $q->where('quartier', $request->quartier);
+                })->when($request->type_id, function ($q) use ($request) {
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference != '', function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->nbr_pieces, function ($q) use ($request) {
+                    $q->where('nbr_chambres', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix', '<', $request->prix_max);
+                })->get();
         } else {
             $products = Product::where('status', 1)->where('product_category_id', 1)->orWhere('product_category_id', 3)->get();
         }
@@ -118,20 +118,20 @@ class HomeController extends Controller
                 ->when($request->category_id, function ($q) use ($request) {
                     $q->where('product_category_id', $request->category_id);
                 })->when($request->type_id, function ($q) use ($request) {
-                $q->where('product_type_id', $request->type_id);
-            })->when($request->reference, function ($q) use ($request) {
-                $q->where('reference', 'like', $request->reference);
-            })->when($request->ville, function ($q) use ($request) {
-                $q->where('ville', 'like', $request->ville);
-            })->when($request->quartier, function ($q) use ($request) {
-                $q->where('quartier', 'like', $request->quartier);
-            })->when($request->nbr_pieces, function ($q) use ($request) {
-                $q->where('nbr_chambres', '>', $request->nbr_pieces);
-            })->when($request->surface_min, function ($q) use ($request) {
-                $q->where('surface_min', '>', $request->surface_min);
-            })->when($request->prix_max, function ($q) use ($request) {
-                $q->where('prix_max', '<', $request->prix_max);
-            })
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference, function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', 'like', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', 'like', $request->quartier);
+                })->when($request->nbr_pieces, function ($q) use ($request) {
+                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface_min', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix_max', '<', $request->prix_max);
+                })
                 ->get();
         } else {
             $products = Product::where([
@@ -170,20 +170,20 @@ class HomeController extends Controller
                 ->when($request->category_id, function ($q) use ($request) {
                     $q->where('product_category_id', $request->category_id);
                 })->when($request->type_id, function ($q) use ($request) {
-                $q->where('product_type_id', $request->type_id);
-            })->when($request->reference, function ($q) use ($request) {
-                $q->where('reference', 'like', $request->reference);
-            })->when($request->ville, function ($q) use ($request) {
-                $q->where('ville', 'like', $request->ville);
-            })->when($request->quartier, function ($q) use ($request) {
-                $q->where('quartier', 'like', $request->quartier);
-            })->when($request->nbr_pieces, function ($q) use ($request) {
-                $q->where('nbr_chambres', '>', $request->nbr_pieces);
-            })->when($request->surface_min, function ($q) use ($request) {
-                $q->where('surface_min', '>', $request->surface_min);
-            })->when($request->prix_max, function ($q) use ($request) {
-                $q->where('prix_max', '<', $request->prix_max);
-            })
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference, function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', 'like', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', 'like', $request->quartier);
+                })->when($request->nbr_pieces, function ($q) use ($request) {
+                    $q->where('nbr_chambres', '>', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface_min', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix_max', '<', $request->prix_max);
+                })
                 ->get();
         } else {
             $products = Product::where([
@@ -219,25 +219,26 @@ class HomeController extends Controller
     public function vacances(Request $request)
     {
         if ($request->category_id) {
+            $nbr_pieces = intval($request->nbr_pieces);
             $products = Product::query()
                 ->where('status', 1)
                 ->when($request->category_id, function ($q) use ($request) {
                     $q->where('product_category_id', $request->category_id);
                 })->when($request->type_id, function ($q) use ($request) {
-                $q->where('product_type_id', $request->type_id);
-            })->when($request->reference, function ($q) use ($request) {
-                $q->where('reference', 'like', $request->reference);
-            })->when($request->ville, function ($q) use ($request) {
-                $q->where('ville', 'like', $request->ville);
-            })->when($request->quartier, function ($q) use ($request) {
-                $q->where('quartier', 'like', $request->quartier);
-            })->when($request->nbr_pieces, function ($q) use ($request) {
-                $q->where('nbr_chambres', '>', $request->nbr_pieces);
-            })->when($request->surface_min, function ($q) use ($request) {
-                $q->where('surface_min', '>', $request->surface_min);
-            })->when($request->prix_max, function ($q) use ($request) {
-                $q->where('prix_max', '<', $request->prix_max);
-            })
+                    $q->where('product_type_id', $request->type_id);
+                })->when($request->reference, function ($q) use ($request) {
+                    $q->where('reference', 'like', $request->reference);
+                })->when($request->ville, function ($q) use ($request) {
+                    $q->where('ville', 'like', $request->ville);
+                })->when($request->quartier, function ($q) use ($request) {
+                    $q->where('quartier', 'like', $request->quartier);
+                })->when($nbr_pieces < 7, function ($q) use ($request) {
+                    $q->where('nbr_chambres', '<=', $request->nbr_pieces);
+                })->when($request->surface_min, function ($q) use ($request) {
+                    $q->where('surface_min', '>', $request->surface_min);
+                })->when($request->prix_max, function ($q) use ($request) {
+                    $q->where('prix_max', '<', $request->prix_max);
+                })
                 ->get();
         } else {
             $products = Product::where([
@@ -341,50 +342,51 @@ class HomeController extends Controller
     public function filterConseils(Request $request)
     {
         $categoryConseils = ConseilCategory::get();
-        
+
         $c = Categorie::where('title', 'Conseils')->first();
         $ids = $c->blogs()->pluck('blogs.id')->toArray();
-        if($request->id == 0){
+        if ($request->id == 0) {
             $conseils = Blog::whereIn('blogs.id', $ids)
-            ->when($request->searchInput != "", function ($q) use ($request) {
-                return $q->where('title', 'like', '%' . $request->searchInput . '%')
-                ->orWhere('subtitle', 'like', '%' . $request->searchInput . '%')
-                ->orWhere('tags', 'like', '%' . $request->searchInput . '%');
-            })
-            ->where('status', 1)->where('approved', 1)
-            ->get();
-        }else{
+                ->when($request->searchInput != "", function ($q) use ($request) {
+                    return $q->where('title', 'like', '%' . $request->searchInput . '%')
+                        ->orWhere('subtitle', 'like', '%' . $request->searchInput . '%')
+                        ->orWhere('tags', 'like', '%' . $request->searchInput . '%');
+                })
+                ->where('status', 1)->where('approved', 1)
+                ->get();
+        } else {
             $category = ConseilCategory::find($request->id);
             $conseils = $category->blogs()
                 ->whereIn('blogs.id', $ids)
                 ->where('status', 1)->where('approved', 1)
                 ->when($request->searchInput != "", function ($q) use ($request) {
                     return $q->where('title', 'like', '%' . $request->searchInput . '%')
-                    ->orWhere('subtitle', 'like', '%' . $request->searchInput . '%')
-                    ->orWhere('tags', 'like', '%' . $request->searchInput . '%');
+                        ->orWhere('subtitle', 'like', '%' . $request->searchInput . '%')
+                        ->orWhere('tags', 'like', '%' . $request->searchInput . '%');
                 })
                 ->groupBy('blogs.id')
                 ->get();
         }
-        
+
         return response()->json([
-            'conseils' => $conseils, 
-            'categoryConseils' => $categoryConseils]);
+            'conseils' => $conseils,
+            'categoryConseils' => $categoryConseils
+        ]);
     }
 
     public function getQuartier(Request $request)
     {
-        if($request->title == '' || $request->title == 'Villes'){
+        if ($request->title == '' || $request->title == 'Villes') {
             $quartiers = ProductQuartier::get();
-        }else{
+        } else {
             $ville = ProductVille::where('title', $request->title)->first();
             $quartiers = $ville->quartiers()->get();
         }
-        
+
         return response()->json(['quartiers' => $quartiers]);
     }
 
-    
+
 
     public function blogDetails($slug)
     {
@@ -475,7 +477,11 @@ class HomeController extends Controller
         $p = Product::where('slug', $slug)->firstOrFail();
         $p->vues++;
         $p->save();
-        $products = Product::where('status', 1)->take(3)->get();
+        $products = Product::where([
+            'status' => 1,
+            'ville' => $p->ville,
+            'product_category_id' => $p->product_category_id
+        ])->take(3)->get();
         $title = $p->category->title;
         switch ($title) {
             case 'Achat':

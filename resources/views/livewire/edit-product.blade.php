@@ -161,7 +161,7 @@
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Nbr Chambres*</label>
+                                                <label class="form-label">Nbr Chambres</label>
                                                 <input type="number" wire:model="nbr_chambres"
                                                     class="form-control" />
                                             </div>
