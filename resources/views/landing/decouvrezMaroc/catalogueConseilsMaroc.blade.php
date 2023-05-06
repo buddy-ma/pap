@@ -10,16 +10,16 @@
         <div class="news-wrap">
             <div class="row">
                 @foreach ($articlesMaroc as $art)
-                    <div class="col-xl-4 col-md-6 col-xs-12">
+                    <div class="col-xl-4 col-md-6 col-xs-12 mb-3">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
                             <a href="/decouvrezMaroc/{{ $art->slug }}" class="news-img-link">
                                 <div class="news-item-img">
                                     @isset($art->image)
                                         <img class="img-responsive" src="{{ asset('images/' . $art->image) }}"
-                                            alt="blog image">
+                                            alt="{{ $art->slug }}">
                                     @else
                                         <img class="img-responsive" src="{{ asset('assets/images/blog/b-10.jpg') }}"
-                                            alt="blog image">
+                                            alt="{{ $art->slug }}">
                                     @endisset
                                 </div>
                             </a>

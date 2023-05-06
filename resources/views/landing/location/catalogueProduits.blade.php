@@ -17,10 +17,10 @@
                                         </div>
                                         @if ($product->first_image() !== null)
                                             <img src="{{ URL::asset('storage/product/images/' . $product->first_image()->image) }}"
-                                                alt="home-1" class="img-responsive">
+                                                alt="{{ $product->slug }}" class="img-responsive">
                                         @else
                                             <img src="{{ URL::asset('admin_assets/images/products/1.jpg') }}"
-                                                alt="img" class="img-responsive">
+                                                alt="{{ $product->slug }}" class="img-responsive">
                                         @endif
 
                                     </a>

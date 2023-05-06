@@ -13,10 +13,10 @@
                                         <?php echo e($product->category->title); ?></div>
                                     <?php if($product->first_image() !== null): ?>
                                         <img src="<?php echo e(URL::asset('storage/product/images/' . $product->first_image()->image)); ?>"
-                                            alt="home-1" class="img-responsive">
+                                            alt="<?php echo e($product->slug); ?>" class="img-responsive">
                                     <?php else: ?>
-                                        <img src="<?php echo e(URL::asset('admin_assets/images/products/1.jpg')); ?>" alt="img"
-                                            class="img-responsive">
+                                        <img src="<?php echo e(URL::asset('admin_assets/images/products/1.jpg')); ?>"
+                                            alt="<?php echo e($product->slug); ?>" class="img-responsive">
                                     <?php endif; ?>
                                 </a>
                             </div>

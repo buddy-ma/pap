@@ -101,7 +101,9 @@
                                         @isset($product->proprietaire->logo)
                                             <li>
                                                 <img src="{{ asset('storage/product/logo/' . $product->proprietaire->logo) }}"
-                                                    alt="" class="mb-3 w-50 ml-auto mr-auto d-block">
+                                                    alt="{{ $product->proprietaire->firstname }}
+                                                    {{ $product->proprietaire->lastname }}"
+                                                    class="mb-3 w-50 ml-auto mr-auto d-block">
                                             </li>
                                         @endisset
                                         <li>

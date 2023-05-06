@@ -10,7 +10,7 @@
         <div class="news-wrap">
             <div class="row">
                 <?php $__currentLoopData = $articlesMaroc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $art): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="col-xl-4 col-md-6 col-xs-12">
+                    <div class="col-xl-4 col-md-6 col-xs-12 mb-3">
                         <div class="news-item" data-aos="fade-up" data-aos-delay="200">
                             <a href="/decouvrezMaroc/<?php echo e($art->slug); ?>" class="news-img-link">
                                 <div class="news-item-img">

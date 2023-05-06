@@ -21,13 +21,13 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $products = Product::where('status', 1)->get();
+        $products = Product::where('status', 1)->take(8)->get();
 
         $categoryConseils = Categorie::where('title', 'Conseils')->first();
-        $conseils = $categoryConseils->blogs()->where('status', 1)->where('approved', 1)->get();
+        $conseils = $categoryConseils->blogs()->where('status', 1)->where('approved', 1)->take(8)->get();
 
         $categoryMaroc = Categorie::where('title', 'DecouvrezLeMaroc')->first();
-        $articlesMaroc = $categoryMaroc->blogs()->where('status', 1)->where('approved', 1)->get();
+        $articlesMaroc = $categoryMaroc->blogs()->where('status', 1)->where('approved', 1)->take(8)->get();
 
         $citys = Ville::get();
 
@@ -35,7 +35,6 @@ class HomeController extends Controller
         $quartiers = ProductQuartier::get();
         $types = ProductType::where('product_category_id', 1)->get();
         $nbr_pieces = Product::where('product_category_id', 1)->max('nbr_chambres');
-
 
         return view('home', [
             'conseils' => $conseils,

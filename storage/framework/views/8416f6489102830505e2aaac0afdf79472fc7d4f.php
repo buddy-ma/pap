@@ -103,6 +103,17 @@
                         </div>
                     <?php endif; ?>
 
+                    <?php if(isset($product->video_link)): ?>
+                        <div class="property-location map mt-4">
+                            <h5>Video</h5>
+                            <div class="divider-fade"></div>
+                            <div style="position:relative;padding-top:56.25%;">
+                                <iframe src="<?php echo e($product->video_link); ?>" frameborder="0" allowfullscreen
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="property-location map mt-4">
                         <h5>Localisation</h5>
                         <div class="divider-fade"></div>
@@ -113,8 +124,8 @@
                         </p>
                         <iframe src="<?php echo e($product->position); ?>" width="100%" height="450" style="border:0;"
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
                     </div>
+
 
                     <?php echo $__env->make('landing.product.similarProduits', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
