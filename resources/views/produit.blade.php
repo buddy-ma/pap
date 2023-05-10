@@ -107,7 +107,18 @@
                         </div>
                     @endif
 
-                    <div class="property-location map">
+                    @isset($product->video_link)
+                        <div class="property-location map mt-4">
+                            <h5>Video</h5>
+                            <div class="divider-fade"></div>
+                            <div style="position:relative;padding-top:56.25%;">
+                                <iframe src="{{ $product->video_link }}" frameborder="0" allowfullscreen
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                            </div>
+                        </div>
+                    @endisset
+
+                    <div class="property-location map mt-4">
                         <h5>Localisation</h5>
                         <div class="divider-fade"></div>
                         <p>
@@ -116,8 +127,8 @@
                         </p>
                         <iframe src="{{ $product->position }}" width="100%" height="450" style="border:0;"
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
                     </div>
+
 
                     @include('landing.product.similarProduits')
 

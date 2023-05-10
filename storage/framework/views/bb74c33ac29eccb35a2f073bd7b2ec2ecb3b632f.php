@@ -15,10 +15,11 @@
                                             <div class="news-item-img">
                                                 <?php if(isset($cns->image)): ?>
                                                     <img class="img-responsive" src="<?php echo e(asset('images/' . $cns->image)); ?>"
-                                                        alt="blog image">
+                                                        alt="<?php echo e($cns->slug); ?>">
                                                 <?php else: ?>
                                                     <img class="img-responsive"
-                                                        src="<?php echo e(asset('assets/images/blog/b-10.jpg')); ?>" alt="blog image">
+                                                        src="<?php echo e(asset('assets/images/blog/b-10.jpg')); ?>"
+                                                        alt="<?php echo e($cns->slug); ?>">
                                                 <?php endif; ?>
                                             </div>
                                         </a>

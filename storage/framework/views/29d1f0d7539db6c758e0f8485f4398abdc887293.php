@@ -52,18 +52,14 @@
                                                     <div class="rld-single-select">
                                                         <select name="quartier" v-if="results.length > 0"
                                                             class="select single-select mr-0">
+                                                            <option value="">Quartiers</option>
                                                             <option :value="result.title" v-for="result in results"
                                                                 :key="result.id">{{ result.title }}</option>
                                                         </select>
                                                         <select v-else name="quartier"
                                                             class="select single-select mr-0">
                                                             <option value="">Quartiers</option>
-                                                            <?php $__currentLoopData = $quartiers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qrt): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <option value="<?php echo e($qrt->title); ?>"
-                                                                    <?php if($quartier == $qrt->title): ?> selected <?php endif; ?>>
-                                                                    <?php echo e($qrt->title); ?>
-
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -84,8 +80,17 @@
                                             </div>
                                             <div class="col-6 mb-md-4 px-xs-1">
                                                 <div class="rld-single-input">
-                                                    <input name="nbr_pieces" type="number" placeholder="Nbr. pieces"
-                                                        max="<?php echo e($nbr_pieces); ?>">
+                                                    <select name="nbr_pieces" class="select single-select mr-0 w-100">
+                                                        <option value="">Nombre de pieces</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7+</option>
+                                                    </select>
+                                                    
                                                 </div>
                                             </div>
                                             <div class="col-6 mb-md-4 px-xs-1">
@@ -145,12 +150,12 @@
                     break;
                 case "vacances":
                     $('#tab3').addClass('active');
-                    $('#category_id').val(3);
+                    $('#category_id').val(4);
                     $('#heroForm').attr('action', '<?php echo e(route('vacances')); ?>');
                     break;
                 case "immoneuf":
                     $('#tab4').addClass('active');
-                    $('#category_id').val(4);
+                    $('#category_id').val(3);
                     $('#heroForm').attr('action', '<?php echo e(route('immoneuf')); ?>');
                     break;
                 default:
@@ -170,9 +175,9 @@
                     ville: '',
                 };
             },
-            mounted: function() {
-                this.getData(this.ville);
-            },
+            // mounted: function() {
+            //     this.getData(this.ville);
+            // },
             methods: {
                 getData(ville) {
                     console.log(ville);

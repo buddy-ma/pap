@@ -15,10 +15,12 @@
                                             <div class="news-item-img">
                                                 <?php if(isset($city->image)): ?>
                                                     <img class="img-responsive"
-                                                        src="<?php echo e(asset('images/villes/' . $city->image)); ?>" alt="blog image">
+                                                        src="<?php echo e(asset('images/villes/' . $city->image)); ?>"
+                                                        alt="<?php echo e($city->title); ?>">
                                                 <?php else: ?>
                                                     <img class="img-responsive"
-                                                        src="<?php echo e(asset('assets/images/blog/b-10.jpg')); ?>" alt="blog image">
+                                                        src="<?php echo e(asset('assets/images/blog/b-10.jpg')); ?>"
+                                                        alt="<?php echo e($city->title); ?>">
                                                 <?php endif; ?>
                                             </div>
                                         </a>

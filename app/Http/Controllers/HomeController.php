@@ -21,13 +21,13 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $products = Product::where('status', 1)->get();
+        $products = Product::where('status', 1)->take(8)->get();
 
         $categoryConseils = Categorie::where('title', 'Conseils')->first();
-        $conseils = $categoryConseils->blogs()->where('status', 1)->where('approved', 1)->get();
+        $conseils = $categoryConseils->blogs()->where('status', 1)->where('approved', 1)->take(8)->get();
 
         $categoryMaroc = Categorie::where('title', 'DecouvrezLeMaroc')->first();
-        $articlesMaroc = $categoryMaroc->blogs()->where('status', 1)->where('approved', 1)->get();
+        $articlesMaroc = $categoryMaroc->blogs()->where('status', 1)->where('approved', 1)->take(8)->get();
 
         $citys = Ville::get();
 
@@ -35,7 +35,6 @@ class HomeController extends Controller
         $quartiers = ProductQuartier::get();
         $types = ProductType::where('product_category_id', 1)->get();
         $nbr_pieces = Product::where('product_category_id', 1)->max('nbr_chambres');
-
 
         return view('home', [
             'conseils' => $conseils,
@@ -85,6 +84,7 @@ class HomeController extends Controller
         $types = ProductType::where('product_category_id', 1)->get();
         $nbr_pieces = Product::where('product_category_id', 1)->max('nbr_chambres');
         $extras = $products->pluck('extras')->toArray();
+        $tags_extras = [];
         foreach ($extras as $extra) {
             foreach (json_decode($extra) as $ex) {
                 $tags_extras[] = $ex;
@@ -505,6 +505,14 @@ class HomeController extends Controller
             'products' => $products,
             'color' => $color
         ]);
+    }
+
+    public function vues_phone(Request $request)
+    {
+        $p = Product::find($request->id);
+        $p->vues_phone++;
+        $p->save();
+        return response()->json(['success' => 'Blog has been updated sucssefuly']);
     }
 
     public function produitContact($id, Request $request)

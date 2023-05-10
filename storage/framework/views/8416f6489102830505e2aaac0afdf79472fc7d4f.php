@@ -32,35 +32,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <section class="headings-2 pt-1 pb-2 mt-5">
-                        <div class="pro-wrapper">
-                            <div class="detail-wrapper-body">
-                                <div class="listing-title-bar">
-                                    <h3><?php echo e($product->title); ?></h3>
-                                    <?php if($product->product_category_id == 3): ?>
-                                        <span
-                                            class="badge badge-pill badge-success px-3 py-2 mb-3"><?php echo e($product->disponibilite); ?></span>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
 
                     <?php echo $__env->make('landing.product.carousel', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                     <?php echo $__env->make('landing.product.description', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-                    <div class="single homes-content details mb-30 mt-4">
-                        <h5 class="mb-4">Details</h5>
-                        <ul class="homes-list clearfix">
-                            <?php $__currentLoopData = json_decode($product->extras); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <li class="w-100">
-                                    <i class="fa fa-check-square" aria-hidden="true"></i>
-                                    <span><?php echo e($value); ?></span>
-                                </li>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-                    </div>
 
                     <?php if($product->product_category_id == 3): ?>
                         <div class="single homes-content details mb-30">
@@ -128,8 +103,19 @@
                         </div>
                     <?php endif; ?>
 
-                    <div class="property-location map">
-                        <h5>Location</h5>
+                    <?php if(isset($product->video_link)): ?>
+                        <div class="property-location map mt-4">
+                            <h5>Video</h5>
+                            <div class="divider-fade"></div>
+                            <div style="position:relative;padding-top:56.25%;">
+                                <iframe src="<?php echo e($product->video_link); ?>" frameborder="0" allowfullscreen
+                                    style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="property-location map mt-4">
+                        <h5>Localisation</h5>
                         <div class="divider-fade"></div>
                         <p>
                             <i class="fa fa-map-pin mr-3"></i><?php echo e($product->ville); ?>, <?php echo e($product->quartier); ?>,
@@ -138,8 +124,8 @@
                         </p>
                         <iframe src="<?php echo e($product->position); ?>" width="100%" height="450" style="border:0;"
                             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
                     </div>
+
 
                     <?php echo $__env->make('landing.product.similarProduits', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

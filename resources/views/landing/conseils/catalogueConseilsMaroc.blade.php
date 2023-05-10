@@ -18,10 +18,10 @@
                                 <div class="news-item-img">
                                     @isset($cns->image)
                                         <img class="img-responsive" src="{{ asset('images/' . $cns->image) }}"
-                                            alt="blog image">
+                                            alt="{{ $cns->slug }}">
                                     @else
                                         <img class="img-responsive" src="{{ asset('assets/images/blog/b-10.jpg') }}"
-                                            alt="blog image">
+                                            alt="{{ $cns->slug }}">
                                     @endisset
                                 </div>
                             </a>

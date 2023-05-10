@@ -2,7 +2,7 @@
 <section class="featured portfolio bg-white-2 rec-pro">
     <div class="container-fluid">
         <div class="sec-title">
-            <h2>Sans commission, <br>Sans intermediare</h2>
+            <h2>Sans commission, Sans intermediare</h2>
             
             
             
@@ -58,10 +58,12 @@
                                     </p>
                                     <!-- homes List -->
                                     <ul class="homes-list clearfix">
-                                        <li class="the-icons">
-                                            <i class="flaticon-bed mr-2" aria-hidden="true"></i>
-                                            <span><?php echo e($product->nbr_chambres); ?> chambres</span>
-                                        </li>
+                                        <?php if($product->type->title != 'Terrains'): ?>
+                                            <li class="the-icons">
+                                                <i class="flaticon-bed mr-2" aria-hidden="true"></i>
+                                                <span><?php echo e($product->nbr_chambres); ?> chambres</span>
+                                            </li>
+                                        <?php endif; ?>
 
                                         <li class="the-icons">
                                             <i class="flaticon-square" aria-hidden="true"></i>

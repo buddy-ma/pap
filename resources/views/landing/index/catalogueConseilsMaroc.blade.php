@@ -15,10 +15,12 @@
                                             <div class="news-item-img">
                                                 @isset($city->image)
                                                     <img class="img-responsive"
-                                                        src="{{ asset('images/villes/' . $city->image) }}" alt="blog image">
+                                                        src="{{ asset('images/villes/' . $city->image) }}"
+                                                        alt="{{ $city->title }}">
                                                 @else
                                                     <img class="img-responsive"
-                                                        src="{{ asset('assets/images/blog/b-10.jpg') }}" alt="blog image">
+                                                        src="{{ asset('assets/images/blog/b-10.jpg') }}"
+                                                        alt="{{ $city->title }}">
                                                 @endisset
                                             </div>
                                         </a>

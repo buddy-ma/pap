@@ -119,6 +119,16 @@
                                                 <textarea wire:model="description" class="form-control" rows="3"></textarea>
                                             </div>
                                             <div class="form-group">
+                                                <label class="form-label">Prix Par*</label>
+                                                <select wire:model="prix_by" class="form-control">
+                                                    <option>Select option</option>
+                                                    <option value="fix">fix</option>
+                                                    <option value="par jour">jour</option>
+                                                    <option value="par mois">mois</option>
+                                                    <option value="a partir de">a partir de</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
                                                 <label class="form-label">Prix*</label>
                                                 <input type="number" wire:model="prix" class="form-control" />
                                             </div>
@@ -163,7 +173,7 @@
                                                 <input type="text" wire:model="surface" class="form-control" />
                                             </div>
                                             <div class="form-group">
-                                                <label class="form-label">Nbr Chambres*</label>
+                                                <label class="form-label">Nbr Chambres</label>
                                                 <input type="number" wire:model="nbr_chambres"
                                                     class="form-control" />
                                             </div>

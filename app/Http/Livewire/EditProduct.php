@@ -25,7 +25,7 @@ class EditProduct extends Component
     public $product;
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false, $hide_infos = false;
-    public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $prix_by, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $productbiens = [], $i = 0;
     public $clicked = false;
@@ -52,6 +52,7 @@ class EditProduct extends Component
         $this->quartier = $this->product->quartier;
         $this->address = $this->product->address;
         $this->prix = $this->product->prix;
+        $this->prix_by = $this->product->prix_by;
         $this->video = $this->product->video_link;
         $this->vr = $this->product->vr_link;
         $this->unite_surface = $this->product->unite_surface;
@@ -178,6 +179,7 @@ class EditProduct extends Component
         $this->product->quartier = $this->quartier;
         $this->product->address = $this->address;
         $this->product->prix = $this->prix;
+        $this->product->prix_by = $this->prix_by;
         $this->product->video_link = $this->video ?? '';
         $this->product->vr_link = $this->vr ?? '';
         $this->product->unite_surface = $this->unite_surface;

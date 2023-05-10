@@ -58,19 +58,19 @@
                         <div class="news-item">
                             <a :href="this.conseilsLink + result.slug" class="news-img-link">
                                 <div class="news-item-img">
-                                    <img class="img-responsive" :src="'/images/' + result.image" alt="blog image"
+                                    <img class="img-responsive" :src="'/images/' + result.image" :alt="result.slug"
                                         v-if="result.image">
-                                    <img class="img-responsive" src="/assets/images/blog/b-10.jpg" alt="blog image"
-                                        v-else>
+                                    <img class="img-responsive" src="/assets/images/blog/b-10.jpg"
+                                        :alt="result.slug" v-else>
                                 </div>
                             </a>
                             <div class="news-item-text">
-                                <div class="dates">
+                                {{-- <div class="dates">
                                     <span class="date">
 
                                     </span>
-                                </div>
-                                <a>
+                                </div> --}}
+                                <a :href="this.conseilsLink + result.slug">
                                     <h3>@{{ result.title }}</h3>
                                 </a>
 

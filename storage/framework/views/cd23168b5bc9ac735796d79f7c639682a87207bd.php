@@ -31,7 +31,7 @@
                                         <div class="text-center">
                                             <?php if($product->first_image() !== null): ?>
                                                 <img src="<?php echo e(URL::asset('storage/product/images/' . $product->first_image()->image)); ?>"
-                                                    alt="img" class="img-fluid w-100" style="max-height: 300px">
+                                                    alt="img" class="img-fluid w-100" style="max-height: 240px">
                                             <?php else: ?>
                                                 <img src="<?php echo e(URL::asset('admin_assets/images/products/1.jpg')); ?>"
                                                     alt="img" class="img-fluid w-100">

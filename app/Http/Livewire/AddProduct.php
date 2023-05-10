@@ -25,7 +25,7 @@ class AddProduct extends Component
 
     public $productcategories, $producttypes, $productextras;
     public $firstname, $lastname, $phone, $email, $logo, $pdf, $is_promoteur = false, $is_commercial = false, $hide_infos = false;
-    public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
+    public $category, $type, $title, $slug, $reference, $description, $ville, $quartier, $address, $prix, $prix_by, $disponibilite, $video, $vr, $position, $unite_surface, $surface, $surface_habitable, $surface_terrain, $nbr_salons, $nbr_chambres;
     public $hasextras = [];
     public $images = [], $productbiens = [], $j = 0;
     public $clicked = false;
@@ -168,6 +168,7 @@ class AddProduct extends Component
         $product->ville = $this->ville;
         $product->quartier = $this->quartier;
         $product->address = $this->address;
+        $product->prix_by = $this->prix_by;
         $product->prix = $this->prix;
         $product->video_link = $this->video ?? '';
         $product->disponibilite = $this->disponibilite ?? '';

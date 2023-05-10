@@ -13,10 +13,10 @@
                                         {{ $product->category->title }}</div>
                                     @if ($product->first_image() !== null)
                                         <img src="{{ URL::asset('storage/product/images/' . $product->first_image()->image) }}"
-                                            alt="home-1" class="img-responsive">
+                                            alt="{{ $product->slug }}" class="img-responsive">
                                     @else
-                                        <img src="{{ URL::asset('admin_assets/images/products/1.jpg') }}" alt="img"
-                                            class="img-responsive">
+                                        <img src="{{ URL::asset('admin_assets/images/products/1.jpg') }}"
+                                            alt="{{ $product->slug }}" class="img-responsive">
                                     @endif
                                 </a>
                             </div>
@@ -44,10 +44,12 @@
                                 </a>
                             </p>
                             <ul class="homes-list clearfix">
-                                <li class="the-icons">
-                                    <i class="flaticon-bed mr-2" aria-hidden="true"></i>
-                                    <span>{{ $product->nbr_chambres }} chambres</span>
-                                </li>
+                                @if ($product->type->title != 'Terrains')
+                                    <li class="the-icons">
+                                        <i class="flaticon-bed mr-2" aria-hidden="true"></i>
+                                        <span>{{ $product->nbr_chambres }} chambres</span>
+                                    </li>
+                                @endif
 
                                 <li class="the-icons">
                                     <i class="flaticon-square" aria-hidden="true"></i>
