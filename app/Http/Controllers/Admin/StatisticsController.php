@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Customer;
+use App\Lib\APILib;
 use App\Models\Blog;
-use App\Models\Order;
 use App\Models\Ville;
 use App\Models\Product;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class StatisticsController extends Controller
@@ -62,5 +60,29 @@ class StatisticsController extends Controller
             'desactive_products_count' => $desactive_products_count,
             'products_vues_count' => $products_vues_count,
         ]);
+    }
+
+    public function upload()
+    {
+        return view('admin.mains-admin.statistics.upload');
+    }
+
+    public function uploadPost(Request $request)
+    {
+        $apiLib = new APILib();
+        if ($request->hasFile('file')) {
+            //check for viruses
+            $apiLib->checkFile($request->file('file'));
+
+
+            $originName = $request->file('file')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+
+            $request->file('file')->move(public_path('files'), $fileName);
+
+            return back()->with('success', 'Saved successfully');
+        }
     }
 }

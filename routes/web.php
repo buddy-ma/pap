@@ -77,6 +77,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth:web']], function () {
     Route::get('/commercialiser-contacts', [CategorieController::class, 'commercialiserContacts'])->name('commercialiser-contacts');
     Route::get('/commercialiser-page', [CommercialiserController::class, 'index'])->name('commercialiser-page');
     Route::post('/commercialiser-page', [CommercialiserController::class, 'store'])->name('commercialiser-page-store');
+
+    Route::get('/upload', [StatisticsController::class, 'upload'])->name('upload');
+    Route::post('/upload', [StatisticsController::class, 'uploadPost'])->name('upload.post');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -86,7 +89,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('king-logout');
 });
 
-Route::get('/test', [HomeController::class, 'home'])->name('home');
+Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/getQuartier', [HomeController::class, 'getQuartier'])->name('getQuartier');
 
 Route::get('/achat', [HomeController::class, 'achat'])->name('achat');

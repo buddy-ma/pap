@@ -45,8 +45,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Telephone*</label>
-                                                <input type="text" wire:model="phone" maxlength="10"
-                                                    class="form-control" />
+                                                <input type="text" wire:model="phone" class="form-control" />
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Email</label>
@@ -206,7 +205,13 @@
                                             @endif
                                             <div class="form-group">
                                                 <label class="form-label">Video</label>
-                                                <input type="text" wire:model="video" class="form-control" />
+                                                <div class="input-group">
+                                                    <input type="text" wire:model="video" class="form-control" />
+                                                    @if (!$videoClicked)
+                                                        <button class="btn btn btn-primary br-tl-0 br-bl-0"
+                                                            type="button" wire:click="getVideoSrc()">save</button>
+                                                    @endif
+                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-label">Visite Virtuelle</label>

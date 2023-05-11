@@ -80,7 +80,7 @@
                                                         <input type="text" name="fullname" placeholder="Nom complet"
                                                             class="form-control mb-3" required />
                                                         <label for="phone">Telephone</label>
-                                                        <input type="text" maxlength="10" name="phone"
+                                                        <input type="text" name="phone"
                                                             class="form-control mb-3" placeholder="Telephone" required />
                                                         <label for="email">Email Address</label>
                                                         <input type="email" name="email" placeholder="Email Address"

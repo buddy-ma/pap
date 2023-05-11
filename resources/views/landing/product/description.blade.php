@@ -152,8 +152,7 @@
                                 <form method="post" action="{{ route('produitContact', $product->id) }}">
                                     @csrf
                                     <input type="text" name="fullname" placeholder="Nom complet" required />
-                                    <input type="text" maxlength="10" name="phone" placeholder="Telephone"
-                                        required />
+                                    <input type="text" name="phone" placeholder="Telephone" required />
                                     <input type="email" name="email" placeholder="Email Address" />
                                     <textarea placeholder="Message" name="message" required></textarea>
                                     <button type="submit" class="btn btn-block btn-primary mt-3"> Envoyer </button>

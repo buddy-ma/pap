@@ -452,7 +452,7 @@ class HomeController extends Controller
     {
         $request->validate([
             'fullname' => 'required|string|min:5|max:30',
-            'phone' => 'required|digits:10',
+            'phone' => 'required|string',
             'email' => 'nullable|email|min:5|max:255',
             'message' => 'required|string|min:5|max:255',
         ]);
@@ -519,7 +519,7 @@ class HomeController extends Controller
     {
         $request->validate([
             'fullname' => 'required|string|min:5|max:30',
-            'phone' => 'required|digits:10',
+            'phone' => 'required|string',
             'email' => 'nullable|email|min:5|max:255',
             'message' => 'required|string|min:5|max:255',
         ]);

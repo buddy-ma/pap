@@ -29,6 +29,7 @@ class AddProduct extends Component
     public $hasextras = [];
     public $images = [], $productbiens = [], $j = 0;
     public $clicked = false;
+    public $videoClicked = false;
     public $villes, $quartiers;
     public $promoteurs, $promoteur_id;
 
@@ -105,7 +106,7 @@ class AddProduct extends Component
             $this->validate([
                 'firstname' => 'required|string|max:50|min:1',
                 'lastname' => 'required|string|max:50|min:1',
-                'phone' => ['required', 'digits:10', new PhoneValidation()],
+                'phone' => 'required|string|max:20|min:1',
                 'email' => 'nullable|email|max:255|min:1',
             ]);
 
@@ -288,5 +289,15 @@ class AddProduct extends Component
             $this->position = $result[1];
         }
         $this->clicked = true;
+    }
+
+    public function getVideoSrc()
+    {
+        if (isset($this->video)) {
+            $html = $this->video;
+            preg_match('~iframe.*src="([^"]*)"~', $html, $result);
+            $this->video = $result[1];
+        }
+        $this->videoClicked = true;
     }
 }

@@ -24,7 +24,7 @@ class CommercialiserController extends Controller
         $this->validate($request, [
             'title' => 'required|string|min:3|max:255',
             'address' => 'required|string|min:3|max:255',
-            'phone' => 'required|digits:10',
+            'phone' => 'required|string',
             'email' => 'required|email|min:3|max:255',
             'editor1' => 'required',
         ]);

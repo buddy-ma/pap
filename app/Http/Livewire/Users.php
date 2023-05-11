@@ -108,7 +108,7 @@ class Users extends Component
             [
                 'firstname'     => 'required|string|max:50|min:2',
                 'lastname'      => 'required|string|max:50|min:2',
-                'phone'         => 'required|unique:users,phone|digits:10',
+                'phone'         => 'required|unique:users,phone|string',
                 'email'         => 'required|email|unique:users,email|max:50',
                 'password'      => 'required',
                 'select'        => 'required',
@@ -149,7 +149,7 @@ class Users extends Component
             [
                 'firstname'       => 'required|string|max:50|min:2',
                 'lastname'        => 'required|string|max:50|min:2',
-                'phone'           => 'required|digits:10',
+                'phone'           => 'required|string|max:20|min:2',
                 'email'           => 'required|email|max:50|unique:users,email,' . $this->user_id,
                 'select'          => 'required',
             ],

@@ -54,9 +54,8 @@
                                             </div>
                                             <div class="col-6">
                                                 <label class="form-label">Phone </label>
-                                                <input class="form-control mb-4" placeholder="Phone" maxlength="10"
-                                                    type="text" wire:model.defer='phone'
-                                                    value='{{ old('phone') }}'>
+                                                <input class="form-control mb-4" placeholder="Phone" type="text"
+                                                    wire:model.defer='phone' value='{{ old('phone') }}'>
                                             </div>
                                             <div class="col-12 mt-3">
                                                 <div class="input-group file-browser mb-3">
